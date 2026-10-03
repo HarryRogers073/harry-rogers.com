@@ -70,8 +70,31 @@ const featuredProjects = allProjects
     </div>
   </section>
 
+  <!-- Smooth Flowing Telemetry Strip -->
+  <div class="ticker-strip" aria-label="Quick Highlights">
+    <div class="ticker-wrap">
+      <div class="ticker-track">
+        <span class="ticker-node brand">◆ VAIDAR HIL FRAMEWORK</span>
+        <span class="ticker-node white">★ THE IET PRIZE 2026 WINNER</span>
+        <span class="ticker-node brand">⚡ CHESS DYNAMICS DEFENCE OPTRONICS</span>
+        <span class="ticker-node">◆ BAE SYSTEMS IV&amp;V AVIONICS</span>
+        <span class="ticker-node brand">⚡ XILINX ARTIX-7 SILICON VERIFICATION</span>
+        <span class="ticker-node white">★ FIRST-CLASS HONOURS (80% OVERALL)</span>
+        <span class="ticker-node">◆ 91% DISSERTATION DISTINCTION</span>
+        <!-- Continuous loop copy -->
+        <span class="ticker-node brand">◆ VAIDAR HIL FRAMEWORK</span>
+        <span class="ticker-node white">★ THE IET PRIZE 2026 WINNER</span>
+        <span class="ticker-node brand">⚡ CHESS DYNAMICS DEFENCE OPTRONICS</span>
+        <span class="ticker-node">◆ BAE SYSTEMS IV&amp;V AVIONICS</span>
+        <span class="ticker-node brand">⚡ XILINX ARTIX-7 SILICON VERIFICATION</span>
+        <span class="ticker-node white">★ FIRST-CLASS HONOURS (80% OVERALL)</span>
+        <span class="ticker-node">◆ 91% DISSERTATION DISTINCTION</span>
+      </div>
+    </div>
+  </div>
+
   <!-- Portfolio & Technical Case Studies Portal -->
-  <section class="section">
+  <section class="section compact fade-in-view">
     <div class="container">
       <div class="section-header">
         <div>
@@ -82,7 +105,7 @@ const featuredProjects = allProjects
       </div>
 
       <!-- Curated top 2 flagship projects as clean preview cards -->
-      <div class="grid grid-2">
+      <div class="grid grid-2 fade-stagger">
         {featuredProjects.slice(0, 2).map((project) => (
           <ProjectCard project={project} />
         ))}
@@ -99,7 +122,7 @@ const featuredProjects = allProjects
   </section>
 
   <!-- Deep Navigation Grid (Sub-Page Portal) -->
-  <section class="section">
+  <section class="section compact fade-in-view">
     <div class="container">
       <div class="section-header">
         <div>
@@ -108,7 +131,7 @@ const featuredProjects = allProjects
         </div>
       </div>
 
-      <div class="portal-grid">
+      <div class="portal-grid fade-stagger">
         <a href="/experience" class="card portal-card">
           <div class="portal-badge">INDUSTRY</div>
           <h3>Work Experience</h3>
@@ -141,7 +164,7 @@ const featuredProjects = allProjects
   </section>
 
   <!-- LinkedIn Updates & Network -->
-  <section class="section">
+  <section class="section compact fade-in-view">
     <div class="container">
       <div class="section-header">
         <div>
@@ -161,9 +184,13 @@ const featuredProjects = allProjects
 <style>
   .hero-section {
     position: relative;
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    padding-top: 4rem;
+    padding-bottom: 3.5rem;
     overflow: hidden;
+  }
+
+  .section.compact {
+    padding: 3rem 0;
   }
   
   /* Soft ambient radial background fade */
