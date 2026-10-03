@@ -39,6 +39,15 @@ const progressionTimeline = [
         link: "/projects/matlab-projects"
       },
       {
+        discipline: "Virtual Instruments",
+        title: "Virtual Instrumentation: Desktop Oscilloscope in MATLAB App Designer",
+        type: "Embedded Instrumentation",
+        grade: "84% (A+) Distinction",
+        tools: "MATLAB App Designer, Dynamic ADC Modulation, Serial Telemetry, COM Ports",
+        description: "Engineered a dual-channel real-time oscilloscope application turning an external microcontroller into an interactive laboratory instrument with live waveform plotting and trigger holdoff.",
+        link: "/projects/matlab-projects"
+      },
+      {
         discipline: "Assembly Firmware",
         title: "Low-Level PIC Microcontroller Assembly (MPASM) Library",
         type: "Microprocessor Architecture & Assembly",
@@ -74,14 +83,14 @@ const progressionTimeline = [
   },
   {
     stage: "Year 2 (2023–2024) | University of Brighton",
-    summary: "Embedded C firmware, autonomous robotics platforms, digital logic synthesis, and classical control theory.",
+    summary: "Embedded C firmware, autonomous robotics platforms, digital logic synthesis, RF communications, and classical control theory.",
     award: "2nd Place Robot Wars Podium Finish • 84% Digital Systems",
     modules: [
       {
         discipline: "Embedded Robotics",
         title: "Autonomous Mobile Sensor Buggy & Dual-Display System",
         type: "Embedded C & Sensor Integration",
-        grade: "Distinction Grade",
+        grade: "79% (A) Distinction",
         tools: "Dual PIC16F873, MPLAB XC8, Dual I2C LCD Screens, ADC Thermistor, HC-SR04 Sonar",
         description: "Constructed an autonomous corridor-navigating mobile robot with task-partitioned dual microcontrollers, real-time ambient temperature calculation in Celsius, obstacle evasion, and dual status displays.",
         link: "/projects/autonomous-sensor-buggy"
@@ -105,33 +114,65 @@ const progressionTimeline = [
         link: "/projects/vhdl-digital-systems"
       },
       {
+        discipline: "Discrete RF Systems",
+        title: "Superheterodyne AM Radio Receiver & Discrete RF Electronics",
+        type: "Analogue RF Design",
+        grade: "70% (A-) Merit",
+        tools: "Superhet Architecture, Tuned LC Tanks, LM358 Op-Amps, 555/556 PWM, Veroboard",
+        description: "Engineered discrete analogue electronics on copper: assembled and aligned a functional superheterodyne AM MW/LW radio receiver receiving live broadcast signals with hand-tuned resonant LC tanks."
+      },
+      {
         discipline: "Control Engineering",
-        title: "Classical Control Systems: Transfer Functions & Stability Analysis",
+        title: "Closed-Loop PID Control & Dynamic Stability Modelling",
         type: "Control Systems",
-        grade: "Distinction Grade",
-        tools: "MATLAB, Simulink, Root Locus, Bode Plots, Block Diagram Reduction",
-        description: "Analysed continuous-time open-loop and closed-loop feedback systems, derived block diagram reductions, and evaluated gain/phase stability margins for second-order dynamic plants."
+        grade: "70% (A-) Merit • 92% Distinction in MATLAB Exam",
+        tools: "MATLAB pidTuner, Simulink, Laplace & z-Transforms, Bode & Nyquist, Root Locus",
+        description: "Derived 1st/2nd-order transfer functions for physical motor plants. Simulated dynamic stability margins, and tuned closed-loop PI/PID feedback controllers in MATLAB pidTuner, achieving 92% in the practical examination."
+      },
+      {
+        discipline: "Three-Phase Power",
+        title: "Industrial Three-Phase Power & Electrical Machines",
+        type: "Heavy Power Systems",
+        grade: "76% (A) Distinction",
+        tools: "3-Phase Star/Delta, Induction Motors, Power Transformers, Power Factor Correction, BS 7671",
+        description: "Calculated high-voltage 3-phase industrial power distributions, transformer magnetic core hysteresis/saturation, induction motor slip-torque curves, and power factor correction to UK BS 7671 standards."
       }
     ]
   },
   {
     stage: "Year 1 (2022–2023) | University of Brighton",
-    summary: "Foundations of analogue circuit theory, operational amplifiers, CAD layout, and mechanical design.",
-    award: "First-Class Year 1 Standing",
+    summary: "Foundations of semiconductor physics, operational amplifiers, CAD layout, electromagnetic networks, and advanced mathematics.",
+    award: "First-Class Year 1 Standing • Contributed to IET Sussex Prize",
     modules: [
       {
-        discipline: "Analogue Electronics",
-        title: "Analogue Electronics & Circuit Simulation",
-        type: "Analogue Circuit Design",
-        grade: "Distinction Grade",
-        tools: "Multimeter & Oscilloscope Instrumentation, LTspice, Proteus, Op-Amps, Transistors",
-        description: "Characterised LCR resonant tank circuits, operational amplifier active band-pass filters, transistor small-signal models, and bench-tested linear regulated DC power supplies under varying load currents."
+        discipline: "Semiconductor Physics",
+        title: "Semiconductor Electronics & Combinational Logic Design",
+        type: "Solid-State Electronics",
+        grade: "87% (A+) Distinction • IET Sussex Prize Winner",
+        tools: "BJT & MOSFET Transistors, Operational Amplifiers, Boolean Algebra, Karnaugh Maps",
+        description: "Transistor biasing and switching physics, active operational amplifier stages, and Boolean logic reduction via Karnaugh mapping, contributing to winning the IET Sussex Prize for first-year academic excellence."
+      },
+      {
+        discipline: "Electrical Networks",
+        title: "Electromagnetics & AC Phasor Network Analysis",
+        type: "Electrical Physics",
+        grade: "87% (A+) Distinction • IET Sussex Prize Winner",
+        tools: "Thévenin/Norton Theorems, Reactive Impedance, AC Phasor Analysis, Magnetic Circuits",
+        description: "Mastered fundamental circuit network reductions, reactive capacitive/inductive impedance, magnetic core fluxes, and complex AC phasor transformations."
+      },
+      {
+        discipline: "Engineering Mathematics",
+        title: "Differential Equations, Laplace Transforms & Numerical Solvers",
+        type: "Advanced Mathematics",
+        grade: "84% (A+) Distinction",
+        tools: "2nd-Order ODEs, Laplace Transforms, Fourier Series, Matrices & Eigenvalues, MATLAB",
+        description: "Formulated and solved 2nd-order ordinary differential equations for RLC dynamic networks, applied Laplace/Fourier expansions, and engineered numerical solvers in MATLAB."
       },
       {
         discipline: "PCB & CAD Design",
         title: "Electronic Engineering CAD & PCB Layout",
         type: "EDA & Manufacturing",
-        grade: "Distinction Grade",
+        grade: "69% (B+) Merit",
         tools: "Proteus PCB, KiCad, Altium, IPC Standards, Surface Mount & Through-Hole Layout",
         description: "Executed full-cycle schematic capture, design rule checking (DRC), trace impedance considerations, ground plane fills, and Gerber file generation for custom circuit boards."
       },

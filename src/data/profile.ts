@@ -44,7 +44,7 @@ export const experience: Role[] = [
       'Primary Test Team Point of Contact for the Land Integrated Portfolio Team (IPT), advising Project Managers and Programme Directors on FAT scoping and test feasibility.',
       'Factory Acceptance Testing (FAT) on electro-optical director platforms (Hawkeye land series), spanning stabilised pan/tilt positioners, daylight HD optics, cooled MWIR / uncooled LWIR thermal imagers, and laser rangefinders.',
       'Board-level diagnostics and fault isolation across multi-layer PCBs, continuous slip-ring communications (RS-422, CAN bus, Gigabit Ethernet), and video processing pipelines.',
-      'Environmental qualification including thermal chamber profiling (-40°C to +70°C) and vibration testing against military defence specifications.',
+      'Environmental qualification including thermal chamber profiling and vibration testing against military defence specifications.',
     ],
   },
   {
