@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { profile, experience, education, skills, leadership, otherWork } from '../data/profile';
+import { profile, experience, education, skills, leadership, otherWork, rankedModules } from '../data/profile';
 ---
 
 <BaseLayout title="Curriculum Vitae" description="Master Curriculum Vitae for Harry Rogers: Test & FPGA Verification Engineer, IET Prize Winner 2026.">
@@ -77,33 +77,108 @@ import { profile, experience, education, skills, leadership, otherWork } from '.
 
       <!-- Education & Academic Performance -->
       <section class="cv-block">
-        <h2 class="cv-heading">Education &amp; Academic Honors</h2>
-        <div class="cv-item card">
+        <div class="education-header-row">
+          <h2 class="cv-heading">Education &amp; Degree Modules</h2>
+          <div class="view-toggle-bar">
+            <button id="toggle-coolness-btn" class="toggle-btn active" type="button" aria-pressed="true">
+              🔥 In Order of Coolness ({rankedModules.length})
+            </button>
+            <button id="toggle-levels-btn" class="toggle-btn" type="button" aria-pressed="false">
+              🎓 By Academic Level
+            </button>
+          </div>
+        </div>
+
+        <!-- Degree Banner Card -->
+        <div class="cv-item card degree-banner-card">
           <div class="cv-item-header">
             <div>
               <h3>{education.degree}</h3>
-              <p class="company-name">{education.institution} — <strong>{education.result}</strong></p>
+              <p class="company-name">{education.institution} — <strong class="grade-high">{education.result}</strong></p>
             </div>
-            <span class="period-pill">{education.period}</span>
+            <div class="header-pills">
+              <span class="award-pill-sm">🏆 IET Prize 2026</span>
+              <span class="period-pill">{education.period}</span>
+            </div>
+          </div>
+          <p class="degree-lead muted">
+            Successfully completed all 17 accredited engineering modules across 3 academic years, achieving an 80% First-Class Honours average with specialisation in FPGA digital logic, hardware verification, and embedded systems.
+          </p>
+        </div>
+
+        <!-- VIEW 1: In Order of Coolness (Default) -->
+        <div id="coolness-view" class="modules-coolness-view">
+          <div class="coolness-hero-notice">
+            <span class="coolness-hero-tag">🔥 Degree Modules Ranked by Engineering Coolness</span>
+            <p class="muted">
+              From autonomous AI-driven FPGA hardware-in-the-loop verification to full-contact combat robotics, 
+              here is every single degree module ranked from peak silicon wizardry down to fundamental mathematical engines:
+            </p>
           </div>
 
-          <div class="modules-breakdown">
-            <h4>Academic Performance &amp; Grades:</h4>
-            <div class="modules-grid">
-              {education.modules.map((m) => (
-                <div class="module-level-box">
-                  <h5>{m.level}</h5>
-                  <ul>
-                    {m.items.map(([name, grade]) => (
-                      <li>
-                        <span>{name}</span>
-                        <strong class={grade >= 80 ? 'grade-high' : 'grade-mid'}>{grade}%</strong>
-                      </li>
-                    ))}
-                  </ul>
+          <div class="ranked-cards-grid">
+            {rankedModules.map((m) => (
+              <article class="ranked-module-card card">
+                <div class="module-card-top">
+                  <div class="rank-and-title">
+                    <span class={`rank-badge rank-${m.rank <= 3 ? m.rank : 'standard'}`}>
+                      #{m.rank}
+                    </span>
+                    <div>
+                      <h4 class="ranked-module-title">{m.name}</h4>
+                      <div class="module-meta-line">
+                        <span class="coolness-tag">{m.coolnessBadge}</span>
+                        <span class="level-indicator">{m.level}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="grade-and-award">
+                    <span class={`grade-pill-bold ${m.grade && m.grade >= 80 ? 'pill-high' : 'pill-mid'}`}>{m.gradeLabel}</span>
+                    {m.award && <span class="award-tag-pill">{m.award}</span>}
+                  </div>
                 </div>
-              ))}
-            </div>
+
+                <p class="module-summary">{m.summary}</p>
+
+                <div class="module-card-footer">
+                  <div class="tags mini-tags">
+                    {m.tech.map((t) => (
+                      <span class="tag">{t}</span>
+                    ))}
+                  </div>
+                  {m.projectSlug && (
+                    <a class="module-project-link" href={`/projects/${m.projectSlug}`}>
+                      View Project Case Study →
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <!-- VIEW 2: By Academic Level (Traditional) -->
+        <div id="levels-view" class="modules-levels-container card" style="display: none;">
+          <h4 class="levels-view-title">Official Academic Year Breakdown ({education.result})</h4>
+          <div class="modules-grid-three">
+            {education.modules.map((m) => (
+              <div class="module-level-box">
+                <div class="level-box-header">
+                  <h5>{m.level}</h5>
+                  <span class="credit-pill">120 CATS Credits</span>
+                </div>
+                <ul>
+                  {m.items.map(([name, grade]) => (
+                    <li>
+                      <span class="module-name-text">{name}</span>
+                      <strong class={grade >= 80 ? 'grade-high' : grade >= 70 ? 'grade-mid' : 'grade-pass'}>
+                        {grade}%
+                      </strong>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -185,14 +260,72 @@ import { profile, experience, education, skills, leadership, otherWork } from '.
   .highlights-list { padding-left: 1.2rem; margin: 0; }
   .highlights-list li { margin: 0.35rem 0; font-size: 0.97rem; }
 
-  .modules-breakdown { margin-top: 1.5rem; border-top: 1px dashed var(--border); padding-top: 1rem; }
-  .modules-breakdown h4 { font-size: 0.95rem; margin: 0 0 0.75rem; color: var(--muted); }
-  .modules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-  .module-level-box h5 { margin: 0 0 0.5rem; font-size: 0.9rem; color: var(--brand); }
-  .module-level-box ul { list-style: none; padding: 0; margin: 0; font-size: 0.88rem; }
-  .module-level-box li { display: flex; justify-content: space-between; padding: 0.25rem 0; border-bottom: 1px solid color-mix(in srgb, var(--border) 50%, transparent); }
+  /* Education & Coolness Toggle */
+  .education-header-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; }
+  .education-header-row .cv-heading { margin: 0; border-bottom: none; padding-bottom: 0; }
+  
+  .view-toggle-bar { display: inline-flex; background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; padding: 0.25rem; gap: 0.25rem; }
+  .toggle-btn { background: transparent; border: none; border-radius: 999px; padding: 0.4rem 0.9rem; font-size: 0.85rem; font-weight: 600; color: var(--muted); cursor: pointer; transition: all 0.2s ease; font-family: inherit; }
+  .toggle-btn:hover { color: var(--text); }
+  .toggle-btn.active { background: var(--surface); color: var(--brand); box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+
+  .degree-banner-card { margin-bottom: 1.5rem; background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%); }
+  .header-pills { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+  .award-pill-sm { font-size: 0.78rem; font-weight: 600; background: rgba(217, 119, 6, 0.12); color: #b45309; border: 1px solid rgba(217, 119, 6, 0.3); padding: 0.2rem 0.6rem; border-radius: 999px; }
+  .degree-lead { margin: 0.75rem 0 0; font-size: 0.95rem; line-height: 1.5; }
+
+  /* Coolness View */
+  .modules-coolness-view { display: flex; flex-direction: column; gap: 1.25rem; }
+  .coolness-hero-notice { padding: 1rem 1.25rem; background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 0.5rem; }
+  .coolness-hero-tag { font-size: 0.85rem; font-weight: 700; color: #dc2626; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; margin-bottom: 0.25rem; }
+  .coolness-hero-notice p { margin: 0; font-size: 0.9rem; }
+
+  .ranked-cards-grid { display: flex; flex-direction: column; gap: 1rem; }
+  .ranked-module-card { padding: 1.25rem; border-radius: 14px; border: 1px solid var(--border); transition: transform 0.15s ease, box-shadow 0.15s ease; }
+  .ranked-module-card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.06); }
+
+  .module-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+  .rank-and-title { display: flex; align-items: flex-start; gap: 0.85rem; }
+  
+  .rank-badge { display: inline-flex; align-items: center; justify-content: center; width: 2.2rem; height: 2.2rem; border-radius: 8px; font-weight: 800; font-size: 0.95rem; font-family: var(--font-mono); flex-shrink: 0; }
+  .rank-1 { background: linear-gradient(135deg, #fef3c7, #fde68a); color: #92400e; border: 2px solid #f59e0b; box-shadow: 0 2px 6px rgba(245, 158, 11, 0.25); }
+  .rank-2 { background: linear-gradient(135deg, #f1f5f9, #e2e8f0); color: #334155; border: 2px solid #94a3b8; }
+  .rank-3 { background: linear-gradient(135deg, #ffedd5, #fed7aa); color: #9a3412; border: 2px solid #f97316; }
+  .rank-standard { background: var(--surface-2); color: var(--brand); border: 1px solid var(--border); }
+
+  .ranked-module-title { margin: 0 0 0.25rem; font-size: 1.1rem; line-height: 1.3; color: var(--text); }
+  .module-meta-line { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; font-size: 0.82rem; }
+  .coolness-tag { font-weight: 600; color: #b45309; background: rgba(245, 158, 11, 0.1); padding: 0.15rem 0.5rem; border-radius: 6px; }
+  .level-indicator { color: var(--muted); }
+
+  .grade-and-award { display: flex; flex-direction: column; align-items: flex-end; gap: 0.35rem; }
+  .grade-pill-bold { font-family: var(--font-mono); font-weight: 700; font-size: 0.85rem; padding: 0.25rem 0.65rem; border-radius: 8px; }
+  .pill-high { background: rgba(5, 150, 105, 0.1); color: #059669; border: 1px solid rgba(5, 150, 105, 0.25); }
+  .pill-mid { background: rgba(37, 99, 235, 0.1); color: var(--brand); border: 1px solid rgba(37, 99, 235, 0.25); }
+  .award-tag-pill { font-size: 0.75rem; font-weight: 600; color: #b45309; }
+
+  .module-summary { margin: 0 0 0.85rem; font-size: 0.92rem; line-height: 1.5; color: var(--muted); }
+  
+  .module-card-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; padding-top: 0.65rem; border-top: 1px dashed var(--border); }
+  .mini-tags { gap: 0.35rem; }
+  .mini-tags .tag { font-size: 0.75rem; padding: 0.15rem 0.45rem; }
+  
+  .module-project-link { font-size: 0.85rem; font-weight: 600; color: var(--brand); text-decoration: none; display: inline-flex; align-items: center; gap: 0.25rem; }
+  .module-project-link:hover { text-decoration: underline; }
+
+  /* Traditional Academic Levels View */
+  .modules-levels-container { padding: 1.5rem; }
+  .levels-view-title { font-size: 1.05rem; margin: 0 0 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  .modules-grid-three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .level-box-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem; padding-bottom: 0.35rem; border-bottom: 1px solid var(--border); }
+  .level-box-header h5 { margin: 0; font-size: 0.92rem; color: var(--brand); }
+  .credit-pill { font-size: 0.72rem; font-family: var(--font-mono); color: var(--muted); background: var(--surface-2); padding: 0.1rem 0.4rem; border-radius: 4px; }
+  .module-level-box ul { list-style: none; padding: 0; margin: 0; font-size: 0.86rem; }
+  .module-level-box li { display: flex; justify-content: space-between; gap: 0.5rem; padding: 0.4rem 0; border-bottom: 1px solid color-mix(in srgb, var(--border) 50%, transparent); }
+  .module-name-text { line-height: 1.3; }
   .grade-high { color: #059669; }
   .grade-mid { color: var(--brand); }
+  .grade-pass { color: var(--muted); }
 
   .skill-category-row { margin-bottom: 1.2rem; }
   .skill-category-row:last-child { margin-bottom: 0; }
@@ -203,14 +336,46 @@ import { profile, experience, education, skills, leadership, otherWork } from '.
   .compact-list li { padding: 0.4rem 0; border-bottom: 1px solid color-mix(in srgb, var(--border) 50%, transparent); }
   .compact-list li:last-child { border-bottom: none; }
 
-  @media (max-width: 700px) {
-    .modules-grid { grid-template-columns: 1fr; }
+  @media (max-width: 820px) {
+    .modules-grid-three { grid-template-columns: 1fr; }
+    .education-header-row { flex-direction: column; align-items: flex-start; }
+    .grade-and-award { align-items: flex-start; }
+    .module-card-top { flex-direction: column; }
   }
 
   @media print {
-    :global(.site-header), :global(.site-footer), .cv-actions-bar { display: none !important; }
+    :global(.site-header), :global(.site-footer), .cv-actions-bar, .view-toggle-bar { display: none !important; }
     body { background: #fff !important; color: #000 !important; font-size: 10pt; }
     .card { border: none !important; box-shadow: none !important; padding: 0 !important; }
     .cv-section { padding: 0 !important; }
+    #levels-view { display: block !important; }
+    #coolness-view { display: none !important; }
   }
 </style>
+
+<script>
+  const coolnessBtn = document.getElementById('toggle-coolness-btn');
+  const levelsBtn = document.getElementById('toggle-levels-btn');
+  const coolnessView = document.getElementById('coolness-view');
+  const levelsView = document.getElementById('levels-view');
+
+  if (coolnessBtn && levelsBtn && coolnessView && levelsView) {
+    coolnessBtn.addEventListener('click', () => {
+      coolnessBtn.classList.add('active');
+      coolnessBtn.setAttribute('aria-pressed', 'true');
+      levelsBtn.classList.remove('active');
+      levelsBtn.setAttribute('aria-pressed', 'false');
+      coolnessView.style.display = 'block';
+      levelsView.style.display = 'none';
+    });
+
+    levelsBtn.addEventListener('click', () => {
+      levelsBtn.classList.add('active');
+      levelsBtn.setAttribute('aria-pressed', 'true');
+      coolnessBtn.classList.remove('active');
+      coolnessBtn.setAttribute('aria-pressed', 'false');
+      coolnessView.style.display = 'none';
+      levelsView.style.display = 'block';
+    });
+  }
+</script>
