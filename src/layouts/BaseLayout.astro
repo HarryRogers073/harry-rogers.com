@@ -113,26 +113,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
             closeLightbox();
           }
         });
-
-        // Scroll reveal animation observer
-        if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          const revealObserver = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  entry.target.classList.add('visible');
-                  revealObserver.unobserve(entry.target);
-                }
-              });
-            },
-            { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-          );
-
-          document.querySelectorAll('.card, .hero-content, .hero-badge-card, .section-header, .prose > *').forEach((el) => {
-            el.classList.add('reveal');
-            revealObserver.observe(el);
-          });
-        }
       })();
     </script>
   </body>
