@@ -45,10 +45,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       rel="stylesheet"
     />
     <script is:inline>
-      // Apply saved theme before paint (defaults to professional light mode)
+      // Apply saved theme before paint (defaults to dark mode for high-tech aesthetic)
       (() => {
         const saved = localStorage.getItem('theme');
-        const theme = saved ? saved : 'light';
+        const theme = saved ? saved : 'dark';
         document.documentElement.dataset.theme = theme;
       })();
     </script>
@@ -121,19 +121,21 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
               entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                   entry.target.classList.add('is-visible');
+                  entry.target.classList.add('is-revealed');
                   fadeObserver.unobserve(entry.target);
                 }
               });
             },
-            { threshold: 0.08, rootMargin: '0px 0px -20px 0px' }
+            { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
           );
 
-          document.querySelectorAll('.fade-in-view').forEach((el) => {
+          document.querySelectorAll('.fade-in-view, .reveal-on-scroll').forEach((el) => {
             fadeObserver.observe(el);
           });
         } else {
-          document.querySelectorAll('.fade-in-view').forEach((el) => {
+          document.querySelectorAll('.fade-in-view, .reveal-on-scroll').forEach((el) => {
             el.classList.add('is-visible');
+            el.classList.add('is-revealed');
           });
         }
       })();
