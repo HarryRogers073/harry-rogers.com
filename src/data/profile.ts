@@ -7,8 +7,8 @@ export const profile = {
   name: 'Harry Rogers',
   title: 'Test Engineer & FPGA Verification Specialist',
   tagline:
-    'I test electro-optical defence systems by day and build hardware-in-the-loop verification tooling for FPGAs.',
-  location: 'Brighton & Sussex, UK',
+    'Hardware test engineer working on defence robotics and Hawkeye electro-optics at Chess Dynamics; building FPGA verification tooling.',
+  location: 'Sussex, UK',
   email: 'harryrogers073@gmail.com',
   links: {
     linkedin: 'https://www.linkedin.com/in/harryrogers073/',
@@ -20,7 +20,7 @@ export const profile = {
 };
 
 export const about = [
-  'I’m a Hardware Test Engineer at Chess Dynamics and primary Test Team Point of Contact for the Land Integrated Portfolio Team (IPT), integrating and verifying electro-optical surveillance systems and precision Electro-Optical Directors for defence.',
+  'I’m a Hardware Test Engineer at Chess Dynamics in West Sussex, serving as primary Test Team Point of Contact for the Land Integrated Portfolio Team (IPT). I integrate and verify defence robotics, precision Hawkeye Electro-Optical Directors, and surveillance systems deployed across international allied defence programmes.',
   'I graduated from the University of Brighton with First-Class Honours in BEng Electronic & Computer Engineering (80% overall across 17 accredited modules) and was awarded the IET Prize 2026.',
   'My passion is FPGA digital logic design and hardware verification. For my dissertation I built VAIDAR, a modular hardware-in-the-loop test framework that drives Python test vectors into a physical Xilinx Artix-7 FPGA and checks the silicon against golden models.',
   'Before that I spent a 12-month industrial placement at BAE Systems working in Integration, Verification & Validation (IV&V) and lab testbench setup.',

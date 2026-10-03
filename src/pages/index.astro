@@ -22,18 +22,18 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
           <span class="pulse-dot"></span>
           <span class="status-brand">Chess Dynamics</span>
           <span class="status-sep">•</span>
-          <span class="status-sub">IET Prize Winner 2026</span>
+          <span class="status-sub">Defence Robotics &amp; Optronics</span>
         </div>
 
         <!-- Organic Headline -->
         <h1 class="hero-title">
           Electronic engineering, <br />
-          <span class="gradient-text">FPGA design &amp; test systems.</span>
+          <span class="gradient-text">defence robotics &amp; FPGA logic.</span>
         </h1>
 
-        <!-- Genuine, Grounded Subtitle -->
+        <!-- Genuine, Grounded Subtitle: Explicitly Sussex, UK -->
         <p class="hero-subtitle">
-          Hi, I’m <strong>Harry Rogers</strong>. I’m a UK-based electronic engineer. By day I test electro-optical defence systems at Chess Dynamics; outside of that, I design digital logic and build automated hardware-in-the-loop testing tools for FPGAs.
+          Hi, I’m <strong>Harry Rogers</strong> — an electronic engineer based in <strong>Sussex, UK</strong>. I lead test engineering on precision <strong>Hawkeye</strong> electro-optical director platforms for defence robotics at Chess Dynamics, qualifying surveillance systems deployed across allied international defence programmes. Outside of industry test, I build automated hardware-in-the-loop validation tools for FPGA silicon.
         </p>
 
         <!-- Understated, Clean Key Facts Bar -->
@@ -54,28 +54,92 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
           </div>
           <div class="fact-sep" aria-hidden="true"></div>
           <div class="fact-item">
-            <span class="fact-number">BAE</span>
-            <span class="fact-label">Placement Alum</span>
+            <span class="fact-number">CHESS</span>
+            <span class="fact-label">Hawkeye Land Systems</span>
           </div>
         </div>
 
-        <!-- Human Action Buttons -->
+        <!-- Action Buttons -->
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#featured-project">View Featured Project ↓</a>
-          <a class="btn ghost" href="/cv">Read CV &amp; Marks</a>
-          <a class="btn ghost" href="/about">About Me</a>
+          <a class="btn btn-primary" href="#defence-robotics">Explore Defence Robotics ↓</a>
+          <a class="btn ghost" href="#featured-project">VAIDAR FPGA Testbed</a>
+          <a class="btn ghost" href="/cv">Read Full CV</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Featured Project (Exactly ONE Showstopper Project) -->
+  <!-- Defence Robotics & Hawkeye Optronics Spotlight (Combat Vehicle Platform) -->
+  <section class="section defence-section reveal-on-scroll" id="defence-robotics">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Defence Engineering</p>
+          <h2>Robotics &amp; Electro-Optics at Chess</h2>
+        </div>
+        <a class="view-all" href="/experience">View career timeline →</a>
+      </div>
+
+      <div class="defence-card spotlight-card">
+        <div class="defence-media">
+          <img
+            src="/images/defence/chess-hawkeye-vehicle.jpg"
+            alt="Chess Dynamics Hawkeye Electro-Optical Director on Armoured Combat Vehicle"
+            loading="lazy"
+            class="defence-img"
+          />
+          <div class="media-overlay" aria-hidden="true"></div>
+          <span class="defence-badge">Chess Dynamics • West Sussex</span>
+        </div>
+
+        <div class="defence-content">
+          <div class="defence-meta">
+            <span class="meta-tag">ACTIVE PLATFORM</span>
+            <span class="meta-sep">•</span>
+            <span class="meta-scope">LAND IPT TEST POINT OF CONTACT</span>
+          </div>
+
+          <h3 class="defence-title">
+            Hawkeye Electro-Optical Directors &amp; Vehicle Systems
+          </h3>
+
+          <p class="defence-description">
+            At Chess Dynamics in West Sussex, I serve as the primary Test Team Point of Contact for the Land Integrated Portfolio Team (IPT). My work centres on Factory Acceptance Testing (FAT), board-level fault diagnosis, and environmental qualification on the <strong>Hawkeye</strong> family of precision-stabilised robotic electro-optical directors.
+          </p>
+
+          <p class="defence-description">
+            These vehicle-mounted and telescopic mast platforms integrate daylight HD optics, cooled thermal MWIR/LWIR cameras, and eye-safe laser rangefinders — deployed on armoured fighting vehicles and perimeter surveillance sites across <strong>allied international defence programmes</strong>.
+          </p>
+
+          <ul class="defence-tags">
+            <li class="tag">Hawkeye Land Series</li>
+            <li class="tag">Stabilised Pan/Tilt Robotics</li>
+            <li class="tag">International Allied Programmes</li>
+            <li class="tag">Thermal MWIR / LWIR</li>
+            <li class="tag">Continuous Slip-Ring Comms</li>
+            <li class="tag">Environmental Mil-Spec Profiling</li>
+          </ul>
+
+          <div class="defence-actions">
+            <a href="/experience" class="btn btn-primary">
+              Explore Work Experience Timeline →
+            </a>
+            <a href="/about" class="btn ghost">
+              About My Engineering Background
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Project (Strictly ONE Showstopper Academic Project: VAIDAR) -->
   <section class="section project-section reveal-on-scroll" id="featured-project">
     <div class="container">
       <div class="section-header">
         <div>
-          <p class="eyebrow">Featured Project</p>
-          <h2>Flagship Engineering Work</h2>
+          <p class="eyebrow">Academic Distinction</p>
+          <h2>Featured FPGA Case Study</h2>
         </div>
         <a class="view-all" href="/projects">Browse all {allProjects.length} projects →</a>
       </div>
@@ -660,6 +724,7 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
   }
 
   /* ---------- Section Spacing & Transparency ---------- */
+  .section.defence-section,
   .section.project-section,
   .section.nav-section,
   .section.updates-section {
@@ -689,7 +754,109 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
     transform: translateX(3px);
   }
 
-  /* ---------- Single Hero Project Card (Flagship Work) ---------- */
+  /* ---------- Defence Robotics Spotlight Card ---------- */
+  .defence-card {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    border-radius: 14px;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--surface) 82%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease, box-shadow 0.28s ease;
+  }
+  .defence-card:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--brand) 65%, var(--border));
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.18);
+  }
+
+  .defence-media {
+    position: relative;
+    background: var(--surface-2);
+    min-height: 420px;
+    overflow: hidden;
+  }
+  .defence-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .defence-card:hover .defence-img {
+    transform: scale(1.03);
+  }
+  .defence-badge {
+    position: absolute;
+    top: 1.1rem;
+    left: 1.1rem;
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    backdrop-filter: blur(10px);
+    color: var(--brand);
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 0.35rem 0.8rem;
+    border-radius: 6px;
+    border: 1px solid color-mix(in srgb, var(--brand) 30%, var(--border));
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .defence-content {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .defence-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.76rem;
+    font-family: var(--font-mono);
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+  .meta-scope {
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .defence-title {
+    font-family: var(--font-display, var(--font-sans));
+    font-size: 1.65rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    margin: 0 0 1rem;
+  }
+  .defence-description {
+    font-size: 0.94rem;
+    line-height: 1.6;
+    color: var(--muted);
+    margin: 0 0 1rem;
+  }
+  .defence-description strong {
+    color: var(--text);
+  }
+  .defence-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 1.75rem;
+  }
+  .defence-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  /* ---------- Single Hero Project Card (Flagship Academic Work) ---------- */
   .hero-project-card {
     display: grid;
     grid-template-columns: 1.15fr 1fr;
@@ -914,8 +1081,11 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
 
   /* Responsive */
   @media (max-width: 900px) {
+    .defence-card,
     .hero-project-card { grid-template-columns: 1fr; }
-    .project-media { min-height: 260px; }
+    .defence-media,
+    .project-media { min-height: 280px; }
+    .defence-content,
     .project-content { padding: 1.75rem; }
     .nav-grid { grid-template-columns: 1fr 1fr; }
     .facts-bar { flex-wrap: wrap; justify-content: center; gap: 1rem 1.4rem; padding: 0.85rem 1.2rem; }
@@ -927,6 +1097,7 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
     .hero-title { font-size: 2.2rem; }
     .nav-grid { grid-template-columns: 1fr; }
     .facts-bar { width: 100%; justify-content: space-around; }
+    .section.defence-section,
     .section.project-section,
     .section.nav-section,
     .section.updates-section {
