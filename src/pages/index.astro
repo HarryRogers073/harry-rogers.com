@@ -12,29 +12,27 @@ const featuredProjects = allProjects
 ---
 
 <BaseLayout>
-  <!-- Hero Section (Lando Norris / Motorsport Engineering Inspired) -->
+  <!-- Hero Section (Spacious, Clean, Ambient Fade) -->
   <section class="section hero-section">
+    <div class="ambient-glow" aria-hidden="true"></div>
     <div class="container hero-container">
       <div class="hero-content">
-        <div class="telemetry-pill-row">
-          <div class="telemetry-pill">
-            <span class="pulse-dot"></span>
-            <span class="telemetry-pill-label">STATUS:</span>
-            <span class="telemetry-pill-val">ACTIVE TEST RUNNER</span>
-          </div>
-          <div class="telemetry-pill secondary">
-            <span class="telemetry-pill-label">SYSTEM:</span>
-            <span class="telemetry-pill-val">CHESS DYNAMICS</span>
-          </div>
+        <div class="status-pill">
+          <span class="pulse-dot"></span>
+          <span class="status-pill-text">Hardware Test &amp; Verification Engineer</span>
         </div>
 
         <h1 class="hero-title">
-          HIGH VELOCITY <br />
-          <span class="gradient-text">HARDWARE TESTING</span>
+          Engineering reliable <br />
+          <span class="gradient-text">digital logic &amp; testbeds.</span>
         </h1>
+
         <p class="hero-subtitle">
-          Hi, I’m <strong>Harry Rogers</strong>. I push electro-optical defence platforms and FPGA silicon to their physical limits — engineering automated test rigs, sub-microsecond RTL telemetry, and zero-defect verification suites.
+          Hi, I’m <strong>Harry Rogers</strong>. I work in electro-optical surveillance testing at Chess Dynamics,
+          graduated with First-Class Honours from the University of Brighton, and won <strong>The IET Prize 2026</strong>.
+          Creator of the <strong>VAIDAR</strong> HIL verification framework.
         </p>
+
         <div class="actions">
           <a class="btn" href="/projects">Explore Projects →</a>
           <a class="btn ghost" href="/cv">View Master CV</a>
@@ -42,38 +40,25 @@ const featuredProjects = allProjects
         </div>
       </div>
 
-      <div class="hero-badge-card card">
-        <div class="badge-header">
-          <span class="status-title">SILICON TELEMETRY</span>
-          <span class="channel-badge">CH-01</span>
+      <div class="hero-metrics-card card">
+        <div class="metrics-header">
+          <span class="metrics-title">ACADEMIC &amp; INDUSTRY HONOURS</span>
+          <span class="metrics-tag">2026</span>
         </div>
-        <ul class="badge-stats">
+        <ul class="metrics-stats">
           <li>
             <strong class="stat-number">91%</strong>
-            <span class="stat-label">Dissertation</span>
+            <span class="stat-label">Dissertation (A+)</span>
           </li>
           <li>
             <strong class="stat-number">1st</strong>
             <span class="stat-label">BEng Honours</span>
           </li>
           <li>
-            <strong class="stat-number accent-num">IET</strong>
+            <strong class="stat-number brand-accent">IET</strong>
             <span class="stat-label">Prize Winner '26</span>
           </li>
         </ul>
-        <div class="telemetry-sim-box">
-          <div class="telemetry-sim-header">
-            <span>BENCH STATUS</span>
-            <span class="rate-indicator">100.00 MHz</span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill"></div>
-          </div>
-          <div class="telemetry-msg">
-            <span class="live-dot"></span>
-            <span id="telemetry-msg-text">VAIDAR: Stimulus vector verification nominal</span>
-          </div>
-        </div>
         <div class="tech-stack-row">
           <span class="tag">Xilinx Vivado</span>
           <span class="tag">Verilog HDL</span>
@@ -84,30 +69,6 @@ const featuredProjects = allProjects
       </div>
     </div>
   </section>
-
-  <!-- Continuous Telemetry Ticker Marquee -->
-  <div class="ticker-banner">
-    <div class="ticker-track">
-      <div class="ticker-content">
-        <span class="ticker-item highlight">◆ VAIDAR HIL FRAMEWORK</span>
-        <span class="ticker-item">★ THE IET PRIZE 2026 WINNER</span>
-        <span class="ticker-item brand">⚡ CHESS DYNAMICS DEFENCE OPTRONICS</span>
-        <span class="ticker-item">◆ BAE SYSTEMS IV&amp;V AVIONICS</span>
-        <span class="ticker-item brand">⚡ XILINX ARTIX-7 VERIFICATION</span>
-        <span class="ticker-item highlight">◆ FIRST-CLASS HONOURS (80% ACCREDITED)</span>
-        <span class="ticker-item">★ 91% DISSERTATION DISTINCTION</span>
-      </div>
-      <div class="ticker-content" aria-hidden="true">
-        <span class="ticker-item highlight">◆ VAIDAR HIL FRAMEWORK</span>
-        <span class="ticker-item">★ THE IET PRIZE 2026 WINNER</span>
-        <span class="ticker-item brand">⚡ CHESS DYNAMICS DEFENCE OPTRONICS</span>
-        <span class="ticker-item">◆ BAE SYSTEMS IV&amp;V AVIONICS</span>
-        <span class="ticker-item brand">⚡ XILINX ARTIX-7 VERIFICATION</span>
-        <span class="ticker-item highlight">◆ FIRST-CLASS HONOURS (80% ACCREDITED)</span>
-        <span class="ticker-item">★ 91% DISSERTATION DISTINCTION</span>
-      </div>
-    </div>
-  </div>
 
   <!-- Featured Projects -->
   <section class="section">
@@ -243,60 +204,141 @@ const featuredProjects = allProjects
 </BaseLayout>
 
 <style>
-  .hero-section { padding-top: 4.5rem; padding-bottom: 3.5rem; }
-  .hero-container { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 3rem; align-items: center; }
-  
-  .telemetry-pill-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.25rem; }
-  .telemetry-pill {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    padding: 0.3rem 0.75rem; border-radius: 9999px;
-    background: color-mix(in srgb, var(--surface) 90%, transparent);
-    border: 1px solid var(--border); font-size: 0.75rem; font-family: var(--font-mono);
+  .hero-section {
+    position: relative;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    overflow: hidden;
   }
-  .telemetry-pill-label { color: var(--muted); font-weight: 500; }
-  .telemetry-pill-val { color: var(--brand); font-weight: 700; letter-spacing: 0.04em; }
-  .telemetry-pill.secondary { opacity: 0.9; }
+  
+  /* Soft ambient radial background fade */
+  .ambient-glow {
+    position: absolute;
+    top: -15%;
+    left: 45%;
+    transform: translateX(-50%);
+    width: 650px;
+    height: 450px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--brand) 12%, transparent) 0%, color-mix(in srgb, var(--accent) 5%, transparent) 50%, transparent 75%);
+    pointer-events: none;
+    filter: blur(60px);
+    z-index: 0;
+  }
 
-  .hero-title { font-size: clamp(2.4rem, 4.5vw, 3.8rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.25rem; text-transform: uppercase; }
-  .gradient-text { background: linear-gradient(135deg, var(--brand) 0%, #00d2ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .hero-subtitle { font-size: 1.12rem; color: var(--muted); line-height: 1.6; max-width: 38rem; }
-  
-  .hero-badge-card { display: flex; flex-direction: column; gap: 1.25rem; padding: 1.75rem; border-color: color-mix(in srgb, var(--brand) 25%, var(--border)); box-shadow: var(--shadow); }
-  .badge-header { display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; font-family: var(--font-mono); font-weight: 700; }
-  .status-title { color: var(--muted); letter-spacing: 0.08em; }
-  .channel-badge { background: color-mix(in srgb, var(--brand) 15%, transparent); color: var(--brand); padding: 0.15rem 0.5rem; border-radius: 4px; border: 1px solid color-mix(in srgb, var(--brand) 30%, transparent); font-size: 0.75rem; }
-  
-  .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2); }
-  .badge-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; list-style: none; padding: 0; margin: 0; text-align: center; }
-  .badge-stats li { background: var(--surface-2); padding: 0.75rem 0.5rem; border-radius: 8px; border: 1px solid var(--border); }
-  .stat-number { display: block; font-size: 1.75rem; font-weight: 900; color: var(--text); font-family: var(--font-mono); }
-  .accent-num { color: var(--brand); }
-  .stat-label { font-size: 0.7rem; text-transform: uppercase; color: var(--muted); letter-spacing: 0.05em; font-weight: 600; }
-  
-  .telemetry-sim-box { background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 0.9rem; font-family: var(--font-mono); font-size: 0.75rem; }
-  .telemetry-sim-header { display: flex; justify-content: space-between; color: var(--muted); font-size: 0.7rem; font-weight: 600; margin-bottom: 0.4rem; }
-  .rate-indicator { color: #10b981; font-weight: 700; }
-  .progress-bar-bg { width: 100%; height: 5px; background: color-mix(in srgb, var(--border) 60%, transparent); border-radius: 9999px; overflow: hidden; margin-bottom: 0.5rem; }
-  .progress-bar-fill { width: 78%; height: 100%; background: linear-gradient(90deg, var(--brand), #00d2ff); border-radius: 9999px; animation: sim-pulse 4s ease-in-out infinite alternate; }
-  @keyframes sim-pulse { 0% { width: 65%; } 100% { width: 92%; } }
-  .telemetry-msg { display: flex; align-items: center; gap: 0.4rem; color: var(--text); font-size: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); animation: pulse-blink 1.8s infinite; }
-  @keyframes pulse-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .hero-container {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: 9999px;
+    background: color-mix(in srgb, var(--surface) 95%, transparent);
+    border: 1px solid var(--border);
+    margin-bottom: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+  .status-pill-text {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+
+  .pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+  }
+
+  .hero-title {
+    font-size: clamp(2.3rem, 4.5vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    margin-bottom: 1.25rem;
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-strong) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-subtitle {
+    font-size: 1.12rem;
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 36rem;
+  }
+
+  .hero-metrics-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+    border-color: color-mix(in srgb, var(--brand) 20%, var(--border));
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+  .metrics-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+  .metrics-title { color: var(--muted); }
+  .metrics-tag {
+    background: color-mix(in srgb, var(--brand) 10%, transparent);
+    color: var(--brand);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid color-mix(in srgb, var(--brand) 25%, transparent);
+  }
+
+  .metrics-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+  .metrics-stats li {
+    background: var(--surface-2);
+    padding: 0.85rem 0.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .stat-number {
+    display: block;
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--text);
+    font-family: var(--font-mono);
+  }
+  .brand-accent { color: var(--brand); }
+  .stat-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    margin-top: 0.2rem;
+  }
 
   .tech-stack-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-
-  /* Ticker Banner */
-  .ticker-banner {
-    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-    background: var(--surface-2); overflow: hidden; padding: 0.75rem 0;
-    user-select: none;
-  }
-  .ticker-track { display: flex; width: max-content; }
-  .ticker-content { display: flex; animation: marquee-scroll 24s linear infinite; white-space: nowrap; font-family: var(--font-mono); font-size: 0.8rem; }
-  .ticker-item { margin: 0 1.5rem; color: var(--muted); }
-  .ticker-item.highlight { color: var(--text); font-weight: 700; }
-  .ticker-item.brand { color: var(--brand); font-weight: 700; }
-  @keyframes marquee-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
   .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; }
   .view-all { color: var(--brand); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
