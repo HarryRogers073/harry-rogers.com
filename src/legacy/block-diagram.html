@@ -228,7 +228,7 @@
                         <div class="zl">Test Generation Pipeline</div>
                         <!-- Forward flow: User → GUI → Backend → Gemini -->
                         <div class="pipe-row" style="padding-top: 12px;">
-                            <div class="b" onclick="ins('ai','user_input')"><div class="bt">👤 User</div><div class="bs">Test Boundaries</div></div>
+                            <div class="b" onclick="ins('ai','user_input')"><div class="bt">User</div><div class="bs">Test Boundaries</div></div>
                             <div class="arr-cell"><div class="arrow-h"></div><div class="head-r"></div></div>
                             <div class="b b-gr" onclick="ins('ai','gui_gen')"><div class="bt">Python GUI</div><div class="bs">Control Panel</div></div>
                             <div class="arr-cell"><div class="arrow-h"></div><div class="head-r"></div></div>
@@ -238,7 +238,7 @@
                         </div>
                         <!-- Return flow: Output ← Finalise ← Format ← (Gemini responds) -->
                         <div class="pipe-row" style="margin-top: 16px;">
-                            <div class="b" onclick="ins('ai','user_output')"><div class="bt">📄 Test File</div><div class="bs">CSV Output</div></div>
+                            <div class="b" onclick="ins('ai','user_output')"><div class="bt">Test File</div><div class="bs">CSV Output</div></div>
                             <div class="arr-cell"><div class="head-l"></div><div class="arrow-h"></div></div>
                             <div class="b b-gr" onclick="ins('ai','finalise')"><div class="bt">Finalise Test</div><div class="bs">Validate & Save</div></div>
                             <div class="arr-cell"><div class="head-l"></div><div class="arrow-h"></div></div>
@@ -252,7 +252,7 @@
                         <div class="zl">Log Analysis Pipeline</div>
                         <!-- Forward flow -->
                         <div class="pipe-row" style="padding-top: 12px;">
-                            <div class="b" onclick="ins('ai','log_input')"><div class="bt">📋 Result Log</div><div class="bs">Pass/Fail Data</div></div>
+                            <div class="b" onclick="ins('ai','log_input')"><div class="bt">Result Log</div><div class="bs">Pass/Fail Data</div></div>
                             <div class="arr-cell"><div class="arrow-h"></div><div class="head-r"></div></div>
                             <div class="b b-or" onclick="ins('ai','gui_log')"><div class="bt">Python GUI</div><div class="bs">Load Log File</div></div>
                             <div class="arr-cell"><div class="arrow-h"></div><div class="head-r"></div></div>
@@ -262,7 +262,7 @@
                         </div>
                         <!-- Return flow -->
                         <div class="pipe-row" style="margin-top: 16px;">
-                            <div class="b" onclick="ins('ai','diag_output')"><div class="bt">👤 User</div><div class="bs">Failure Cause</div></div>
+                            <div class="b" onclick="ins('ai','diag_output')"><div class="bt">User</div><div class="bs">Failure Cause</div></div>
                             <div class="arr-cell"><div class="head-l"></div><div class="arrow-h"></div></div>
                             <div class="b b-or" onclick="ins('ai','display_diag')"><div class="bt">Display Diagnostic</div><div class="bs">GUI Summary</div></div>
                             <div class="arr-cell"><div class="head-l"></div><div class="arrow-h"></div></div>
@@ -285,11 +285,11 @@
                     <div class="z z-bl">
                         <div class="zl">PC Controller Environment (Python)</div>
                         <div class="layer-row">
-                            <div class="b" onclick="ins('hil','csv_input')"><div class="bt">📂 input_queue/</div><div class="bi">test_suite_01.csv<br>test_suite_02.csv</div></div>
+                            <div class="b" onclick="ins('hil','csv_input')"><div class="bt">input_queue/</div><div class="bi">test_suite_01.csv<br>test_suite_02.csv</div></div>
                             <div class="arr-cell"><div class="arrow-h"></div><div class="head-r"></div></div>
                             <div class="b b-ye" onclick="ins('hil','middleware')" style="width: 100%;"><div class="bt">Python Middleware</div><div class="bs">run_tests.py</div><div class="bi" style="text-align: center; margin-top: 6px;">1. Parse CSV / Manage Queue<br>2. Send Commands (pyserial)<br>3. Evaluate Responses</div></div>
                             <div class="arr-cell"><div class="arrow-h"></div><div class="head-r"></div></div>
-                            <div class="b" onclick="ins('hil','results')"><div class="bt">📂 results/</div><div class="bi">log_01.txt<br>log_02.txt</div></div>
+                            <div class="b" onclick="ins('hil','results')"><div class="bt">results/</div><div class="bi">log_01.txt<br>log_02.txt</div></div>
                         </div>
                     </div>
                     <!-- Arrow down to USB-UART -->

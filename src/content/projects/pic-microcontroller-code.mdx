@@ -19,7 +19,7 @@ The project focuses on register-level execution, cycle-accurate timing loops, in
 
 ---
 
-## ⚡ Circuit Schematic: Master/Slave Dual PIC Architecture
+## Circuit Schematic: Master/Slave Dual PIC Architecture
 
 The flagship hardware system pairs two PIC16F873 microcontrollers over a full-duplex hardware UART serial bus. The master controller samples real-time analog/digital inputs and streams command packets to the slave controller, which dynamically computes PWM waveforms and drives high-power peripheral loads.
 
@@ -28,7 +28,7 @@ The flagship hardware system pairs two PIC16F873 microcontrollers over a full-du
 
 ---
 
-## 🔬 System Specifications & Registers
+## System Specifications & Registers
 
 | Feature | Hardware Implementation | Target Registers |
 | :--- | :--- | :--- |
@@ -40,7 +40,7 @@ The flagship hardware system pairs two PIC16F873 microcontrollers over a full-du
 
 ---
 
-## 🔄 PWM Modulation & Timer State Machine
+## PWM Modulation & Timer State Machine
 
 The pulse-width modulation subsystem relies on hardware Timer 2 (`TMR2`) and period register `PR2` to generate clean, jitter-free square waves without loading the CPU:
 
@@ -49,7 +49,7 @@ The pulse-width modulation subsystem relies on hardware Timer 2 (`TMR2`) and per
 
 ---
 
-## 💻 Register-Level MPASM Assembly Implementation
+## Register-Level MPASM Assembly Implementation
 
 The assembly routines leverage direct bit manipulation, bank switching (`STATUS, RP0`), and cycle-accurate delay loops:
 
@@ -58,7 +58,7 @@ The assembly routines leverage direct bit manipulation, bank switching (`STATUS,
 
 ---
 
-## 📦 Assembly Firmware Modules
+## Assembly Firmware Modules
 
 - **`16F873_RX_to_PWM.asm`:** Hardware UART packet reception triggering dynamic PWM duty-cycle modulation.
 - **`16F873_RX_to_LEDs_PORTC.ASM`:** Direct byte latching and parallel register bit driving for visual diagnostics on Port C.
@@ -67,7 +67,7 @@ The assembly routines leverage direct bit manipulation, bank switching (`STATUS,
 
 ---
 
-## ⚡ Source Code & Toolchain
+## Source Code & Toolchain
 
 - **GitHub Repository:** [HarryRogers073/pic-microcontroller-code](https://github.com/HarryRogers073/pic-microcontroller-code)
 - **Target Silicon:** Microchip PIC16F873, PIC16F84A

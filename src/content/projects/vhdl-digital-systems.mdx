@@ -19,7 +19,7 @@ The repository implements synchronous finite state machines (FSMs), priority req
 
 ---
 
-## 🔬 Physical FPGA Hardware Testbed
+## Physical FPGA Hardware Testbed
 
 The flagship multi-floor elevator controller was compiled onto an **Altera/Intel Cyclone FPGA** and deployed to a physical hardware testing harness consisting of tactile floor call switches, emergency stop buttons, and LED position indicators:
 
@@ -28,7 +28,7 @@ The flagship multi-floor elevator controller was compiled onto an **Altera/Intel
 
 ---
 
-## ⏱️ ModelSim Timing Simulation & Verification
+##  ModelSim Timing Simulation & Verification
 
 Prior to silicon programming, the complete digital architecture underwent cycle-accurate timing simulation in **ModelSim** to verify setup/hold slack, asynchronous reset handling, and state transition latency:
 
@@ -37,7 +37,7 @@ Prior to silicon programming, the complete digital architecture underwent cycle-
 
 ---
 
-## 🎯 Architecture Specifications: Multi-Floor Elevator Controller
+## Architecture Specifications: Multi-Floor Elevator Controller
 
 | Subsystem Module | Entity Name | Description | Key Signals |
 | :--- | :--- | :--- | :--- |
@@ -49,7 +49,7 @@ Prior to silicon programming, the complete digital architecture underwent cycle-
 
 ---
 
-## 💻 VHDL Finite State Machine Implementation
+## VHDL Finite State Machine Implementation
 
 The core elevator logic is structured as a two-process synchronous FSM separating combinatorial next-state logic from clocked sequential state registers:
 
@@ -58,7 +58,7 @@ The core elevator logic is structured as a two-process synchronous FSM separatin
 
 ---
 
-## 🧩 Arithmetic & Sequential Building Blocks
+## Arithmetic & Sequential Building Blocks
 
 In addition to the elevator system, the repository contains a library of synthesizable digital logic primitives:
 
@@ -75,7 +75,7 @@ In addition to the elevator system, the repository contains a library of synthes
 
 ---
 
-## ⚡ Source Code & Toolchain
+## Source Code & Toolchain
 
 - **GitHub Repository:** [HarryRogers073/vhdl-digital-systems](https://github.com/HarryRogers073/vhdl-digital-systems)
 - **Synthesis & P&R:** Intel Quartus Prime Lite / Standard Edition

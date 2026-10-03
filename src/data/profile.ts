@@ -120,8 +120,8 @@ export const rankedModules: RankedModule[] = [
     level: 'Level 6 (Final Year)',
     grade: 91,
     gradeLabel: '91% (Distinction, A+)',
-    coolnessBadge: '🔥 Absolute Peak Silicon Wizardry',
-    award: '🏆 IET Prize Winner 2026',
+    coolnessBadge: 'Flagship | FPGA HIL Verification',
+    award: 'IET Prize Winner 2026',
     summary: 'Architected a novel hardware-in-the-loop (HIL) automated test engine bridging Python to a physical AMD Xilinx Artix-7 FPGA over high-throughput UART (~1,000 tests/sec), integrating Google Gemini API for autonomous AI edge-case stimulus generation and real-time golden model comparison.',
     tech: ['AMD Xilinx Artix-7', 'Vivado', 'Verilog HDL', 'Python', 'Google Gemini API', 'PySerial', 'HIL Testing', 'UART'],
     projectSlug: 'vaidar-hil-framework'
@@ -132,8 +132,8 @@ export const rankedModules: RankedModule[] = [
     level: 'Level 5 (Second Year)',
     grade: 82,
     gradeLabel: '82% (Distinction, A+)',
-    coolnessBadge: '⚔️ Full-Contact Arena Mayhem',
-    award: '🥈 2nd Place Combat Championship',
+    coolnessBadge: 'Combat Robotics & High-Current Drives',
+    award: '2nd Place Combat Championship',
     summary: 'Engineered a battle-tested combat robotics platform that survived brutal full-contact combat rounds to seize 2nd place in the university championship. Designed custom high-current discrete MOSFET dual H-bridge motor drivers with flyback suppression and structural CAD chassis.',
     tech: ['MOSFET Dual H-Bridge', 'SolidWorks CAD', 'Proteus VSM', 'Microchip PIC', 'Combat Robotics', 'High-Torque DC Motors'],
     projectSlug: 'robot-wars-combat-platform'
@@ -144,7 +144,7 @@ export const rankedModules: RankedModule[] = [
     level: 'Level 5 (Second Year)',
     grade: 84,
     gradeLabel: '84% (Distinction, A+)',
-    coolnessBadge: '⚡ Pure RTL Concurrent Hardware Logic',
+    coolnessBadge: 'Concurrent RTL & FSM Architecture',
     summary: 'Designed and synthesized a complete multi-floor commercial elevator controller in IEEE VHDL for an Intel/Altera DE0-Nano FPGA. Implemented concurrent Finite State Machines (FSMs), dynamic request queuing, priority scheduling, door interlock safety, and 7-segment display multiplexers.',
     tech: ['IEEE VHDL', 'Intel DE0-Nano FPGA', 'Quartus Prime', 'ModelSim', 'Finite State Machines (FSM)', 'RTL Design'],
     projectSlug: 'vhdl-digital-systems'
@@ -155,7 +155,7 @@ export const rankedModules: RankedModule[] = [
     level: 'Level 5 (Second Year)',
     grade: 79,
     gradeLabel: '79% (Distinction, A)',
-    coolnessBadge: '🤖 Autonomous Silicon Driving',
+    coolnessBadge: 'Autonomous Microcontroller Robotics',
     summary: 'Built an autonomous obstacle-navigating ground vehicle in Embedded C. Coordinated dual Microchip PIC microcontrollers: master PIC performing microsecond HC-SR04 sonar pulse timing and motor PWM steering, slave PIC acquiring ADC thermistor data and updating dual HD44780 LCDs.',
     tech: ['Embedded XC8 C', 'Dual PIC Microcontrollers', 'HC-SR04 Ultrasonic Sonar', 'ADC Thermistor', 'Dual HD44780 LCDs', 'Wall-Following'],
     projectSlug: 'autonomous-sensor-buggy'
@@ -166,7 +166,7 @@ export const rankedModules: RankedModule[] = [
     level: 'Level 6 (Final Year)',
     grade: 90,
     gradeLabel: '90% (Distinction, A+)',
-    coolnessBadge: '📡 Enterprise Packet Crafting & RF',
+    coolnessBadge: 'Telecommunications & RF Systems',
     summary: 'Simulated and evaluated resilient enterprise WAN/LAN topologies with redundant dynamic routing (OSPF, RIP) and VLAN segmentation in Cisco Packet Tracer. Conducted mathematical analysis of ATM cell switching, cellular GSM/LTE frequency re-use, and digital broadcast RF links.',
     tech: ['Cisco Packet Tracer', 'ISO-OSI 7-Layer', 'TCP/IP', 'OSPF / RIP', 'ATM Switching', 'Cellular RF & Broadcasting'],
     projectSlug: 'communications-network-architecture'
@@ -177,7 +177,7 @@ export const rankedModules: RankedModule[] = [
     level: 'Level 6 (Final Year)',
     grade: 84,
     gradeLabel: '84% (Distinction, A+)',
-    coolnessBadge: '🎛️ Live Instrumentation Hacking',
+    coolnessBadge: 'Virtual Instrumentation & Telemetry',
     summary: 'Developed a standalone desktop instrument in MATLAB App Designer that turned an external microcontroller into a live dual-channel digital oscilloscope, featuring real-time waveform plotting, dynamic ADC sampling rate modulation, and trigger holdoffs.',
     tech: ['MATLAB App Designer', 'Serial Protocol Telemetry', 'Real-Time Signal Plotting', 'ADC Sampling Modulation', 'Virtual Instruments'],
     projectSlug: 'matlab-projects'
@@ -188,7 +188,7 @@ export const rankedModules: RankedModule[] = [
     level: 'Level 6 (Final Year)',
     grade: 68,
     gradeLabel: '68% (Merit, B+)',
-    coolnessBadge: '🎵 Math Turning Into Sound',
+    coolnessBadge: 'Digital Signal Processing & Filter Design',
     summary: 'Designed 3-way acoustic loudspeaker crossover filters using Linear Time-Invariant (LTI) FIR and IIR digital structures. Synthesized filter coefficient tables in MATLAB, conducted FFT spectral analysis on raw audio streams, and implemented real-time filtering routines for 8-bit microcontrollers.',
     tech: ['MATLAB DSP Toolbox', 'FIR & IIR Filters', 'Butterworth / Chebyshev', 'FFT Spectral Analysis', 'Microcontroller DSP'],
     projectSlug: 'matlab-projects'
@@ -199,7 +199,7 @@ export const rankedModules: RankedModule[] = [
     level: 'Level 5 (Second Year)',
     grade: 70,
     gradeLabel: '70% (Merit, A-)',
-    coolnessBadge: '📻 Discrete RF & Over-the-Air Waves',
+    coolnessBadge: 'Analogue RF Circuits & Communications',
     summary: 'Engineered discrete analog electronics on copper: assembled a working superheterodyne AM MW/LW radio receiver picking up over-the-air broadcasts with tuned LC tanks, built a precision LM358 operational amplifier light meter, and created a 555/556 PWM LED dimmer on Veroboard.',
     tech: ['AM Radio Superhet Receiver', 'Tuned LC RF Circuits', 'LM358 Operational Amplifiers', '555/556 Timers', 'PWM Dimming', 'Veroboard']
   },
@@ -209,7 +209,7 @@ export const rankedModules: RankedModule[] = [
     level: 'Level 5 (Second Year)',
     grade: 70,
     gradeLabel: '70% (Merit, A-) — 92% in MATLAB Exam',
-    coolnessBadge: '🕹️ Closed-Loop Dynamic Stability',
+    coolnessBadge: 'Closed-Loop Control & Dynamic Stability',
     summary: 'Derived 1st and 2nd-order transfer functions for physical motor plants using Laplace and z-transforms. Simulated frequency-domain Bode plots and damping ratios, and tuned closed-loop PI/PID feedback controllers in MATLAB pidTuner, validating settling times on bench hardware.',
     tech: ['MATLAB pidTuner', 'Simulink', 'Laplace & z-Transforms', 'Bode & Nyquist Plots', 'Root Locus', 'Hardware Plant Tuning']
   },
@@ -219,7 +219,7 @@ export const rankedModules: RankedModule[] = [
     level: 'Level 4 (First Year)',
     grade: 79,
     gradeLabel: '79% (Distinction, A)',
-    coolnessBadge: '💾 Cycle-Accurate Assembly Foundations',
+    coolnessBadge: 'Low-Level Assembly & Microprocessors',
     summary: 'Bare-metal assembly programming and microprocessor architecture: coded clock-cycle-accurate instruction sequences in pure MPASM, configured hardware timers, handled status register banking, and controlled peripheral I/O ports for hardware traffic light controllers.',
     tech: ['Microchip MPASM', 'PIC16 Architecture', 'Cycle Timing', 'Hardware Timers', 'Direct Port I/O', 'Assembly Logic'],
     projectSlug: 'pic-microcontroller-code'
@@ -230,7 +230,7 @@ export const rankedModules: RankedModule[] = [
     level: 'Level 4 (First Year)',
     grade: 69,
     gradeLabel: '69% (Merit, B+)',
-    coolnessBadge: '🔌 From Schematic to Copper',
+    coolnessBadge: 'Electronic CAD & PCB Simulation',
     summary: 'End-to-end electronic computer-aided design: captured schematics, routed single-sided printed circuit boards adhering to physical DRC clearances, and executed LTspice AC frequency sweeps (1 Hz to 1 MHz) and transient square-wave signal integrity simulations into resistive loads.',
     tech: ['Proteus Ares PCB', 'Altium Designer', 'LTspice XVII', 'AC Frequency Sweeps', 'Transient Analysis', 'PCB Routing Rules']
   },
@@ -240,8 +240,8 @@ export const rankedModules: RankedModule[] = [
     level: 'Level 4 (First Year)',
     grade: 87,
     gradeLabel: '87% (Distinction, A+)',
-    coolnessBadge: '💡 The Silicon Spark That Started It All',
-    award: '🏆 Contributed to IET Sussex Prize',
+    coolnessBadge: 'Fundamental Semiconductor Physics',
+    award: 'Contributed to IET Sussex Prize',
     summary: 'Fundamental semiconductor electronics, BJT/MOSFET transistor switching and biasing, active operational amplifier circuits, Boolean algebra, and Karnaugh map logic gate reduction. Contributed to winning the IET Sussex Prize for most meritorious first-year performance.',
     tech: ['BJT & MOSFET Transistors', 'Operational Amplifiers', 'Combinational Logic', 'Karnaugh Maps', 'Laboratory Test Equipment']
   },
@@ -251,8 +251,8 @@ export const rankedModules: RankedModule[] = [
     level: 'Level 4 (First Year)',
     grade: 87,
     gradeLabel: '87% (Distinction, A+)',
-    coolnessBadge: '⚡ Electromagnetism & Field Theory',
-    award: '🏆 Contributed to IET Sussex Prize',
+    coolnessBadge: 'Electromagnetics & Network Analysis',
+    award: 'Contributed to IET Sussex Prize',
     summary: 'Mastered foundational electrical physics and network analysis: Kirchhoff’s voltage and current laws, Thévenin and Norton equivalent circuit reductions, capacitive and inductive reactance, magnetic circuits, and AC sinusoidal phasor analysis.',
     tech: ['Circuit Network Theorems', 'Thévenin/Norton Analysis', 'AC Phasor Analysis', 'Reactive Impedance', 'Magnetic Circuits']
   },
@@ -262,7 +262,7 @@ export const rankedModules: RankedModule[] = [
     level: 'Level 5 (Second Year)',
     grade: 76,
     gradeLabel: '76% (Distinction, A)',
-    coolnessBadge: '⚡ High-Voltage Heavy Metal',
+    coolnessBadge: 'Three-Phase Power & Electrical Machines',
     summary: 'Analysed heavy industrial AC electrical power systems: 3-phase star and delta load calculations, transformer magnetic core saturation and hysteresis, induction motor slip-torque curves, and power factor correction while studying UK BS 7671 wiring standards.',
     tech: ['3-Phase Star/Delta Systems', 'Induction Motors', 'Power Transformers', 'Power Factor Correction', 'BS 7671 Wiring Regulations']
   },
@@ -272,7 +272,7 @@ export const rankedModules: RankedModule[] = [
     level: 'Level 4 (First Year)',
     grade: 62,
     gradeLabel: '62% (Merit, B-)',
-    coolnessBadge: '🔬 Multistage Silicon & Sequential Memory',
+    coolnessBadge: 'Multistage Amplifiers & Sequential Memory',
     summary: 'Designed and evaluated multistage BJT amplifier topologies, analyzing frequency response cutoffs, differential input stages, and feedback stabilization alongside sequential digital circuits including edge-triggered flip-flops, asynchronous ripple counters, and shift registers.',
     tech: ['Multistage BJT Amplifiers', 'Differential Pairs', 'Frequency Response Cutoffs', 'Sequential Logic', 'Flip-Flops & Counters']
   },
@@ -282,7 +282,7 @@ export const rankedModules: RankedModule[] = [
     level: 'Level 4 (First Year)',
     grade: 84,
     gradeLabel: '84% (Distinction, A+)',
-    coolnessBadge: '📐 The Pure Mathematical Engine',
+    coolnessBadge: 'Differential Equations & Numerical Solvers',
     summary: 'The mathematical foundation of all engineering disciplines: solving 2nd-order ordinary differential equations for RLC circuits, Laplace transforms, Fourier series expansions, matrix eigenvalues, and developing numerical solver algorithms in MATLAB.',
     tech: ['2nd-Order Differential Equations', 'Laplace Transforms', 'Fourier Series', 'Linear Algebra & Matrices', 'MATLAB Numerical Solvers']
   },
@@ -292,7 +292,7 @@ export const rankedModules: RankedModule[] = [
     level: 'Level 6 (Final Year)',
     grade: 62,
     gradeLabel: '62% (Merit, B-)',
-    coolnessBadge: '🔋 Engineering Meets Commercial Reality',
+    coolnessBadge: 'Product Engineering & Systems Feasibility',
     summary: 'Worked as consulting systems engineer in an interdisciplinary cohort developing a commercial grid energy storage concept. Applied New Product Development (NPD) stage-gate methodologies, SWOT analysis, techno-economic feasibility studies, and executive pitch decks.',
     tech: ['New Product Development (NPD)', 'Stage-Gate Pitching', 'Techno-Economic Feasibility', 'Gantt Planning', 'Commercial Viability']
   }

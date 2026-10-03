@@ -19,7 +19,7 @@ The project challenged us to design, construct, and program a fully autonomous v
 
 ---
 
-## 🤖 Physical Hardware & Dual Microcontroller Architecture
+## Physical Hardware & Dual Microcontroller Architecture
 
 To prevent sensor acquisition and real-time motor actuation loops from blocking each other, the vehicle's electrical architecture was partitioned across **two dedicated Microchip PIC16F873 microcontrollers** communicating over a synchronized bus with **two independent I2C LCD displays**:
 
@@ -33,7 +33,7 @@ To prevent sensor acquisition and real-time motor actuation loops from blocking 
 
 ---
 
-## ⚡ Circuit Schematics & Breadboard Layout
+## Circuit Schematics & Breadboard Layout
 
 The system combined analogue signal conditioning, high-current motor drive stages, and high-speed digital communications on a modular dual-rail breadboard layout:
 
@@ -45,7 +45,7 @@ The system combined analogue signal conditioning, high-current motor drive stage
 
 ---
 
-## 🌡️ Analogue Temperature Calibration & ADC
+##  Analogue Temperature Calibration & ADC
 
 Ambient temperature was continuously monitored using an NTC thermistor arranged in a precision voltage divider circuit. The analogue potential was digitised using the PIC’s internal 10-bit Analogue-to-Digital Converter (`GO_nDONE` polling) and converted to temperature:
 
@@ -67,7 +67,7 @@ The resulting floating-point value was converted into an ASCII string buffer (`i
 
 ---
 
-## ⏱️ Ultrasonic Sonar & Obstacle Evasion State Machine
+##  Ultrasonic Sonar & Obstacle Evasion State Machine
 
 Obstacle detection was achieved using an **HC-SR04 ultrasonic transducer** driven by a hardware timer. The microcontroller generated a precise 10 µs trigger pulse and measured the returning echo pulse width using hardware capture interrupts.
 
@@ -93,7 +93,7 @@ When an impending collision was detected within 25 cm, the state machine transit
 
 ---
 
-## 📊 Technical Specifications
+## Technical Specifications
 
 | Parameter | Specification |
 | :--- | :--- |
@@ -107,7 +107,7 @@ When an impending collision was detected within 25 cm, the state machine transit
 
 ---
 
-## ⚡ Source Code & Disclosures
+## Source Code & Disclosures
 
 - **Target Hardware:** Microchip PIC16F873
 - **Toolchain:** Microchip MPLAB X IDE, MPLAB XC8 C Compiler

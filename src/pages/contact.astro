@@ -116,7 +116,7 @@ import { profile } from '../data/profile';
 
       if (res.ok) {
         feedback.className = 'form-feedback success';
-        feedback.innerText = '✓ Thank you! Your message has been sent successfully. I will get back to you shortly.';
+        feedback.innerText = 'Thank you! Your message has been sent successfully. I will get back to you shortly.';
         feedback.style.display = 'block';
         form.reset();
       } else {
@@ -124,7 +124,7 @@ import { profile } from '../data/profile';
       }
     } catch (err) {
       feedback.className = 'form-feedback error';
-      feedback.innerText = '✕ Oops! Could not send message automatically. Please email me directly at harryrogers073@gmail.com.';
+      feedback.innerText = 'Could not send message automatically. Please email me directly at harryrogers073@gmail.com.';
       feedback.style.display = 'block';
     } finally {
       btn.disabled = false;

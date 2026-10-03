@@ -198,8 +198,14 @@ const experiences = [
   .experience-card {
     padding: 2.25rem;
     border: 1px solid var(--border);
-    border-radius: 12px;
-    background: var(--card-bg, #ffffff);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .experience-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
   }
 
   .card-top {
@@ -214,27 +220,36 @@ const experiences = [
   }
 
   .badge-pill {
-    display: inline-block;
-    background: #09090b;
-    color: #ffffff;
-    font-size: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: var(--surface-2);
+    color: var(--brand);
+    border: 1px solid var(--border);
+    font-size: 0.78rem;
     font-weight: 600;
-    padding: 0.25rem 0.65rem;
+    padding: 0.25rem 0.75rem;
     border-radius: 9999px;
     margin-bottom: 0.5rem;
     letter-spacing: 0.02em;
+    font-family: var(--font-mono);
   }
 
   .title-meta h2 {
     font-size: 1.5rem;
     margin: 0.25rem 0 0.4rem;
     line-height: 1.3;
+    color: var(--text);
   }
 
   .company-line {
     font-size: 1rem;
     color: var(--muted);
     margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
   }
 
   .company-line strong {
@@ -249,32 +264,36 @@ const experiences = [
     display: block;
     font-weight: 700;
     font-size: 1rem;
-    color: var(--text);
+    color: var(--brand);
     font-family: var(--font-mono);
   }
 
   .type-text {
     font-size: 0.85rem;
+    color: var(--muted);
   }
 
   .summary-text {
     font-size: 1.05rem;
     line-height: 1.6;
     margin-bottom: 1.5rem;
+    color: var(--text);
   }
 
   .responsibilities-section h3 {
-    font-size: 1rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--muted);
     margin-bottom: 0.75rem;
+    font-family: var(--font-mono);
   }
 
   .resp-list {
     margin: 0 0 1.5rem 1.25rem;
     padding: 0;
-    line-height: 1.6;
+    line-height: 1.65;
+    color: var(--text);
   }
 
   .resp-list li {
@@ -294,26 +313,30 @@ const experiences = [
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--muted);
+    font-family: var(--font-mono);
   }
 
   .cv-cta-card {
     margin-top: 3.5rem;
-    padding: 2rem;
+    padding: 2.25rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 1.5rem;
-    background: var(--bg-soft, #f9fafb);
+    background: var(--surface-2);
     border: 1px solid var(--border);
+    border-radius: var(--radius);
   }
 
   .cv-cta-card h3 {
     margin: 0 0 0.25rem;
+    color: var(--text);
   }
 
   .cv-cta-card p {
     margin: 0;
+    color: var(--muted);
   }
 
   @media (max-width: 768px) {
