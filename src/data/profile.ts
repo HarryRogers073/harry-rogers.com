@@ -134,7 +134,7 @@ export const rankedModules: RankedModule[] = [
     gradeLabel: '82% (Distinction, A+)',
     specialismBadge: 'Robotics & High-Current Power Electronics',
     award: '2nd Place University Championship',
-    summary: 'Engineered a high-reliability combat robotics platform that achieved 2nd place in the university championship tournament. Designed custom discrete MOSFET dual H-bridge motor drivers with flyback suppression and structural CAD chassis.',
+    summary: 'Built a combat robot that placed 2nd in the university championship. Designed custom motor drivers and CAD chassis.',
     tech: ['MOSFET Dual H-Bridge', 'SolidWorks CAD', 'Proteus VSM', 'Microchip PIC', 'Combat Robotics', 'High-Torque DC Motors'],
     projectSlug: 'robot-wars-combat-platform'
   },
@@ -145,7 +145,7 @@ export const rankedModules: RankedModule[] = [
     grade: 84,
     gradeLabel: '84% (Distinction, A+)',
     specialismBadge: 'Digital RTL & FSM Architecture',
-    summary: 'Designed and synthesised a complete multi-floor commercial elevator controller in IEEE VHDL for an Intel/Altera DE0-Nano FPGA. Implemented concurrent Finite State Machines (FSMs), dynamic request queuing, priority scheduling, door interlock safety, and 7-segment display multiplexers.',
+    summary: 'Wrote VHDL to control a multi-floor elevator on an FPGA, implementing state machines and safety interlocks.',
     tech: ['IEEE VHDL', 'Intel DE0-Nano FPGA', 'Quartus Prime', 'ModelSim', 'Finite State Machines (FSM)', 'RTL Design'],
     projectSlug: 'vhdl-digital-systems'
   },
@@ -156,7 +156,7 @@ export const rankedModules: RankedModule[] = [
     grade: 79,
     gradeLabel: '79% (Distinction, A)',
     specialismBadge: 'Autonomous Microcontroller Systems',
-    summary: 'Built an autonomous obstacle-navigating ground vehicle in Embedded C. Coordinated dual Microchip PIC microcontrollers: master PIC performing microsecond HC-SR04 sonar pulse timing and motor PWM steering, slave PIC acquiring ADC thermistor data and updating dual HD44780 LCDs.',
+    summary: 'Built an autonomous obstacle-navigating robot in C using dual PIC microcontrollers to handle sonar timing, motor steering, and sensor data.',
     tech: ['Embedded XC8 C', 'Dual PIC Microcontrollers', 'HC-SR04 Ultrasonic Sonar', 'ADC Thermistor', 'Dual HD44780 LCDs', 'Wall-Following'],
     projectSlug: 'autonomous-sensor-buggy'
   },
@@ -167,7 +167,7 @@ export const rankedModules: RankedModule[] = [
     grade: 90,
     gradeLabel: '90% (Distinction, A+)',
     specialismBadge: 'Telecommunications & RF Systems',
-    summary: 'Simulated and evaluated resilient enterprise WAN/LAN topologies with redundant dynamic routing (OSPF, RIP) and VLAN segmentation in Cisco Packet Tracer. Conducted mathematical analysis of ATM cell switching, cellular GSM/LTE frequency re-use, and digital broadcast RF links.',
+    summary: 'Simulated WAN/LAN networks with dynamic routing and VLANs in Packet Tracer. Analysed cellular frequency re-use and RF links.',
     tech: ['Cisco Packet Tracer', 'ISO-OSI 7-Layer', 'TCP/IP', 'OSPF / RIP', 'ATM Switching', 'Cellular RF & Broadcasting'],
     projectSlug: 'communications-network-architecture'
   },
@@ -178,7 +178,7 @@ export const rankedModules: RankedModule[] = [
     grade: 84,
     gradeLabel: '84% (Distinction, A+)',
     specialismBadge: 'Virtual Instrumentation & Telemetry',
-    summary: 'Developed a standalone desktop instrument in MATLAB App Designer that turned an external microcontroller into a live dual-channel digital oscilloscope, featuring real-time waveform plotting, dynamic ADC sampling rate modulation, and trigger holdoffs.',
+    summary: 'Built a MATLAB desktop app that turned a microcontroller into a live dual-channel oscilloscope, with real-time plotting and variable sampling.',
     tech: ['MATLAB App Designer', 'Serial Protocol Telemetry', 'Real-Time Signal Plotting', 'ADC Sampling Modulation', 'Virtual Instruments'],
     projectSlug: 'matlab-projects'
   },
@@ -189,7 +189,7 @@ export const rankedModules: RankedModule[] = [
     grade: 68,
     gradeLabel: '68% (Merit, B+)',
     specialismBadge: 'Digital Signal Processing & Filter Design',
-    summary: 'Designed 3-way acoustic loudspeaker crossover filters using Linear Time-Invariant (LTI) FIR and IIR digital structures. Synthesised filter coefficient tables in MATLAB, conducted FFT spectral analysis on raw audio streams, and implemented real-time filtering routines for 8-bit microcontrollers.',
+    summary: 'Designed digital FIR and IIR crossover filters for loudspeakers in MATLAB, and wrote real-time audio filtering code for microcontrollers.',
     tech: ['MATLAB DSP Toolbox', 'FIR & IIR Filters', 'Butterworth / Chebyshev', 'FFT Spectral Analysis', 'Microcontroller DSP'],
     projectSlug: 'matlab-projects'
   },
@@ -200,7 +200,7 @@ export const rankedModules: RankedModule[] = [
     grade: 70,
     gradeLabel: '70% (Merit, A-)',
     specialismBadge: 'Analogue RF Circuits & Communications',
-    summary: 'Engineered discrete analogue electronics on copper: assembled a working superheterodyne AM MW/LW radio receiver picking up over-the-air broadcasts with tuned LC tanks, built a precision LM358 operational amplifier light meter, and created a 555/556 PWM LED dimmer on Veroboard.',
+    summary: 'Built discrete analogue circuits on copper, including a working AM radio receiver, an op-amp light meter, and a 555 timer LED dimmer.',
     tech: ['AM Radio Superhet Receiver', 'Tuned LC RF Circuits', 'LM358 Operational Amplifiers', '555/556 Timers', 'PWM Dimming', 'Veroboard']
   },
   {
@@ -210,7 +210,7 @@ export const rankedModules: RankedModule[] = [
     grade: 70,
     gradeLabel: '70% (Merit, A-) — 92% in MATLAB Exam',
     specialismBadge: 'Closed-Loop Control & Dynamic Stability',
-    summary: 'Derived 1st and 2nd-order transfer functions for physical motor plants using Laplace and z-transforms. Simulated frequency-domain Bode plots and damping ratios, and tuned closed-loop PI/PID feedback controllers in MATLAB pidTuner, validating settling times on bench hardware.',
+    summary: 'Modelled physical motor systems and tuned closed-loop PID controllers in MATLAB, validating the response on physical hardware.',
     tech: ['MATLAB pidTuner', 'Simulink', 'Laplace & z-Transforms', 'Bode & Nyquist Plots', 'Root Locus', 'Hardware Plant Tuning']
   },
   {
@@ -220,7 +220,7 @@ export const rankedModules: RankedModule[] = [
     grade: 79,
     gradeLabel: '79% (Distinction, A)',
     specialismBadge: 'Low-Level Assembly & Microprocessors',
-    summary: 'Bare-metal assembly programming and microprocessor architecture: coded clock-cycle-accurate instruction sequences in pure MPASM, configured hardware timers, handled status register banking, and controlled peripheral I/O ports for hardware traffic light controllers.',
+    summary: 'Wrote bare-metal MPASM assembly for PIC microcontrollers, handling hardware timers, cycle-accurate logic, and direct I/O port control.',
     tech: ['Microchip MPASM', 'PIC16 Architecture', 'Cycle Timing', 'Hardware Timers', 'Direct Port I/O', 'Assembly Logic'],
     projectSlug: 'pic-microcontroller-code'
   },
@@ -231,7 +231,7 @@ export const rankedModules: RankedModule[] = [
     grade: 69,
     gradeLabel: '69% (Merit, B+)',
     specialismBadge: 'Electronic CAD & PCB Simulation',
-    summary: 'End-to-end electronic computer-aided design: captured schematics, routed single-sided printed circuit boards adhering to physical DRC clearances, and executed LTspice AC frequency sweeps (1 Hz to 1 MHz) and transient square-wave signal integrity simulations into resistive loads.',
+    summary: 'Captured schematics and routed single-sided PCBs. Ran LTspice AC frequency sweeps and transient signal integrity simulations.',
     tech: ['Proteus Ares PCB', 'Altium Designer', 'LTspice XVII', 'AC Frequency Sweeps', 'Transient Analysis', 'PCB Routing Rules']
   },
   {
@@ -242,7 +242,7 @@ export const rankedModules: RankedModule[] = [
     gradeLabel: '87% (Distinction, A+)',
     specialismBadge: 'Fundamental Semiconductor Electronics',
     award: 'Contributed to IET Sussex Prize',
-    summary: 'Fundamental semiconductor electronics, BJT/MOSFET transistor switching and biasing, active operational amplifier circuits, Boolean algebra, and Karnaugh map logic gate reduction. Contributed to winning the IET Sussex Prize for most meritorious first-year performance.',
+    summary: 'Studied BJT/MOSFET transistor switching, active op-amp circuits, and combinational logic. Won the IET Sussex Prize for first-year performance.',
     tech: ['BJT & MOSFET Transistors', 'Operational Amplifiers', 'Combinational Logic', 'Karnaugh Maps', 'Laboratory Test Equipment']
   },
   {
@@ -253,7 +253,7 @@ export const rankedModules: RankedModule[] = [
     gradeLabel: '87% (Distinction, A+)',
     specialismBadge: 'Electromagnetics & Network Analysis',
     award: 'Contributed to IET Sussex Prize',
-    summary: 'Mastered foundational electrical physics and network analysis: Kirchhoff’s voltage and current laws, Thévenin and Norton equivalent circuit reductions, capacitive and inductive reactance, magnetic circuits, and AC sinusoidal phasor analysis.',
+    summary: 'Studied foundational electrical physics, including AC phasor analysis, Thévenin equivalents, reactive impedance, and magnetic circuits.',
     tech: ['Circuit Network Theorems', 'Thévenin/Norton Analysis', 'AC Phasor Analysis', 'Reactive Impedance', 'Magnetic Circuits']
   },
   {
@@ -263,7 +263,7 @@ export const rankedModules: RankedModule[] = [
     grade: 76,
     gradeLabel: '76% (Distinction, A)',
     specialismBadge: 'Three-Phase Power & Electrical Machines',
-    summary: 'Analysed heavy industrial AC electrical power systems: 3-phase star and delta load calculations, transformer magnetic core saturation and hysteresis, induction motor slip-torque curves, and power factor correction while studying UK BS 7671 wiring standards.',
+    summary: 'Analysed 3-phase AC power systems, transformer core saturation, induction motor torque curves, and power factor correction.',
     tech: ['3-Phase Star/Delta Systems', 'Induction Motors', 'Power Transformers', 'Power Factor Correction', 'BS 7671 Wiring Regulations']
   },
   {
@@ -273,7 +273,7 @@ export const rankedModules: RankedModule[] = [
     grade: 62,
     gradeLabel: '62% (Merit, B-)',
     specialismBadge: 'Multistage Amplifiers & Sequential Memory',
-    summary: 'Designed and evaluated multistage BJT amplifier topologies, analysing frequency response cutoffs, differential input stages, and feedback stabilisation alongside sequential digital circuits including edge-triggered flip-flops, asynchronous ripple counters, and shift registers.',
+    summary: 'Designed multistage BJT amplifiers and analysed differential input stages alongside sequential digital logic like flip-flops and counters.',
     tech: ['Multistage BJT Amplifiers', 'Differential Pairs', 'Frequency Response Cutoffs', 'Sequential Logic', 'Flip-Flops & Counters']
   },
   {
@@ -283,7 +283,7 @@ export const rankedModules: RankedModule[] = [
     grade: 84,
     gradeLabel: '84% (Distinction, A+)',
     specialismBadge: 'Differential Equations & Numerical Solvers',
-    summary: 'The mathematical foundation of all engineering disciplines: solving 2nd-order ordinary differential equations for RLC circuits, Laplace transforms, Fourier series expansions, matrix eigenvalues, and developing numerical solver algorithms in MATLAB.',
+    summary: 'Solved 2nd-order differential equations for RLC circuits, Laplace transforms, Fourier series, and developed numerical solvers in MATLAB.',
     tech: ['2nd-Order Differential Equations', 'Laplace Transforms', 'Fourier Series', 'Linear Algebra & Matrices', 'MATLAB Numerical Solvers']
   },
   {
@@ -293,7 +293,7 @@ export const rankedModules: RankedModule[] = [
     grade: 62,
     gradeLabel: '62% (Merit, B-)',
     specialismBadge: 'Product Engineering & Systems Feasibility',
-    summary: 'Worked as consulting systems engineer in an interdisciplinary cohort developing a commercial grid energy storage concept. Applied New Product Development (NPD) stage-gate methodologies, SWOT analysis, techno-economic feasibility studies, and executive pitch decks.',
+    summary: 'Acted as systems engineer in an interdisciplinary team to develop a commercial grid energy storage concept, applying NPD stage-gate methods.',
     tech: ['New Product Development (NPD)', 'Stage-Gate Pitching', 'Techno-Economic Feasibility', 'Gantt Planning', 'Commercial Viability']
   }
 ];
@@ -317,3 +317,4 @@ export const leadership = [
 ];
 
 export const interests = ['Custom PC building', 'FPV drone flying', '3D printing', 'Bouldering'];
+
