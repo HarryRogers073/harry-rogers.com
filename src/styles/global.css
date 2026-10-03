@@ -13,6 +13,7 @@
   --radius: 14px;
   --maxw: 72rem;
   --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Space Grotesk', var(--font-sans);
   --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
   --card-bg: var(--surface);
   --bg-soft: var(--surface-2);
@@ -20,16 +21,16 @@
 }
 
 :root[data-theme='dark'] {
-  --brand: #49aad4;
-  --brand-strong: #7cc4e3;
+  --brand: #38bdf8;
+  --brand-strong: #0284c7;
   --accent: #2dd4bf;
-  --bg: #0b1117;
-  --surface: #111a22;
-  --surface-2: #17232e;
-  --border: #22313e;
-  --text: #e6edf3;
-  --muted: #93a4b4;
-  --shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 6px 24px rgb(0 0 0 / 25%);
+  --bg: #090e15;
+  --surface: #0f1622;
+  --surface-2: #15202e;
+  --border: #1e2c3d;
+  --text: #f0f6fc;
+  --muted: #8b9bb0;
+  --shadow: 0 1px 3px rgb(0 0 0 / 40%), 0 8px 30px rgb(0 0 0 / 35%);
   --card-bg: var(--surface);
   --bg-soft: var(--surface-2);
   color-scheme: dark;
