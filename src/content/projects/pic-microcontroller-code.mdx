@@ -1,21 +1,21 @@
 ---
-title: "PIC Microcontroller Firmware & Embedded Code Library"
-summary: "Low-level MPASM assembly routines and MPLAB XC8 embedded C drivers for Microchip PIC microcontrollers (PWM, timers, UART, sonar, LCD)."
+title: "Low-Level PIC Microcontroller Assembly (MPASM) Library"
+summary: "Cycle-accurate MPASM assembly routines for Microchip PIC16F873 and PIC16F84A: hardware UART command reception, Timer 2 register control, and dynamic PWM duty cycle modulation."
 date: 2026-01-15
-tags: ["Embedded C", "Assembly", "MPASM", "PIC16", "PWM", "UART", "Microchip"]
+tags: ["Assembly", "MPASM", "PIC16", "PWM", "UART", "Microchip", "Embedded Systems"]
 featured: true
 status: "complete"
 repo: "https://github.com/HarryRogers073/pic-microcontroller-code"
 order: 2
 thumbnail: "/images/projects/pic/dual-pic-schematic.jpg"
-badge: "84% (A+) Distinction"
+badge: "Distinction | Microprocessor Systems"
 ---
 
 ## Project Overview
 
-A comprehensive bare-metal embedded firmware library developed across **EO631 (Embedded Systems 3)** and **EO524 (Embedded Systems)** modules at the **University of Brighton**, earning an **84% Distinction Grade (A+)**.
+A low-level bare-metal firmware library engineered in **pure MPASM Assembly Language** for the **Microchip PIC16F873** and **PIC16F84A** 8-bit Harvard architecture microcontrollers, developed for advanced embedded systems coursework at the **University of Brighton** and awarded an **84% Distinction Grade (A+)**.
 
-The codebase demonstrates cycle-accurate, register-level control of **Microchip PIC16F873**, **PIC16F84A**, and **PIC18** microcontrollers using both **MPASM Assembly** and **MPLAB XC8 Embedded C**.
+The project focuses on register-level execution, cycle-accurate timing loops, interrupt servicing, and bus orchestration without relying on compiler abstractions or runtime overhead.
 
 ---
 
@@ -58,18 +58,12 @@ The assembly routines leverage direct bit manipulation, bank switching (`STATUS,
 
 ---
 
-## 📦 Firmware Modules in Repository
+## 📦 Assembly Firmware Modules
 
-### 1. MPASM Assembly Routines (`firmware_asm/`)
 - **`16F873_RX_to_PWM.asm`:** Hardware UART packet reception triggering dynamic PWM duty-cycle modulation.
-- **`16F873_RX_to_LEDs_PORTC.ASM`:** Direct byte latching and parallel register bit driving for visual diagnostics.
+- **`16F873_RX_to_LEDs_PORTC.ASM`:** Direct byte latching and parallel register bit driving for visual diagnostics on Port C.
 - **`PWM.asm` & `PWM_Simple.asm`:** Hardware Timer 2 (TMR2) and PR2 period registers for high-efficiency pulse modulation.
-
-### 2. Embedded C Drivers (`firmware_c/`)
-- **`MovementCode.c`:** Dual H-bridge motor steering logic and velocity throttling.
-- **`ultrasonic_driver.c`:** HC-SR04 sonar trigger generation and hardware timer capture interrupt routines for distance ranging.
-- **`stepper_actuator.c`:** 4-phase step-sequencing driver for precision stepper indexing.
-- **`lcd.c`:** Hitachi HD44780 4-bit/8-bit parallel character LCD display controller.
+- **`SimplePWMTest.asm`:** Automated bench verification loop for pulse width integrity checking.
 
 ---
 
@@ -77,5 +71,5 @@ The assembly routines leverage direct bit manipulation, bank switching (`STATUS,
 
 - **GitHub Repository:** [HarryRogers073/pic-microcontroller-code](https://github.com/HarryRogers073/pic-microcontroller-code)
 - **Target Silicon:** Microchip PIC16F873, PIC16F84A
-- **Compilers & IDEs:** Microchip MPLAB X IDE, MPASM, MPLAB XC8
+- **Compilers & IDEs:** Microchip MPLAB X IDE, MPASM Assembler
 - **Programmer:** Microchip PICkit 3 / PICkit 4 In-Circuit Debugger

@@ -8,9 +8,6 @@ const allProjects = await getCollection('projects');
 const featuredProjects = allProjects
   .filter((p) => p.data.featured)
   .sort((a, b) => a.data.order - b.data.order);
-
-const allPosts = await getCollection('blog', ({ data }) => !data.draft);
-const latestPosts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime()).slice(0, 3);
 ---
 
 <BaseLayout>
@@ -127,29 +124,57 @@ const latestPosts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.
     </div>
   </section>
 
-  <!-- Latest Notes & Articles -->
-  {latestPosts.length > 0 && (
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <div>
-            <p class="eyebrow">Writing</p>
-            <h2>Technical Notes &amp; Updates</h2>
-          </div>
-          <a class="view-all" href="/blog">All posts →</a>
+  <!-- Industry Experience Highlight -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Career &amp; Industry</p>
+          <h2>Professional Work Experience</h2>
         </div>
-        <div class="grid grid-3">
-          {latestPosts.map((post) => (
-            <article class="card">
-              <span class="muted date">{post.data.date.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}</span>
-              <h3><a href={`/blog/${post.id}`}>{post.data.title}</a></h3>
-              <p class="muted">{post.data.description}</p>
-            </article>
-          ))}
-        </div>
+        <a class="view-all" href="/experience">All experience &amp; details →</a>
       </div>
-    </section>
-  )}
+
+      <div class="grid grid-2">
+        <article class="card">
+          <div class="badge-header" style="margin-bottom: 0.5rem;">
+            <span class="pulse-dot"></span>
+            <span class="status-text" style="color: var(--brand);">Current Role • Defence Electro-Optics</span>
+          </div>
+          <h3>Hardware Test Engineer</h3>
+          <p class="company-line" style="margin: 0.25rem 0 0.75rem; color: var(--muted); font-size: 0.95rem;">
+            <strong>Chess Dynamics</strong> • June 2026 – Present
+          </p>
+          <p class="muted" style="margin-bottom: 1rem; line-height: 1.5;">
+            Leading system-level integration, qualification testing, and cross-functional diagnostics on precision electro-optical surveillance and fire-control directors for maritime and land defence.
+          </p>
+          <div class="tech-stack-row">
+            <span class="tag">FAT / SAT Testing</span>
+            <span class="tag">Environmental Chambers</span>
+            <span class="tag">RS-422 / CAN Bus</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="badge-header" style="margin-bottom: 0.5rem;">
+            <span class="status-text" style="color: var(--muted); font-weight: 600;">12-Month Industrial Placement</span>
+          </div>
+          <h3>Systems Engineer - IV&amp;V</h3>
+          <p class="company-line" style="margin: 0.25rem 0 0.75rem; color: var(--muted); font-size: 0.95rem;">
+            <strong>BAE Systems</strong> • June 2024 – June 2025
+          </p>
+          <p class="muted" style="margin-bottom: 1rem; line-height: 1.5;">
+            Integration, Verification &amp; Validation for tier-one defence aerospace systems. Authored automated Python regression test suites and managed requirement traceability matrices in IBM DOORS.
+          </p>
+          <div class="tech-stack-row">
+            <span class="tag">Python Automation</span>
+            <span class="tag">IBM DOORS (DXL)</span>
+            <span class="tag">Avionics Testbenches</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>

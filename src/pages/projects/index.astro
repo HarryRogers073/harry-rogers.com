@@ -12,7 +12,7 @@ const progressionTimeline = [
     award: "First-Class Honours (80% Overall) • IET Prize Winner 2026",
     modules: [
       {
-        code: "XE636",
+        discipline: "FPGA / AI Verification",
         title: "VAIDAR: AI-Driven Hardware-in-the-Loop FPGA Verification Engine",
         type: "Capstone BEng Dissertation",
         grade: "91% (A+) Distinction • IET Prize Winner",
@@ -21,7 +21,7 @@ const progressionTimeline = [
         link: "/projects/vaidar-hil-framework"
       },
       {
-        code: "EO628",
+        discipline: "Telecommunications",
         title: "Data Communications & Multi-Site WAN Network Architecture",
         type: "Telecommunications & Networking",
         grade: "First-Class Distinction",
@@ -30,7 +30,7 @@ const progressionTimeline = [
         link: "/projects/communications-network-architecture"
       },
       {
-        code: "EO626",
+        discipline: "Signal Processing",
         title: "Digital Signal Processing (DSP): IIR/FIR Filter Synthesis & Audio Pipelines",
         type: "Signal Processing & Simulink",
         grade: "First-Class Distinction",
@@ -39,17 +39,17 @@ const progressionTimeline = [
         link: "/projects/matlab-projects"
       },
       {
-        code: "EO631",
-        title: "Embedded Systems 3: Master/Slave PIC UART-PWM & Telemetry GUI",
-        type: "Embedded Hardware & App Designer",
+        discipline: "Assembly Firmware",
+        title: "Low-Level PIC Microcontroller Assembly (MPASM) Library",
+        type: "Microprocessor Architecture & Assembly",
         grade: "84% (A+) Distinction",
-        tools: "PIC16F873, MPASM Assembly, MPLAB XC8, MATLAB App Designer, RS-232/UART",
-        description: "Implemented a full-duplex master/slave dual-microcontroller bus with dynamic PWM duty modulation and built an interactive 6-channel analog telemetry dashboard in MATLAB App Designer.",
+        tools: "PIC16F873, MPASM Assembly, Timer 2 Registers, CCP1 PWM, Hardware USART",
+        description: "Engineered cycle-accurate assembly routines for full-duplex master/slave dual-microcontroller bus communication, dynamic PWM duty modulation, and parallel hex display latching.",
         link: "/projects/pic-microcontroller-code"
       },
       {
-        code: "XE624",
-        title: "Product Design: Sustainable Kinetic & Electrochemical Energy Systems",
+        discipline: "Energy Systems",
+        title: "Sustainable Product Design: Kinetic & Electrochemical Energy Systems",
         type: "Engineering Analysis & Sustainability",
         grade: "First-Class Distinction",
         tools: "Excel Decision Matrices, Kinetic Energy Modeling, Flow Batteries, Sodium-Ion",
@@ -63,7 +63,7 @@ const progressionTimeline = [
     award: "Industrial Placement Commendation",
     modules: [
       {
-        code: "IV&V",
+        discipline: "Defence Aerospace",
         title: "Systems Engineer - Integration, Verification & Validation (IV&V)",
         type: "BAE Systems Placement",
         grade: "Industry Practicum",
@@ -78,7 +78,16 @@ const progressionTimeline = [
     award: "2nd Place Robot Wars Podium Finish • 84% Digital Systems",
     modules: [
       {
-        code: "XE521 & EO524",
+        discipline: "Embedded Robotics",
+        title: "Autonomous Mobile Sensor Buggy & Dual-Display System",
+        type: "Embedded C & Sensor Integration",
+        grade: "Distinction Grade",
+        tools: "Dual PIC16F873, MPLAB XC8, Dual I2C LCD Screens, ADC Thermistor, HC-SR04 Sonar",
+        description: "Constructed an autonomous corridor-navigating mobile robot with task-partitioned dual microcontrollers, real-time ambient temperature calculation in Celsius, obstacle evasion, and dual status displays.",
+        link: "/projects/autonomous-sensor-buggy"
+      },
+      {
+        discipline: "Combat Robotics",
         title: "Autonomous Combat Robotics Platform & Motor Controller",
         type: "Robotics & Hardware Design",
         grade: "82% (A+) Distinction • 2nd Place Tournament Winner",
@@ -87,7 +96,7 @@ const progressionTimeline = [
         link: "/projects/robot-wars-combat-platform"
       },
       {
-        code: "Digital Systems",
+        discipline: "Digital Logic RTL",
         title: "VHDL Digital Systems & FPGA Logic Design",
         type: "RTL Design & Simulation",
         grade: "84% (A+) Distinction",
@@ -96,9 +105,9 @@ const progressionTimeline = [
         link: "/projects/vhdl-digital-systems"
       },
       {
-        code: "Control Systems",
+        discipline: "Control Engineering",
         title: "Classical Control Systems: Transfer Functions & Stability Analysis",
-        type: "Control Engineering",
+        type: "Control Systems",
         grade: "Distinction Grade",
         tools: "MATLAB, Simulink, Root Locus, Bode Plots, Block Diagram Reduction",
         description: "Analyzed continuous-time open-loop and closed-loop feedback systems, derived block diagram reductions, and evaluated gain/phase stability margins for second-order dynamic plants."
@@ -111,15 +120,15 @@ const progressionTimeline = [
     award: "First-Class Year 1 Standing",
     modules: [
       {
-        code: "EO529",
-        title: "Analogue Electronics & Circuit Simulation (AE&CS)",
+        discipline: "Analogue Electronics",
+        title: "Analogue Electronics & Circuit Simulation",
         type: "Analogue Circuit Design",
         grade: "Distinction Grade",
         tools: "Multimeter & Oscilloscope Instrumentation, LTspice, Proteus, Op-Amps, Transistors",
         description: "Characterized LCR resonant tank circuits, operational amplifier active band-pass filters, transistor small-signal models, and bench-tested linear regulated DC power supplies under varying load currents."
       },
       {
-        code: "XE421",
+        discipline: "PCB & CAD Design",
         title: "Electronic Engineering CAD & PCB Layout",
         type: "EDA & Manufacturing",
         grade: "Distinction Grade",
@@ -127,7 +136,7 @@ const progressionTimeline = [
         description: "Executed full-cycle schematic capture, design rule checking (DRC), trace impedance considerations, ground plane fills, and Gerber file generation for custom circuit boards."
       },
       {
-        code: "XE521",
+        discipline: "Structural Mechanics",
         title: "Engineering Design Principles & Structural Mechanics",
         type: "Mechanical & Structural Design",
         grade: "Distinction Grade",
@@ -188,7 +197,7 @@ const progressionTimeline = [
                 {stage.modules.map((mod) => (
                   <div class="module-card">
                     <div class="module-top">
-                      <span class="mod-code">{mod.code}</span>
+                      <span class="mod-code">{mod.discipline}</span>
                       <span class="mod-grade">{mod.grade}</span>
                     </div>
                     <h4>

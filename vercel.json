@@ -21,6 +21,16 @@
       "source": "/cv/portfolio-terminal",
       "destination": "/terminal",
       "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/experience",
+      "permanent": true
+    },
+    {
+      "source": "/blog/(.*)",
+      "destination": "/experience",
+      "permanent": true
     }
   ]
 }

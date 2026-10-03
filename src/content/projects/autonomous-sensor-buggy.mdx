@@ -1,0 +1,114 @@
+---
+title: "Autonomous Mobile Sensor Buggy & Dual-Display Embedded C System"
+summary: "Autonomous corridor navigation buggy powered by dual PIC16F873 microcontrollers, dual I2C LCD telemetry displays, ADC thermistor calibration, and HC-SR04 ultrasonic sonar evasion."
+date: 2024-05-17
+tags: ["Embedded C", "PIC Microcontroller", "Robotics", "I2C", "Sensors", "Hardware Design"]
+featured: true
+status: "complete"
+repo: "https://github.com/HarryRogers073/pic-microcontroller-code"
+order: 5
+thumbnail: "/images/projects/autonomous-buggy/buggy-labeled-hardware.png"
+badge: "Distinction | Embedded Systems"
+---
+
+## Project Overview
+
+An autonomous, multi-tasking mobile robotics platform engineered and programmed in **bare-metal Embedded C (MPLAB XC8)** for the second-year **Embedded Systems** engineering module at the **University of Brighton**.
+
+The project challenged us to design, construct, and program a fully autonomous vehicle tasked with traversing an unfamiliar corridor, dynamically detecting and navigating around obstacles, acquiring continuous environmental sensor data, displaying telemetry in real time, and navigating safely back to its departure point.
+
+---
+
+## 🤖 Physical Hardware & Dual Microcontroller Architecture
+
+To prevent sensor acquisition and real-time motor actuation loops from blocking each other, the vehicle's electrical architecture was partitioned across **two dedicated Microchip PIC16F873 microcontrollers** communicating over a synchronized bus with **two independent I2C LCD displays**:
+
+![Labeled Autonomous Buggy Hardware](/images/projects/autonomous-buggy/buggy-labeled-hardware.png)
+*Figure 1: Physical autonomous buggy platform featuring the dual PIC microcontroller chassis, HC-SR04 sonar transducer, dual LCD telemetry screens, and high-traction differential drive wheels.*
+
+### Dual PIC Task Allocation
+
+- **Microcontroller 1 (Navigation & Motor Control):** Dedicated to driving the dual DC motors via differential steering arrays, pulsing the ultrasonic sonar trigger, capturing echo interrupt timings, and driving **LCD Screen 1** with live directional status (`FORWARD`, `PIVOT_LEFT`, `REVERSE_EVADE`).
+- **Microcontroller 2 (Telemetry & Environmental Sensing):** Dedicated to sampling the analogue NTC thermistor channel via internal 10-bit ADC, calculating calibrated temperature in Celsius, formatting strings, and streaming updates to **LCD Screen 2**.
+
+---
+
+## ⚡ Circuit Schematics & Breadboard Layout
+
+The system combined analogue signal conditioning, high-current motor drive stages, and high-speed digital communications on a modular dual-rail breadboard layout:
+
+![Full Autonomous Buggy Circuit Schematic](/images/projects/autonomous-buggy/buggy-circuit-schematic.jpg)
+*Figure 2: Complete circuit schematic illustrating dual PIC16F873 wiring, crystal oscillators, I2C pull-up networks, thermistor voltage divider, and H-bridge motor connections.*
+
+![Labeled Breadboard Wiring & Microcontroller Rails](/images/projects/autonomous-buggy/buggy-breadboard-wiring.png)
+*Figure 3: Labeled physical breadboard layout showing logic isolation, pull-up resistors for SCL/SDA I2C communication, and separate ground planes for motor noise suppression.*
+
+---
+
+## 🌡️ Analogue Temperature Calibration & ADC
+
+Ambient temperature was continuously monitored using an NTC thermistor arranged in a precision voltage divider circuit. The analogue potential was digitised using the PIC’s internal 10-bit Analogue-to-Digital Converter (`GO_nDONE` polling) and converted to temperature:
+
+```c
+// ADC Acquisition and Temperature Calibration Routine
+GO_nDONE = 1;                           // Initiate ADC conversion
+while (GO_nDONE);                       // Wait for hardware conversion completion
+adc_value = (ADRESH << 8) | ADRESL;    // Combine 10-bit high and low result registers
+
+// Scale raw ADC reading to terminal voltage
+voltage = (float)adc_value * 6.0 / 1023.0;
+
+// Convert voltage to calibrated temperature in Celsius
+temperature = voltage / 10.0;
+return (unsigned int)temperature + 10;  // Apply offset calibration
+```
+
+The resulting floating-point value was converted into an ASCII string buffer (`itoa`) and transmitted over the I2C bus to update LCD Screen 1 with scrolling temperature telemetry.
+
+---
+
+## ⏱️ Ultrasonic Sonar & Obstacle Evasion State Machine
+
+Obstacle detection was achieved using an **HC-SR04 ultrasonic transducer** driven by a hardware timer. The microcontroller generated a precise 10 µs trigger pulse and measured the returning echo pulse width using hardware capture interrupts.
+
+```
+       [ FORWARD TRAVEL ]
+               │
+      Sonar Echo < 25 cm?
+         ┌─────┴─────┐
+        YES          NO
+         │           │
+         ▼           ▼
+  [ REVERSE BRAKE ] [ MAINTAIN CRUISE ]
+         │
+  [ PIVOT SCAN ]
+         │
+  Clear Path Found?
+         │
+         ▼
+  [ RESUME FORWARD ]
+```
+
+When an impending collision was detected within 25 cm, the state machine transitioned into an emergency braking and pivoting sequence, steering the vehicle away from barriers and logging the maneuver to the diagnostic display.
+
+---
+
+## 📊 Technical Specifications
+
+| Parameter | Specification |
+| :--- | :--- |
+| **Microcontrollers** | Dual Microchip PIC16F873 (20 MHz Oscillators) |
+| **Firmware Language** | Bare-metal Embedded C (MPLAB XC8 Compiler) |
+| **Display Telemetry** | Dual Hitachi HD44780 LCD Displays (I2C Bus: 100 kHz) |
+| **Obstacle Sensing** | HC-SR04 Ultrasonic Sonar (Timer Capture Ranging) |
+| **Environmental Sensing** | Analogue NTC Thermistor with 10-Bit Internal ADC |
+| **Steering Control** | Differential DC Motor Drive with PWM Speed Scaling |
+| **Project Authors** | Harry Rogers & Albie Gullis (University of Brighton) |
+
+---
+
+## ⚡ Source Code & Disclosures
+
+- **Target Hardware:** Microchip PIC16F873
+- **Toolchain:** Microchip MPLAB X IDE, MPLAB XC8 C Compiler
+- **Attribution & Academic Integrity:** Embedded C firmware routines, I2C display drivers, ADC acquisition routines, and circuit wiring designed and written by Harry Rogers and Albie Gullis for the second-year Embedded Systems project at the University of Brighton. Standard Microchip XC8 header directives and registers are copyright Microchip Technology Inc.
