@@ -7,7 +7,7 @@ export const profile = {
   name: 'Harry Rogers',
   title: 'Hardware Test Engineer',
   tagline:
-    'Hardware test engineer working on defence robotics and Hawkeye electro-optics at Chess Dynamics; building FPGA verification tooling.',
+    'Hardware test engineer at Chess Dynamics. FPGA logic and hardware verification.',
   location: 'Sussex, UK',
   email: 'harryrogers073@gmail.com',
   links: {
@@ -20,10 +20,10 @@ export const profile = {
 };
 
 export const about = [
-  'I’m a Hardware Test Engineer at Chess Dynamics in West Sussex, serving as primary Test Team Point of Contact for the Land Integrated Portfolio Team (IPT). I integrate and verify defence robotics, precision Hawkeye Electro-Optical Directors, and surveillance systems deployed across international allied defence programmes.',
-  'I graduated from the University of Brighton with First-Class Honours in BEng Electronic & Computer Engineering (80% overall across 17 accredited modules) and was awarded the IET Prize 2026.',
-  'My passion is FPGA digital logic design and hardware verification. For my dissertation I built VAIDAR, a modular hardware-in-the-loop test framework that drives Python test vectors into a physical Xilinx Artix-7 FPGA and checks the silicon against golden models.',
-  'Before that I spent a 12-month industrial placement at BAE Systems working in Integration, Verification & Validation (IV&V) and lab testbench setup.',
+  'I’m a Hardware Test Engineer at Chess Dynamics in West Sussex, where I lead test operations for the Land Systems division. My work focuses on verifying electro-optical directors and robotics for international defence programmes.',
+  'I spend a lot of my time working with FPGAs and digital logic. For my final-year project, I built an automated hardware-in-the-loop test framework to verify physical Xilinx FPGAs against golden models using Python.',
+  'I graduated from the University of Brighton with a First-Class degree in Electronic & Computer Engineering, and was awarded the IET Prize in 2026.',
+  'Before joining Chess, I spent a year at BAE Systems working on integration and automated testbenches for avionics hardware.',
 ];
 
 export type Role = {
@@ -41,10 +41,10 @@ export const experience: Role[] = [
     location: 'Horsham, West Sussex, UK',
     period: 'June 2026 – Present',
     highlights: [
-      'Primary Test Team Point of Contact for the Land Integrated Portfolio Team (IPT), advising Project Managers and Programme Directors on FAT scoping and test feasibility.',
-      'Factory Acceptance Testing (FAT) on electro-optical director platforms (Hawkeye land series), spanning stabilised pan/tilt positioners, daylight HD optics, cooled MWIR / uncooled LWIR thermal imagers, and laser rangefinders.',
-      'Board-level diagnostics and fault isolation across multi-layer PCBs, continuous slip-ring communications (RS-422, CAN bus, Gigabit Ethernet), and video processing pipelines.',
-      'Environmental qualification including thermal chamber profiling and vibration testing against military defence specifications.',
+      'Test lead for the Land Systems division, advising project managers on test scoping and feasibility.',
+      'Run Factory Acceptance Testing (FAT) on Hawkeye electro-optical directors, verifying daylight optics, thermal imagers, and laser rangefinders.',
+      'Board-level fault diagnosis across multi-layer PCBs, slip-ring comms (RS-422, CAN, Ethernet), and video pipelines.',
+      'Environmental qualification, including thermal profiling and vibration testing to military specifications.',
     ],
   },
   {
@@ -122,7 +122,7 @@ export const rankedModules: RankedModule[] = [
     gradeLabel: '91% (Distinction, A+)',
     specialismBadge: 'Flagship | FPGA HIL Verification',
     award: 'IET Prize Winner 2026',
-    summary: 'Architected an automated hardware-in-the-loop (HIL) verification engine bridging Python to a physical AMD Xilinx Artix-7 FPGA over high-throughput UART (~1,000 tests/sec), integrating Google Gemini API for autonomous AI edge-case stimulus generation and real-time golden model comparison.',
+    summary: 'Built an automated hardware-in-the-loop verification framework bridging Python to a physical AMD Xilinx Artix-7 FPGA. It runs tests at ~1,000Hz over UART, checking physical silicon behaviour against golden models.',
     tech: ['AMD Xilinx Artix-7', 'Vivado', 'Verilog HDL', 'Python', 'Google Gemini API', 'PySerial', 'HIL Testing', 'UART'],
     projectSlug: 'vaidar-hil-framework'
   },
