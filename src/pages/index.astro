@@ -70,131 +70,86 @@ const featuredProjects = allProjects
     </div>
   </section>
 
-  <!-- Featured Projects -->
+  <!-- Portfolio & Technical Case Studies Portal -->
   <section class="section">
     <div class="container">
       <div class="section-header">
         <div>
-          <p class="eyebrow">Portfolio</p>
-          <h2>Featured Engineering Projects</h2>
+          <p class="eyebrow">Engineering Work</p>
+          <h2>Featured Case Studies</h2>
         </div>
-        <a class="view-all" href="/projects">All projects ({allProjects.length}) →</a>
+        <a class="view-all" href="/projects">Explore all {allProjects.length} projects →</a>
       </div>
 
+      <!-- Curated top 2 flagship projects as clean preview cards -->
       <div class="grid grid-2">
-        {featuredProjects.map((project) => (
+        {featuredProjects.slice(0, 2).map((project) => (
           <ProjectCard project={project} />
         ))}
       </div>
-    </div>
-  </section>
 
-  <!-- About Snapshot & Core Specialisms -->
-  <section class="section highlight-section">
-    <div class="container">
-      <div class="grid grid-2">
-        <div class="card">
-          <p class="eyebrow">Background</p>
-          <h3>Defence Testing &amp; FPGA Verification</h3>
-          <p class="muted">
-            Specializing in military-grade electro-optical surveillance system testing, hardware-in-the-loop (HIL)
-            validation rigs, and automated digital logic verification. Experienced in both high-reliability aerospace 
-            (BAE Systems placement) and land/maritime defence directors (Chess Dynamics).
-          </p>
-          <div class="actions">
-            <a class="btn ghost" href="/about">Full Biography →</a>
-            <a class="btn ghost" href={profile.cvPdf} download>Download CV (PDF)</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <p class="eyebrow">Technical Domains</p>
-          <h3>Core Competencies</h3>
-          <div class="skills-mini-grid">
-            <div class="skill-category">
-              <h4>Digital Logic &amp; RTL</h4>
-              <p class="muted">Verilog HDL, VHDL, Vivado, Artix-7, FSM design, timing closure.</p>
-            </div>
-            <div class="skill-category">
-              <h4>HIL Automation</h4>
-              <p class="muted">Python test engines, PySerial, PyVISA, automated fault triage.</p>
-            </div>
-            <div class="skill-category">
-              <h4>Instrumentation &amp; Bus</h4>
-              <p class="muted">Oscilloscopes, logic analysers, UART, SPI, I2C, MIL-STD-1553.</p>
-            </div>
-            <div class="skill-category">
-              <h4>Embedded &amp; DSP</h4>
-              <p class="muted">PIC microcontrollers, MPLAB XC8, MATLAB App Designer, Simulink.</p>
-            </div>
-          </div>
-        </div>
+      <!-- Quick category jump pills to navigate projects subpage -->
+      <div class="project-quick-links">
+        <a href="/projects#fpga" class="pill-link">FPGA &amp; RTL Verilog →</a>
+        <a href="/projects#embedded" class="pill-link">Embedded C &amp; PIC →</a>
+        <a href="/projects#hardware" class="pill-link">Autonomous Robotics →</a>
+        <a href="/projects#dsp" class="pill-link">MATLAB Telemetry &amp; DSP →</a>
       </div>
     </div>
   </section>
 
-  <!-- Industry Experience Highlight -->
+  <!-- Deep Navigation Grid (Sub-Page Portal) -->
   <section class="section">
     <div class="container">
       <div class="section-header">
         <div>
-          <p class="eyebrow">Career &amp; Industry</p>
-          <h2>Professional Work Experience</h2>
+          <p class="eyebrow">Directory</p>
+          <h2>Explore The Site</h2>
         </div>
-        <a class="view-all" href="/experience">All experience &amp; details →</a>
       </div>
 
-      <div class="grid grid-2">
-        <article class="card">
-          <div class="badge-header" style="margin-bottom: 0.5rem;">
-            <span class="pulse-dot"></span>
-            <span class="status-text" style="color: var(--brand);">Current Role • Defence Electro-Optics</span>
-          </div>
-          <h3>Hardware Test Engineer</h3>
-          <p class="company-line" style="margin: 0.25rem 0 0.75rem; color: var(--muted); font-size: 0.95rem;">
-            <strong>Chess Dynamics</strong> • June 2026 – Present
-          </p>
-          <p class="muted" style="margin-bottom: 1rem; line-height: 1.5;">
-            Leading system-level integration, qualification testing, and cross-functional diagnostics on precision electro-optical surveillance and fire-control directors for maritime and land defence.
-          </p>
-          <div class="tech-stack-row">
-            <span class="tag">FAT / SAT Testing</span>
-            <span class="tag">Environmental Chambers</span>
-            <span class="tag">RS-422 / CAN Bus</span>
-          </div>
-        </article>
+      <div class="portal-grid">
+        <a href="/experience" class="card portal-card">
+          <div class="portal-badge">INDUSTRY</div>
+          <h3>Work Experience</h3>
+          <p class="muted">Chess Dynamics hardware test engineering &amp; BAE Systems 12-month IV&amp;V placement.</p>
+          <span class="portal-cta">View career timeline →</span>
+        </a>
 
-        <article class="card">
-          <div class="badge-header" style="margin-bottom: 0.5rem;">
-            <span class="status-text" style="color: var(--muted); font-weight: 600;">12-Month Industrial Placement</span>
-          </div>
-          <h3>Systems Engineer - IV&amp;V</h3>
-          <p class="company-line" style="margin: 0.25rem 0 0.75rem; color: var(--muted); font-size: 0.95rem;">
-            <strong>BAE Systems</strong> • June 2024 – June 2025
-          </p>
-          <p class="muted" style="margin-bottom: 1rem; line-height: 1.5;">
-            Integration, Verification &amp; Validation for tier-one defence aerospace systems. Authored automated Python regression test suites and managed requirement traceability matrices in IBM DOORS.
-          </p>
-          <div class="tech-stack-row">
-            <span class="tag">Python Automation</span>
-            <span class="tag">IBM DOORS (DXL)</span>
-            <span class="tag">Avionics Testbenches</span>
-          </div>
-        </article>
+        <a href="/cv" class="card portal-card">
+          <div class="portal-badge">CREDENTIALS</div>
+          <h3>Curriculum Vitae</h3>
+          <p class="muted">First-Class Honours degree breakdown, 17 accredited module marks, and downloadable PDF.</p>
+          <span class="portal-cta">Open Master CV →</span>
+        </a>
+
+        <a href="/about" class="card portal-card">
+          <div class="portal-badge">BIOGRAPHY</div>
+          <h3>About &amp; Journey</h3>
+          <p class="muted">Academic background, IET Prize 2026 award story, and verification engineering philosophy.</p>
+          <span class="portal-cta">Read biography →</span>
+        </a>
+
+        <a href="/contact" class="card portal-card">
+          <div class="portal-badge">CONNECT</div>
+          <h3>Get in Touch</h3>
+          <p class="muted">Direct verified contact form, email address, and direct messaging channels.</p>
+          <span class="portal-cta">Send message →</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- LinkedIn Feed & Recent Updates -->
+  <!-- LinkedIn Updates & Network -->
   <section class="section">
     <div class="container">
       <div class="section-header">
         <div>
-          <p class="eyebrow">Professional Network</p>
-          <h2>Recent LinkedIn Updates</h2>
+          <p class="eyebrow">Network</p>
+          <h2>Recent Updates</h2>
         </div>
         <a class="view-all" href={profile.links.linkedin} target="_blank" rel="noopener noreferrer">
-          View LinkedIn Profile →
+          LinkedIn Profile →
         </a>
       </div>
 
@@ -342,16 +297,84 @@ const featuredProjects = allProjects
 
   .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; }
   .view-all { color: var(--brand); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
-  .view-all:hover { text-decoration: underline; }
+  .project-quick-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+  .pill-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 0.4rem 0.85rem;
+    background: var(--surface-2);
+    border-radius: 9999px;
+    border: 1px solid var(--border);
+    transition: color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  }
+  .pill-link:hover {
+    color: var(--brand);
+    border-color: var(--brand);
+    transform: translateY(-1px);
+  }
 
-  .skills-mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
-  .skill-category h4 { margin: 0 0 0.25rem; font-size: 0.95rem; }
-  .skill-category p { font-size: 0.85rem; margin: 0; }
+  /* Sub-page Navigation Portal Grid */
+  .portal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+  }
+  .portal-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.6rem;
+    border-radius: 14px;
+    text-decoration: none;
+    color: var(--text);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .portal-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--brand);
+    box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.08);
+  }
+  .portal-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--brand);
+    margin-bottom: 0.75rem;
+    font-family: var(--font-mono);
+  }
+  .portal-card h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+    color: var(--text);
+  }
+  .portal-card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+  .portal-cta {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--brand);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
 
   @media (max-width: 900px) {
     .hero-container { grid-template-columns: 1fr; gap: 2rem; }
+    .portal-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 600px) {
-    .skills-mini-grid { grid-template-columns: 1fr; }
+    .portal-grid { grid-template-columns: 1fr; }
   }
 </style>
