@@ -60,6 +60,81 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       <slot />
     </main>
     <Footer />
+
+    <!-- Lightbox Modal for Case Study Images & Schematics -->
+    <div id="image-lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Image Preview">
+      <div class="lightbox-backdrop"></div>
+      <div class="lightbox-content">
+        <button type="button" class="lightbox-close" aria-label="Close image preview">&times;</button>
+        <img id="lightbox-img" src="" alt="" />
+        <p id="lightbox-caption" class="lightbox-caption"></p>
+      </div>
+    </div>
+
+    <script is:inline>
+      // Lightbox functionality for case study diagrams & photos
+      (() => {
+        const modal = document.getElementById('image-lightbox');
+        const img = document.getElementById('lightbox-img');
+        const caption = document.getElementById('lightbox-caption');
+        const closeBtn = modal?.querySelector('.lightbox-close');
+        const backdrop = modal?.querySelector('.lightbox-backdrop');
+
+        if (!modal || !img || !caption) return;
+
+        function openLightbox(src, alt) {
+          img.src = src;
+          img.alt = alt || '';
+          caption.textContent = alt || '';
+          modal.classList.add('active');
+          modal.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+          modal.classList.remove('active');
+          modal.setAttribute('aria-hidden', 'true');
+          img.src = '';
+          caption.textContent = '';
+          document.body.style.overflow = '';
+        }
+
+        document.addEventListener('click', (e) => {
+          const target = e.target;
+          if (target && target.matches && target.matches('.prose img, .figure-grid img')) {
+            openLightbox(target.src, target.alt);
+          }
+        });
+
+        closeBtn?.addEventListener('click', closeLightbox);
+        backdrop?.addEventListener('click', closeLightbox);
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeLightbox();
+          }
+        });
+
+        // Scroll reveal animation observer
+        if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          const revealObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('visible');
+                  revealObserver.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+          );
+
+          document.querySelectorAll('.card, .hero-content, .hero-badge-card, .section-header, .prose > *').forEach((el) => {
+            el.classList.add('reveal');
+            revealObserver.observe(el);
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
 

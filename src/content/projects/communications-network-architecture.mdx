@@ -22,15 +22,13 @@ The project investigates data communications across all seven layers of the OSI 
 
 To test protocols under complex routing and physical isolation constraints, a multi-site network architecture was engineered spanning geographically separated locations connected across leased-line serial backbones:
 
-![Cisco Packet Tracer Physical Workspace Topology](/images/projects/communications/starship-physical-workspace.png)
-*Figure 1: Physical workspace layout mapping network zones, cabling conduits, wireless access zones, and server server racks.*
 
 ### Site Hierarchy & Subnet Partitioning
 
 The architecture partitions network resources between primary and remote operational zones, ensuring strict broadcast domain isolation:
 
 ![Multi-Site Physical Topology Hierarchy](/images/projects/communications/physical-topology-hierarchy.jpg)
-*Figure 2: Multi-site topological hierarchy showing localised Local Area Networks (LANs) bridged across wide-area serial routing points.*
+*Figure 1: Multi-site topological hierarchy showing localised Local Area Networks (LANs) bridged across wide-area serial routing points.*
 
 ---
 
@@ -40,34 +38,34 @@ The architecture partitions network resources between primary and remote operati
 Unlike standard open networks, enterprise-grade wireless security was configured on the Gateway router using **WPA2-PSK (AES)** encryption to protect over-the-air frame transmission from eavesdropping and packet injection:
 
 ![WPA2-PSK Wireless Security Configuration](/images/projects/communications/wpa2-security-config.png)
-*Figure 3: WPA2-PSK (AES) pre-shared key authentication configured on the gateway, serving secured wireless endpoints.*
+*Figure 2: WPA2-PSK (AES) pre-shared key authentication configured on the gateway, serving secured wireless endpoints.*
 
 ### 2. Layer 3 Serial WAN Routing (V.35 DTE/DCE)
 To simulate a commercial T1 leased line across subnets, a remote Web Server (`10.2.0.10`) was deployed across a **Serial V.35 physical link**. The link was configured as a **DTE/DCE pair**, where the local gateway router acted as Data Circuit-terminating Equipment (DCE) providing clock synchronisation (`clock rate 64000`), and the remote gateway functioned as Data Terminal Equipment (DTE).
 
 ![Serial V.35 WAN Routing and RIP Configuration](/images/projects/communications/wan-serial-routing.png)
-*Figure 4: Layer 3 serial routing table and RIP dynamic routing protocol exchange bridging distinct network segments.*
+*Figure 3: Layer 3 serial routing table and RIP dynamic routing protocol exchange bridging distinct network segments.*
 
 ![HTTP Client Request across WAN](/images/projects/communications/wan-http-request.png)
-*Figure 5: Verification of cross-subnet HTTP packet delivery across the serial link, confirming end-to-end packet delivery.*
+*Figure 4: Verification of cross-subnet HTTP packet delivery across the serial link, confirming end-to-end packet delivery.*
 
 ### 3. Protocol Data Unit (PDU) & TCP Handshake Analysis
 Every stage of network communication was verified using Packet Tracer's discrete-event simulation engine, capturing TCP 3-way handshakes (`SYN`, `SYN-ACK`, `ACK`), sequence number increments, and ARP table resolution:
 
 ![TCP Protocol Data Unit (PDU) Dissection](/images/projects/communications/tcp-pdu-analysis.png)
-*Figure 6: Layer-by-layer PDU header breakdown examining source/destination ports, TCP flags, window sizing, and payload byte offsets.*
+*Figure 5: Layer-by-layer PDU header breakdown examining source/destination ports, TCP flags, window sizing, and payload byte offsets.*
 
 ### 4. Client-Server Application Services (SMTP / POP3 Email)
 Dedicated application layer services were deployed, configuring standalone DNS name resolution and SMTP/POP3 mail transfer agents:
 
 ![SMTP and POP3 Email Delivery Verification](/images/projects/communications/smtp-pop3-email.png)
-*Figure 7: Successful mail transmission between isolated client endpoints across the network.*
+*Figure 6: Successful mail transmission between isolated client endpoints across the network.*
 
 ### 5. Automated Environmental IoT State Machine
 An integrated IoT sub-network was engineered using conditional logic routines on the Gateway controller to respond autonomously to simulated sensor inputs (e.g., automated ventilation actuation based on ambient atmospheric sensor readings):
 
 ![Automated IoT Sensor Logic](/images/projects/communications/iot-automation-logic.png)
-*Figure 8: IoT event automation rules evaluating multi-condition sensor inputs to trigger physical actuators.*
+*Figure 7: IoT event automation rules evaluating multi-condition sensor inputs to trigger physical actuators.*
 
 ---
 

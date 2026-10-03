@@ -25,8 +25,6 @@ Traditional FPGA verification relies heavily on manual bench testing with oscill
 
 The hardware validation platform consists of dual host workstations communicating bidirectionally with **Digilent Nexys A7 FPGA** boards over a high-speed **CP2102 USB-to-UART bridge** operating at 921,600 baud:
 
-![VAIDAR Physical Nexys A7 FPGA Testbed Setup](/images/projects/vaidar/testbed-hardware.png)
-*Figure 1: Physical dual-station hardware-in-the-loop testbed featuring Digilent Nexys A7-100T FPGA boards, CP2102 serial bridges, and live 7-segment hex register readouts.*
 
 ---
 
@@ -46,7 +44,7 @@ The hardware validation platform consists of dual host workstations communicatin
 The desktop control application provides interactive FPGA connection management, test generation, and live execution logging:
 
 ![VAIDAR Python & AI Automation Suite UI](/images/projects/vaidar/gui-testing-suite.png)
-*Figure 2: The VAIDAR GUI monitoring automated hardware execution, displaying pass/fail discrepancy matrices, and interfacing with Google Gemini 2.5 Pro for automated root-cause failure triage.*
+*Figure 1: The VAIDAR GUI monitoring automated hardware execution, displaying pass/fail discrepancy matrices, and interfacing with Google Gemini 2.5 Pro for automated root-cause failure triage.*
 
 ---
 
@@ -56,10 +54,10 @@ The desktop control application provides interactive FPGA connection management,
 The Device-Under-Test (DUT) is a multi-stage 16-bit Verilog ALU synthesised onto the **AMD Xilinx Artix-7** FPGA fabric supporting 18 arithmetic, logical, and memory operations:
 
 ![16-Bit ALU Hardware Schematic & Bus Routing](/images/projects/vaidar/alu-schematic.png)
-*Figure 3: Synthesised 16-bit ALU datapath and internal register bus routing.*
+*Figure 2: Synthesised 16-bit ALU datapath and internal register bus routing.*
 
 ![Verilog ALU Implementation](/images/projects/vaidar/code-verilog-alu.png)
-*Figure 4: Core Verilog RTL execution process handling 16-bit arithmetic with zero-division bypass and condition flags.*
+*Figure 3: Core Verilog RTL execution process handling 16-bit arithmetic with zero-division bypass and condition flags.*
 
 ---
 
@@ -67,10 +65,10 @@ The Device-Under-Test (DUT) is a multi-stage 16-bit Verilog ALU synthesised onto
 The Python orchestrator incorporates an autonomous stimulus generation and telemetry analysis loop:
 
 ![AI-Driven Verification Stimulus & Telemetry Loop](/images/projects/vaidar/ai-flowchart.png)
-*Figure 5: Closed-loop AI integration workflow leveraging LLM APIs for intelligent boundary fuzzing and failure diagnosis.*
+*Figure 4: Closed-loop AI integration workflow leveraging LLM APIs for intelligent boundary fuzzing and failure diagnosis.*
 
 ![Python HIL Test Engine](/images/projects/vaidar/code-python-hil.png)
-*Figure 6: Python HIL engine serialising binary frames and cross-verifying physical FPGA responses against golden models.*
+*Figure 5: Python HIL engine serialising binary frames and cross-verifying physical FPGA responses against golden models.*
 
 ---
 

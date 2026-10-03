@@ -23,15 +23,13 @@ The platform achieved a **2nd Place Podium Finish** in the collegiate combat tou
 
 The chassis was engineered to withstand severe physical impacts in the combat arena while maintaining a low centre of gravity for traction and rapid differential turning.
 
-![Autonomous Combat Robot Component Anatomy](/images/projects/robot-wars/robot-annotated.png)
-*Figure 1: Full component anatomy of the combat buggy, highlighting the HC-SR04 sonar array, 4-phase stepper lifter, dual high-torque drive DC motors, LCD telemetry display, and onboard speaker alert system.*
 
 ### Mechanical CAD Modelling
 
 Before manufacturing and 3D printing custom brackets, the entire assembly was modelled in CAD to balance mass distribution, gear ratios, and battery placement:
 
 ![Robot 3D CAD Assembly Render](/images/projects/robot-wars/robot-cad-render.png)
-*Figure 2: 3D CAD mechanical render showing structural chassis plates, motor gearboxes, and bumper mounting geometry.*
+*Figure 1: 3D CAD mechanical render showing structural chassis plates, motor gearboxes, and bumper mounting geometry.*
 
 ---
 
@@ -53,18 +51,18 @@ Before manufacturing and 3D printing custom brackets, the entire assembly was mo
 
 The physical build integrated custom laser-cut chassis layers, dual battery rails for digital logic isolation, and heavy-duty wiring harnesses:
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+<div class="figure-grid">
   <div>
-    <img src="/images/projects/robot-wars/robot-hardware-front.png" alt="Combat Robot Front View" style="border-radius: 8px; border: 1px solid var(--border); width: 100%; height: 220px; object-fit: cover;" />
-    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; text-align: center;">Front view: HC-SR04 ultrasonic sonar eyes & reinforced ramming wedge.</p>
+    <img src="/images/projects/robot-wars/robot-hardware-front.png" alt="Combat Robot Front View" />
+    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; text-align: center;">Front view: HC-SR04 ultrasonic sonar eyes and reinforced ramming wedge.</p>
   </div>
   <div>
-    <img src="/images/projects/robot-wars/robot-hardware-top.png" alt="Combat Robot Top View" style="border-radius: 8px; border: 1px solid var(--border); width: 100%; height: 220px; object-fit: cover;" />
-    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; text-align: center;">Top view: Dual PIC microcontroller boards, logic rails & stepper driver.</p>
+    <img src="/images/projects/robot-wars/robot-hardware-top.png" alt="Combat Robot Top View" />
+    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; text-align: center;">Top view: Dual PIC microcontroller boards, logic rails and stepper driver.</p>
   </div>
   <div>
-    <img src="/images/projects/robot-wars/robot-hardware-side.png" alt="Combat Robot Side View" style="border-radius: 8px; border: 1px solid var(--border); width: 100%; height: 220px; object-fit: cover;" />
-    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; text-align: center;">Side profile: Low-slung drive wheels, high-traction tires & battery bay.</p>
+    <img src="/images/projects/robot-wars/robot-hardware-side.png" alt="Combat Robot Side View" />
+    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; text-align: center;">Side profile: Low-slung drive wheels, high-traction tyres and battery bay.</p>
   </div>
 </div>
 
@@ -75,7 +73,7 @@ The physical build integrated custom laser-cut chassis layers, dual battery rail
 To prevent motor inductive spikes from resetting the microcontroller during rapid forward-to-reverse transitions, the motor power stage was isolated with flyback diodes, decoupling capacitors, and dedicated ground planes.
 
 ![Full Circuit Wiring & Microcontroller Schematic](/images/projects/robot-wars/robot-wiring-schematic.png)
-*Figure 3: Complete wiring schematic illustrating PIC microcontroller GPIO routing, motor driver H-bridge interfaces, sonar echo capture, and Hitachi HD44780 LCD pinout.*
+*Figure 2: Complete wiring schematic illustrating PIC microcontroller GPIO routing, motor driver H-bridge interfaces, sonar echo capture, and Hitachi HD44780 LCD pinout.*
 
 ---
 
@@ -84,7 +82,7 @@ To prevent motor inductive spikes from resetting the microcontroller during rapi
 The firmware was implemented in bare-metal C using **MPLAB XC8**, structured as a non-blocking finite state machine (FSM) executing real-time sonar range polling, defensive evasion, and aggressive pursuit.
 
 ![Embedded C Motor Driver & Steering Routine](/images/projects/robot-wars/code-c-motor-driver.png)
-*Figure 4: Core Embedded C differential steering driver mapping tactical states (`DRIVE_FORWARD`, `PIVOT_LEFT`, `DEFENSIVE_SPIN`) to PWM duty cycles and H-bridge direction registers.*
+*Figure 3: Core Embedded C differential steering driver mapping tactical states (`DRIVE_FORWARD`, `PIVOT_LEFT`, `DEFENSIVE_SPIN`) to PWM duty cycles and H-bridge direction registers.*
 
 ---
 

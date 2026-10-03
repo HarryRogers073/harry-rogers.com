@@ -23,8 +23,6 @@ The project challenged us to design, construct, and program a fully autonomous v
 
 To prevent sensor acquisition and real-time motor actuation loops from blocking each other, the vehicle's electrical architecture was partitioned across **two dedicated Microchip PIC16F873 microcontrollers** communicating over a synchronised bus with **two independent I2C LCD displays**:
 
-![Labelled Autonomous Buggy Hardware](/images/projects/autonomous-buggy/buggy-labeled-hardware.png)
-*Figure 1: Physical autonomous buggy platform featuring the dual PIC microcontroller chassis, HC-SR04 sonar transducer, dual LCD telemetry screens, and high-traction differential drive wheels.*
 
 ### Dual PIC Task Allocation
 
@@ -38,10 +36,10 @@ To prevent sensor acquisition and real-time motor actuation loops from blocking 
 The system combined analogue signal conditioning, high-current motor drive stages, and high-speed digital communications on a modular dual-rail breadboard layout:
 
 ![Full Autonomous Buggy Circuit Schematic](/images/projects/autonomous-buggy/buggy-circuit-schematic.jpg)
-*Figure 2: Complete circuit schematic illustrating dual PIC16F873 wiring, crystal oscillators, I2C pull-up networks, thermistor voltage divider, and H-bridge motor connections.*
+*Figure 1: Complete circuit schematic illustrating dual PIC16F873 wiring, crystal oscillators, I2C pull-up networks, thermistor voltage divider, and H-bridge motor connections.*
 
 ![Labelled Breadboard Wiring & Microcontroller Rails](/images/projects/autonomous-buggy/buggy-breadboard-wiring.png)
-*Figure 3: Labelled physical breadboard layout showing logic isolation, pull-up resistors for SCL/SDA I2C communication, and separate ground planes for motor noise suppression.*
+*Figure 2: Labelled physical breadboard layout showing logic isolation, pull-up resistors for SCL/SDA I2C communication, and separate ground planes for motor noise suppression.*
 
 ---
 

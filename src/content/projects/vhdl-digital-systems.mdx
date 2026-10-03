@@ -23,8 +23,6 @@ The repository implements synchronous finite state machines (FSMs), priority req
 
 The flagship multi-floor elevator controller was compiled onto an **Altera/Intel Cyclone FPGA** and deployed to a physical hardware testing harness consisting of tactile floor call switches, emergency stop buttons, and LED position indicators:
 
-![Physical FPGA Breadboard Elevator Testbed](/images/projects/vhdl/vhdl-hardware-testbed.jpg)
-*Figure 1: Physical FPGA hardware validation testbed featuring tactile floor request matrices, door sensor simulation inputs, status LEDs, and breadboard signal routing connected to FPGA GPIO headers.*
 
 ---
 
@@ -33,7 +31,7 @@ The flagship multi-floor elevator controller was compiled onto an **Altera/Intel
 Prior to silicon programming, the complete digital architecture underwent cycle-accurate timing simulation in **ModelSim** to verify setup/hold slack, asynchronous reset handling, and state transition latency:
 
 ![ModelSim Timing Waveform Verification Matrix](/images/projects/vhdl/modelsim-timing-simulation.png)
-*Figure 2: ModelSim functional and timing waveform trace illustrating clock edge alignment, floor queue arbitration, door open/close timeouts, and state register transitions.*
+*Figure 1: ModelSim functional and timing waveform trace illustrating clock edge alignment, floor queue arbitration, door open/close timeouts, and state register transitions.*
 
 ---
 
@@ -54,7 +52,7 @@ Prior to silicon programming, the complete digital architecture underwent cycle-
 The core elevator logic is structured as a two-process synchronous FSM separating combinatorial next-state logic from clocked sequential state registers:
 
 ![VHDL Elevator Finite State Machine Code Card](/images/projects/vhdl/code-vhdl-lift-fsm.png)
-*Figure 3: Carbon-style syntax-highlighted IEEE VHDL listing defining the finite state enumeration (`IDLE`, `MOVING_UP`, `MOVING_DOWN`, `DOOR_OPEN`), clock synchronisation process, and next-state transition logic.*
+*Figure 2: Carbon-style syntax-highlighted IEEE VHDL listing defining the finite state enumeration (`IDLE`, `MOVING_UP`, `MOVING_DOWN`, `DOOR_OPEN`), clock synchronisation process, and next-state transition logic.*
 
 ---
 
