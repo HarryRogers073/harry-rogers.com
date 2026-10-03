@@ -1,0 +1,48 @@
+---
+title: "MATLAB Engineering Suite: Telemetry Apps, DSP Filters & Simulink"
+summary: "Interactive App Designer telemetry instruments, PIC16F84A opcode explorer, Bilinear Transform filter synthesis, Simulink audio pipeline, and HDL export."
+date: 2026-02-10
+tags: ["MATLAB", "Simulink", "App Designer", "DSP", "HDL Coder", "Audio"]
+featured: true
+status: "complete"
+repo: "https://github.com/HarryRogers073/matlab-projects"
+order: 3
+---
+
+## Project Overview
+
+A consolidated collection of engineering instruments and analytical pipelines built in **MATLAB & Simulink** across BEng coursework (EO631 & EO626) at the **University of Brighton**.
+
+Combines graphical user interface development in **App Designer**, opcode-level instruction architecture simulation, bilinear transformation DSP filter synthesis, and automated HDL IP core generation.
+
+---
+
+## 🎯 Flagship Engineering Components
+
+### 1. App Designer Instruments (`app_designer/`)
+- **Multi-Channel Hardware Sensor Dashboard (`HarryRogers_22835293_EO631_GUI_APP.mlapp`):**
+  - Real-time time-series telemetry, gain scaling, offset calibration, and safety threshold alerts for analog inputs (`A0` – `A5`).
+  - JSON-driven hardware profiles allowing instant loading/saving of sensor configurations.
+- **PIC16F84A Instruction Explorer (`PIC16F84A_Instruction_Explorer.mlapp`):**
+  - Visual step-by-step assembly execution emulator visualizing opcode decoding, register file transitions (W, STATUS, PORTA, PORTB), and flag states.
+
+### 2. DSP Filter Design & Audio Processing (`dsp_filter_design/`)
+- **Bilinear Transformation Filter Synthesis (`Butterworth.m`):**
+  - Synthesizes continuous-to-discrete Butterworth low-pass and band-pass filters with frequency pre-warping.
+- **FIR Linear-Phase Windowing (`Hamming.m`):**
+  - Sinc truncation with Hamming window tapering, trading off stopband attenuation and transition bandwidth.
+
+### 3. Simulink Dynamic Acoustic Harness (`simulink/`)
+- **`Final_Model_2025A.slx`:**
+  - Real-time streaming audio filtering simulation comparing raw wave inputs, injected acoustic interference, and filtered outputs.
+
+### 4. Synthesizable HDL IP Export (`hdl_export/`)
+- **Automated HDL Coder Pipeline (`export_hdl_IP.m`):**
+  - Generates synthesizable Verilog/VHDL RTL filter cores from MATLAB transfer functions with automated testbench verification.
+
+---
+
+## ⚡ Source Code & Artifacts
+
+- **GitHub Repository:** [HarryRogers073/matlab-projects](https://github.com/HarryRogers073/matlab-projects)
+- **Tools:** MATLAB (R2022b+), Simulink, DSP System Toolbox, MATLAB HDL Coder

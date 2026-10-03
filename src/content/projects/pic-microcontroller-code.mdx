@@ -1,0 +1,39 @@
+---
+title: "PIC Microcontroller Firmware & Embedded Code Library"
+summary: "Low-level MPASM assembly routines and MPLAB XC8 embedded C drivers for Microchip PIC microcontrollers (PWM, timers, UART, sonar, LCD)."
+date: 2026-01-15
+tags: ["Embedded C", "Assembly", "MPASM", "PIC16", "PWM", "UART", "Microchip"]
+featured: true
+status: "complete"
+repo: "https://github.com/HarryRogers073/pic-microcontroller-code"
+order: 2
+---
+
+## Project Overview
+
+A dedicated embedded firmware library developed across **EO631 (Embedded Systems 3)** and **EO524 (Embedded Systems)** modules at the **University of Brighton** (Grade: **84% Distinction / A+**).
+
+Focuses on bare-metal and register-level control of **Microchip PIC16F84A**, **PIC16F873**, and **PIC18** microcontrollers using both **MPASM Assembly** and **MPLAB XC8 Embedded C**.
+
+---
+
+## 🎯 Architecture & Modules
+
+### 1. MPASM Assembly Routines (`firmware_asm/`)
+- **`16F873_RX_to_PWM.asm`:** Hardware UART packet reception triggering dynamic PWM duty-cycle modulation.
+- **`16F873_RX_to_LEDs_PORTC.ASM`:** Direct byte latching and parallel register bit driving.
+- **`PWM.asm` & `PWM_Simple.asm`:** Hardware Timer 2 (TMR2) and PR2 period registers for high-efficiency pulse modulation.
+
+### 2. Embedded C Drivers (`firmware_c/`)
+- **`MovementCode.c`:** Dual H-bridge motor steering logic and velocity throttling.
+- **`ultrasonic_driver.c`:** HC-SR04 sonar trigger generation and hardware timer capture interrupt routines for distance ranging.
+- **`stepper_actuator.c`:** 4-phase step-sequencing driver for precision stepper indexing.
+- **`lcd.c`:** Hitachi HD44780 4-bit/8-bit parallel character LCD display controller.
+
+---
+
+## ⚡ Source Code & Artifacts
+
+- **GitHub Repository:** [HarryRogers073/pic-microcontroller-code](https://github.com/HarryRogers073/pic-microcontroller-code)
+- **Target Microcontrollers:** Microchip PIC16F873, PIC16F84A
+- **Compilers & IDEs:** Microchip MPLAB X IDE, MPASM, MPLAB XC8

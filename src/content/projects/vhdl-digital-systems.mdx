@@ -1,0 +1,53 @@
+---
+title: "VHDL Digital Systems & FPGA Logic Design"
+summary: "Modular digital logic and FPGA hardware description library in IEEE VHDL: multi-floor elevator FSM, synchronous request queue, 2's complement ALU, and registers."
+date: 2025-05-20
+tags: ["VHDL", "FPGA", "Intel Quartus Prime", "ModelSim", "FSM", "Digital Systems", "EDA"]
+featured: true
+status: "complete"
+repo: "https://github.com/HarryRogers073/vhdl-digital-systems"
+order: 5
+---
+
+## Project Overview
+
+A modular digital logic and FPGA hardware description library written in **IEEE standard VHDL**, developed for the **Digital Systems Design** module at the **University of Brighton** (Grade: **84% Distinction / A+**).
+
+The library implements synchronous finite state machines (FSMs), priority request queues, arithmetic sub-units (adders, multipliers, comparators), sequential shift registers, and seven-segment hexadecimal display decoders verified in **Intel Quartus Prime** and **ModelSim**.
+
+---
+
+## 🎯 Flagship Design: Multi-Floor Elevator Controller FSM
+
+The centerpiece is an industrial multi-floor elevator controller architecture featuring arbitration queues, door actuation timing, and safety stop interlocks:
+
+- **`Lift.vhd` & `Lift_tb.vhd`:** Main elevator controller Finite State Machine coordinating floor states (`IDLE`, `MOVING_UP`, `MOVING_DOWN`, `DOOR_OPEN`, `EMERGENCY_STOP`).
+- **`Queue.vhd`:** Synchronous request register queue latching floor call events and scheduling optimal dispatch.
+- **`doors_but_better.vhd`:** Door actuation timing module with sensor interlocks.
+
+---
+
+## 🧩 Arithmetic & Sequential Building Blocks
+
+### 1. Arithmetic & Combinational Units
+- **`Adder_Sub.vhd`:** Selectable ripple-carry adder/subtractor with 2's complement logic and overflow detection.
+- **`full_adder_vhdl_code.vhd`:** Structural 1-bit full adder primitive.
+- **`bitMultip.vhd`:** 2-bit combinational binary multiplier.
+- **`Comp4.vhd`:** 4-bit unsigned magnitude comparator ($A > B$, $A = B$, $A < B$).
+- **`Sub4.vhd`:** 4-bit dedicated binary subtractor.
+
+### 2. Sequential Logic & Timing
+- **`ShiftReg1.vhd`:** Multi-mode parallel-in serial-out (PISO) / serial-in parallel-out (SIPO) shift register.
+- **`Counter.vhd`:** Modulo-$N$ synchronous up/down counter with asynchronous reset and terminal count flag.
+- **`clock_div1.vhd`:** Integer clock prescaler divider converting high-frequency oscillators (e.g. 50 MHz) to human-visible frequencies.
+
+### 3. Display Drivers
+- **`bin2hex.vhd`:** Combinational 4-bit binary to 7-segment active-low common-anode LED decoder.
+
+---
+
+## ⚡ Source Code & Verification
+
+- **GitHub Repository:** [HarryRogers073/vhdl-digital-systems](https://github.com/HarryRogers073/vhdl-digital-systems)
+- **EDA Tools:** Intel Quartus Prime Lite / Standard, ModelSim-Intel FPGA
+- **Language Standard:** IEEE 1076-1993 VHDL
