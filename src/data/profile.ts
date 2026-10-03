@@ -42,7 +42,7 @@ export const experience: Role[] = [
     period: 'June 2026 – Present',
     highlights: [
       'Primary Test Team Point of Contact for the Land Integrated Portfolio Team (IPT), advising Project Managers and Programme Directors on FAT scoping and test feasibility.',
-      'Factory Acceptance Testing (FAT) on electro-optical director platforms (Hawkeye land series), spanning stabilized pan/tilt positioners, daylight HD optics, cooled MWIR / uncooled LWIR thermal imagers, and laser rangefinders.',
+      'Factory Acceptance Testing (FAT) on electro-optical director platforms (Hawkeye land series), spanning stabilised pan/tilt positioners, daylight HD optics, cooled MWIR / uncooled LWIR thermal imagers, and laser rangefinders.',
       'Board-level diagnostics and fault isolation across multi-layer PCBs, continuous slip-ring communications (RS-422, CAN bus, Gigabit Ethernet), and video processing pipelines.',
       'Environmental qualification including thermal chamber profiling (-40°C to +70°C) and vibration testing against military defence specifications.',
     ],
@@ -145,7 +145,7 @@ export const rankedModules: RankedModule[] = [
     grade: 84,
     gradeLabel: '84% (Distinction, A+)',
     specialismBadge: 'Digital RTL & FSM Architecture',
-    summary: 'Designed and synthesized a complete multi-floor commercial elevator controller in IEEE VHDL for an Intel/Altera DE0-Nano FPGA. Implemented concurrent Finite State Machines (FSMs), dynamic request queuing, priority scheduling, door interlock safety, and 7-segment display multiplexers.',
+    summary: 'Designed and synthesised a complete multi-floor commercial elevator controller in IEEE VHDL for an Intel/Altera DE0-Nano FPGA. Implemented concurrent Finite State Machines (FSMs), dynamic request queuing, priority scheduling, door interlock safety, and 7-segment display multiplexers.',
     tech: ['IEEE VHDL', 'Intel DE0-Nano FPGA', 'Quartus Prime', 'ModelSim', 'Finite State Machines (FSM)', 'RTL Design'],
     projectSlug: 'vhdl-digital-systems'
   },
@@ -189,7 +189,7 @@ export const rankedModules: RankedModule[] = [
     grade: 68,
     gradeLabel: '68% (Merit, B+)',
     specialismBadge: 'Digital Signal Processing & Filter Design',
-    summary: 'Designed 3-way acoustic loudspeaker crossover filters using Linear Time-Invariant (LTI) FIR and IIR digital structures. Synthesized filter coefficient tables in MATLAB, conducted FFT spectral analysis on raw audio streams, and implemented real-time filtering routines for 8-bit microcontrollers.',
+    summary: 'Designed 3-way acoustic loudspeaker crossover filters using Linear Time-Invariant (LTI) FIR and IIR digital structures. Synthesised filter coefficient tables in MATLAB, conducted FFT spectral analysis on raw audio streams, and implemented real-time filtering routines for 8-bit microcontrollers.',
     tech: ['MATLAB DSP Toolbox', 'FIR & IIR Filters', 'Butterworth / Chebyshev', 'FFT Spectral Analysis', 'Microcontroller DSP'],
     projectSlug: 'matlab-projects'
   },
@@ -200,7 +200,7 @@ export const rankedModules: RankedModule[] = [
     grade: 70,
     gradeLabel: '70% (Merit, A-)',
     specialismBadge: 'Analogue RF Circuits & Communications',
-    summary: 'Engineered discrete analog electronics on copper: assembled a working superheterodyne AM MW/LW radio receiver picking up over-the-air broadcasts with tuned LC tanks, built a precision LM358 operational amplifier light meter, and created a 555/556 PWM LED dimmer on Veroboard.',
+    summary: 'Engineered discrete analogue electronics on copper: assembled a working superheterodyne AM MW/LW radio receiver picking up over-the-air broadcasts with tuned LC tanks, built a precision LM358 operational amplifier light meter, and created a 555/556 PWM LED dimmer on Veroboard.',
     tech: ['AM Radio Superhet Receiver', 'Tuned LC RF Circuits', 'LM358 Operational Amplifiers', '555/556 Timers', 'PWM Dimming', 'Veroboard']
   },
   {
@@ -273,7 +273,7 @@ export const rankedModules: RankedModule[] = [
     grade: 62,
     gradeLabel: '62% (Merit, B-)',
     specialismBadge: 'Multistage Amplifiers & Sequential Memory',
-    summary: 'Designed and evaluated multistage BJT amplifier topologies, analyzing frequency response cutoffs, differential input stages, and feedback stabilization alongside sequential digital circuits including edge-triggered flip-flops, asynchronous ripple counters, and shift registers.',
+    summary: 'Designed and evaluated multistage BJT amplifier topologies, analysing frequency response cutoffs, differential input stages, and feedback stabilisation alongside sequential digital circuits including edge-triggered flip-flops, asynchronous ripple counters, and shift registers.',
     tech: ['Multistage BJT Amplifiers', 'Differential Pairs', 'Frequency Response Cutoffs', 'Sequential Logic', 'Flip-Flops & Counters']
   },
   {

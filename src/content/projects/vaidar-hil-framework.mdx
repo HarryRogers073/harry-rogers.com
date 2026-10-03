@@ -15,7 +15,7 @@ badge: "91% (A+) | IET Prize Winner"
 
 **VAIDAR** (*Verification & Artificial Intelligence for Digital Architecture Runtime*) is an automated **Hardware-in-the-Loop (HIL) verification execution engine** developed as my Final Year BEng Individual Dissertation Project at the **University of Brighton**. 
 
-The project achieved a **Final Distinction Grade of 91% (A+)** and was recognized with **The IET Prize 2026** by the Institution of Engineering and Technology.
+The project achieved a **Final Distinction Grade of 91% (A+)** and was recognised with **The IET Prize 2026** by the Institution of Engineering and Technology.
 
 Traditional FPGA verification relies heavily on manual bench testing with oscilloscopes and function generators, or slow software RTL simulation that can consume up to 70% of the hardware design lifecycle. VAIDAR bridges physical silicon with modern software testing by wrapping high-speed serial transports in an intuitive Python architecture and integrating LLM-assisted edge-case test generation.
 
@@ -56,7 +56,7 @@ The desktop control application provides interactive FPGA connection management,
 The Device-Under-Test (DUT) is a multi-stage 16-bit Verilog ALU synthesised onto the **AMD Xilinx Artix-7** FPGA fabric supporting 18 arithmetic, logical, and memory operations:
 
 ![16-Bit ALU Hardware Schematic & Bus Routing](/images/projects/vaidar/alu-schematic.png)
-*Figure 3: Synthesized 16-bit ALU datapath and internal register bus routing.*
+*Figure 3: Synthesised 16-bit ALU datapath and internal register bus routing.*
 
 ![Verilog ALU Implementation](/images/projects/vaidar/code-verilog-alu.png)
 *Figure 4: Core Verilog RTL execution process handling 16-bit arithmetic with zero-division bypass and condition flags.*
@@ -70,7 +70,7 @@ The Python orchestrator incorporates an autonomous stimulus generation and telem
 *Figure 5: Closed-loop AI integration workflow leveraging LLM APIs for intelligent boundary fuzzing and failure diagnosis.*
 
 ![Python HIL Test Engine](/images/projects/vaidar/code-python-hil.png)
-*Figure 6: Python HIL engine serializing binary frames and cross-verifying physical FPGA responses against golden models.*
+*Figure 6: Python HIL engine serialising binary frames and cross-verifying physical FPGA responses against golden models.*
 
 ---
 

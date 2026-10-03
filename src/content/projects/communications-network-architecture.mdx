@@ -30,7 +30,7 @@ To test protocols under complex routing and physical isolation constraints, a mu
 The architecture partitions network resources between primary and remote operational zones, ensuring strict broadcast domain isolation:
 
 ![Multi-Site Physical Topology Hierarchy](/images/projects/communications/physical-topology-hierarchy.jpg)
-*Figure 2: Multi-site topological hierarchy showing localized Local Area Networks (LANs) bridged across wide-area serial routing points.*
+*Figure 2: Multi-site topological hierarchy showing localised Local Area Networks (LANs) bridged across wide-area serial routing points.*
 
 ---
 
@@ -43,7 +43,7 @@ Unlike standard open networks, enterprise-grade wireless security was configured
 *Figure 3: WPA2-PSK (AES) pre-shared key authentication configured on the gateway, serving secured wireless endpoints.*
 
 ### 2. Layer 3 Serial WAN Routing (V.35 DTE/DCE)
-To simulate a commercial T1 leased line across subnets, a remote Web Server (`10.2.0.10`) was deployed across a **Serial V.35 physical link**. The link was configured as a **DTE/DCE pair**, where the local gateway router acted as Data Circuit-terminating Equipment (DCE) providing clock synchronization (`clock rate 64000`), and the remote gateway functioned as Data Terminal Equipment (DTE).
+To simulate a commercial T1 leased line across subnets, a remote Web Server (`10.2.0.10`) was deployed across a **Serial V.35 physical link**. The link was configured as a **DTE/DCE pair**, where the local gateway router acted as Data Circuit-terminating Equipment (DCE) providing clock synchronisation (`clock rate 64000`), and the remote gateway functioned as Data Terminal Equipment (DTE).
 
 ![Serial V.35 WAN Routing and RIP Configuration](/images/projects/communications/wan-serial-routing.png)
 *Figure 4: Layer 3 serial routing table and RIP dynamic routing protocol exchange bridging distinct network segments.*

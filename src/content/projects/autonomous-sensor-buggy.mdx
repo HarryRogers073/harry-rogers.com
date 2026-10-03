@@ -21,9 +21,9 @@ The project challenged us to design, construct, and program a fully autonomous v
 
 ## Physical Hardware & Dual Microcontroller Architecture
 
-To prevent sensor acquisition and real-time motor actuation loops from blocking each other, the vehicle's electrical architecture was partitioned across **two dedicated Microchip PIC16F873 microcontrollers** communicating over a synchronized bus with **two independent I2C LCD displays**:
+To prevent sensor acquisition and real-time motor actuation loops from blocking each other, the vehicle's electrical architecture was partitioned across **two dedicated Microchip PIC16F873 microcontrollers** communicating over a synchronised bus with **two independent I2C LCD displays**:
 
-![Labeled Autonomous Buggy Hardware](/images/projects/autonomous-buggy/buggy-labeled-hardware.png)
+![Labelled Autonomous Buggy Hardware](/images/projects/autonomous-buggy/buggy-labeled-hardware.png)
 *Figure 1: Physical autonomous buggy platform featuring the dual PIC microcontroller chassis, HC-SR04 sonar transducer, dual LCD telemetry screens, and high-traction differential drive wheels.*
 
 ### Dual PIC Task Allocation
@@ -40,8 +40,8 @@ The system combined analogue signal conditioning, high-current motor drive stage
 ![Full Autonomous Buggy Circuit Schematic](/images/projects/autonomous-buggy/buggy-circuit-schematic.jpg)
 *Figure 2: Complete circuit schematic illustrating dual PIC16F873 wiring, crystal oscillators, I2C pull-up networks, thermistor voltage divider, and H-bridge motor connections.*
 
-![Labeled Breadboard Wiring & Microcontroller Rails](/images/projects/autonomous-buggy/buggy-breadboard-wiring.png)
-*Figure 3: Labeled physical breadboard layout showing logic isolation, pull-up resistors for SCL/SDA I2C communication, and separate ground planes for motor noise suppression.*
+![Labelled Breadboard Wiring & Microcontroller Rails](/images/projects/autonomous-buggy/buggy-breadboard-wiring.png)
+*Figure 3: Labelled physical breadboard layout showing logic isolation, pull-up resistors for SCL/SDA I2C communication, and separate ground planes for motor noise suppression.*
 
 ---
 
@@ -89,7 +89,7 @@ Obstacle detection was achieved using an **HC-SR04 ultrasonic transducer** drive
   [ RESUME FORWARD ]
 ```
 
-When an impending collision was detected within 25 cm, the state machine transitioned into an emergency braking and pivoting sequence, steering the vehicle away from barriers and logging the maneuver to the diagnostic display.
+When an impending collision was detected within 25 cm, the state machine transitioned into an emergency braking and pivoting sequence, steering the vehicle away from barriers and logging the manoeuvre to the diagnostic display.
 
 ---
 

@@ -15,7 +15,7 @@ badge: "84% (A+) Distinction"
 
 A modular digital logic and FPGA hardware description library written in **IEEE standard VHDL**, developed for the **Digital Systems Design** curriculum at the **University of Brighton** and earning an **84% Distinction Grade (A+)**.
 
-The repository implements synchronous finite state machines (FSMs), priority request arbitration queues, arithmetic sub-units (ALUs, ripple adders, multipliers, magnitude comparators), sequential shift registers, and seven-segment display decoders synthesized in **Intel Quartus Prime** and verified through gate-level timing simulations in **ModelSim**.
+The repository implements synchronous finite state machines (FSMs), priority request arbitration queues, arithmetic sub-units (ALUs, ripple adders, multipliers, magnitude comparators), sequential shift registers, and seven-segment display decoders synthesised in **Intel Quartus Prime** and verified through gate-level timing simulations in **ModelSim**.
 
 ---
 
@@ -54,13 +54,13 @@ Prior to silicon programming, the complete digital architecture underwent cycle-
 The core elevator logic is structured as a two-process synchronous FSM separating combinatorial next-state logic from clocked sequential state registers:
 
 ![VHDL Elevator Finite State Machine Code Card](/images/projects/vhdl/code-vhdl-lift-fsm.png)
-*Figure 3: Carbon-style syntax-highlighted IEEE VHDL listing defining the finite state enumeration (`IDLE`, `MOVING_UP`, `MOVING_DOWN`, `DOOR_OPEN`), clock synchronization process, and next-state transition logic.*
+*Figure 3: Carbon-style syntax-highlighted IEEE VHDL listing defining the finite state enumeration (`IDLE`, `MOVING_UP`, `MOVING_DOWN`, `DOOR_OPEN`), clock synchronisation process, and next-state transition logic.*
 
 ---
 
 ## Arithmetic & Sequential Building Blocks
 
-In addition to the elevator system, the repository contains a library of synthesizable digital logic primitives:
+In addition to the elevator system, the repository contains a library of synthesiseable digital logic primitives:
 
 ### 1. Arithmetic Units
 - **`Adder_Sub.vhd`:** Selectable ripple-carry adder/subtractor with 2's complement logic and overflow detection.

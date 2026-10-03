@@ -35,7 +35,7 @@ const progressionTimeline = [
         type: "Signal Processing & Simulink",
         grade: "First-Class Distinction",
         tools: "MATLAB, Simulink, DSP System Toolbox, Bilinear Transformation, HDL Coder",
-        description: "Synthesized 11th-order Butterworth IIR filters with frequency pre-warping and 324th-order Hamming FIR filters. Built a dynamic audio crossover simulation and exported synthesizable RTL IP cores.",
+        description: "Synthesised 11th-order Butterworth IIR filters with frequency pre-warping and 324th-order Hamming FIR filters. Built a dynamic audio crossover simulation and exported synthesiseable RTL IP cores.",
         link: "/projects/matlab-projects"
       },
       {
@@ -52,8 +52,8 @@ const progressionTimeline = [
         title: "Sustainable Product Design: Kinetic & Electrochemical Energy Systems",
         type: "Engineering Analysis & Sustainability",
         grade: "First-Class Distinction",
-        tools: "Excel Decision Matrices, Kinetic Energy Modeling, Flow Batteries, Sodium-Ion",
-        description: "Formulated loss models for high-speed flywheel kinetic storage and authored trade-off matrices evaluating flow batteries versus sodium-ion chemistries for grid-scale stabilization."
+        tools: "Excel Decision Matrices, Kinetic Energy Modelling, Flow Batteries, Sodium-Ion",
+        description: "Formulated loss models for high-speed flywheel kinetic storage and authored trade-off matrices evaluating flow batteries versus sodium-ion chemistries for grid-scale stabilisation."
       }
     ]
   },
@@ -101,7 +101,7 @@ const progressionTimeline = [
         type: "RTL Design & Simulation",
         grade: "84% (A+) Distinction",
         tools: "IEEE Standard VHDL, Intel Quartus Prime, ModelSim-Intel FPGA, Cyclone FPGA",
-        description: "Synthesized a multi-floor elevator controller FSM, synchronous request arbitration queues, 2's complement ALU units, and shift registers verified via gate-level timing simulations.",
+        description: "Synthesised a multi-floor elevator controller FSM, synchronous request arbitration queues, 2's complement ALU units, and shift registers verified via gate-level timing simulations.",
         link: "/projects/vhdl-digital-systems"
       },
       {
@@ -110,7 +110,7 @@ const progressionTimeline = [
         type: "Control Systems",
         grade: "Distinction Grade",
         tools: "MATLAB, Simulink, Root Locus, Bode Plots, Block Diagram Reduction",
-        description: "Analyzed continuous-time open-loop and closed-loop feedback systems, derived block diagram reductions, and evaluated gain/phase stability margins for second-order dynamic plants."
+        description: "Analysed continuous-time open-loop and closed-loop feedback systems, derived block diagram reductions, and evaluated gain/phase stability margins for second-order dynamic plants."
       }
     ]
   },
@@ -125,7 +125,7 @@ const progressionTimeline = [
         type: "Analogue Circuit Design",
         grade: "Distinction Grade",
         tools: "Multimeter & Oscilloscope Instrumentation, LTspice, Proteus, Op-Amps, Transistors",
-        description: "Characterized LCR resonant tank circuits, operational amplifier active band-pass filters, transistor small-signal models, and bench-tested linear regulated DC power supplies under varying load currents."
+        description: "Characterised LCR resonant tank circuits, operational amplifier active band-pass filters, transistor small-signal models, and bench-tested linear regulated DC power supplies under varying load currents."
       },
       {
         discipline: "PCB & CAD Design",
@@ -140,8 +140,8 @@ const progressionTimeline = [
         title: "Engineering Design Principles & Structural Mechanics",
         type: "Mechanical & Structural Design",
         grade: "Distinction Grade",
-        tools: "3D CAD Modeling, Tensile Stress Testing, Truss Load Simulation, Gantt Scheduling",
-        description: "Modeled structural bridge truss designs in CAD, conducted material strength simulations, and led cross-functional team milestone planning."
+        tools: "3D CAD Modelling, Tensile Stress Testing, Truss Load Simulation, Gantt Scheduling",
+        description: "Modelled structural bridge truss designs in CAD, conducted material strength simulations, and led cross-functional team milestone planning."
       }
     ]
   }
@@ -245,7 +245,7 @@ const progressionTimeline = [
   .timeline-stage {
     padding: 1.75rem;
     border: 1px solid var(--border);
-    background: var(--card-bg, #ffffff);
+    background: var(--surface);
     border-radius: 12px;
   }
   .stage-header {
@@ -268,14 +268,14 @@ const progressionTimeline = [
     font-size: 0.95rem;
   }
   .award-pill {
-    background: #09090b;
-    color: #ffffff;
+    background: var(--surface-2);
+    color: var(--brand);
+    border: 1px solid var(--border);
     font-size: 0.8rem;
     font-weight: 600;
     padding: 0.3rem 0.8rem;
     border-radius: 9999px;
     letter-spacing: 0.02em;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   }
   .modules-grid {
     display: grid;
@@ -283,7 +283,7 @@ const progressionTimeline = [
     gap: 1.25rem;
   }
   .module-card {
-    background: var(--bg-soft, #f9fafb);
+    background: var(--surface-2);
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 1.25rem;
@@ -309,7 +309,10 @@ const progressionTimeline = [
   .mod-grade {
     font-size: 0.8rem;
     font-weight: 600;
-    color: #166534;
+    color: #059669;
+  }
+  :global([data-theme='dark']) .mod-grade {
+    color: #34d399;
   }
   .module-card h4 {
     margin: 0.25rem 0 0.5rem;
@@ -333,7 +336,7 @@ const progressionTimeline = [
   .mod-tools {
     font-size: 0.8rem;
     color: var(--muted);
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    border-top: 1px solid var(--border);
     padding-top: 0.5rem;
     line-height: 1.4;
   }
