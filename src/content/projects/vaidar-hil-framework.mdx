@@ -7,7 +7,7 @@ featured: true
 status: "complete"
 repo: "https://github.com/HarryRogers073/vaidar"
 order: 1
-thumbnail: "/images/projects/vaidar/testbed-hardware.png"
+thumbnail: "/images/projects/vaidar/gui-testing-suite.png"
 badge: "91% (A+) | IET Prize Winner"
 ---
 
@@ -25,6 +25,8 @@ Traditional FPGA verification relies heavily on manual bench testing with oscill
 
 The hardware validation platform consists of dual host workstations communicating bidirectionally with **Digilent Nexys A7 FPGA** boards over a high-speed **CP2102 USB-to-UART bridge** operating at 921,600 baud:
 
+![Physical Testbed Hardware Setup](/images/projects/vaidar/testbed-hardware.png)
+*Figure 1: Dual host workstations connected to physical Digilent Nexys A7 FPGA boards via high-speed USB-to-UART bridge.*
 
 ---
 
@@ -39,12 +41,9 @@ The hardware validation platform consists of dual host workstations communicatin
 
 ---
 
-##  Real-Time Python & AI Automation Suite
+## Real-Time Python & AI Automation Suite
 
-The desktop control application provides interactive FPGA connection management, test generation, and live execution logging:
-
-![VAIDAR Python & AI Automation Suite UI](/images/projects/vaidar/gui-testing-suite.png)
-*Figure 1: The VAIDAR GUI monitoring automated hardware execution, displaying pass/fail discrepancy matrices, and interfacing with Google Gemini 2.5 Pro for automated root-cause failure triage.*
+The desktop control application (shown in the header interface overview) provides interactive FPGA connection management, test generation, and live execution logging with automated discrepancy triage.
 
 ---
 
