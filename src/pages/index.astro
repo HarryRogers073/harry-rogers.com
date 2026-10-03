@@ -5,212 +5,195 @@ import { profile } from '../data/profile';
 import { getCollection } from 'astro:content';
 
 const allProjects = await getCollection('projects');
-const featuredProjects = allProjects
-  .filter((p) => p.data.featured)
-  .sort((a, b) => a.data.order - b.data.order);
+const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') || allProjects[0];
 ---
 
 <BaseLayout>
-  <!-- Hero Section: Cinematic, Visual, Uncluttered & Flowing -->
+  <!-- Hero Section: Organic, Human, Clean & Flowing -->
   <section class="hero-section" id="hero-section">
-    <!-- Interactive Ambient Canvas & Glowing Aurora -->
+    <!-- Subtle Interactive Canvas & Ambient Lighting -->
     <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
     <div class="ambient-aurora" aria-hidden="true"></div>
-    <div class="grid-mesh" aria-hidden="true"></div>
 
     <div class="container hero-container">
       <div class="hero-content reveal-on-scroll" id="hero-content">
-        <!-- Top Status Pill -->
+        <!-- Human Status Pill -->
         <div class="hero-status-pill">
           <span class="pulse-dot"></span>
-          <span class="status-brand">THE IET PRIZE 2026 WINNER</span>
-          <span class="status-sep">/</span>
-          <span class="status-sub">FIRST-CLASS HONOURS (80%)</span>
+          <span class="status-brand">Chess Dynamics</span>
+          <span class="status-sep">•</span>
+          <span class="status-sub">IET Prize Winner 2026</span>
         </div>
 
-        <!-- Mammoth Cinematic Headline -->
+        <!-- Organic Headline -->
         <h1 class="hero-title">
-          DIGITAL LOGIC <br />
-          <span class="gradient-text">&amp; HARDWARE TESTBEDS.</span>
+          Electronic engineering, <br />
+          <span class="gradient-text">FPGA design &amp; test systems.</span>
         </h1>
 
-        <!-- Confident, Uncluttered Subtitle -->
+        <!-- Genuine, Grounded Subtitle -->
         <p class="hero-subtitle">
-          Hi, I’m <strong>Harry Rogers</strong>. I push physical electro-optical defence platforms and FPGA silicon to verified limits — engineering automated test rigs, sub-microsecond RTL telemetry, and zero-defect validation suites.
+          Hi, I’m <strong>Harry Rogers</strong>. I’m a UK-based electronic engineer. By day I test electro-optical defence systems at Chess Dynamics; outside of that, I design digital logic and build automated hardware-in-the-loop testing tools for FPGAs.
         </p>
 
-        <!-- Horizontal Floating Telemetry Bar (Clean & Visual, Zero Clutter) -->
-        <div class="telemetry-bar">
-          <div class="telemetry-cell">
-            <span class="telemetry-number stat-counter" data-target="91" data-suffix="%">91%</span>
-            <span class="telemetry-label">Dissertation (A+)</span>
+        <!-- Understated, Clean Key Facts Bar -->
+        <div class="facts-bar">
+          <div class="fact-item">
+            <span class="fact-number stat-counter" data-target="80" data-suffix="%">80%</span>
+            <span class="fact-label">1st Class BEng (Hons)</span>
           </div>
-          <div class="telemetry-divider" aria-hidden="true"></div>
-          <div class="telemetry-cell">
-            <span class="telemetry-number stat-counter" data-target="1" data-suffix="st">1st</span>
-            <span class="telemetry-label">BEng Honours</span>
+          <div class="fact-sep" aria-hidden="true"></div>
+          <div class="fact-item">
+            <span class="fact-number stat-counter" data-target="91" data-suffix="%">91%</span>
+            <span class="fact-label">Dissertation (A+)</span>
           </div>
-          <div class="telemetry-divider" aria-hidden="true"></div>
-          <div class="telemetry-cell">
-            <span class="telemetry-number brand-accent">IET</span>
-            <span class="telemetry-label">Prize Winner '26</span>
+          <div class="fact-sep" aria-hidden="true"></div>
+          <div class="fact-item">
+            <span class="fact-number brand-accent">IET</span>
+            <span class="fact-label">Prize Winner 2026</span>
           </div>
-          <div class="telemetry-divider" aria-hidden="true"></div>
-          <div class="telemetry-cell">
-            <span class="telemetry-number">CHESS</span>
-            <span class="telemetry-label">Defence Optronics</span>
+          <div class="fact-sep" aria-hidden="true"></div>
+          <div class="fact-item">
+            <span class="fact-number">BAE</span>
+            <span class="fact-label">Placement Alum</span>
           </div>
         </div>
 
-        <!-- Action Links -->
+        <!-- Human Action Buttons -->
         <div class="hero-actions">
-          <a class="btn btn-primary" href="/projects">Explore Projects →</a>
-          <a class="btn ghost" href="/cv">Master CV</a>
-          <a class="btn ghost" href="/terminal" title="Launch retro terminal">&gt;_ Retro CLI</a>
+          <a class="btn btn-primary" href="#featured-project">View Featured Project ↓</a>
+          <a class="btn ghost" href="/cv">Read CV &amp; Marks</a>
+          <a class="btn ghost" href="/about">About Me</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Continuous Telemetry Ticker Ribbon (Flowing Momentum) -->
-  <div class="ticker-strip" aria-label="Key Distinctions Continuous Marquee">
-    <div class="ticker-wrap">
-      <div class="ticker-track">
-        <span class="ticker-node brand">◆ VAIDAR HIL FRAMEWORK</span>
-        <span class="ticker-node white">★ THE IET PRIZE 2026 WINNER</span>
-        <span class="ticker-node brand">⚡ CHESS DYNAMICS DEFENCE OPTRONICS</span>
-        <span class="ticker-node">◆ BAE SYSTEMS IV&amp;V AVIONICS</span>
-        <span class="ticker-node brand">⚡ XILINX ARTIX-7 RTL VERIFICATION</span>
-        <span class="ticker-node white">★ FIRST-CLASS HONOURS (80% ACCREDITED)</span>
-        <span class="ticker-node">◆ 91% DISSERTATION DISTINCTION</span>
-        <!-- Continuous loop copy -->
-        <span class="ticker-node brand">◆ VAIDAR HIL FRAMEWORK</span>
-        <span class="ticker-node white">★ THE IET PRIZE 2026 WINNER</span>
-        <span class="ticker-node brand">⚡ CHESS DYNAMICS DEFENCE OPTRONICS</span>
-        <span class="ticker-node">◆ BAE SYSTEMS IV&amp;V AVIONICS</span>
-        <span class="ticker-node brand">⚡ XILINX ARTIX-7 RTL VERIFICATION</span>
-        <span class="ticker-node white">★ FIRST-CLASS HONOURS (80% ACCREDITED)</span>
-        <span class="ticker-node">◆ 91% DISSERTATION DISTINCTION</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Featured Case Studies: Cinematic Visual Showcase -->
-  <section class="section showcase-section reveal-on-scroll">
+  <!-- Featured Project (Exactly ONE Showstopper Project) -->
+  <section class="section project-section reveal-on-scroll" id="featured-project">
     <div class="container">
       <div class="section-header">
         <div>
-          <p class="eyebrow">// 01 ARCHITECTURE &amp; VERIFICATION</p>
-          <h2>Featured Hardware Case Studies</h2>
+          <p class="eyebrow">Featured Project</p>
+          <h2>Flagship Engineering Work</h2>
         </div>
-        <a class="view-all" href="/projects">Explore all {allProjects.length} projects →</a>
+        <a class="view-all" href="/projects">Browse all {allProjects.length} projects →</a>
       </div>
 
-      <!-- Large Visual Showcase Grid -->
-      <div class="showcase-grid reveal-stagger">
-        {featuredProjects.slice(0, 2).map((project) => (
-          <a href={`/projects/${project.id}`} class="showcase-card spotlight-card">
-            <div class="showcase-visual">
-              {project.data.thumbnail && (
-                <img
-                  src={project.data.thumbnail}
-                  alt={project.data.title}
-                  loading="lazy"
-                  class="showcase-img"
-                />
-              )}
-              <div class="showcase-scrim" aria-hidden="true"></div>
-              {project.data.badge && (
-                <span class="showcase-badge">{project.data.badge}</span>
-              )}
-              <span class="showcase-status">{project.data.status}</span>
-            </div>
-            <div class="showcase-body">
-              <div class="showcase-meta">
-                <span class="showcase-year font-mono">{project.data.date.getFullYear()}</span>
-                <span class="showcase-sep">/</span>
-                <span class="showcase-scope font-mono">FLAGSHIP SYSTEM</span>
-              </div>
-              <h3 class="showcase-title">{project.data.title}</h3>
-              <p class="showcase-summary">{project.data.summary}</p>
-              <div class="showcase-footer">
-                <ul class="showcase-tags">
-                  {project.data.tags.slice(0, 3).map((tag) => (
-                    <li class="tag">{tag}</li>
-                  ))}
-                </ul>
-                <span class="showcase-cta">
-                  View Case Study <span class="arrow">→</span>
-                </span>
-              </div>
-            </div>
-          </a>
-        ))}
-      </div>
+      <!-- Single Hero Case Study Card -->
+      <article class="hero-project-card spotlight-card">
+        <div class="project-media">
+          {vaidarProject.data.thumbnail && (
+            <img
+              src={vaidarProject.data.thumbnail}
+              alt={vaidarProject.data.title}
+              loading="lazy"
+              class="project-img"
+            />
+          )}
+          <div class="media-overlay" aria-hidden="true"></div>
+          {vaidarProject.data.badge && (
+            <span class="project-badge">{vaidarProject.data.badge}</span>
+          )}
+        </div>
 
-      <!-- Quick Category Navigation Jump Pills -->
-      <div class="project-quick-links">
-        <a href="/projects#fpga" class="pill-link"><span class="pill-sym">//</span> FPGA &amp; RTL Verilog →</a>
-        <a href="/projects#embedded" class="pill-link"><span class="pill-sym">//</span> Embedded C &amp; PIC →</a>
-        <a href="/projects#hardware" class="pill-link"><span class="pill-sym">//</span> Autonomous Robotics →</a>
-        <a href="/projects#dsp" class="pill-link"><span class="pill-sym">//</span> MATLAB Telemetry &amp; DSP →</a>
-      </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <span class="meta-tag">{vaidarProject.data.status}</span>
+            <span class="meta-sep">•</span>
+            <span class="meta-date">{vaidarProject.data.date.getFullYear()}</span>
+            <span class="meta-sep">•</span>
+            <span class="meta-uni">University of Brighton BEng</span>
+          </div>
+
+          <h3 class="project-title">
+            <a href={`/projects/${vaidarProject.id}`}>{vaidarProject.data.title}</a>
+          </h3>
+
+          <p class="project-description">
+            For my final year dissertation, I built <strong>VAIDAR</strong> — an automated Hardware-in-the-Loop testbench for AMD Xilinx Artix-7 FPGAs. It streams Python stimulus vectors across a 921,600 baud UART bridge directly into physical silicon, validating outputs against golden models at <strong>968 tests per second</strong> to catch hardware bugs that pure software simulation misses.
+          </p>
+
+          <ul class="project-tags">
+            {vaidarProject.data.tags.map((tag) => (
+              <li class="tag">{tag}</li>
+            ))}
+          </ul>
+
+          <div class="project-actions">
+            <a href={`/projects/${vaidarProject.id}`} class="btn btn-primary">
+              Read the Full Case Study →
+            </a>
+            <a href="/projects" class="btn ghost">
+              View All Projects ({allProjects.length})
+            </a>
+          </div>
+        </div>
+      </article>
     </div>
   </section>
 
-  <!-- Deep Navigation Grid (Sub-Page Portal) -->
-  <section class="section portal-section reveal-on-scroll">
+  <!-- Deep Navigation Grid (Organic Site Portal) -->
+  <section class="section nav-section reveal-on-scroll">
     <div class="container">
       <div class="section-header">
         <div>
-          <p class="eyebrow">// 02 MISSION DIRECTORY</p>
-          <h2>Explore The Site</h2>
+          <p class="eyebrow">Explore</p>
+          <h2>Where would you like to go?</h2>
         </div>
       </div>
 
-      <div class="portal-grid reveal-stagger">
-        <a href="/experience" class="card portal-card spotlight-card">
-          <div class="portal-index font-mono">01</div>
-          <div class="portal-badge">CAREER TIMELINE</div>
+      <div class="nav-grid reveal-stagger">
+        <a href="/experience" class="card nav-card spotlight-card">
+          <span class="nav-num font-mono">01</span>
+          <div class="nav-badge">CAREER</div>
           <h3>Work Experience</h3>
-          <p class="muted">Chess Dynamics electro-optics test engineering &amp; BAE Systems 12-month flight IV&amp;V placement.</p>
-          <span class="portal-cta">View career timeline <span class="arrow">→</span></span>
+          <p class="muted">
+            My work testing defence optronics at Chess Dynamics, and a 12-month placement at BAE Systems working on flight avionics.
+          </p>
+          <span class="nav-cta">View career timeline <span class="arrow">→</span></span>
         </a>
 
-        <a href="/cv" class="card portal-card spotlight-card">
-          <div class="portal-index font-mono">02</div>
-          <div class="portal-badge">ACCREDITED MARKS</div>
+        <a href="/cv" class="card nav-card spotlight-card">
+          <span class="nav-num font-mono">02</span>
+          <div class="nav-badge">CREDENTIALS</div>
           <h3>Curriculum Vitae</h3>
-          <p class="muted">First-Class Honours degree breakdown, 17 accredited module marks, and downloadable Master PDF.</p>
-          <span class="portal-cta">Open Master CV <span class="arrow">→</span></span>
+          <p class="muted">
+            First-Class Honours degree breakdown, 17 module marks across all three years, and a downloadable PDF.
+          </p>
+          <span class="nav-cta">Open full CV <span class="arrow">→</span></span>
         </a>
 
-        <a href="/about" class="card portal-card spotlight-card">
-          <div class="portal-index font-mono">03</div>
-          <div class="portal-badge">ETHOS &amp; BIO</div>
-          <h3>About &amp; Journey</h3>
-          <p class="muted">Academic background, IET Prize 2026 award story, and verification engineering philosophy.</p>
-          <span class="portal-cta">Read biography <span class="arrow">→</span></span>
+        <a href="/about" class="card nav-card spotlight-card">
+          <span class="nav-num font-mono">03</span>
+          <div class="nav-badge">BIOGRAPHY</div>
+          <h3>About Me</h3>
+          <p class="muted">
+            My background in electronics, how I got into FPGA design, and the story behind the 2026 IET Prize.
+          </p>
+          <span class="nav-cta">Read background <span class="arrow">→</span></span>
         </a>
 
-        <a href="/contact" class="card portal-card spotlight-card">
-          <div class="portal-index font-mono">04</div>
-          <div class="portal-badge">DIRECT COMMS</div>
-          <h3>Get in Touch</h3>
-          <p class="muted">Direct verified contact form, direct secure email address, and active messaging channels.</p>
-          <span class="portal-cta">Send message <span class="arrow">→</span></span>
+        <a href="/contact" class="card nav-card spotlight-card">
+          <span class="nav-num font-mono">04</span>
+          <div class="nav-badge">GET IN TOUCH</div>
+          <h3>Contact</h3>
+          <p class="muted">
+            Send me a direct message, find my email address, or connect on LinkedIn.
+          </p>
+          <span class="nav-cta">Send message <span class="arrow">→</span></span>
         </a>
       </div>
     </div>
   </section>
 
   <!-- LinkedIn Updates & Network (Clean Dispatch Mode) -->
-  <section class="section network-section reveal-on-scroll">
+  <section class="section updates-section reveal-on-scroll">
     <div class="container">
       <div class="section-header">
         <div>
-          <p class="eyebrow">// 03 DISPATCH WIRE</p>
-          <h2>Field Notes &amp; Updates</h2>
+          <p class="eyebrow">Updates</p>
+          <h2>Recent Posts &amp; News</h2>
         </div>
         <a class="view-all" href={profile.links.linkedin} target="_blank" rel="noopener noreferrer">
           LinkedIn Profile ↗
@@ -225,7 +208,7 @@ const featuredProjects = allProjects
 </BaseLayout>
 
 <script>
-  // ---------- Hero Ambient Particle & Telemetry Wave Canvas ----------
+  // ---------- Ambient Particle Canvas ----------
   (() => {
     const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement | null;
     const heroSection = document.getElementById('hero-section');
@@ -239,7 +222,7 @@ const featuredProjects = allProjects
     let height = 0;
     let animationFrameId: number;
     let isVisible = true;
-    let mouse = { x: -1000, y: -1000, radius: 140 };
+    let mouse = { x: -1000, y: -1000, radius: 130 };
 
     interface Node {
       x: number;
@@ -251,7 +234,7 @@ const featuredProjects = allProjects
     }
 
     const nodes: Node[] = [];
-    const nodeCount = 38;
+    const nodeCount = 32;
 
     function resize() {
       if (!canvas || !heroSection) return;
@@ -274,10 +257,10 @@ const featuredProjects = allProjects
         nodes.push({
           x,
           y,
-          vx: (Math.random() - 0.5) * 0.45,
-          vy: (Math.random() - 0.5) * 0.45,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
           radius: Math.random() * 1.5 + 1,
-          alpha: Math.random() * 0.45 + 0.25,
+          alpha: Math.random() * 0.35 + 0.15,
         });
       }
     }
@@ -289,7 +272,6 @@ const featuredProjects = allProjects
       const isDark = document.documentElement.dataset.theme !== 'light';
       const nodeColor = isDark ? '56, 189, 248' : '30, 108, 147';
 
-      // Update and render nodes
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
         n.x += n.vx;
@@ -298,33 +280,31 @@ const featuredProjects = allProjects
         if (n.x < 0 || n.x > width) n.vx *= -1;
         if (n.y < 0 || n.y > height) n.vy *= -1;
 
-        // Mouse repelling force
+        // Gentle cursor interaction
         const dx = mouse.x - n.x;
         const dy = mouse.y - n.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < mouse.radius) {
           const force = (mouse.radius - dist) / mouse.radius;
-          n.x -= (dx / dist) * force * 1.8;
-          n.y -= (dy / dist) * force * 1.8;
+          n.x -= (dx / dist) * force * 1.5;
+          n.y -= (dy / dist) * force * 1.5;
         }
 
-        // Draw node
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${nodeColor}, ${n.alpha})`;
         ctx.fill();
 
-        // Connect nearby nodes
         for (let j = i + 1; j < nodes.length; j++) {
           const n2 = nodes[j];
           const dist2 = Math.hypot(n.x - n2.x, n.y - n2.y);
-          if (dist2 < 115) {
-            const lineAlpha = (1 - dist2 / 115) * 0.18;
+          if (dist2 < 110) {
+            const lineAlpha = (1 - dist2 / 110) * 0.14;
             ctx.beginPath();
             ctx.moveTo(n.x, n.y);
             ctx.lineTo(n2.x, n2.y);
             ctx.strokeStyle = `rgba(${nodeColor}, ${lineAlpha})`;
-            ctx.lineWidth = 0.8;
+            ctx.lineWidth = 0.75;
             ctx.stroke();
           }
         }
@@ -333,7 +313,6 @@ const featuredProjects = allProjects
       animationFrameId = requestAnimationFrame(animate);
     }
 
-    // Mouse tracking
     heroSection.addEventListener('mousemove', (e) => {
       const rect = heroSection.getBoundingClientRect();
       mouse.x = e.clientX - rect.left;
@@ -345,7 +324,6 @@ const featuredProjects = allProjects
       mouse.y = -1000;
     });
 
-    // Pause canvas when out of view
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -362,7 +340,7 @@ const featuredProjects = allProjects
     );
     observer.observe(heroSection);
 
-    // Scroll-linked fade out of hero
+    // Smooth scroll fade out of hero
     window.addEventListener('scroll', () => {
       if (!heroSection) return;
       const scrollY = window.scrollY;
@@ -372,7 +350,7 @@ const featuredProjects = allProjects
         canvas.style.opacity = String(factor);
         if (heroContent) {
           heroContent.style.opacity = String(Math.max(0.2, factor));
-          heroContent.style.transform = `translateY(${scrollY * 0.12}px)`;
+          heroContent.style.transform = `translateY(${scrollY * 0.1}px)`;
         }
       }
     }, { passive: true });
@@ -382,7 +360,7 @@ const featuredProjects = allProjects
     animate();
   })();
 
-  // ---------- Animated Numbers Counter for Telemetry Bar ----------
+  // ---------- Number Counter for Facts Bar ----------
   (() => {
     const counters = document.querySelectorAll<HTMLElement>('.stat-counter');
     if (!counters.length) return;
@@ -394,7 +372,7 @@ const featuredProjects = allProjects
             const el = entry.target as HTMLElement;
             const target = parseInt(el.dataset.target || '0', 10);
             const suffix = el.dataset.suffix || '';
-            const duration = 1200;
+            const duration = 1100;
             const startTime = performance.now();
 
             function updateCount(currentTime: number) {
@@ -422,7 +400,7 @@ const featuredProjects = allProjects
     counters.forEach((c) => observer.observe(c));
   })();
 
-  // ---------- Interactive Spotlight Effect on Cards ----------
+  // ---------- Spotlight Card Hover Effect ----------
   (() => {
     const cards = document.querySelectorAll<HTMLElement>('.spotlight-card');
     cards.forEach((card) => {
@@ -438,13 +416,13 @@ const featuredProjects = allProjects
 </script>
 
 <style>
-  /* ---------- Hero Section (Cinematic & Spacious) ---------- */
+  /* ---------- Hero Section (Organic, Human, Spacious) ---------- */
   .hero-section {
     position: relative;
-    padding-top: 5.5rem;
-    padding-bottom: 5rem;
+    padding-top: 5rem;
+    padding-bottom: 4.5rem;
     overflow: hidden;
-    min-height: 82vh;
+    min-height: 78vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -462,31 +440,16 @@ const featuredProjects = allProjects
     transition: opacity 0.2s ease-out;
   }
 
-  /* Grid overlay for McLaren/FPGA telemetry feel */
-  .grid-mesh {
-    position: absolute;
-    inset: 0;
-    background-size: 36px 36px;
-    background-image: 
-      linear-gradient(to right, color-mix(in srgb, var(--border) 18%, transparent) 1px, transparent 1px),
-      linear-gradient(to bottom, color-mix(in srgb, var(--border) 18%, transparent) 1px, transparent 1px);
-    -webkit-mask-image: radial-gradient(circle at 50% 40%, black 25%, transparent 75%);
-    mask-image: radial-gradient(circle at 50% 40%, black 25%, transparent 75%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Ambient radial background glow */
   .ambient-aurora {
     position: absolute;
-    top: 5%;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: min(900px, 94vw);
-    height: 520px;
-    background: radial-gradient(circle, color-mix(in srgb, var(--brand) 16%, transparent) 0%, color-mix(in srgb, var(--accent) 7%, transparent) 45%, transparent 75%);
+    width: min(850px, 92vw);
+    height: 480px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--brand) 14%, transparent) 0%, color-mix(in srgb, var(--accent) 6%, transparent) 45%, transparent 70%);
     pointer-events: none;
-    filter: blur(95px);
+    filter: blur(90px);
     z-index: 0;
   }
 
@@ -496,7 +459,7 @@ const featuredProjects = allProjects
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 58rem;
+    max-width: 54rem;
   }
 
   .hero-content {
@@ -507,20 +470,19 @@ const featuredProjects = allProjects
     will-change: transform, opacity;
   }
 
-  /* Status Badge */
+  /* Human Status Pill */
   .hero-status-pill {
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    padding: 0.45rem 1.1rem;
+    padding: 0.4rem 1rem;
     border-radius: 999px;
     background: color-mix(in srgb, var(--surface) 80%, transparent);
     backdrop-filter: blur(12px);
-    border: 1px solid color-mix(in srgb, var(--brand) 30%, var(--border));
-    margin-bottom: 2rem;
-    font-family: var(--font-mono);
-    font-size: 0.76rem;
-    letter-spacing: 0.08em;
+    border: 1px solid var(--border);
+    margin-bottom: 1.8rem;
+    font-size: 0.82rem;
+    font-weight: 500;
   }
   .status-brand {
     font-weight: 700;
@@ -528,11 +490,10 @@ const featuredProjects = allProjects
   }
   .status-sep {
     color: var(--muted);
-    opacity: 0.4;
+    opacity: 0.5;
   }
   .status-sub {
     color: var(--text);
-    font-weight: 600;
   }
 
   .pulse-dot {
@@ -540,72 +501,70 @@ const featuredProjects = allProjects
     height: 7px;
     border-radius: 50%;
     background: #10b981;
-    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.22);
   }
 
-  /* Title & Subtitle */
+  /* Headline */
   .hero-title {
     font-family: var(--font-display, var(--font-sans));
-    font-size: clamp(2.8rem, 6vw, 4.8rem);
+    font-size: clamp(2.4rem, 5.2vw, 4.2rem);
     font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    text-transform: uppercase;
-    margin-bottom: 1.6rem;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    margin-bottom: 1.5rem;
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, var(--brand) 0%, #38bdf8 50%, #818cf8 100%);
+    background: linear-gradient(135deg, var(--brand) 0%, #38bdf8 55%, #818cf8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
+  /* Subtitle */
   .hero-subtitle {
-    font-size: clamp(1.05rem, 2vw, 1.22rem);
+    font-size: clamp(1.05rem, 1.8vw, 1.18rem);
     color: var(--muted);
     line-height: 1.65;
-    max-width: 42rem;
+    max-width: 39rem;
     margin-bottom: 2.25rem;
   }
 
-  /* Horizontal Floating Telemetry Bar (Zero Clutter) */
-  .telemetry-bar {
+  /* Understated Facts Bar */
+  .facts-bar {
     display: inline-flex;
     align-items: center;
     background: color-mix(in srgb, var(--surface) 85%, transparent);
-    backdrop-filter: blur(16px);
-    border: 1px solid color-mix(in srgb, var(--brand) 25%, var(--border));
-    border-radius: 14px;
-    padding: 0.85rem 1.85rem;
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.75rem 1.6rem;
     box-shadow: var(--shadow);
-    gap: 1.75rem;
-    margin-bottom: 2.5rem;
+    gap: 1.5rem;
+    margin-bottom: 2.25rem;
   }
-  .telemetry-cell {
+  .fact-item {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .telemetry-number {
+  .fact-number {
     font-family: var(--font-mono);
-    font-size: 1.75rem;
+    font-size: 1.55rem;
     font-weight: 800;
     line-height: 1.1;
     color: var(--text);
   }
-  .telemetry-label {
-    font-size: 0.68rem;
-    text-transform: uppercase;
+  .fact-label {
+    font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
     color: var(--muted);
-    margin-top: 0.2rem;
+    margin-top: 0.15rem;
   }
-  .telemetry-divider {
+  .fact-sep {
     width: 1px;
-    height: 32px;
+    height: 28px;
     background: var(--border);
-    opacity: 0.6;
+    opacity: 0.7;
   }
   .brand-accent {
     color: var(--brand);
@@ -615,17 +574,17 @@ const featuredProjects = allProjects
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.85rem;
+    gap: 0.75rem;
   }
   .hero-actions .btn {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.95rem;
+    padding: 0.7rem 1.4rem;
+    font-size: 0.92rem;
   }
 
-  /* ---------- Section Spacing & Headers ---------- */
-  .section.showcase-section,
-  .section.portal-section,
-  .section.network-section {
+  /* ---------- Section Spacing ---------- */
+  .section.project-section,
+  .section.nav-section,
+  .section.updates-section {
     padding: 4rem 0;
   }
 
@@ -633,7 +592,7 @@ const featuredProjects = allProjects
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 2.25rem;
+    margin-bottom: 2rem;
   }
   .view-all {
     color: var(--brand);
@@ -650,195 +609,142 @@ const featuredProjects = allProjects
     transform: translateX(3px);
   }
 
-  /* ---------- Visual Showcase Grid (Flagship Projects) ---------- */
-  .showcase-grid {
+  /* ---------- Single Hero Project Card (Flagship Work) ---------- */
+  .hero-project-card {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-
-  .showcase-card {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: 1.15fr 1fr;
     border-radius: 14px;
     overflow: hidden;
     background: var(--surface);
     border: 1px solid var(--border);
-    text-decoration: none;
-    color: var(--text);
-    position: relative;
-    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease, box-shadow 0.28s ease;
+    box-shadow: var(--shadow);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
   }
-  .showcase-card:hover {
-    transform: translateY(-6px);
-    border-color: color-mix(in srgb, var(--brand) 70%, var(--border));
-    box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.18);
+  .hero-project-card:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--brand) 60%, var(--border));
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.16);
   }
 
-  .showcase-visual {
+  .project-media {
     position: relative;
-    width: 100%;
-    height: 270px;
     background: var(--surface-2);
+    min-height: 380px;
     overflow: hidden;
   }
-  .showcase-img {
+  .project-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .showcase-card:hover .showcase-img {
-    transform: scale(1.05);
+  .hero-project-card:hover .project-img {
+    transform: scale(1.03);
   }
-  .showcase-scrim {
+  .media-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, color-mix(in srgb, var(--surface) 95%, transparent) 0%, transparent 60%);
+    background: linear-gradient(to top, color-mix(in srgb, var(--surface) 50%, transparent) 0%, transparent 60%);
     pointer-events: none;
   }
 
-  .showcase-badge {
+  .project-badge {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: color-mix(in srgb, var(--surface) 90%, transparent);
+    top: 1.1rem;
+    left: 1.1rem;
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
     backdrop-filter: blur(10px);
     color: var(--brand);
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: 0.74rem;
     font-weight: 700;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.03em;
     padding: 0.35rem 0.8rem;
     border-radius: 6px;
     border: 1px solid color-mix(in srgb, var(--brand) 30%, var(--border));
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
 
-  .showcase-status {
-    position: absolute;
-    bottom: 1rem;
-    left: 1.5rem;
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #10b981;
-    background: rgba(16, 185, 129, 0.12);
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    padding: 0.2rem 0.55rem;
-    border-radius: 4px;
-    backdrop-filter: blur(6px);
-  }
-
-  .showcase-body {
-    padding: 1.75rem 2rem 2rem;
+  .project-content {
+    padding: 2.5rem;
     display: flex;
     flex-direction: column;
-    flex: 1;
+    justify-content: center;
   }
-  .showcase-meta {
+
+  .project-meta {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.74rem;
+    font-size: 0.78rem;
+    font-family: var(--font-mono);
     color: var(--muted);
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.75rem;
   }
-  .showcase-title {
-    font-family: var(--font-display, var(--font-sans));
-    font-size: 1.35rem;
+  .meta-tag {
+    text-transform: uppercase;
+    color: #10b981;
     font-weight: 700;
-    line-height: 1.3;
-    letter-spacing: -0.015em;
-    color: var(--text);
-    margin: 0 0 0.6rem;
+    letter-spacing: 0.05em;
   }
-  .showcase-summary {
-    font-size: 0.92rem;
-    line-height: 1.55;
+  .meta-sep {
+    opacity: 0.4;
+  }
+
+  .project-title {
+    font-family: var(--font-display, var(--font-sans));
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    margin: 0 0 1rem;
+  }
+  .project-title a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .project-title a:hover {
+    color: var(--brand);
+  }
+
+  .project-description {
+    font-size: 0.95rem;
+    line-height: 1.65;
     color: var(--muted);
     margin: 0 0 1.5rem;
-    flex: 1;
   }
-  .showcase-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--border);
+  .project-description strong {
+    color: var(--text);
   }
-  .showcase-tags {
+
+  .project-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.35rem;
+    gap: 0.4rem;
     list-style: none;
     padding: 0;
-    margin: 0;
-  }
-  .showcase-cta {
-    font-family: var(--font-mono);
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: var(--brand);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    white-space: nowrap;
-  }
-  .showcase-cta .arrow {
-    transition: transform 0.2s ease;
-  }
-  .showcase-card:hover .showcase-cta .arrow {
-    transform: translateX(4px);
+    margin: 0 0 1.75rem;
   }
 
-  /* Quick Category Links */
-  .project-quick-links {
+  .project-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.65rem;
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border);
-  }
-  .pill-link {
-    font-size: 0.82rem;
-    font-weight: 600;
-    font-family: var(--font-mono);
-    color: var(--muted);
-    text-decoration: none;
-    padding: 0.4rem 0.95rem;
-    background: var(--surface-2);
-    border-radius: 9999px;
-    border: 1px solid var(--border);
-    transition: color 0.18s ease, border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
-  }
-  .pill-sym {
-    color: var(--brand);
-    margin-right: 0.25rem;
-  }
-  .pill-link:hover {
-    color: var(--text);
-    border-color: var(--brand);
-    background: color-mix(in srgb, var(--brand) 12%, var(--surface-2));
-    transform: translateY(-2px);
+    gap: 0.75rem;
   }
 
-  /* ---------- Sub-page Navigation Portal Grid ---------- */
-  .portal-grid {
+  /* ---------- Deep Navigation Grid ---------- */
+  .nav-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1.35rem;
   }
-  .portal-card {
+  .nav-card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1.85rem 1.65rem;
+    padding: 1.75rem 1.6rem;
     border-radius: 12px;
     text-decoration: none;
     color: var(--text);
@@ -846,15 +752,15 @@ const featuredProjects = allProjects
     border: 1px solid var(--border);
     position: relative;
     overflow: hidden;
-    min-height: 195px;
+    min-height: 190px;
     transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
   }
 
-  .portal-index {
+  .nav-num {
     position: absolute;
     top: 0.85rem;
     right: 1.1rem;
-    font-size: 2.1rem;
+    font-size: 2rem;
     font-weight: 800;
     color: color-mix(in srgb, var(--text) 8%, transparent);
     pointer-events: none;
@@ -862,7 +768,7 @@ const featuredProjects = allProjects
     transition: color 0.2s ease, transform 0.2s ease;
   }
 
-  .portal-card::before {
+  .nav-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -872,42 +778,41 @@ const featuredProjects = allProjects
     background: var(--brand);
     transition: height 0.25s ease;
   }
-  .portal-card:hover {
+  .nav-card:hover {
     transform: translateY(-4px);
     border-color: color-mix(in srgb, var(--brand) 65%, var(--border));
     box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.14);
   }
-  .portal-card:hover::before {
+  .nav-card:hover::before {
     height: 100%;
   }
-  .portal-card:hover .portal-index {
+  .nav-card:hover .nav-num {
     color: color-mix(in srgb, var(--brand) 22%, transparent);
     transform: scale(1.08);
   }
 
-  .portal-badge {
+  .nav-badge {
     font-size: 0.7rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     color: var(--brand);
     margin-bottom: 0.75rem;
     font-family: var(--font-mono);
   }
-  .portal-card h3 {
+  .nav-card h3 {
     margin: 0 0 0.45rem 0;
     font-size: 1.25rem;
     font-family: var(--font-display, var(--font-sans));
     font-weight: 700;
     color: var(--text);
-    text-transform: uppercase;
     letter-spacing: -0.01em;
   }
-  .portal-card p {
+  .nav-card p {
     font-size: 0.88rem;
     line-height: 1.5;
     margin-bottom: 1.25rem;
   }
-  .portal-cta {
+  .nav-cta {
     font-size: 0.84rem;
     font-weight: 700;
     font-family: var(--font-mono);
@@ -916,28 +821,31 @@ const featuredProjects = allProjects
     align-items: center;
     gap: 0.35rem;
   }
-  .portal-cta .arrow {
+  .nav-cta .arrow {
     transition: transform 0.2s ease;
   }
-  .portal-card:hover .portal-cta .arrow {
+  .nav-card:hover .nav-cta .arrow {
     transform: translateX(4px);
   }
 
-  /* Responsive Breakpoints */
+  /* Responsive */
   @media (max-width: 900px) {
-    .showcase-grid { grid-template-columns: 1fr; }
-    .telemetry-bar { flex-wrap: wrap; justify-content: center; gap: 1rem 1.5rem; padding: 1rem 1.25rem; }
-    .telemetry-divider { display: none; }
-    .portal-grid { grid-template-columns: 1fr 1fr; }
+    .hero-project-card { grid-template-columns: 1fr; }
+    .project-media { min-height: 260px; }
+    .project-content { padding: 1.75rem; }
+    .nav-grid { grid-template-columns: 1fr 1fr; }
+    .facts-bar { flex-wrap: wrap; justify-content: center; gap: 1rem 1.4rem; padding: 0.85rem 1.2rem; }
+    .fact-sep { display: none; }
   }
+
   @media (max-width: 600px) {
-    .hero-section { padding-top: 4rem; padding-bottom: 3.5rem; }
-    .hero-title { font-size: 2.4rem; }
-    .portal-grid { grid-template-columns: 1fr; }
-    .telemetry-bar { width: 100%; justify-content: space-around; }
-    .section.showcase-section,
-    .section.portal-section,
-    .section.network-section {
+    .hero-section { padding-top: 3.5rem; padding-bottom: 3rem; }
+    .hero-title { font-size: 2.2rem; }
+    .nav-grid { grid-template-columns: 1fr; }
+    .facts-bar { width: 100%; justify-content: space-around; }
+    .section.project-section,
+    .section.nav-section,
+    .section.updates-section {
       padding: 2.75rem 0;
     }
   }
