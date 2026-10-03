@@ -42,8 +42,8 @@ const featuredProjects = allProjects
 
       <div class="hero-metrics-card card">
         <div class="metrics-header">
-          <span class="metrics-title">ACADEMIC &amp; INDUSTRY HONOURS</span>
-          <span class="metrics-tag">2026</span>
+          <span class="metrics-title">ACADEMIC &amp; INDUSTRY DISTINCTIONS</span>
+          <span class="metrics-tag">CLASS OF 2026</span>
         </div>
         <ul class="metrics-stats">
           <li>
@@ -56,7 +56,7 @@ const featuredProjects = allProjects
           </li>
           <li>
             <strong class="stat-number brand-accent">IET</strong>
-            <span class="stat-label">Prize Winner '26</span>
+            <span class="stat-label">Prize Winner</span>
           </li>
         </ul>
         <div class="tech-stack-row">
@@ -161,22 +161,22 @@ const featuredProjects = allProjects
 <style>
   .hero-section {
     position: relative;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
     overflow: hidden;
   }
   
   /* Soft ambient radial background fade */
   .ambient-glow {
     position: absolute;
-    top: -15%;
+    top: -20%;
     left: 45%;
     transform: translateX(-50%);
-    width: 650px;
-    height: 450px;
+    width: 750px;
+    height: 550px;
     background: radial-gradient(circle, color-mix(in srgb, var(--brand) 12%, transparent) 0%, color-mix(in srgb, var(--accent) 5%, transparent) 50%, transparent 75%);
     pointer-events: none;
-    filter: blur(60px);
+    filter: blur(80px);
     z-index: 0;
   }
 
@@ -184,23 +184,23 @@ const featuredProjects = allProjects
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 3.5rem;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 4rem;
     align-items: center;
   }
 
   .tech-indicator {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.35rem 0.85rem;
-    border-radius: 6px;
+    gap: 0.55rem;
+    padding: 0.4rem 0.95rem;
+    border-radius: 8px;
     background: var(--surface-2);
     border: 1px solid var(--border);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
     font-family: var(--font-mono);
     font-size: 0.75rem;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
   }
   .tech-indicator-tag {
     font-weight: 700;
@@ -208,7 +208,7 @@ const featuredProjects = allProjects
   }
   .tech-indicator-sep {
     color: var(--muted);
-    opacity: 0.5;
+    opacity: 0.4;
   }
   .tech-indicator-sub {
     color: var(--muted);
@@ -225,12 +225,12 @@ const featuredProjects = allProjects
 
   .hero-title {
     font-family: var(--font-display, var(--font-sans));
-    font-size: clamp(2.4rem, 4.6vw, 3.8rem);
+    font-size: clamp(2.4rem, 4.8vw, 3.8rem);
     font-weight: 800;
-    line-height: 1.05;
+    line-height: 1.08;
     letter-spacing: -0.02em;
     text-transform: uppercase;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
   }
   .gradient-text {
     background: linear-gradient(135deg, var(--brand) 0%, #38bdf8 100%);
@@ -238,17 +238,17 @@ const featuredProjects = allProjects
     -webkit-text-fill-color: transparent;
   }
   .hero-subtitle {
-    font-size: 1.12rem;
+    font-size: 1.15rem;
     color: var(--muted);
-    line-height: 1.65;
-    max-width: 36rem;
+    line-height: 1.7;
+    max-width: 37rem;
   }
 
   .hero-metrics-card {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    padding: 2rem;
+    gap: 1.75rem;
+    padding: 2.25rem;
     border-color: color-mix(in srgb, var(--brand) 20%, var(--border));
     background: var(--surface);
     box-shadow: var(--shadow);
@@ -335,14 +335,14 @@ const featuredProjects = allProjects
   /* Sub-page Navigation Portal Grid */
   .portal-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.75rem;
   }
   .portal-card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1.6rem;
+    padding: 2rem 1.85rem;
     border-radius: 12px;
     text-decoration: none;
     color: var(--text);
@@ -363,9 +363,9 @@ const featuredProjects = allProjects
     transition: height 0.2s ease;
   }
   .portal-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
     border-color: color-mix(in srgb, var(--brand) 60%, var(--border));
-    box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.12);
   }
   .portal-card:hover::before {
     height: 100%;
@@ -375,7 +375,7 @@ const featuredProjects = allProjects
     font-weight: 700;
     letter-spacing: 0.1em;
     color: var(--brand);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.85rem;
     font-family: var(--font-mono);
   }
   .portal-card h3 {

@@ -40,25 +40,25 @@ import { profile } from '../data/profile';
   .feed-list {
     display: flex;
     flex-direction: column;
-    gap: 0.85rem;
+    gap: 1.1rem;
   }
 
   .linkedin-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.15rem 1.4rem;
+    padding: 1.35rem 1.6rem;
     border-radius: 12px;
     text-decoration: none;
     color: var(--text);
     transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-    gap: 1.5rem;
+    gap: 2rem;
   }
 
   .linkedin-row:hover {
-    transform: translateY(-2px);
-    border-color: var(--brand);
-    box-shadow: 0 6px 20px -6px rgba(0, 0, 0, 0.08);
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--brand) 60%, var(--border));
+    box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.1);
   }
 
   .row-left {
