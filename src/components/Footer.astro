@@ -1,0 +1,26 @@
+---
+import { profile } from '../data/profile';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container inner">
+    <p class="muted">© {year} {profile.name}. Built with Astro, deployed on Vercel.</p>
+    <ul class="social">
+      <li><a href={profile.links.github} rel="me noopener" target="_blank">GitHub</a></li>
+      <li><a href={profile.links.linkedin} rel="me noopener" target="_blank">LinkedIn</a></li>
+      <li><a href={`mailto:${profile.email}`}>Email</a></li>
+      <li><a href="/rss.xml">RSS</a></li>
+      <li><a href="/terminal" title="Psst, press ` on any page">&gt;_ terminal</a></li>
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .site-footer { border-top: 1px solid var(--border); margin-top: 4rem; padding: 2rem 0; font-size: 0.9rem; }
+  .inner { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center; }
+  .inner p { margin: 0; }
+  .social { display: flex; flex-wrap: wrap; gap: 1.25rem; list-style: none; margin: 0; padding: 0; }
+  .social a { color: var(--muted); text-decoration: none; }
+  .social a:hover { color: var(--brand); }
+</style>

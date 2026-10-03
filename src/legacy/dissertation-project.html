@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An Automated Test Framework for Hardware-in-the-Loop Validation of FPGA Designs</title>
+    <meta name="description" content="Project portfolio overview for Harry Rogers' BEng Individual Dissertation Project.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS Reset & Custom Properties (Clean Light Portfolio Mode) --- */
+        :root {
+            --bg-color: #f4f7f9; /* soft blue-grey */
+            --card-bg: #ffffff;
+            --border-color: #cbd5e1; /* slate-300 */
+            --text-primary: #212121; /* off-black */
+            --text-secondary: #5f6368; /* google sites muted grey */
+            --accent-green: #1e8e3e; /* green-700 */
+            --accent-blue: #1e6c93; /* brand blue-teal (rgba(30,108,147,1)) */
+            --accent-orange: #ea580c; /* orange-600 */
+            --accent-red: #d93025; /* red-600 */
+            --accent-purple: #1a73e8; /* google link blue */
+            --font-display: 'Lato', sans-serif;
+            --font-body: 'Lato', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Scrollbar --- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* --- Layout --- */
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- Header / Navigation --- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-blue);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px rgba(2, 132, 199, 0.4);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 80px 0 60px 0;
+            position: relative;
+            background-image: radial-gradient(circle at 50% 10%, rgba(2, 132, 199, 0.04) 0%, transparent 60%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        @media (max-width: 968px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: 2.6rem;
+            font-weight: 300;
+            line-height: 1.25;
+            letter-spacing: -0.01em;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .gradient-text {
+            color: var(--accent-blue);
+            font-weight: 700;
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            max-width: 580px;
+        }
+
+        .academic-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(2, 132, 199, 0.08);
+            color: var(--accent-blue);
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            border: 1px solid rgba(2, 132, 199, 0.15);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-visual {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+            min-height: 240px;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .panel-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        .panel-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(22, 163, 74, 0.5);
+        }
+
+        canvas#scopeCanvas {
+            width: 100%;
+            height: 180px;
+            background-color: #ffffff;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            display: block;
+        }
+
+        /* --- Section Styling --- */
+        section {
+            padding: 80px 0;
+            border-top: 1px solid var(--border-color);
+            background-color: #ffffff;
+        }
+
+        section.alt-bg {
+            background-color: var(--bg-color);
+        }
+
+        h2 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+            color: var(--accent-blue);
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 40px;
+            max-width: 800px;
+        }
+
+        /* --- Abstract Box --- */
+        .abstract-box {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 36px;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02);
+            margin-bottom: 50px;
+        }
+
+        .abstract-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* --- Grid & Cards --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 28px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(15, 23, 42, 0.01);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.04);
+        }
+
+        .card.active {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 15px rgba(2, 132, 199, 0.08);
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .icon-purple { background: rgba(124, 125, 237, 0.08); color: var(--accent-purple); }
+        .icon-blue { background: rgba(30, 108, 147, 0.08); color: var(--accent-blue); }
+        .icon-green { background: rgba(30, 147, 62, 0.08); color: var(--accent-green); }
+
+        .card h3 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* --- Inspector Panel --- */
+        .inspector-panel {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-top: 32px;
+            padding: 32px;
+            display: block;
+            animation: fadeIn 0.4s ease forwards;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .inspector-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .inspector-label {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--accent-blue);
+        }
+
+        .inspector-code {
+            background: var(--bg-color);
+            padding: 16px 20px;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+            margin-top: 16px;
+            color: var(--text-primary);
+        }
+
+        /* --- Simulator Section --- */
+        .simulator-box {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.03);
+        }
+
+        .sim-steps {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 860px) {
+            .sim-steps {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        .sim-step-card {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .sim-step-card.active {
+            border-color: var(--accent-green);
+            background: #ffffff;
+            box-shadow: 0 0 15px rgba(22, 163, 74, 0.08);
+            transform: scale(1.03);
+        }
+
+        .step-num {
+            width: 24px;
+            height: 24px;
+            background: var(--border-color);
+            color: var(--text-secondary);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .sim-step-card.active .step-num {
+            background: var(--accent-green);
+            color: #ffffff;
+        }
+
+        .step-title {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .step-detail {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .sim-display {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .sim-graphic {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent-green);
+            margin-bottom: 12px;
+            padding: 8px 16px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .sim-controls {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .btn {
+            background: var(--accent-blue);
+            color: #ffffff;
+            border: none;
+            padding: 12px 28px;
+            font-family: var(--font-display);
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 6px rgba(30, 108, 147, 0.1);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #154e6a;
+            transform: translateY(-1px);
+        }
+
+        .btn-green {
+            background: var(--accent-green);
+            box-shadow: 0 4px 6px rgba(30, 142, 62, 0.1);
+        }
+
+        .btn-green:hover {
+            background: #137333;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-color);
+            border-color: var(--border-color);
+        }
+
+        /* --- Callout Box --- */
+        .callout-box {
+            background: rgba(30, 108, 147, 0.03);
+            border-left: 4px solid var(--accent-blue);
+            border-radius: 0 8px 8px 0;
+            padding: 24px;
+            margin: 40px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+        }
+
+        .callout-box h4 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+
+        .callout-box p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* --- Technical Documentation Tabs --- */
+        .docs-grid {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 40px;
+            align-items: start;
+            margin-top: 32px;
+        }
+
+        @media (max-width: 768px) {
+            .docs-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        .docs-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px 0;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.01);
+        }
+
+        .docs-tab-btn {
+            background: transparent;
+            border: none;
+            padding: 12px 24px;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-align: left;
+            color: var(--text-secondary);
+            border-left: 3px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .docs-tab-btn:hover {
+            background: rgba(30, 108, 147, 0.04);
+            color: var(--accent-blue);
+        }
+
+        .docs-tab-btn.active {
+            background: rgba(30, 108, 147, 0.08);
+            color: var(--accent-blue);
+            font-weight: 700;
+            border-left-color: var(--accent-blue);
+        }
+
+        .docs-content-wrapper {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 36px;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02);
+            min-height: 400px;
+        }
+
+        .docs-content-block {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .docs-content-block.active {
+            display: block;
+        }
+
+        .docs-content-block h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--accent-blue);
+        }
+
+        .docs-content-block p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        /* --- Code block wrapper with copy --- */
+        .code-container {
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f1f5f9;
+            border: 1px solid var(--border-color);
+            border-bottom: none;
+            border-radius: 6px 6px 0 0;
+            padding: 8px 16px;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .code-copy-btn {
+            background: transparent;
+            border: none;
+            color: var(--accent-blue);
+            font-weight: 600;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .code-copy-btn:hover {
+            background: rgba(30, 108, 147, 0.08);
+            color: #154e6a;
+        }
+
+        .code-block {
+            margin-top: 0 !important;
+            border-radius: 0 0 6px 6px !important;
+            white-space: pre;
+            background: #f8fafc !important;
+            border: 1px solid var(--border-color) !important;
+        }
+
+        /* --- Documentation Tables --- */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .docs-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            background: #ffffff;
+            text-align: left;
+        }
+
+        .docs-table th {
+            background: var(--bg-color);
+            color: var(--accent-blue);
+            font-weight: 700;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .docs-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .docs-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .docs-table tr:nth-child(even) {
+            background: rgba(30, 108, 147, 0.02);
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            background-color: #ffffff;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="https://harry-rogers.com" target="_blank" rel="noopener noreferrer" class="logo">
+                    <span class="logo-dot"></span>
+                    Harry Rogers
+                </a>
+                <ul class="nav-links">
+                    <li><a onclick="scrollToSection('abstract')">Abstract</a></li>
+                    <li><a onclick="scrollToSection('about')">Framework Overview</a></li>
+                    <li><a onclick="scrollToSection('architecture')">System Architecture</a></li>
+                    <li><a onclick="scrollToSection('simulator')">HIL Simulator</a></li>
+                    <li><a href="https://www.harry-rogers.com/cv" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size: 0.8rem; padding: 6px 14px; box-shadow: none;">← CV</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div>
+                    <div class="academic-badge">
+                        <span class="logo-dot"></span> BEng Dissertation Project
+                    </div>
+                    <h1>An Automated Test Framework for <span class="gradient-text">Hardware-in-the-Loop Validation</span> of FPGA Designs</h1>
+                    <p class="hero-desc">
+                        A modular, software-to-silicon verification environment. Bridging mathematical test vectors with real-time physical FPGA logic gate execution.
+                    </p>
+                    <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                        <button onclick="scrollToSection('simulator')" class="btn btn-green">Execute HIL Loop</button>
+                        <button onclick="scrollToSection('abstract')" class="btn btn-secondary">Project Abstract</button>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="panel-header">
+                        <span class="panel-title">Digital Logic Analyser Waveforms</span>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <span class="panel-dot"></span>
+                            <span style="font-size: 0.7rem; font-weight: 700; color: var(--accent-green);">ACTIVE TELEMETRY</span>
+                        </div>
+                    </div>
+                    <canvas id="scopeCanvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Abstract Section -->
+    <section id="abstract" class="alt-bg">
+        <div class="container">
+            <h2>Dissertation Context</h2>
+            <p class="section-desc">
+                An introduction to the research scope, verification problem statement, and structural goals of this engineering project.
+            </p>
+            
+            <div class="abstract-box">
+                <div class="abstract-title">Academic Abstract</div>
+                <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 20px; text-align: justify;">
+                    Modern digital design validation demands rigorous verification routines to ensure silicon correctness before tape-out. However, educational projects and low-cost laboratories often lack automated, real-time Hardware-in-the-Loop (HIL) environments. Test benches are frequently limited to pure software simulation or manual button-pressing testing. 
+                </p>
+                <p style="font-size: 0.95rem; color: var(--text-secondary); text-align: justify;">
+                    This dissertation project presents a highly modular, decoupled software-to-silicon verification framework. Written in Python, it bridges the gap by translating high-level test vectors (generated manually, programmatically, or via AI assistants) into raw byte streams. These streams are run directly on physical FPGA logic gates via serial channels. By comparing physical hardware responses against a software golden model in real-time, the system guarantees silicon correctness while outputting detailed logical telemetry.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>Framework Overview</h2>
+            <p class="section-desc">
+                The verification suite operates as a closed-loop system, abstracting all low-level communication and target hardware specificities.
+            </p>
+            
+            <div class="features-grid">
+                <div class="card" onclick="scrollToSection('simulator')">
+                    <div class="card-icon icon-purple">1</div>
+                    <h3>Automated Test Execution</h3>
+                    <p>Reads batch CSV files, streams packets through communication links, and records responses at computer speeds.</p>
+                </div>
+                <div class="card" onclick="scrollToSection('architecture')">
+                    <div class="card-icon icon-blue">2</div>
+                    <h3>Modular Decoupling</h3>
+                    <p>Designed using strict OOP guidelines. Hardware drivers and device signal schemas are hot-swappable at runtime.</p>
+                </div>
+                <div class="card" onclick="scrollToSection('simulator')">
+                    <div class="card-icon icon-green">3</div>
+                    <h3>Real-time Analytics</h3>
+                    <p>Draws logic traces, calculates tests per second (throughput), and captures connection status alerts dynamically.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="alt-bg">
+        <div class="container">
+            <h2>The Modular Architecture</h2>
+            <p class="section-desc">
+                The framework is built around three core abstract interfaces. Because of this Object-Oriented design, the system remains completely decoupled. Click on any block below to inspect its role and code interface:
+            </p>
+            
+            <div class="features-grid">
+                <div class="card active" id="card-engine" onclick="inspectModule('engine')">
+                    <div class="card-icon icon-purple">M</div>
+                    <h3>The Orchestrator</h3>
+                    <p>Class: <code>TestEngine</code><br>Manages file activity, runs test execution loops, validates values, and writes reports.</p>
+                </div>
+                <div class="card" id="card-driver" onclick="inspectModule('driver')">
+                    <div class="card-icon icon-blue">O</div>
+                    <h3>The Operator</h3>
+                    <p>Interface: <code>CommDriver</code><br>Handles communication channels (e.g. Serial, TCP, SPI). Transmits commands and fetches responses.</p>
+                </div>
+                <div class="card" id="card-profile" onclick="inspectModule('profile')">
+                    <div class="card-icon icon-green">T</div>
+                    <h3>The Translator</h3>
+                    <p>Interface: <code>DeviceProfile</code><br>Defines the target signal schema (inputs, outputs) and packs/unpacks binary data.</p>
+                </div>
+            </div>
+
+            <!-- Inspector Panel -->
+            <div class="inspector-panel" id="inspectorPanel">
+                <div class="inspector-header">
+                    <span class="inspector-label" id="inspectorLabel">The Orchestrator (TestEngine)</span>
+                </div>
+                <p id="inspectorDescription" style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 16px;">
+                    The orchestrator manages file system activities and runs execution routines. It reads test files (e.g. CSVs), validates values, delegates packet packing to the Translator, feeds bytes to the Operator, and compares returned values.
+                </p>
+                <div class="panel-title" style="font-size: 0.75rem; margin-bottom: 8px; font-weight: 700; color: var(--text-secondary);">Interface Signature Preview</div>
+                <div class="inspector-code" id="inspectorCode">
+class TestEngine:
+    def __init__(self, driver: CommDriver, profile: DeviceProfile):
+        self.driver = driver
+        self.profile = profile
+
+    def process_csv(self, csv_path: str, visual_delay: float) -> bool:
+        # 1. Reads test vectors
+        # 2. Transmits binary commands via self.driver
+        # 3. Compares responses against profile expected values
+                </div>
+            </div>
+            
+            <div class="callout-box">
+                <h4>Design Innovation</h4>
+                <p>This structural decoupling is why the software is completely modular. If you swap from verifying a calculator chip to a 3-input 5-output encoder board, you only plug in a new Device Profile. The core dashboard engine remains unchanged.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Documentation & Developer Guide Section -->
+    <section id="docs" class="alt-bg">
+        <div class="container">
+            <h2>Developer & Integration Guide</h2>
+            <p class="section-desc">
+                Learn how the object-oriented architecture decouples core services, and follow step-by-step instructions to write custom device profiles and communication link drivers.
+            </p>
+            
+            <div class="docs-grid">
+                <!-- Left Nav Bar -->
+                <div class="docs-nav">
+                    <button class="docs-tab-btn active" onclick="switchDocsTab(event, 'docs-arch')">1. Core OOP Architecture</button>
+                    <button class="docs-tab-btn" onclick="switchDocsTab(event, 'docs-profile')">2. Writing Device Profiles</button>
+                    <button class="docs-tab-btn" onclick="switchDocsTab(event, 'docs-driver')">3. Writing Comm Drivers</button>
+                    <button class="docs-tab-btn" onclick="switchDocsTab(event, 'docs-integration')">4. Framework Integration</button>
+                    <button class="docs-tab-btn" onclick="switchDocsTab(event, 'docs-csv')">5. CSV Validation Rules</button>
+                </div>
+                
+                <!-- Right Content Panel -->
+                <div class="docs-content-wrapper">
+                    <!-- Tab 1: Architecture -->
+                    <div id="docs-arch" class="docs-content-block active">
+                        <h3>1. Core Object-Oriented Architecture</h3>
+                        <p>
+                            To maintain runtime flexibility and allow hot-swappable hardware setups, the framework is built using clean Object-Oriented Design patterns. The core execution loop is completely decoupled from low-level communication channels and device packet serialisation through three primary abstract interfaces:
+                        </p>
+                        <ul style="margin-left: 20px; margin-bottom: 20px; color: var(--text-secondary); font-size: 0.95rem;">
+                            <li style="margin-bottom: 8px;"><strong>TestEngine (The Orchestrator)</strong>: The central manager class. It reads test files, executes validation, handles timeouts, and reports results. It operates purely on high-level dictionaries.</li>
+                            <li style="margin-bottom: 8px;"><strong>DeviceProfile (The Translator)</strong>: The abstract bridge mapping human-readable data (e.g. integer variables) to binary byte formats. Subclasses define signal bit widths, register space limits, and byte packing instructions.</li>
+                            <li style="margin-bottom: 8px;"><strong>CommDriver (The Operator)</strong>: The abstract transport link managing physical connection channels (Serial, TCP/IP, USB). It handles raw byte sequences.</li>
+                        </ul>
+                        <p>
+                            This composition layout means the manager remains unchanged if you swap the hardware interface or target device. You only replace the components in settings.
+                        </p>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span>CORE CLASS COMPOSITION (CONCEPTUAL)</span>
+                                <button class="code-copy-btn" onclick="copyCode(event, 'code-composition')">Copy Code</button>
+                            </div>
+                            <pre class="inspector-code code-block" id="code-composition">class TestEngine:
+    def __init__(self, driver: CommDriver, profile: DeviceProfile):
+        self.driver = driver
+        self.profile = profile
+
+    def execute_loop(self, test_row: dict) -> bool:
+        # Pack dictionary values into binary bytes
+        tx_bytes = self.profile.pack_command(test_row)
+        
+        # Send bytes down physical connection channel
+        self.driver.send_packet(tx_bytes)
+        
+        # Receive exact bytes response block from hardware
+        rx_bytes = self.driver.receive_packet(self.profile.response_size)
+        
+        # Unpack binary response back to values dictionary
+        result_dict = self.profile.unpack_response(rx_bytes)
+        
+        # Validate against expectations
+        return self.verify(result_dict, test_row)</pre>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab 2: Profile -->
+                    <div id="docs-profile" class="docs-content-block">
+                        <h3>2. Writing custom Device Profiles</h3>
+                        <p>
+                            Every custom coprocessor or FPGA module requires a unique byte layout. To support a new system, write a subclass of <code>DeviceProfile</code>. You must define the signal inputs/outputs schema (names and bit-widths) and override <code>pack_command</code> and <code>unpack_response</code>.
+                        </p>
+                        <p>
+                            Below is a concrete implementation template for an 8-bit MAC (Multiply-Accumulate) hardware accelerator:
+                        </p>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span>profiles/mac_accelerator.py</span>
+                                <button class="code-copy-btn" onclick="copyCode(event, 'code-custom-profile')">Copy Code</button>
+                            </div>
+                            <pre class="inspector-code code-block" id="code-custom-profile">from core.interfaces import DeviceProfile
+
+class MACAcceleratorProfile(DeviceProfile):
+    device_name = "8-bit MAC Accelerator"
+    description = "Custom multiplier-accumulator logic coprocessor module."
+    author = "Harry Rogers"
+    version = "1.0.0"
+
+    # Define inputs (Name, Bit-Width)
+    inputs = [
+        ("Operand A", 8),
+        ("Operand B", 8),
+        ("Accumulate", 1)
+    ]
+
+    # Define outputs (Name, Bit-Width)
+    outputs = [
+        ("accumulator", 16),
+        ("overflow", 1)
+    ]
+
+    command_size = 3   # 3 bytes transmitted (Opcode/A/B)
+    response_size = 3  # 3 bytes returned (2-byte Accumulator, 1-byte Overflow)
+
+    def pack_command(self, test_data: dict) -> bytes:
+        # 1. Parse accumulate flag (binary command byte mapping)
+        opcode = 0x01 if int(test_data.get("Accumulate", 0)) > 0 else 0x00
+        
+        # 2. Pack inputs matching register limits
+        op_a = int(test_data.get("Operand A", 0)) & 0xFF
+        op_b = int(test_data.get("Operand B", 0)) & 0xFF
+        
+        # Return exact binary sequence
+        return bytes([opcode, op_a, op_b])
+
+    def unpack_response(self, raw_bytes: bytes) -> dict:
+        if len(raw_bytes) < 3:
+            return {"accumulator": 0, "overflow": 1}
+            
+        # Unpack big-endian 16-bit accumulator value from bytes 0 & 1
+        acc = (raw_bytes[0] << 8) | raw_bytes[1]
+        ovf = raw_bytes[2] & 0x01
+        
+        # Return mapping dictionary for the grading engine
+        return {
+            "accumulator": acc,
+            "overflow": ovf
+        }</pre>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab 3: Driver -->
+                    <div id="docs-driver" class="docs-content-block">
+                        <h3>3. Writing custom Communication Drivers</h3>
+                        <p>
+                            Physical connections vary across test stations (e.g. Serial, TCP sockets, or register-level interface cards). Inherit from <code>CommDriver</code> to wrap your hardware channels. The driver must handle blocking byte transfers and connection state monitoring.
+                        </p>
+                        <p>
+                            Below is an implementation template wrapping TCP/IP communication for remote FPGA boards:
+                        </p>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span>drivers/tcp_driver.py</span>
+                                <button class="code-copy-btn" onclick="copyCode(event, 'code-custom-driver')">Copy Code</button>
+                            </div>
+                            <pre class="inspector-code code-block" id="code-custom-driver">import socket
+from core.interfaces import CommDriver
+
+class TCPDriver(CommDriver):
+    def __init__(self, host: str = "192.168.1.100", port: int = 5000):
+        self.host = host
+        self.port = port
+        self.sock = None
+        self.is_connected = False
+
+    def connect(self) -> bool:
+        try:
+            self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.sock.settimeout(2.0) # Prevent indefinite connection blocking
+            self.sock.connect((self.host, self.port))
+            self.is_connected = True
+            return True
+        except Exception as e:
+            print(f"[TCP Driver] Failed to connect to {self.host}:{self.port} -> {e}")
+            self.is_connected = False
+            return False
+
+    def disconnect(self):
+        if self.sock:
+            self.sock.close()
+        self.is_connected = False
+
+    def send_packet(self, data: bytes):
+        if not self.is_connected or not self.sock:
+            raise ConnectionError("Driver is not connected to hardware channel.")
+        self.sock.sendall(data)
+
+    def receive_packet(self, num_bytes: int) -> bytes:
+        if not self.is_connected or not self.sock:
+            raise ConnectionError("Driver is not connected to hardware channel.")
+        
+        # Maintain blocking read loop until full block arrives
+        buffer = bytearray()
+        while len(buffer) < num_bytes:
+            chunk = self.sock.recv(num_bytes - len(buffer))
+            if not chunk:
+                raise ConnectionAbortedError("TCP connection terminated by peer.")
+            buffer.extend(chunk)
+        return bytes(buffer)</pre>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab 4: Integration -->
+                    <div id="docs-integration" class="docs-content-block">
+                        <h3>4. Framework Integration & Composition Root</h3>
+                        <p>
+                            To allow your new custom classes to be selectable in the dashboard, they must be registered in the application's configuration mapping. Follow these three steps:
+                        </p>
+                        <p>
+                            <strong>Step 1: Register choices in <code>gui/settings_dialog.py</code></strong><br>
+                            Add your new profile/driver naming strings to the dialog option selectors:
+                        </p>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span>gui/settings_dialog.py</span>
+                                <button class="code-copy-btn" onclick="copyCode(event, 'code-integrate-settings')">Copy Code</button>
+                            </div>
+                            <pre class="inspector-code code-block" id="code-integrate-settings"># Register options inside settings UI dropdowns
+self.profile_menu = ctk.CTkOptionMenu(..., values=["16-bit ALU", "8-bit ALU", "8-bit MAC Accelerator"])
+self.driver_menu = ctk.CTkOptionMenu(..., values=["UART (Serial)", "TCP Client", "Mock (Simulation)"])</pre>
+                        </div>
+                        <p>
+                            <strong>Step 2: Map class instantiations in <code>app.py</code></strong><br>
+                            Bind the string configuration parameters in the main execution entry point:
+                        </p>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span>app.py</span>
+                                <button class="code-copy-btn" onclick="copyCode(event, 'code-integrate-app')">Copy Code</button>
+                            </div>
+                            <pre class="inspector-code code-block" id="code-integrate-app"># Instantiate target device profile dynamically
+profile_cfg = config.get("device_profile", "16-bit ALU")
+if profile_cfg == "8-bit MAC Accelerator":
+    from profiles.mac_accelerator import MACAcceleratorProfile
+    profile = MACAcceleratorProfile()
+
+# Instantiate target transport driver dynamically
+driver_cfg = config.get("comm_driver", "UART (Serial)")
+if driver_cfg == "TCP Client":
+    from drivers.tcp_driver import TCPDriver
+    driver = TCPDriver(host=config.get("tcp_host", "192.168.1.100"))</pre>
+                        </div>
+                        <p>
+                            <strong>Step 3: Update reload callbacks in <code>gui/app_shell.py</code></strong><br>
+                            Update the <code>_on_settings_saved()</code> method to recreate and hot-swap the profile and driver objects dynamically. This ensures that the configuration updates instantly on the live logic analyser graph and specifications tabs without restarting the application.
+                        </p>
+                    </div>
+                    
+                    <!-- Tab 5: CSV Schema -->
+                    <div id="docs-csv" class="docs-content-block">
+                        <h3>5. CSV Schema & Robust Diagnostics</h3>
+                        <p>
+                            Test batches are uploaded as standard CSV spreadsheet files. To protect physical FPGAs from register collisions or value overflow states, the test engine executes a validation sequence before starting HIL execution.
+                        </p>
+                        <p>
+                            The CSV columns are mapped dynamically to inputs and expected outputs. Input columns must match signal names in the profile. Expected outputs must be prefixed with <code>Expected </code>.
+                        </p>
+                        <div class="table-wrapper">
+                            <table class="docs-table">
+                               <thead>
+                                   <tr>
+                                       <th>Column Template</th>
+                                       <th>Value Mapping</th>
+                                       <th>Verification & Safety Checking Rules</th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                                   <tr>
+                                       <td><code>Operation</code></td>
+                                       <td>String Mnemonic</td>
+                                       <td>Opcode conversion validator. Flags error if operation is undefined.</td>
+                                   </tr>
+                                   <tr>
+                                       <td><code>[Input Name]</code> (e.g. <code>Operand A</code>)</td>
+                                       <td>Integer Value</td>
+                                       <td>Bit-width limit checks. Emits warnings if value exceeds 2<sup>width</sup> - 1.</td>
+                                   </tr>
+                                   <tr>
+                                       <td><code>Expected [Output Name]</code></td>
+                                       <td>Integer Value</td>
+                                       <td>Used as the software golden model value to compare against physical hardware responses.</td>
+                                   </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p><strong>Verification Diagnostics Layer:</strong></p>
+                        <ul style="margin-left: 20px; color: var(--text-secondary); font-size: 0.95rem;">
+                            <li style="margin-bottom: 8px;"><strong>Empty Check</strong>: Logs an execution error and aborts if the queue contains a blank CSV file.</li>
+                            <li style="margin-bottom: 8px;"><strong>Zero-Divisor Warning</strong>: Emits warnings for division mnemonic operations when divisor inputs are 0, alerting you of potential FPGA hardware lockups.</li>
+                            <li style="margin-bottom: 8px;"><strong>Timeout Handling</strong>: If a communication error occurs or a packet is truncated, the driver catches the timeout, increments the failure counter, and recovers connection without crashing the application.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulator Section -->
+    <section id="simulator">
+        <div class="container">
+            <h2>Interactive HIL Execution Simulator</h2>
+            <p class="section-desc">
+                Step through a single test vector verification loop to see how software components interact with real-world physical hardware in real-time.
+            </p>
+            
+            <div class="simulator-box">
+                <div class="sim-steps">
+                    <div class="sim-step-card active" id="sim-step-1">
+                        <div class="step-num">1</div>
+                        <div class="step-title">Load Vector</div>
+                        <div class="step-detail">CSV Reader</div>
+                    </div>
+                    <div class="sim-step-card" id="sim-step-2">
+                        <div class="step-num">2</div>
+                        <div class="step-title">Translate</div>
+                        <div class="step-detail">Device Profile</div>
+                    </div>
+                    <div class="sim-step-card" id="sim-step-3">
+                        <div class="step-num">3</div>
+                        <div class="step-title">Transmit</div>
+                        <div class="step-detail">Comm Driver</div>
+                    </div>
+                    <div class="sim-step-card" id="sim-step-4">
+                        <div class="step-num">4</div>
+                        <div class="step-title">Calculate</div>
+                        <div class="step-detail">Physical FPGA</div>
+                    </div>
+                    <div class="sim-step-card" id="sim-step-5">
+                        <div class="step-num">5</div>
+                        <div class="step-title">Verify</div>
+                        <div class="step-detail">Test Engine</div>
+                    </div>
+                </div>
+
+                <div class="sim-display">
+                    <div class="sim-graphic" id="simGraphic">X = 10, Y = 20, Op = ADD</div>
+                    <div id="simText" style="font-size: 1rem; font-weight: 500; color: var(--text-secondary);">
+                        Ready. Click 'Execute Step' to begin test loop execution.
+                    </div>
+                </div>
+
+                <div class="sim-controls">
+                    <button class="btn btn-secondary" onclick="resetSim()">Reset</button>
+                    <button class="btn btn-green" id="btnNextStep" onclick="nextSimStep()">Execute Step</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2026 Harry Rogers. Candidate for BEng (Hons) Electrical & Electronic Engineering. University of Brighton. Main portfolio at <a href="https://harry-rogers.com" target="_blank" rel="noopener noreferrer" style="color: var(--accent-blue); text-decoration: none;">harry-rogers.com</a>.</p>
+        </div>
+    </footer>
+
+    <!-- --- JavaScript Scripts (Google Sites Sandboxed Iframe Compatible) --- -->
+    <script>
+        // =====================================================================
+        // SAFE NAVIGATION HELPER FOR GOOGLE SITES IFRAMES
+        // =====================================================================
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // =====================================================================
+        // HTML5 CANVAS DIGITAL SQUARE WAVE LOGIC ANALYSER
+        // =====================================================================
+        const canvas = document.getElementById('scopeCanvas');
+        const ctx = canvas ? canvas.getContext('2d') : null;
+
+        function resizeCanvas() {
+            if (!canvas) return;
+            const parentWidth = canvas.parentElement ? canvas.parentElement.clientWidth : 0;
+            // Prevent negative or zero canvas width bug in sandboxed iframes
+            const width = Math.max(300, parentWidth > 48 ? parentWidth - 48 : 300);
+            canvas.width = width;
+            canvas.height = 180;
+        }
+        
+        // Initial resize & listener
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        setTimeout(resizeCanvas, 300); // Delayed check after Google Sites layout stabilizes
+
+        let scrollOffset = 0;
+        let lastTime = null;
+        const scrollSpeed = 60; // Pixels per second
+
+        function getClockVal(pixelX) {
+            return (Math.floor(pixelX / 20) % 2);
+        }
+
+        function getDataVal(pixelX) {
+            return (Math.floor(pixelX / 50) % 2);
+        }
+
+        function getXorVal(pixelX) {
+            return getClockVal(pixelX) ^ getDataVal(pixelX);
+        }
+
+        function drawScope() {
+            if (!canvas || !ctx) return;
+            const w = canvas.width;
+            const h = canvas.height;
+            if (w <= 0 || h <= 0) return;
+
+            const channelHeight = h / 3;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, w, h);
+
+            ctx.strokeStyle = '#e2e8f0';
+            ctx.lineWidth = 1;
+            for(let i = 1; i < 3; i++) {
+                ctx.beginPath();
+                ctx.moveTo(0, channelHeight * i);
+                ctx.lineTo(w, channelHeight * i);
+                ctx.stroke();
+            }
+
+            ctx.strokeStyle = '#f1f5f9';
+            ctx.setLineDash([4, 4]);
+            for(let i = 1; i < 8; i++) {
+                ctx.beginPath();
+                ctx.moveTo((w / 8) * i, 0);
+                ctx.lineTo((w / 8) * i, h);
+                ctx.stroke();
+            }
+            ctx.setLineDash([]);
+
+            function drawSquareTrace(getVal, chIndex, color) {
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 2.5;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'miter';
+                ctx.beginPath();
+
+                let first = true;
+                let prevY = 0;
+
+                for (let x = 0; x < w; x++) {
+                    const val = getVal(x + scrollOffset);
+                    const y = (channelHeight * (chIndex + 0.8)) - (val * (channelHeight * 0.6));
+                    
+                    if (first) {
+                        ctx.moveTo(x, y);
+                        first = false;
+                    } else {
+                        if (y !== prevY) {
+                            ctx.lineTo(x, prevY);
+                        }
+                        ctx.lineTo(x, y);
+                    }
+                    prevY = y;
+                }
+                ctx.stroke();
+            }
+
+            drawSquareTrace(getClockVal, 0, '#1e8e3e');
+            drawSquareTrace(getDataVal, 1, '#1e6c93');
+            drawSquareTrace(getXorVal, 2, '#ea580c');
+
+            const labels = [
+                { text: 'IN: Clock (CH1)', color: '#1e8e3e', y: 18 },
+                { text: 'IN: Data (CH2)', color: '#1e6c93', y: channelHeight + 18 },
+                { text: 'OUT: XOR_Result (CH3)', color: '#ea580c', y: (channelHeight * 2) + 18 }
+            ];
+            
+            ctx.font = 'bold 9px "Fira Code", monospace';
+            labels.forEach(l => {
+                const textWidth = ctx.measureText(l.text).width;
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+                ctx.fillRect(10, l.y - 10, textWidth + 10, 14);
+                
+                ctx.fillStyle = l.color;
+                ctx.fillText(l.text, 15, l.y);
+            });
+        }
+
+        function updateScope(timestamp) {
+            if (!lastTime) lastTime = timestamp;
+            const delta = (timestamp - lastTime) / 1000;
+            lastTime = timestamp;
+
+            scrollOffset += scrollSpeed * delta;
+            drawScope();
+            requestAnimationFrame(updateScope);
+        }
+        requestAnimationFrame(updateScope);
+
+        // =====================================================================
+        // MODULE INSPECTOR PANEL INTERACTION
+        // =====================================================================
+        const moduleData = {
+            engine: {
+                title: "The Orchestrator (TestEngine)",
+                desc: "The orchestrator manages file system activities and runs execution routines. It reads test files (e.g. CSVs), validates values, delegates packet packing to the Translator, feeds bytes to the Operator, and compares returned values.",
+                code: "class TestEngine:\n    def __init__(self, driver: CommDriver, profile: DeviceProfile):\n        self.driver = driver\n        self.profile = profile\n\n    def process_csv(self, csv_path: str, visual_delay: float) -> bool:\n        # 1. Reads test vectors\n        # 2. Transmits binary commands via self.driver\n        # 3. Compares responses against profile expected values"
+            },
+            driver: {
+                title: "The Operator (CommDriver)",
+                desc: "The operator abstracts communication links away from core testing routines. Conforming to the CommDriver interface, it manages physical resources (socket descriptors or serial descriptors) to send and receive raw byte sequences.",
+                code: "class CommDriver(ABC):\n    @abstractmethod\n    def connect(self) -> bool: pass\n\n    @abstractmethod\n    def send_packet(self, data: bytes): pass\n\n    @abstractmethod\n    def receive_packet(self, num_bytes: int) -> bytes: pass"
+            },
+            profile: {
+                title: "The Translator (DeviceProfile)",
+                desc: "The translator acts as a hardware interpreter. Every logic board uses a different binary mapping. Subclass profiles declare their signal IO schemas (bit widths), translate CSV dicts to raw bytes, and decode raw replies to named outputs.",
+                code: "class DeviceProfile(ABC):\n    inputs = [(\"Operand A\", 16), (\"Operand B\", 16)]\n    outputs = [(\"result\", 16), (\"N\", 1), (\"Z\", 1), (\"C\", 1), (\"V\", 1)]\n\n    @abstractmethod\n    def pack_command(self, test_data: dict) -> bytes: pass\n\n    @abstractmethod\n    def unpack_response(self, raw_bytes: bytes) -> dict: pass"
+            }
+        };
+
+        function inspectModule(modName) {
+            document.getElementById('card-engine').classList.remove('active');
+            document.getElementById('card-driver').classList.remove('active');
+            document.getElementById('card-profile').classList.remove('active');
+
+            document.getElementById(`card-${modName}`).classList.add('active');
+
+            document.getElementById('inspectorLabel').innerText = moduleData[modName].title;
+            document.getElementById('inspectorDescription').innerText = moduleData[modName].desc;
+            document.getElementById('inspectorCode').innerText = moduleData[modName].code;
+        }
+
+        // =====================================================================
+        // STEP-BY-STEP HIL EXECUTION SIMULATOR
+        // =====================================================================
+        let currentSimStep = 0;
+
+        const simStepsData = [
+            {
+                graphic: "X = 10, Y = 20, Op = ADD",
+                text: "Step 1: The TestEngine reads the first line of the CSV vector file. It validates that the values are within 8-bit limits (0-255)."
+            },
+            {
+                graphic: "pack_command() => 0x01, 0x0A, 0x14",
+                text: "Step 2: The Device Profile acts as Translator. It matches 'ADD' to opcode 0x01, formats inputs X (10 -> 0x0A) and Y (20 -> 0x14), and packs them into a 3-byte command packet."
+            },
+            {
+                graphic: "send_packet(bytes) -> [Serial Wire] -> FPGA",
+                text: "Step 3: The Comm Driver pushes these bytes down the physical link cable to the board. The transaction is fully buffered."
+            },
+            {
+                graphic: "FPGA Math Execution: Out1 = X + Y = 30",
+                text: "Step 4: The physical FPGA circuit processes the electrical inputs, adds them using logic gates, and streams the 5-byte output packet back up the cable."
+            },
+            {
+                graphic: "unpack_response() => Out1 = 30 (Expected: 30) -> PASS",
+                text: "Step 5: The TestEngine retrieves the raw bytes, decodes them, and grades the results. Out1 (30) matches Expected Out1 (30) => PASS!"
+            }
+        ];
+
+        function nextSimStep() {
+            if (currentSimStep >= 5) {
+                currentSimStep = 0;
+            }
+            currentSimStep++;
+            updateSimUI();
+        }
+
+        function resetSim() {
+            currentSimStep = 0;
+            updateSimUI();
+        }
+
+        function updateSimUI() {
+            for(let i=1; i<=5; i++) {
+                document.getElementById(`sim-step-${i}`).classList.remove('active');
+            }
+
+            const btn = document.getElementById('btnNextStep');
+
+            if (currentSimStep === 0) {
+                document.getElementById('sim-step-1').classList.add('active');
+                document.getElementById('simGraphic').innerText = "X = 10, Y = 20, Op = ADD";
+                document.getElementById('simText').innerText = "Ready. Click 'Execute Step' to begin test loop execution.";
+                btn.innerText = "Execute Step";
+            } else {
+                document.getElementById(`sim-step-${currentSimStep}`).classList.add('active');
+                document.getElementById('simGraphic').innerText = simStepsData[currentSimStep - 1].graphic;
+                document.getElementById('simText').innerText = simStepsData[currentSimStep - 1].text;
+                
+                if (currentSimStep === 5) {
+                    btn.innerText = "Restart Simulator";
+                } else {
+                    btn.innerText = "Execute Step";
+                }
+            }
+        }
+
+        // =====================================================================
+        // TECHNICAL DOCUMENTATION TAB SWITCHING & COPY UTILITY
+        // =====================================================================
+        function switchDocsTab(event, tabId) {
+            const btns = document.querySelectorAll('.docs-tab-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+
+            const blocks = document.querySelectorAll('.docs-content-block');
+            blocks.forEach(block => block.classList.remove('active'));
+
+            event.currentTarget.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        function copyCode(event, preId) {
+            const codeText = document.getElementById(preId).innerText;
+            const btn = event.currentTarget;
+            const originalText = btn.innerText;
+
+            function showSuccess() {
+                btn.innerText = "Copied!";
+                btn.style.color = "#1e8e3e";
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.color = "";
+                }, 2000);
+            }
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(codeText).then(showSuccess).catch(fallbackCopy);
+            } else {
+                fallbackCopy();
+            }
+
+            function fallbackCopy() {
+                const ta = document.createElement('textarea');
+                ta.value = codeText;
+                ta.style.position = 'fixed';
+                ta.style.left = '-9999px';
+                document.body.appendChild(ta);
+                ta.select();
+                try {
+                    document.execCommand('copy');
+                    showSuccess();
+                } catch (err) {
+                    console.error('Failed to copy code: ', err);
+                }
+                document.body.removeChild(ta);
+            }
+        }
+    </script>
+</body>
+</html>

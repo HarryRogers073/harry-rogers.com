@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page Not Found (404)">
+  <section class="section">
+    <div class="container not-found-container">
+      <p class="eyebrow error-code">404</p>
+      <h1>Page Not Found</h1>
+      <p class="muted intro">
+        The page or resource you are looking for has been moved or updated during the website revamp.
+      </p>
+      <div class="actions">
+        <a class="btn" href="/">Return to Homepage →</a>
+        <a class="btn ghost" href="/projects">View Projects</a>
+        <a class="btn ghost" href="/cv">View CV</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found-container { text-align: center; max-width: 36rem; padding-top: 4rem; padding-bottom: 4rem; }
+  .error-code { font-size: 1.5rem; font-family: var(--font-mono); }
+  .intro { font-size: 1.15rem; margin: 1rem 0 2rem; }
+  .actions { justify-content: center; }
+</style>

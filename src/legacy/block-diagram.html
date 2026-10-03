@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAIDAR — System Architecture Explorer</title>
+    <meta name="description" content="Interactive Enterprise Architect-style diagram explorer for the VAIDAR HIL Validation Framework.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f4f7f9; --card: #ffffff; --bdr: #cbd5e1;
+            --txt: #212121; --txt2: #5f6368;
+            --blue: #1e6c93; --green: #1e8e3e; --orange: #ea580c;
+            --red: #d93025; --purple: #7c7ded; --yellow: #f9ab00;
+            --ff: 'Lato', sans-serif; --mono: 'Fira Code', monospace;
+            --hdr: 56px; --side: 250px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { width: 100%; height: 100%; background: var(--bg); color: var(--txt); font-family: var(--ff); line-height: 1.5; overflow: hidden; }
+
+        /* === TOPBAR === */
+        .topbar { height: var(--hdr); background: #fff; border-bottom: 1px solid var(--bdr); display: flex; align-items: center; padding: 0 20px; gap: 14px; }
+        .topbar-logo { font-weight: 700; font-size: 1rem; color: var(--txt); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .dot { width: 8px; height: 8px; background: var(--blue); border-radius: 50%; box-shadow: 0 0 8px rgba(30,108,147,.4); }
+        .sep { width: 1px; height: 24px; background: var(--bdr); }
+        .bc { font-size: .82rem; color: var(--txt2); display: flex; align-items: center; gap: 6px; }
+        .bc span { cursor: pointer; transition: color .2s; } .bc span:hover { color: var(--blue); }
+        .bc .cur { color: var(--blue); font-weight: 700; }
+
+        /* === LAYOUT === */
+        .layout { display: flex; height: calc(100vh - var(--hdr)); }
+
+        /* === SIDEBAR === */
+        .side { width: var(--side); min-width: var(--side); background: #fff; border-right: 1px solid var(--bdr); overflow-y: auto; }
+        .side-hdr { padding: 14px 14px 6px; font-weight: 700; font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; color: var(--txt2); }
+        .ti { display: flex; align-items: center; gap: 8px; padding: 8px 14px 8px 18px; cursor: pointer; font-size: .84rem; color: var(--txt2); border-left: 3px solid transparent; transition: all .15s; user-select: none; }
+        .ti:hover { background: rgba(30,108,147,.04); color: var(--txt); }
+        .ti.on { background: rgba(30,108,147,.08); color: var(--blue); font-weight: 700; border-left-color: var(--blue); }
+        .ti-icon { width: 18px; height: 18px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: .6rem; font-weight: 900; flex-shrink: 0; }
+        .ti-b { background: rgba(30,108,147,.1); color: var(--blue); }
+        .ti-g { background: rgba(30,142,62,.1); color: var(--green); }
+        .ti-o { background: rgba(234,88,12,.1); color: var(--orange); }
+        .ti-p { background: rgba(124,125,237,.1); color: var(--purple); }
+        .ti-y { background: rgba(249,171,0,.1); color: var(--yellow); }
+        .sdiv { height: 1px; background: var(--bdr); margin: 8px 14px; }
+
+        /* === MAIN === */
+        .main { flex: 1; overflow: auto; padding: 28px 32px; background: var(--bg); }
+
+        /* === OVERVIEW GRID === */
+        .og { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; max-width: 1100px; margin: 0 auto; }
+        .oc { background: var(--card); border: 1px solid var(--bdr); border-radius: 12px; padding: 24px; cursor: pointer; transition: all .25s; position: relative; overflow: hidden; }
+        .oc:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(15,23,42,.08); border-color: var(--blue); }
+        .oc::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; border-radius: 12px 12px 0 0; }
+        .oc.cb::before { background: var(--blue); } .oc.cg::before { background: var(--green); }
+        .oc.co::before { background: var(--orange); } .oc.cp::before { background: var(--purple); }
+        .oc.cy::before { background: var(--yellow); }
+        .badge { display: inline-block; font-size: .63rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: 3px 8px; border-radius: 4px; margin-bottom: 10px; }
+        .bb { background: rgba(30,108,147,.1); color: var(--blue); } .bg { background: rgba(30,142,62,.1); color: var(--green); }
+        .bo { background: rgba(234,88,12,.1); color: var(--orange); } .bp { background: rgba(124,125,237,.1); color: var(--purple); }
+        .by { background: rgba(249,171,0,.1); color: var(--yellow); }
+        .oc h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+        .oc p { font-size: .86rem; color: var(--txt2); line-height: 1.45; }
+        .oc-arr { position: absolute; bottom: 18px; right: 18px; font-size: 1.2rem; color: var(--bdr); transition: all .2s; }
+        .oc:hover .oc-arr { color: var(--blue); transform: translateX(4px); }
+        .ov-title { font-size: 1.5rem; font-weight: 300; margin-bottom: 6px; max-width: 800px; }
+        .ov-title strong { font-weight: 700; color: var(--blue); }
+        .ov-desc { color: var(--txt2); font-size: .92rem; margin-bottom: 28px; max-width: 700px; }
+
+        /* === VIEWS === */
+        .v { display: none; max-width: 1060px; margin: 0 auto; }
+        .v.on { display: block; animation: fi .3s ease forwards; }
+        @keyframes fi { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .vback { display: inline-flex; align-items: center; gap: 5px; font-size: .82rem; color: var(--txt2); cursor: pointer; margin-bottom: 10px; border: none; background: none; font-family: var(--ff); }
+        .vback:hover { color: var(--blue); }
+        .vtitle { font-size: 1.6rem; font-weight: 400; margin-bottom: 6px; }
+        .vtitle strong { color: var(--blue); font-weight: 700; }
+        .vsub { color: var(--txt2); font-size: .92rem; max-width: 800px; margin-bottom: 28px; }
+
+        /* === DIAGRAM CANVAS === */
+        .dc { background: #fff; border: 1px solid var(--bdr); border-radius: 12px; padding: 32px; box-shadow: 0 4px 14px rgba(15,23,42,.03); overflow-x: auto; }
+
+        /* === BLOCKS === */
+        .b { border: 2px solid var(--bdr); border-radius: 8px; padding: 12px 16px; text-align: center; cursor: pointer; transition: all .22s; background: var(--card); position: relative; }
+        .b:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,.07); }
+        .b.on { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(30,108,147,.15); }
+        .bt { font-weight: 700; font-size: .88rem; color: var(--txt); margin-bottom: 3px; line-height: 1.3; }
+        .bs { font-family: var(--mono); font-size: .7rem; color: var(--txt2); }
+        .bi { font-size: .75rem; color: var(--txt2); text-align: left; margin-top: 6px; line-height: 1.5; }
+
+        .b-bl { border-color: rgba(30,108,147,.4); background: rgba(30,108,147,.03); }
+        .b-gr { border-color: rgba(30,142,62,.4); background: rgba(30,142,62,.03); }
+        .b-or { border-color: rgba(234,88,12,.4); background: rgba(234,88,12,.03); }
+        .b-pu { border-color: rgba(124,125,237,.4); background: rgba(124,125,237,.03); }
+        .b-ye { border-color: rgba(249,171,0,.4); background: rgba(249,171,0,.03); }
+        .b-re { border-color: rgba(217,48,37,.4); background: rgba(217,48,37,.03); }
+        .b-pk { border-color: rgba(200,100,200,.4); background: rgba(200,100,200,.03); }
+
+        /* === ZONES === */
+        .z { border: 2px dashed var(--bdr); border-radius: 12px; padding: 24px; position: relative; margin-bottom: 16px; }
+        .zl { position: absolute; top: -11px; left: 18px; background: #fff; padding: 1px 10px; font-weight: 700; font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; }
+        .z-bl { border-color: rgba(30,108,147,.3); } .z-bl .zl { color: var(--blue); }
+        .z-gr { border-color: rgba(30,142,62,.3); } .z-gr .zl { color: var(--green); }
+        .z-ye { border-color: rgba(249,171,0,.3); } .z-ye .zl { color: var(--yellow); }
+        .z-pu { border-color: rgba(200,100,200,.3); } .z-pu .zl { color: #c864c8; }
+        .z-or { border-color: rgba(234,88,12,.3); } .z-or .zl { color: var(--orange); }
+
+        /* === ARROWS === */
+        .arrow-v { width: 2px; height: 28px; background: var(--bdr); margin: 0 auto; }
+        .arrow-vl { width: 2px; height: 44px; background: var(--bdr); margin: 0 auto; }
+        .arrow-h { height: 2px; flex: 0 0 32px; background: var(--bdr); }
+        .arrow-hl { height: 2px; flex: 0 0 50px; background: var(--bdr); }
+        .head-d { width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid var(--bdr); margin: 0 auto; }
+        .head-r { width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 6px solid var(--bdr); }
+        .head-l { width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-right: 6px solid var(--bdr); }
+        .lbl { font-size: .66rem; color: var(--txt2); font-family: var(--mono); padding: 2px 4px; white-space: nowrap; text-align: center; }
+
+        /* === PIPELINE ROW (for AI diagrams) === */
+        .pipe-row {
+            display: grid;
+            grid-template-columns: 130px 32px 160px 32px 160px 32px 110px;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin: 0 auto;
+            max-width: 720px;
+        }
+        .pipe-row .arr-cell { display: flex; align-items: center; justify-content: center; }
+
+        /* === LAYER ROW (for HIL diagram) === */
+        .layer-row {
+            display: grid;
+            grid-template-columns: 150px 32px 1fr 32px 150px;
+            align-items: center;
+            gap: 0;
+            padding: 14px 0;
+        }
+        .layer-row .arr-cell { display: flex; align-items: center; justify-content: center; }
+
+        /* === FPGA ROW === */
+        .fpga-top {
+            display: grid;
+            grid-template-columns: 80px 150px 90px 200px 90px 150px 80px;
+            align-items: center;
+            gap: 0;
+            padding: 18px 0;
+        }
+        .fpga-bot {
+            display: grid;
+            grid-template-columns: 70px 140px 32px 180px 90px 160px 80px;
+            align-items: center;
+            gap: 0;
+            padding: 18px 0 8px;
+        }
+        .fpga-top > div, .fpga-bot > div { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; }
+
+        /* === FLOW LANES === */
+        .lanes { display: grid; grid-template-columns: 1fr 1fr; }
+        .lane { padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        .lane-sw { border-right: 2px solid var(--bdr); }
+        .lh { font-weight: 700; font-size: .82rem; text-align: center; padding: 7px 16px; margin-bottom: 16px; border-radius: 6px; width: 100%; }
+        .lh-sw { background: rgba(30,108,147,.08); color: var(--blue); }
+        .lh-hw { background: rgba(249,171,0,.08); color: var(--yellow); }
+        .oval { border-radius: 50px; padding: 8px 20px; font-size: .78rem; font-weight: 600; text-align: center; cursor: pointer; transition: all .2s; background: rgba(30,142,62,.1); border: 2px solid rgba(30,142,62,.4); color: var(--green); }
+        .step { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 100%; max-width: 210px; }
+
+        /* === INSPECTOR === */
+        .insp { background: #fff; border: 1px solid var(--bdr); border-radius: 12px; padding: 24px; margin-top: 20px; display: none; animation: fi .3s ease forwards; }
+        .insp.show { display: block; }
+        .insp-t { font-weight: 700; font-size: 1.05rem; color: var(--blue); margin-bottom: 6px; }
+        .insp-d { font-size: .9rem; color: var(--txt2); line-height: 1.6; margin-bottom: 10px; }
+        .tag { display: inline-block; font-size: .65rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; margin-right: 5px; margin-bottom: 4px; background: rgba(30,108,147,.08); color: var(--blue); }
+
+        /* === CROSS-LANE LABEL === */
+        .cross-label {
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+            font-size: .7rem; color: var(--txt2); font-family: var(--mono);
+            margin: 4px 0;
+        }
+        .cross-label::before, .cross-label::after {
+            content: ''; flex: 1; max-width: 40px; height: 1px; background: var(--bdr); border-style: dashed;
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <a class="topbar-logo" href="#"><span class="dot"></span>VAIDAR Architecture Explorer</a>
+        <div class="sep"></div>
+        <div class="bc" id="bc"><span onclick="go()" class="cur">Model Explorer</span></div>
+    </div>
+    <div class="layout">
+        <div class="side">
+            <div class="side-hdr">Explorer</div>
+            <div class="ti on" onclick="go()" id="t-home"><div class="ti-icon ti-b">⬡</div><span>Overview</span></div>
+            <div class="sdiv"></div>
+            <div class="side-hdr">Diagrams</div>
+            <div class="ti" onclick="nav('ai')" id="t-ai"><div class="ti-icon ti-o">▶</div><span>AI Integration</span></div>
+            <div class="ti" onclick="nav('hil')" id="t-hil"><div class="ti-icon ti-b">▦</div><span>HIL System Overview</span></div>
+            <div class="ti" onclick="nav('flow')" id="t-flow"><div class="ti-icon ti-g">◇</div><span>SW ↔ HW Flow</span></div>
+            <div class="ti" onclick="nav('fpga')" id="t-fpga"><div class="ti-icon ti-p">◻</div><span>FPGA Architecture</span></div>
+            <div class="ti" onclick="nav('fsm')" id="t-fsm"><div class="ti-icon ti-y">⟳</div><span>Detailed FSM</span></div>
+        </div>
+        <div class="main" id="main">
+
+            <!-- ============ HOME ============ -->
+            <div class="v on" id="v-home">
+                <div class="ov-title">VAIDAR <strong>Architecture Explorer</strong></div>
+                <div class="ov-desc">Click any diagram to explore the system architecture. Each view is interactive — click blocks to inspect component specs.</div>
+                <div class="og">
+                    <div class="oc co" onclick="nav('ai')"><div class="badge bo">Activity</div><h3>AI Integration</h3><p>Gemini-powered test generation and AI log analysis pipelines.</p><div class="oc-arr">→</div></div>
+                    <div class="oc cb" onclick="nav('hil')"><div class="badge bb">Package</div><h3>HIL System Overview</h3><p>PC → USB-UART → FPGA layered architecture.</p><div class="oc-arr">→</div></div>
+                    <div class="oc cg" onclick="nav('flow')"><div class="badge bg">Activity</div><h3>SW ↔ HW Flowchart</h3><p>Dual-lane Python ↔ FPGA test execution flow.</p><div class="oc-arr">→</div></div>
+                    <div class="oc cp" onclick="nav('fpga')"><div class="badge bp">Component</div><h3>FPGA Architecture</h3><p>Internal Verilog modules: UART, ALU, 7-seg driver.</p><div class="oc-arr">→</div></div>
+                    <div class="oc cy" onclick="nav('fsm')"><div class="badge by">Sequence</div><h3>Detailed FSM</h3><p>IDLE → WAIT_A → WAIT_B → CALCULATE → TRANSMIT.</p><div class="oc-arr">→</div></div>
+                </div>
+            </div>
+
+            <!-- ============ AI INTEGRATION ============ -->
+            <div class="v" id="v-ai">
+                <button class="vback" onclick="go()">← Back</button>
+                <div class="vtitle">AI <strong>Integration Features</strong></div>
+                <div class="vsub">Two Gemini API-powered features: autonomous test vector generation and intelligent failure log analysis.</div>
+                <div class="dc">
+                    <!-- Test Generation -->
+                    <div class="z z-gr" style="margin-bottom: 28px;">
+                        <div class="zl">Test Generation Pipeline</div>
+                        <!-- Forward flow: User → GUI → Backend → Gemini -->
+                        <div class="pipe-row" style="padding-top: 12px;">
+                            <div class="b" onclick="ins('ai','user_input')"><div class="bt">👤 User</div><div class="bs">Test Boundaries</div></div>
+                            <div class="arr-cell"><div class="arrow-h"></div><div class="head-r"></div></div>
+                            <div class="b b-gr" onclick="ins('ai','gui_gen')"><div class="bt">Python GUI</div><div class="bs">Control Panel</div></div>
+                            <div class="arr-cell"><div class="arrow-h"></div><div class="head-r"></div></div>
+                            <div class="b b-gr" onclick="ins('ai','backend_gen')"><div class="bt">Python Backend</div><div class="bs">Format Prompt</div></div>
+                            <div class="arr-cell"><div class="arrow-h"></div><div class="head-r"></div></div>
+                            <div class="b b-pu" onclick="ins('ai','gemini_gen')"><div class="bt">Gemini API</div><div class="bs">Generate</div></div>
+                        </div>
+                        <!-- Return flow: Output ← Finalise ← Format ← (Gemini responds) -->
+                        <div class="pipe-row" style="margin-top: 16px;">
+                            <div class="b" onclick="ins('ai','user_output')"><div class="bt">📄 Test File</div><div class="bs">CSV Output</div></div>
+                            <div class="arr-cell"><div class="head-l"></div><div class="arrow-h"></div></div>
+                            <div class="b b-gr" onclick="ins('ai','finalise')"><div class="bt">Finalise Test</div><div class="bs">Validate & Save</div></div>
+                            <div class="arr-cell"><div class="head-l"></div><div class="arrow-h"></div></div>
+                            <div class="b b-gr" onclick="ins('ai','format_resp')"><div class="bt">Format Response</div><div class="bs">Parse JSON</div></div>
+                            <div class="arr-cell"><div class="head-l"></div><div class="arrow-h"></div></div>
+                            <div style="text-align: center;"><div class="lbl">↑ responds</div></div>
+                        </div>
+                    </div>
+                    <!-- Log Analysis -->
+                    <div class="z z-or">
+                        <div class="zl">Log Analysis Pipeline</div>
+                        <!-- Forward flow -->
+                        <div class="pipe-row" style="padding-top: 12px;">
+                            <div class="b" onclick="ins('ai','log_input')"><div class="bt">📋 Result Log</div><div class="bs">Pass/Fail Data</div></div>
+                            <div class="arr-cell"><div class="arrow-h"></div><div class="head-r"></div></div>
+                            <div class="b b-or" onclick="ins('ai','gui_log')"><div class="bt">Python GUI</div><div class="bs">Load Log File</div></div>
+                            <div class="arr-cell"><div class="arrow-h"></div><div class="head-r"></div></div>
+                            <div class="b b-or" onclick="ins('ai','backend_log')"><div class="bt">Python Backend</div><div class="bs">Format Analysis</div></div>
+                            <div class="arr-cell"><div class="arrow-h"></div><div class="head-r"></div></div>
+                            <div class="b b-pu" onclick="ins('ai','gemini_log')"><div class="bt">Gemini API</div><div class="bs">Analyse</div></div>
+                        </div>
+                        <!-- Return flow -->
+                        <div class="pipe-row" style="margin-top: 16px;">
+                            <div class="b" onclick="ins('ai','diag_output')"><div class="bt">👤 User</div><div class="bs">Failure Cause</div></div>
+                            <div class="arr-cell"><div class="head-l"></div><div class="arrow-h"></div></div>
+                            <div class="b b-or" onclick="ins('ai','display_diag')"><div class="bt">Display Diagnostic</div><div class="bs">GUI Summary</div></div>
+                            <div class="arr-cell"><div class="head-l"></div><div class="arrow-h"></div></div>
+                            <div class="b b-or" onclick="ins('ai','extract_summ')"><div class="bt">Extract Summary</div><div class="bs">Parse Response</div></div>
+                            <div class="arr-cell"><div class="head-l"></div><div class="arrow-h"></div></div>
+                            <div style="text-align: center;"><div class="lbl">↑ responds</div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="insp" id="i-ai"></div>
+            </div>
+
+            <!-- ============ HIL SYSTEM OVERVIEW ============ -->
+            <div class="v" id="v-hil">
+                <button class="vback" onclick="go()">← Back</button>
+                <div class="vtitle">HIL <strong>System Overview</strong></div>
+                <div class="vsub">Layered package diagram: PC Controller → USB-UART bridge → FPGA hardware testbed.</div>
+                <div class="dc">
+                    <!-- PC Controller Zone -->
+                    <div class="z z-bl">
+                        <div class="zl">PC Controller Environment (Python)</div>
+                        <div class="layer-row">
+                            <div class="b" onclick="ins('hil','csv_input')"><div class="bt">📂 input_queue/</div><div class="bi">test_suite_01.csv<br>test_suite_02.csv</div></div>
+                            <div class="arr-cell"><div class="arrow-h"></div><div class="head-r"></div></div>
+                            <div class="b b-ye" onclick="ins('hil','middleware')" style="width: 100%;"><div class="bt">Python Middleware</div><div class="bs">run_tests.py</div><div class="bi" style="text-align: center; margin-top: 6px;">1. Parse CSV / Manage Queue<br>2. Send Commands (pyserial)<br>3. Evaluate Responses</div></div>
+                            <div class="arr-cell"><div class="arrow-h"></div><div class="head-r"></div></div>
+                            <div class="b" onclick="ins('hil','results')"><div class="bt">📂 results/</div><div class="bi">log_01.txt<br>log_02.txt</div></div>
+                        </div>
+                    </div>
+                    <!-- Arrow down to USB-UART -->
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="arrow-vl"></div>
+                        <div class="lbl">Tx (Serial)    Rx (Serial)</div>
+                        <div class="head-d"></div>
+                    </div>
+                    <!-- USB-UART Zone -->
+                    <div class="z z-pu" style="text-align: center; padding: 20px;">
+                        <div class="zl">Physical Interface</div>
+                        <div class="b b-pk" onclick="ins('hil','usb_uart')" style="width: 260px; margin: 6px auto;"><div class="bt">USB-to-UART Adapter</div><div class="bs">FTDI / CP2102</div></div>
+                    </div>
+                    <!-- Arrow down to FPGA -->
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="arrow-vl"></div>
+                        <div class="lbl">Rx (Wire)    Tx (Wire)</div>
+                        <div class="head-d"></div>
+                    </div>
+                    <!-- FPGA Zone -->
+                    <div class="z z-gr">
+                        <div class="zl">FPGA Hardware Testbed (Verilog)</div>
+                        <div style="display: grid; grid-template-columns: 130px 32px 1fr 32px 130px; align-items: center; padding: 14px 0;">
+                            <div class="b b-gr" onclick="ins('hil','uart_rx')"><div class="bt">UART Rx</div><div class="bs">uart_rx.v</div></div>
+                            <div class="arr-cell"><div class="arrow-h"></div><div class="head-r"></div></div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                                <div class="b b-ye" onclick="ins('hil','top_controller')" style="width: 100%; max-width: 240px;"><div class="bt">Top-Level Controller</div><div class="bs">uart_alu_controller.v</div><div class="bi" style="text-align: center;">1. Decode Command   4. Send Response</div></div>
+                                <div class="b b-or" onclick="ins('hil','alu_core')" style="width: 100%; max-width: 200px;"><div class="bt">16-bit ALU (DUT)</div><div class="bi" style="text-align: center;">2. Drive DUT   3. Capture Result</div></div>
+                            </div>
+                            <div class="arr-cell"><div class="arrow-h"></div><div class="head-r"></div></div>
+                            <div class="b b-gr" onclick="ins('hil','uart_tx')"><div class="bt">UART Tx</div><div class="bs">uart_tx.v</div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="insp" id="i-hil"></div>
+            </div>
+
+            <!-- ============ SW ↔ HW FLOWCHART ============ -->
+            <div class="v" id="v-flow">
+                <button class="vback" onclick="go()">← Back</button>
+                <div class="vtitle">Software ↔ Hardware <strong>Flowchart</strong></div>
+                <div class="vsub">Dual-lane activity diagram: PC Python script and FPGA board during a test cycle.</div>
+                <div class="dc" style="padding: 24px 16px;">
+                    <div class="lanes">
+                        <!-- SW Lane -->
+                        <div class="lane lane-sw">
+                            <div class="lh lh-sw">PC Software (Python)</div>
+                            <div class="step">
+                                <div class="oval" onclick="ins('flow','start')">Start Folder Monitor</div>
+                                <div class="arrow-v"></div><div class="head-d"></div>
+                                <div class="b" onclick="ins('flow','new_file')" style="width: 100%;"><div class="bt">New Test File Uploaded</div></div>
+                                <div class="arrow-v"></div><div class="head-d"></div>
+                                <div class="b b-ye" onclick="ins('flow','read_line')" style="width: 100%;"><div class="bt">Read Next Line in Test</div></div>
+                                <div class="arrow-v"></div><div class="head-d"></div>
+                                <div class="b" onclick="ins('flow','pack')" style="width: 100%;"><div class="bt">Pack Command for Sending</div></div>
+                                <div class="arrow-v"></div><div class="head-d"></div>
+                                <div class="b b-bl" onclick="ins('flow','send_cmd')" style="width: 100%;"><div class="bt">Send Command to Board (Tx)</div></div>
+                                <div class="arrow-vl"></div>
+                                <div class="cross-label">USB Cable →</div>
+                                <div class="arrow-vl"></div><div class="head-d"></div>
+                                <div class="b b-ye" onclick="ins('flow','wait_rx')" style="width: 100%;"><div class="bt">Wait for Board's Answer (Rx)</div></div>
+                                <div class="arrow-v"></div><div class="head-d"></div>
+                                <div class="b b-re" onclick="ins('flow','compare')" style="width: 100%;"><div class="bt">Does Answer Match?</div><div class="bs">Compare Expected vs Actual</div></div>
+                                <div class="arrow-v"></div><div class="head-d"></div>
+                                <div class="b" onclick="ins('flow','log_result')" style="width: 100%;"><div class="bt">Save Pass/Fail Log</div></div>
+                            </div>
+                        </div>
+                        <!-- HW Lane -->
+                        <div class="lane">
+                            <div class="lh lh-hw">Hardware Board (FPGA)</div>
+                            <div class="step" style="margin-top: 80px;">
+                                <div class="b b-ye" onclick="ins('flow','idle')" style="width: 100%;"><div class="bt">Idle: Waiting for Command</div></div>
+                                <div class="arrow-vl"></div>
+                                <div class="cross-label">← USB Cable</div>
+                                <div class="head-d"></div>
+                                <div class="b b-ye" onclick="ins('flow','receive_cmd')" style="width: 100%;"><div class="bt">Receive & Read Command</div></div>
+                                <div class="arrow-v"></div><div class="head-d"></div>
+                                <div class="b b-re" onclick="ins('flow','calculate')" style="width: 100%;"><div class="bt">Do the Calculation</div><div class="bs">ALU Combinational Logic</div></div>
+                                <div class="arrow-v"></div><div class="head-d"></div>
+                                <div class="b b-gr" onclick="ins('flow','send_back')" style="width: 100%;"><div class="bt">Send Answer Back</div></div>
+                                <div class="arrow-v"></div><div class="head-d"></div>
+                                <div class="b b-pu" onclick="ins('flow','display')" style="width: 100%;"><div class="bt">Update Board Display</div><div class="bs">7-Segment Hex Output</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="insp" id="i-flow"></div>
+            </div>
+
+            <!-- ============ FPGA SILICON ARCHITECTURE ============ -->
+            <div class="v" id="v-fpga">
+                <button class="vback" onclick="go()">← Back</button>
+                <div class="vtitle">FPGA Silicon <strong>Architecture</strong></div>
+                <div class="vsub">Internal Verilog module hierarchy within the Nexys A7 boundary. Click any module to inspect I/O signals.</div>
+                <div class="dc">
+                    <div class="z z-ye" style="border-style: solid; border-width: 3px;">
+                        <div class="zl" style="font-size: .82rem;">FPGA Silicon Boundary (Nexys A7)</div>
+                        <!-- Top row: UART Rx → Controller (with ALU inside) → UART Tx -->
+                        <div class="fpga-top">
+                            <div><div class="lbl" style="color: var(--red);">rx_serial_in →</div></div>
+                            <div><div class="b b-gr" onclick="ins('fpga','uart_rx')"><div class="bt">uart_receiver</div><div class="bs">uart_rx.v</div></div></div>
+                            <div><div class="lbl" style="color: var(--blue);">rx_byte_out [7:0]</div><div style="display:flex;align-items:center;gap:4px"><div class="arrow-hl"></div><div class="head-r"></div></div><div class="lbl">rx_data_valid</div></div>
+                            <div>
+                                <div class="b b-ye" onclick="ins('fpga','top_alu')" style="width: 100%;">
+                                    <div class="bt">top_16bit_alu</div>
+                                    <div class="bs" style="margin-bottom: 6px;">Main Control FSM</div>
+                                    <div class="b b-or" onclick="event.stopPropagation(); ins('fpga','alu_comb')" style="margin: 0 auto; width: 160px;">
+                                        <div class="bt" style="font-size: .78rem;">16-bit ALU</div>
+                                        <div class="bs">(Combinational)</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div><div class="lbl" style="color: var(--blue);">tx_byte_data [7:0]</div><div style="display:flex;align-items:center;gap:4px"><div class="arrow-hl"></div><div class="head-r"></div></div><div class="lbl">tx_data_valid</div></div>
+                            <div><div class="b b-gr" onclick="ins('fpga','uart_tx')"><div class="bt">uart_transmitter</div><div class="bs">uart_tx.v</div></div></div>
+                            <div><div class="lbl" style="color: var(--red);">→ tx_serial_out</div></div>
+                        </div>
+                        <div style="text-align: center; margin: 4px 0;"><div class="lbl" style="color: var(--blue);">→ status_leds [3:0]</div></div>
+                        <!-- Bottom row: Clock Divider → 7-Seg Controller → Hex decoder -->
+                        <div class="fpga-bot">
+                            <div><div class="lbl" style="color: var(--red);">clk 100MHz↓</div><div class="lbl">rst →</div></div>
+                            <div><div class="b b-bl" onclick="ins('fpga','clk_div')"><div class="bt">clock_divider</div><div class="bs">refresh_clk</div></div></div>
+                            <div style="display:flex;align-items:center;justify-content:center"><div class="arrow-h"></div><div class="head-r"></div></div>
+                            <div><div class="b b-bl" onclick="ins('fpga','seg_ctrl')"><div class="bt">seven_segment_controller</div><div class="bs">display_value [15:0]</div></div></div>
+                            <div><div class="lbl" style="color: var(--blue);">nibble [3:0]</div><div style="display:flex;align-items:center;gap:4px"><div class="arrow-h"></div><div class="head-r"></div></div></div>
+                            <div><div class="b b-bl" onclick="ins('fpga','hex_seg')"><div class="bt">hex_to_seven_seg</div><div class="bs">Lookup Table</div></div></div>
+                            <div><div class="lbl" style="color: var(--blue);">→ cathodes [7:0]</div><div class="lbl" style="color: var(--blue);">→ anodes [3:0]</div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="insp" id="i-fpga"></div>
+            </div>
+
+            <!-- ============ DETAILED FSM FLOW ============ -->
+            <div class="v" id="v-fsm">
+                <button class="vback" onclick="go()">← Back</button>
+                <div class="vtitle">Detailed <strong>FSM Flow</strong></div>
+                <div class="vsub">State-by-state sequence: Python host script ↔ FPGA Verilog FSM during a single test vector.</div>
+                <div class="dc" style="padding: 24px 16px;">
+                    <div class="lanes">
+                        <!-- Host PC Lane -->
+                        <div class="lane lane-sw">
+                            <div class="lh lh-sw">Host PC (Python Script)</div>
+                            <div class="step">
+                                <div class="oval" onclick="ins('fsm','watchdog')">Start Watchdog</div>
+                                <div class="arrow-v"></div><div class="head-d"></div>
+                                <div class="b" onclick="ins('fsm','csv_event')" style="width: 100%;"><div class="bt">Event: .csv created</div></div>
+                                <div class="arrow-v"></div><div class="head-d"></div>
+                                <div class="b b-ye" onclick="ins('fsm','loop')" style="width: 100%;"><div class="bt">Loop: For each Row</div></div>
+                                <div class="arrow-v"></div><div class="head-d"></div>
+                                <div class="b" onclick="ins('fsm','pack_payload')" style="width: 100%;"><div class="bt">Pack Payload</div><div class="bs">[Opcode, OpA, OpB]</div></div>
+                                <div class="arrow-v"></div><div class="head-d"></div>
+                                <div class="b b-bl" onclick="ins('fsm','uart_tx_py')" style="width: 100%;"><div class="bt">UART TX: Send Bytes</div></div>
+                                <div class="arrow-vl"></div>
+                                <div class="cross-label">Serial Link (TX → RX)</div>
+                                <div class="arrow-vl"></div><div class="head-d"></div>
+                                <div class="b b-ye" onclick="ins('fsm','wait_result')" style="width: 100%;"><div class="bt">Wait for Result Byte</div></div>
+                                <div class="arrow-v"></div><div class="head-d"></div>
+                                <div class="b b-re" onclick="ins('fsm','compare_fsm')" style="width: 100%;"><div class="bt">Compare: Actual vs Expected</div></div>
+                                <div class="arrow-v"></div><div class="head-d"></div>
+                                <div class="b" onclick="ins('fsm','log_fsm')" style="width: 100%;"><div class="bt">Log Result (PASS/FAIL)</div></div>
+                            </div>
+                        </div>
+                        <!-- FPGA Lane -->
+                        <div class="lane">
+                            <div class="lh lh-hw">FPGA (Verilog Hardware)</div>
+                            <div class="step" style="margin-top: 54px;">
+                                <div class="b b-ye" onclick="ins('fsm','state_idle')" style="width: 100%;"><div class="bt">State: IDLE</div><div class="bs">Wait for Opcode</div></div>
+                                <div class="arrow-v"></div><div class="lbl">rx_done</div><div class="head-d"></div>
+                                <div class="b b-ye" onclick="ins('fsm','state_wait_a')" style="width: 100%;"><div class="bt">State: WAIT_A</div><div class="bs">Wait for Operand A</div></div>
+                                <div class="arrow-v"></div><div class="lbl">rx_done</div><div class="head-d"></div>
+                                <div class="b b-ye" onclick="ins('fsm','state_wait_b')" style="width: 100%;"><div class="bt">State: WAIT_B</div><div class="bs">Wait for Operand B</div></div>
+                                <div class="arrow-v"></div><div class="lbl">rx_done</div><div class="head-d"></div>
+                                <div class="b b-re" onclick="ins('fsm','state_calc')" style="width: 100%;"><div class="bt">State: CALCULATE</div><div class="bs">ALU: Add/Sub/Mul/Div</div></div>
+                                <div class="arrow-v"></div><div class="head-d"></div>
+                                <div class="b b-gr" onclick="ins('fsm','state_transmit')" style="width: 100%;"><div class="bt">State: TRANSMIT</div><div class="bs">Send Result Byte</div></div>
+                                <div class="arrow-v"></div><div class="head-d"></div>
+                                <div class="b b-pu" onclick="ins('fsm','seven_seg')" style="width: 100%;"><div class="bt">7-Seg Display Driver</div><div class="bs">Show Hex or "Erro"</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="insp" id="i-fsm"></div>
+            </div>
+
+        </div>
+    </div>
+
+<script>
+const D={ai:{user_input:{t:"User Input",d:"The engineer specifies test boundaries — operation type (ADD, SUB, MUL, DIV), value ranges, and edge case priorities through the GUI control panel.",g:["User Interaction","GUI"]},gui_gen:{t:"Python GUI — Control Panel",d:"CustomTkinter settings dialog for configuring AI test generation: operation type, value range bounds, number of vectors, edge case inclusion.",g:["CustomTkinter","Frontend","Python"]},backend_gen:{t:"Python Backend — Format Prompt",d:"Constructs a structured prompt for Gemini including the device profile schema (input names, bit-widths, valid opcodes) so the AI understands hardware constraints.",g:["Prompt Engineering","Backend"]},gemini_gen:{t:"Gemini API — Test Generation",d:"Gemini 2.0 Flash receives the formatted prompt and generates a JSON array of test vectors targeting edge cases and boundary conditions.",g:["Gemini 2.0 Flash","REST API","JSON"]},user_output:{t:"CSV Test File Output",d:"Validated AI-generated vectors saved as CSV in input_queue/. The watchdog auto-detects and begins HIL execution.",g:["CSV","File I/O"]},finalise:{t:"Finalise Test — Validate & Save",d:"Validates every row against device profile constraints (bit-width limits, valid opcodes). Invalid rows flagged and removed to protect the FPGA.",g:["Validation","Safety"]},format_resp:{t:"Format Gemini Response",d:"Parses the raw Gemini API JSON response, extracting the test vector array. Handles malformed responses gracefully with fallback extraction.",g:["JSON Parsing","Error Handling"]},log_input:{t:"Result Log File",d:"Execution log from a HIL test run: per-vector PASS/FAIL results, expected vs actual values, timing data, and error codes.",g:["Log File","Input"]},gui_log:{t:"Python GUI — Load Log File",d:"Analysis tab allowing users to browse and select a completed test log file for AI-powered analysis.",g:["File Browser","CustomTkinter"]},backend_log:{t:"Python Backend — Format Analysis Prompt",d:"Constructs an analysis prompt with the full log text, device profile spec, and instructions to identify failure patterns and root causes.",g:["Prompt Engineering","Diagnostics"]},gemini_log:{t:"Gemini API — Log Analysis",d:"Analyses failure data, identifying patterns (consistent failures on specific opcodes, overflow conditions) and returns a diagnostic summary.",g:["Gemini 2.0 Flash","Analysis"]},display_diag:{t:"Display Diagnostic Summary",d:"GUI renders the AI diagnostic summary highlighting probable root causes, affected test vectors, and corrective actions.",g:["GUI Display","Summary"]},extract_summ:{t:"Extract AI Summary",d:"Parses Gemini response for structured diagnostic fields: root cause, confidence level, affected operations, next steps.",g:["JSON Parsing","Processing"]},diag_output:{t:"User — Failure Cause",d:"Engineer receives an AI-generated diagnostic suggesting probable cause of hardware failures for faster debugging.",g:["Output","User"]}},hil:{csv_input:{t:"Input Queue Directory",d:"Monitored folder (input_queue/) where CSV test files are placed. Python watchdog auto-detects new files and queues them for HIL execution.",g:["Watchdog","File System","Queue"]},middleware:{t:"Python Middleware (run_tests.py)",d:"Core orchestration: monitors input queue, parses CSVs row-by-row, packs binary commands via pyserial, receives responses, evaluates PASS/FAIL.",g:["Python","pyserial","Orchestrator"]},results:{t:"Results Directory",d:"Timestamped logs for every test run: per-vector results, timing metrics, throughput stats, communication errors.",g:["Logging","Output","Timestamps"]},usb_uart:{t:"USB-to-UART Adapter",d:"Physical bridge between PC USB and FPGA serial pins. FTDI FT232 or CP2102 at 115200 baud, 8N1. Handles 5V ↔ 3.3V voltage translation.",g:["FTDI","CP2102","115200 Baud","8N1"]},uart_rx:{t:"UART Receiver (uart_rx.v)",d:"Samples serial input at 16× baud rate, detects start bits, shifts in 8 data bits LSB-first, validates stop bit, asserts rx_data_valid.",g:["Verilog","UART","16× Oversampling"]},top_controller:{t:"Top-Level Controller (uart_alu_controller.v)",d:"Main FSM: IDLE → WAIT_A → WAIT_B → CALCULATE → TRANSMIT. Decodes opcode byte and routes operands to the ALU.",g:["FSM","Verilog","Controller"]},alu_core:{t:"16-bit ALU (Device Under Test)",d:"Purely combinational 16-bit ALU: ADD, SUB, MUL, DIV with NZCV status flags. The actual hardware being verified.",g:["Combinational","16-bit","NZCV Flags"]},uart_tx:{t:"UART Transmitter (uart_tx.v)",d:"Serialises 8-bit result with start/stop bits, shifts out on tx_serial_out at the configured baud rate.",g:["Verilog","UART","Transmitter"]}},flow:{start:{t:"Start Folder Monitor",d:"Python watchdog observer on input_queue/ listening for FileCreated events matching *.csv pattern.",g:["Watchdog","Observer"]},new_file:{t:"New Test File Uploaded",d:"Watchdog triggers the execution pipeline when a new CSV appears. File is locked to prevent concurrent access.",g:["File Event","Trigger"]},read_line:{t:"Read Next Line in Test",d:"CSV reader iterates row-by-row. Each row contains operation mnemonic and operand values.",g:["CSV Reader","Iterator"]},pack:{t:"Pack Command for Sending",d:"DeviceProfile.pack_command() converts dict → 3-byte binary packet: [opcode, operand_a, operand_b].",g:["Binary Packing","DeviceProfile"]},send_cmd:{t:"Send Command to Board (Tx)",d:"CommDriver.send_packet() transmits packed bytes over serial at 115200 baud. Buffered and blocking.",g:["pyserial","Transmit"]},wait_rx:{t:"Wait for Board's Answer (Rx)",d:"Blocking read with 2-second timeout. Waits for response_size bytes defined by DeviceProfile.",g:["Blocking Read","Timeout"]},compare:{t:"Does Answer Match Expectation?",d:"Compares unpacked hardware response against CSV expected values. Full match = PASS; any discrepancy = FAIL.",g:["Validation","Golden Model","PASS/FAIL"]},log_result:{t:"Save Pass/Fail Log",d:"Result appended to log: row number, operation, inputs, expected, actual, PASS/FAIL, latency in ms.",g:["Logging","Metrics"]},idle:{t:"FPGA Idle: Waiting",d:"FSM in IDLE state, continuously sampling UART Rx line for a valid start bit.",g:["IDLE State","FSM"]},receive_cmd:{t:"Receive & Read Command",d:"UART receiver deserialises bytes. FSM collects all 3 command bytes (opcode, operand A, operand B).",g:["UART Rx","3 Bytes"]},calculate:{t:"Do the Calculation",d:"ALU performs arithmetic in a single clock cycle (combinational). Result and flags immediately available.",g:["Combinational","Single Cycle"]},send_back:{t:"Send Answer Back",d:"FSM triggers UART transmitter to send result bytes to PC. Returns to IDLE.",g:["UART Tx","Response"]},display:{t:"Update Board Display",d:"Result shown as hex on Nexys A7 4-digit 7-segment display. Division-by-zero shows 'Erro'.",g:["7-Segment","Visual Feedback"]}},fpga:{uart_rx:{t:"uart_receiver (uart_rx.v)",d:"Async UART receive with 16× oversampling. Outputs rx_byte_out[7:0], asserts rx_data_valid for 1 clock cycle. Start bit noise filtering.",g:["Verilog","16× Oversampling"]},top_alu:{t:"top_16bit_alu — Main FSM",d:"Top module with 5-state FSM (IDLE, WAIT_A, WAIT_B, CALCULATE, TRANSMIT). Routes rx_byte_out to registers per state.",g:["FSM","5 States","Top Module"]},alu_comb:{t:"Integrated 16-bit ALU (Combinational)",d:"Pure combinational: ADD, SUB, MUL, DIV. NZCV flags. Division-by-zero outputs 0xFFFF + overflow flag. No clock dependency.",g:["Combinational","NZCV","Div-by-Zero"]},uart_tx:{t:"uart_transmitter (uart_tx.v)",d:"Loads tx_byte_data into shift register, outputs start + 8 data bits (LSB first) + stop bit. Asserts tx_done.",g:["Verilog","Shift Register"]},clk_div:{t:"clock_divider",d:"Divides 100 MHz system clock to ~1 kHz refresh for 7-segment multiplexing. Counter-based, parameterised divisor.",g:["100 MHz → 1 kHz","Counter"]},seg_ctrl:{t:"seven_segment_controller",d:"Multiplexes 16-bit display_value across 4 digits at refresh_clk rate. Outputs current_nibble[3:0] and anode select.",g:["Multiplexer","4-Digit"]},hex_seg:{t:"hex_to_seven_segment",d:"Combinational LUT: 4-bit nibble (0x0–0xF) → 7-segment cathode pattern. Active-low for Nexys A7 common-anode display.",g:["LUT","Active-Low"]}},fsm:{watchdog:{t:"Start Watchdog",d:"Initialises filesystem watchdog observer on input_queue/ for new .csv files.",g:["Watchdog","Daemon"]},csv_event:{t:"Event: .csv file created",d:"on_created callback fires when new CSV detected. File path queued for processing.",g:["Event Callback"]},loop:{t:"Loop: For each Row",d:"Main loop iterates every CSV row, extracting operation mnemonic, operands, and expected outputs.",g:["Iterator","CSV"]},pack_payload:{t:"Pack Payload [Opcode, OpA, OpB]",d:"Maps operation → binary opcode (ADD→0x01, SUB→0x02, MUL→0x03, DIV→0x04). Packs operands as unsigned 8-bit.",g:["Binary Packing","Opcode Map"]},uart_tx_py:{t:"UART TX — Send Bytes",d:"PySerial write() sends 3-byte payload at 115200 baud with inter-byte delay to prevent FIFO overflow.",g:["pyserial","115200 Baud"]},wait_result:{t:"Wait for Result Byte",d:"serial.read() with 2s timeout. Timeout triggers FAIL and error recovery.",g:["2s Timeout","Error Recovery"]},compare_fsm:{t:"Compare: Actual vs Expected",d:"Field-by-field comparison with bit-level difference logging for debugging.",g:["Comparison","Bit-Level"]},log_fsm:{t:"Log Result (PASS/FAIL)",d:"Results appended to log and displayed in GUI's real-time table. Stats updated live.",g:["Real-Time Logging"]},state_idle:{t:"State: IDLE",d:"Initial/return state. Waits for rx_data_valid (first byte = opcode). Latches opcode → WAIT_A.",g:["FSM State","Opcode Latch"]},state_wait_a:{t:"State: WAIT_A",d:"Waits for second rx_data_valid (Operand A). Latches into op_a register → WAIT_B.",g:["FSM State","Register Latch"]},state_wait_b:{t:"State: WAIT_B",d:"Waits for third rx_data_valid (Operand B). Latches into op_b. ALU inputs populated → CALCULATE.",g:["FSM State","Final Operand"]},state_calc:{t:"State: CALCULATE",d:"Combinational ALU produces result immediately. Waits 1 cycle for stabilisation → TRANSMIT.",g:["ALU Trigger","1 Cycle"]},state_transmit:{t:"State: TRANSMIT",d:"Asserts tx_data_valid for UART transmitter. Waits for tx_done → back to IDLE. Also drives 7-seg.",g:["UART Tx","Return to IDLE"]},seven_seg:{t:"7-Seg Display Driver",d:"Shows ALU result as 4-digit hex on Nexys A7. Division-by-zero displays 'Erro'.",g:["Visual Output","Error Indication"]}}};
+const N={home:"Model Explorer",ai:"AI Integration",hil:"HIL System Overview",flow:"SW ↔ HW Flow",fpga:"FPGA Architecture",fsm:"Detailed FSM"};
+function go(){sw('home')}function nav(id){sw(id)}
+function sw(id){
+    document.querySelectorAll('.v').forEach(v=>v.classList.remove('on'));
+    document.getElementById('v-'+id).classList.add('on');
+    document.querySelectorAll('.ti').forEach(t=>t.classList.remove('on'));
+    (document.getElementById('t-'+id)||document.getElementById('t-home')).classList.add('on');
+    document.getElementById('bc').innerHTML=id==='home'?'<span onclick="go()" class="cur">Model Explorer</span>':`<span onclick="go()">Model Explorer</span><span style="color:var(--bdr);cursor:default">›</span><span class="cur">${N[id]}</span>`;
+    document.querySelectorAll('.insp').forEach(p=>p.classList.remove('show'));
+    document.querySelectorAll('.b.on').forEach(b=>b.classList.remove('on'));
+    document.getElementById('main').scrollTop=0;
+}
+function ins(dia,bid){
+    const d=D[dia]?.[bid];if(!d)return;
+    const v=document.getElementById('v-'+dia);
+    if(v)v.querySelectorAll('.b.on').forEach(b=>b.classList.remove('on'));
+    if(event&&event.currentTarget)event.currentTarget.classList.add('on');
+    const p=document.getElementById('i-'+dia);
+    if(p){
+        const tags=d.g?d.g.map(t=>`<span class="tag">${t}</span>`).join(''):'';
+        p.innerHTML=`<div class="insp-t">${d.t}</div><p class="insp-d">${d.d}</p><div style="margin-top:8px">${tags}</div>`;
+        p.classList.add('show');p.style.animation='none';p.offsetHeight;p.style.animation=null;
+        p.scrollIntoView({behavior:'smooth',block:'nearest'});
+    }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { profile } from '../data/profile';
+---
+
+<BaseLayout title="Contact" description="Get in touch with Harry Rogers: Test & FPGA Verification Engineer.">
+  <section class="section contact-section">
+    <div class="container contact-container">
+      
+      <div class="contact-header">
+        <p class="eyebrow">Connect</p>
+        <h1>Get in Touch</h1>
+        <p class="muted intro">
+          Whether you’re interested in collaborating on FPGA hardware verification projects, test automation, 
+          or technical inquiries, feel free to drop a message.
+        </p>
+      </div>
+
+      <div class="grid grid-2 contact-grid">
+        <!-- Contact Info Card -->
+        <div class="card info-card">
+          <h3>Direct Channels</h3>
+          <p class="muted">Prefer reaching out directly? Feel free to send an email or connect on LinkedIn.</p>
+
+          <ul class="direct-list">
+            <li>
+              <strong class="channel-label">Email:</strong>
+              <a href={`mailto:${profile.email}`}>{profile.email}</a>
+            </li>
+            <li>
+              <strong class="channel-label">LinkedIn:</strong>
+              <a href={profile.links.linkedin} target="_blank" rel="noopener">linkedin.com/in/harryrogers</a>
+            </li>
+            <li>
+              <strong class="channel-label">GitHub:</strong>
+              <a href={profile.links.github} target="_blank" rel="noopener">github.com/HarryRogers073</a>
+            </li>
+            <li>
+              <strong class="channel-label">Location:</strong>
+              <span>{profile.location}</span>
+            </li>
+          </ul>
+
+          <div class="availability-badge">
+            <span class="status-indicator"></span>
+            <span>Open to technical discussions and verification challenges</span>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="card form-card">
+          <h3>Send a Message</h3>
+          <form id="contact-form" class="contact-form">
+            <!-- FormSubmit Anti-Spam Honeypot -->
+            <input type="text" name="_honey" style="display:none" />
+            <input type="hidden" name="_subject" value="New message from www.harry-rogers.com" />
+
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" required placeholder="e.g. Jane Doe" />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required placeholder="jane@example.com" />
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" required placeholder="Project discussion / Inquiry" />
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project or inquiry..."></textarea>
+            </div>
+
+            <button type="submit" id="submit-btn" class="btn submit-btn">
+              <span>Send Message</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+
+            <div id="form-feedback" class="form-feedback" style="display:none;"></div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  const form = document.getElementById('contact-form');
+  const btn = document.getElementById('submit-btn');
+  const feedback = document.getElementById('form-feedback');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.innerText = 'Sending message...';
+    feedback.style.display = 'none';
+
+    const formData = new FormData(form);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/harryrogers073@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: json
+      });
+
+      if (res.ok) {
+        feedback.className = 'form-feedback success';
+        feedback.innerText = '✓ Thank you! Your message has been sent successfully. I will get back to you shortly.';
+        feedback.style.display = 'block';
+        form.reset();
+      } else {
+        throw new Error('Server returned error response');
+      }
+    } catch (err) {
+      feedback.className = 'form-feedback error';
+      feedback.innerText = '✕ Oops! Could not send message automatically. Please email me directly at harryrogers073@gmail.com.';
+      feedback.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<span>Send Message</span>';
+    }
+  });
+</script>
+
+<style>
+  .contact-container { max-width: 54rem; }
+  .intro { font-size: 1.15rem; margin-bottom: 2.5rem; }
+  .direct-list { list-style: none; padding: 0; margin: 1.5rem 0; font-size: 0.95rem; }
+  .direct-list li { margin: 0.75rem 0; display: flex; flex-direction: column; }
+  .channel-label { font-size: 0.8rem; text-transform: uppercase; color: var(--muted); letter-spacing: 0.05em; }
+  .direct-list a { color: var(--text); text-decoration: none; }
+  .direct-list a:hover { color: var(--brand); }
+
+  .availability-badge { display: flex; align-items: center; gap: 0.6rem; padding: 0.75rem 1rem; background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; font-size: 0.85rem; margin-top: 2rem; }
+  .status-indicator { width: 8px; height: 8px; border-radius: 50%; background: #10b981; }
+
+  .form-group { margin-bottom: 1.25rem; }
+  .form-group label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .form-group input, .form-group textarea {
+    width: 100%; padding: 0.75rem 1rem; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--surface); color: var(--text);
+    font-family: inherit; font-size: 0.95rem;
+  }
+  .form-group input:focus, .form-group textarea:focus {
+    outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 15%, transparent);
+  }
+
+  .submit-btn { width: 100%; justify-content: center; cursor: pointer; border: none; font-size: 1rem; }
+  .form-feedback { margin-top: 1.25rem; padding: 0.85rem 1rem; border-radius: 8px; font-size: 0.92rem; }
+  .form-feedback.success { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+  .form-feedback.error { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+</style>

@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { profile, about, awards } from '../data/profile';
+---
+
+<BaseLayout title="About" description="About Harry Rogers: Test Engineer & FPGA Verification Specialist, IET Prize Winner 2026.">
+  <section class="section about-section">
+    <div class="container about-layout">
+      
+      <div class="about-sidebar">
+        <div class="profile-card card">
+          <img src="/images/harry-rogers.jpg" alt="Harry Rogers" class="profile-avatar" />
+          <h2>{profile.name}</h2>
+          <p class="role-text">{profile.title}</p>
+          <p class="location-line">📍 {profile.location}</p>
+          
+          <div class="actions vertical">
+            <a class="btn" href="/contact">Get in Touch →</a>
+            <a class="btn ghost" href={profile.cvPdf} download>Download CV (PDF)</a>
+          </div>
+
+          <hr />
+
+          <ul class="meta-links">
+            <li>
+              <span class="muted">Email</span>
+              <a href={`mailto:${profile.email}`}>{profile.email}</a>
+            </li>
+            <li>
+              <span class="muted">LinkedIn</span>
+              <a href={profile.links.linkedin} target="_blank" rel="noopener">linkedin.com/in/harryrogers</a>
+            </li>
+            <li>
+              <span class="muted">GitHub</span>
+              <a href={profile.links.github} target="_blank" rel="noopener">github.com/HarryRogers073</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="about-main">
+        <p class="eyebrow">Biography</p>
+        <h1>Engineering with Precision &amp; Rigour</h1>
+
+        <div class="prose bio-paragraphs">
+          {about.map((p) => (
+            <p>{p}</p>
+          ))}
+        </div>
+
+        <div class="honors-card card">
+          <h3>Academic Distinction &amp; Awards</h3>
+          <ul class="awards-detailed-list">
+            {awards.map((a) => (
+              <li>
+                <div class="award-header">
+                  <strong>{a.title} ({a.year})</strong>
+                  <span class="muted">{a.org}</span>
+                </div>
+                {a.title.includes('IET Prize') && (
+                  <p class="award-desc">
+                    Awarded for exceptional academic excellence and first-class performance in BEng Electronic &amp; Computer Engineering at the University of Brighton. 
+                    <a href={profile.ietCertificate} target="_blank" rel="noopener">View Official Certificate ↗</a>
+                  </p>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card career-highlight-card">
+          <h3>Professional Philosophy</h3>
+          <p class="muted">
+            Hardware verification is more than asserting pass/fail states; it is about building automated, observable, 
+            and resilient test environments that catch failure modes before tape-out or field deployment. 
+            Whether instrumenting multi-sensor electro-optical directors in defence rigs or developing custom FPGA testbenches, 
+            I prioritize clarity, structured telemetry, and reproducible automation.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-layout { display: grid; grid-template-columns: 20rem 1fr; gap: 3rem; align-items: flex-start; }
+  .profile-card { text-align: center; }
+  .profile-avatar { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.25rem; border: 3px solid var(--border); }
+  .profile-card h2 { margin: 0 0 0.25rem; font-size: 1.4rem; }
+  .role-text { color: var(--brand); font-size: 0.95rem; font-weight: 500; margin: 0 0 0.25rem; }
+  .location-line { font-size: 0.85rem; color: var(--muted); margin: 0 0 1.25rem; }
+  
+  .actions.vertical { flex-direction: column; gap: 0.5rem; }
+  .actions.vertical .btn { width: 100%; justify-content: center; }
+
+  .meta-links { list-style: none; padding: 0; margin: 0; text-align: left; font-size: 0.88rem; }
+  .meta-links li { margin: 0.6rem 0; display: flex; flex-direction: column; }
+  .meta-links a { color: var(--text); text-decoration: none; word-break: break-all; }
+  .meta-links a:hover { color: var(--brand); }
+
+  .bio-paragraphs { font-size: 1.125rem; line-height: 1.7; margin-bottom: 2.5rem; }
+  .honors-card { margin-bottom: 2rem; }
+  .awards-detailed-list { list-style: none; padding: 0; margin: 1rem 0 0; }
+  .awards-detailed-list li { padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
+  .awards-detailed-list li:last-child { border-bottom: none; }
+  .award-header { display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 0.35rem; }
+  .award-desc { font-size: 0.92rem; color: var(--muted); margin: 0.25rem 0 0; }
+
+  .career-highlight-card h3 { margin-top: 0; }
+
+  @media (max-width: 860px) {
+    .about-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .about-sidebar { max-width: 24rem; margin-inline: auto; width: 100%; }
+  }
+</style>

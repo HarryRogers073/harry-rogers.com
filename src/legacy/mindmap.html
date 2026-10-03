@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry Rogers — Interactive Mind Map</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --accent-blue: #0ea5e9;
+            --accent-teal: #14b8a6;
+            --accent-purple: #8b5cf6;
+            --accent-pink: #ec4899;
+            --accent-orange: #f97316;
+            --accent-green: #22c55e;
+            --accent-yellow: #eab308;
+            --accent-red: #ef4444;
+            --text-primary: #0f172a;
+            --text-muted: #475569;
+            --glow-blue: rgba(14, 165, 233, 0.15);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html, body {
+            width: 100%; height: 100%;
+            background: var(--bg);
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            color: var(--text-primary);
+        }
+
+        body {
+            background: 
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(14, 165, 233, 0.08), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(139, 92, 246, 0.06), transparent),
+                var(--bg);
+        }
+
+        canvas {
+            display: block;
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+        }
+
+        /* Floating particle layer */
+        .particles {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Tooltip / expansion card */
+        .expansion-card {
+            position: absolute;
+            pointer-events: auto;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.92));
+            border: 1px solid rgba(14, 165, 233, 0.25);
+            border-radius: 12px;
+            padding: 14px 16px;
+            max-width: 320px;
+            min-width: 240px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1), 0 0 20px rgba(14, 165, 233, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            opacity: 0;
+            transform: scale(0.9) translateY(8px);
+            transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 50;
+        }
+        .expansion-card.visible {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        .expansion-card .card-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+        }
+
+        .expansion-card .card-snippet {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            line-height: 1.55;
+            margin-bottom: 10px;
+        }
+
+        .expansion-card .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11.5px;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 5px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            border: 1px solid;
+        }
+        .expansion-card .card-link:hover {
+            filter: brightness(1.2);
+            transform: translateX(2px);
+        }
+        .expansion-card .card-link svg {
+            width: 12px; height: 12px;
+        }
+
+        /* Instruction hint */
+        .hint {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            opacity: 0.7;
+            animation: pulse-hint 2.5s ease-in-out infinite;
+            z-index: 10;
+            pointer-events: none;
+            text-align: center;
+        }
+        @keyframes pulse-hint {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.85; }
+        }
+
+        /* Subtitle */
+        .subtitle {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="subtitle">Interactive Portfolio Explorer</div>
+    <canvas id="canvas"></canvas>
+    <div id="cards-layer"></div>
+    <div class="hint">Click a letter to explore →</div>
+
+    <script>
+    (() => {
+        // ===================================================================
+        // DATA: Each letter of HARRY ROGERS mapped to real website content
+        // ===================================================================
+        const LETTERS = [
+            {
+                letter: 'H',
+                word: 'Hardware',
+                color: '#0ea5e9',
+                snippet: 'Built a modular Hardware-in-the-Loop (HIL) Test Framework that translates Python vectors to physical Xilinx Artix-7 FPGA gates in real-time.',
+                linkText: 'Dissertation Project →',
+                linkUrl: 'https://www.harry-rogers.com/dissertation-project',
+                pageName: 'Dissertation'
+            },
+            {
+                letter: 'A',
+                word: 'Automated',
+                color: '#14b8a6',
+                snippet: 'An Automated Test Framework for Hardware-in-the-Loop Validation of FPGA Designs — comparing physical silicon outputs against golden models.',
+                linkText: 'Dissertation Project →',
+                linkUrl: 'https://www.harry-rogers.com/dissertation-project',
+                pageName: 'Dissertation'
+            },
+            {
+                letter: 'R',
+                word: 'Real-Time',
+                color: '#8b5cf6',
+                snippet: 'Real-time verification pipeline — the Comm Driver pushes bytes down the physical link cable to the FPGA board, with fully buffered transactions.',
+                linkText: 'Dissertation Project →',
+                linkUrl: 'https://www.harry-rogers.com/dissertation-project',
+                pageName: 'Dissertation'
+            },
+            {
+                letter: 'R',
+                word: 'Recognition',
+                color: '#ec4899',
+                snippet: 'IET Prize Winner 2026 — awarded for distinction in BEng Electronic & Computer Engineering at University of Brighton.',
+                linkText: 'About Me →',
+                linkUrl: 'https://www.harry-rogers.com/about',
+                pageName: 'About'
+            },
+            {
+                letter: 'Y',
+                word: 'Year-Out',
+                color: '#f97316',
+                snippet: '12-month placement at BAE Systems — hands-on experience in Integration, Verification & Validation (IV&V) and lab testbench setups.',
+                linkText: 'About Me →',
+                linkUrl: 'https://www.harry-rogers.com/about',
+                pageName: 'About'
+            },
+            // Space between HARRY and ROGERS
+            {
+                letter: ' ',
+                word: '',
+                color: 'transparent',
+                snippet: '',
+                linkText: '',
+                linkUrl: '',
+                pageName: '',
+                isSpacer: true
+            },
+            {
+                letter: 'R',
+                word: 'Reliable',
+                color: '#22c55e',
+                snippet: 'Specialising in reliable verification workflows — comparing physical silicon outputs against golden models for timing & logic coverage.',
+                linkText: 'CV →',
+                linkUrl: 'https://www.harry-rogers.com/cv',
+                pageName: 'CV'
+            },
+            {
+                letter: 'O',
+                word: 'Optics',
+                color: '#0ea5e9',
+                snippet: 'Test Engineer at Chess Dynamics — testing electro-optical surveillance systems for defence and security applications.',
+                linkText: 'About Me →',
+                linkUrl: 'https://www.harry-rogers.com/about',
+                pageName: 'About'
+            },
+            {
+                letter: 'G',
+                word: 'Graduate',
+                color: '#eab308',
+                snippet: 'First-Class Honours degree in BEng Electronic and Computer Engineering from the University of Brighton, Class of 2026.',
+                linkText: 'About Me →',
+                linkUrl: 'https://www.harry-rogers.com/about',
+                pageName: 'About'
+            },
+            {
+                letter: 'E',
+                word: 'Engineering',
+                color: '#ef4444',
+                snippet: 'Electronic & Computer Engineering — specialising in FPGA & Verilog, HIL Testing, electro-optics, and embedded systems design.',
+                linkText: 'CV →',
+                linkUrl: 'https://www.harry-rogers.com/cv',
+                pageName: 'CV'
+            },
+            {
+                letter: 'R',
+                word: 'Research',
+                color: '#a78bfa',
+                snippet: 'Dissertation research: VAIDAR — a Python-driven test engine with modular device profiles and serial communication drivers for FPGA validation.',
+                linkText: 'Dissertation Project →',
+                linkUrl: 'https://www.harry-rogers.com/dissertation-project',
+                pageName: 'Dissertation'
+            },
+            {
+                letter: 'S',
+                word: 'Systems',
+                color: '#2dd4bf',
+                snippet: 'Systems Engineering background from BAE Systems and Chess Dynamics — skilled in integration, test automation, and multi-disciplinary collaboration.',
+                linkText: 'Contact →',
+                linkUrl: 'https://www.harry-rogers.com/contact',
+                pageName: 'Contact'
+            }
+        ];
+
+        // Filter out spacer for rendering branches
+        const ACTIVE_LETTERS = LETTERS.filter(l => !l.isSpacer);
+
+        // ===================================================================
+        // CANVAS SETUP
+        // ===================================================================
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const cardsLayer = document.getElementById('cards-layer');
+
+        let W, H, cx, cy;
+        let dpr = window.devicePixelRatio || 1;
+
+        function resize() {
+            W = window.innerWidth;
+            H = window.innerHeight;
+            canvas.width = W * dpr;
+            canvas.height = H * dpr;
+            canvas.style.width = W + 'px';
+            canvas.style.height = H + 'px';
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            cx = W / 2;
+            cy = H / 2;
+            layoutNodes();
+        }
+
+        // ===================================================================
+        // STATE
+        // ===================================================================
+        const expandedSet = new Set();
+        let hoveredIdx = -1;
+        let animT = 0;
+
+        // Node positions
+        let centerBox = { x: 0, y: 0, w: 0, h: 0 };
+        let letterNodes = [];
+        let wordNodes = [];
+
+        // Particles
+        const particles = [];
+        for (let i = 0; i < 60; i++) {
+            particles.push({
+                x: Math.random(),
+                y: Math.random(),
+                r: Math.random() * 1.5 + 0.3,
+                speed: Math.random() * 0.0003 + 0.0001,
+                phase: Math.random() * Math.PI * 2,
+                alpha: Math.random() * 0.3 + 0.05,
+            });
+        }
+
+        // ===================================================================
+        // LAYOUT
+        // ===================================================================
+        function layoutNodes() {
+            // Central box
+            const boxW = Math.min(340, W * 0.35);
+            const boxH = 56;
+            centerBox = { x: cx - boxW / 2, y: cy - boxH / 2, w: boxW, h: boxH };
+
+            letterNodes = [];
+            wordNodes = [];
+
+            let idx = 0;
+            const harryCount = 5;
+            const rogersCount = 6;
+            const padding = Math.min(W * 0.1, 80);
+            const usableWidth = W - padding * 2;
+            const harrySpacing = usableWidth / Math.max(1, harryCount - 1);
+            const rogersSpacing = usableWidth / Math.max(1, rogersCount - 1);
+
+            for (let i = 0; i < LETTERS.length; i++) {
+                const l = LETTERS[i];
+                if (l.isSpacer) continue;
+
+                const isHarry = i < 5;
+                const posInGroup = isHarry ? i : i - 6;
+                const groupCount = isHarry ? harryCount : rogersCount;
+                const spacing = isHarry ? harrySpacing : rogersSpacing;
+
+                const groupWidth = spacing * (groupCount - 1);
+                const startX = cx - groupWidth / 2;
+                const xPos = startX + posInGroup * spacing;
+
+                const waveProgress = posInGroup / Math.max(1, groupCount - 1);
+                const wave = Math.sin(waveProgress * Math.PI) * (H * 0.1);
+
+                let yPos;
+                if (isHarry) {
+                    yPos = cy - H * 0.22 - wave; // Curve upwards
+                } else {
+                    yPos = cy + H * 0.22 + wave; // Curve downwards
+                }
+
+                letterNodes.push({
+                    x: xPos,
+                    y: yPos,
+                    idx: idx,
+                    dataIdx: i,
+                    letter: l.letter,
+                    word: l.word,
+                    color: l.color,
+                    data: l,
+                    scaleAnim: 0,
+                    glowAnim: 0,
+                });
+
+                // Word node
+                wordNodes.push({
+                    x: xPos,
+                    y: isHarry ? yPos + 80 : yPos - 80,
+                    visible: false,
+                });
+
+                idx++;
+            }
+        }
+
+        // ===================================================================
+        // DRAWING
+        // ===================================================================
+        function drawParticles() {
+            for (const p of particles) {
+                const px = (p.x + Math.sin(animT * p.speed * 500 + p.phase) * 0.02) * W;
+                const py = (p.y + Math.cos(animT * p.speed * 400 + p.phase) * 0.015) * H;
+                ctx.beginPath();
+                ctx.arc(px, py, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(148, 163, 184, ${p.alpha})`;
+                ctx.fill();
+            }
+        }
+
+        function hexToRgb(hex) {
+            const r = parseInt(hex.slice(1, 3), 16);
+            const g = parseInt(hex.slice(3, 5), 16);
+            const b = parseInt(hex.slice(5, 7), 16);
+            return { r, g, b };
+        }
+
+        function drawConnections() {
+            for (const node of letterNodes) {
+                const isExpanded = expandedSet.has(node.idx);
+                const isHovered = hoveredIdx === node.idx;
+                const { r, g, b } = hexToRgb(node.color);
+
+                const alpha = isExpanded ? 0.6 : isHovered ? 0.4 : 0.15;
+                const width = isExpanded ? 2 : isHovered ? 1.5 : 1;
+
+                // Draw bezier from center to letter
+                const startX = cx;
+                const startY = centerBox.y;
+                const endX = node.x;
+                const endY = node.y;
+                const cpY = startY - (startY - endY) * 0.5;
+
+                ctx.beginPath();
+                ctx.moveTo(startX, startY);
+                ctx.bezierCurveTo(startX, cpY, endX, cpY, endX, endY);
+                ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+                ctx.lineWidth = width;
+                ctx.stroke();
+
+                // If expanded, draw line from letter to word area
+                if (isExpanded) {
+                    ctx.beginPath();
+                    const isHarry = node.dataIdx < 5;
+                    if (isHarry) {
+                        ctx.moveTo(endX, endY + 54);
+                        ctx.lineTo(endX, endY + 74);
+                    } else {
+                        ctx.moveTo(endX, endY - 54);
+                        ctx.lineTo(endX, endY - 74);
+                    }
+                    ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, 0.4)`;
+                    ctx.lineWidth = 1.5;
+                    ctx.stroke();
+                }
+            }
+        }
+
+        function drawCenterBox() {
+            const b = centerBox;
+            const radius = 14;
+
+            // Glow
+            ctx.shadowColor = 'rgba(14, 165, 233, 0.2)';
+            ctx.shadowBlur = 30;
+
+            // Box
+            ctx.beginPath();
+            ctx.roundRect(b.x, b.y, b.w, b.h, radius);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.fill();
+            ctx.strokeStyle = 'rgba(14, 165, 233, 0.35)';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+
+            ctx.shadowColor = 'transparent';
+            ctx.shadowBlur = 0;
+
+            // Text — render each letter in its colour
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.font = '700 22px "Inter", sans-serif';
+
+            const fullText = 'HARRY ROGERS';
+            // Measure for centering
+            const totalW = ctx.measureText(fullText).width;
+            let curX = cx - totalW / 2;
+            const textY = b.y + b.h / 2;
+
+            let activeIdx = 0;
+            for (let i = 0; i < fullText.length; i++) {
+                const ch = fullText[i];
+                const charW = ctx.measureText(ch).width;
+
+                if (ch === ' ') {
+                    ctx.fillStyle = 'transparent';
+                } else {
+                    const node = ACTIVE_LETTERS[activeIdx];
+                    const isExpanded = expandedSet.has(activeIdx);
+                    const isHovered = hoveredIdx === activeIdx;
+
+                    if (isExpanded || isHovered) {
+                        ctx.fillStyle = node.color;
+                        // Subtle glow
+                        ctx.shadowColor = node.color;
+                        ctx.shadowBlur = isExpanded ? 12 : 6;
+                    } else {
+                        ctx.fillStyle = 'rgba(71, 85, 105, 0.85)';
+                        ctx.shadowColor = 'transparent';
+                        ctx.shadowBlur = 0;
+                    }
+                    activeIdx++;
+                }
+
+                ctx.textAlign = 'left';
+                ctx.fillText(ch, curX, textY);
+                ctx.shadowColor = 'transparent';
+                ctx.shadowBlur = 0;
+                curX += charW;
+            }
+        }
+
+        function drawLetterNodes() {
+            for (const node of letterNodes) {
+                const isExpanded = expandedSet.has(node.idx);
+                const isHovered = hoveredIdx === node.idx;
+                const { r, g, b } = hexToRgb(node.color);
+
+                // Animate scale
+                const targetScale = isExpanded ? 1.15 : isHovered ? 1.08 : 1;
+                node.scaleAnim += (targetScale - node.scaleAnim) * 0.12;
+
+                const targetGlow = isExpanded ? 1 : isHovered ? 0.6 : 0;
+                node.glowAnim += (targetGlow - node.glowAnim) * 0.1;
+
+                const size = 96 * node.scaleAnim;
+                const nx = node.x;
+                const ny = node.y;
+
+                // Glow ring
+                if (node.glowAnim > 0.01) {
+                    ctx.beginPath();
+                    ctx.arc(nx, ny, size * 0.7 + 6, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${node.glowAnim * 0.15})`;
+                    ctx.fill();
+                }
+
+                // Circle background
+                ctx.beginPath();
+                ctx.arc(nx, ny, size * 0.55, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${isExpanded ? 0.2 : 0.1})`;
+                ctx.fill();
+                ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${isExpanded ? 0.8 : isHovered ? 0.5 : 0.25})`;
+                ctx.lineWidth = isExpanded ? 2.5 : 2;
+                ctx.stroke();
+
+                // Letter text
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.font = `800 ${42 * node.scaleAnim}px "Inter", sans-serif`;
+                ctx.fillStyle = node.color;
+
+                if (isExpanded) {
+                    ctx.shadowColor = node.color;
+                    ctx.shadowBlur = 8;
+                }
+                ctx.fillText(node.letter, nx, ny);
+                ctx.shadowColor = 'transparent';
+                ctx.shadowBlur = 0;
+
+                // Word label below or above circle
+                if (isExpanded || isHovered) {
+                    ctx.font = '600 14px "Inter", sans-serif';
+                    ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.9)`;
+                    const isHarry = node.dataIdx < 5;
+                    const labelY = isHarry ? ny + size * 0.55 + 18 : ny - size * 0.55 - 18;
+                    ctx.fillText(node.word, nx, labelY);
+                }
+            }
+        }
+
+        // ===================================================================
+        // EXPANSION CARDS (DOM)
+        // ===================================================================
+        const cardElements = [];
+
+        function createCardElements() {
+            cardsLayer.innerHTML = '';
+            cardElements.length = 0;
+
+            for (const node of letterNodes) {
+                const card = document.createElement('div');
+                card.className = 'expansion-card';
+                const { r, g, b } = hexToRgb(node.color);
+
+                card.innerHTML = `
+                    <div class="card-label" style="color: ${node.color}">${node.letter} — ${node.word}</div>
+                    <div class="card-snippet">${node.data.snippet}</div>
+                    <a class="card-link" href="${node.data.linkUrl}" target="_blank"
+                       style="color: ${node.color}; border-color: rgba(${r},${g},${b},0.3); background: rgba(${r},${g},${b},0.08);">
+                        ${node.data.linkText}
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                `;
+                cardsLayer.appendChild(card);
+                cardElements.push(card);
+            }
+        }
+
+        function updateCards() {
+            for (let i = 0; i < letterNodes.length; i++) {
+                const node = letterNodes[i];
+                const card = cardElements[i];
+                const isExpanded = expandedSet.has(node.idx);
+
+                if (isExpanded) {
+                    // Position card below or above the word label
+                    const cardX = node.x;
+                    const isHarry = node.dataIdx < 5;
+                    const cardY = isHarry ? node.y + 110 : node.y - 210;
+
+                    // Clamp to viewport
+                    const cardW = 280;
+                    let left = cardX - cardW / 2;
+                    left = Math.max(12, Math.min(left, W - cardW - 12));
+                    let top = cardY;
+                    top = Math.max(12, Math.min(top, H - 180));
+
+                    card.style.left = left + 'px';
+                    card.style.top = top + 'px';
+                    card.style.width = cardW + 'px';
+
+                    if (!card.classList.contains('visible')) {
+                        card.classList.add('visible');
+                    }
+                } else {
+                    card.classList.remove('visible');
+                }
+            }
+        }
+
+        // ===================================================================
+        // HIT TESTING
+        // ===================================================================
+        function hitTest(mx, my) {
+            for (const node of letterNodes) {
+                const dx = mx - node.x;
+                const dy = my - node.y;
+                if (dx * dx + dy * dy < 64 * 64) {
+                    return node.idx;
+                }
+            }
+            return -1;
+        }
+
+        // ===================================================================
+        // EVENT HANDLERS
+        // ===================================================================
+        let draggedIdx = -1;
+        let dragStartX = 0;
+        let dragStartY = 0;
+        let isDragging = false;
+
+        canvas.addEventListener('mousedown', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const mx = e.clientX - rect.left;
+            const my = e.clientY - rect.top;
+            const hit = hitTest(mx, my);
+
+            if (hit >= 0) {
+                draggedIdx = hit;
+                isDragging = false;
+                dragStartX = mx;
+                dragStartY = my;
+            }
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const mx = e.clientX - rect.left;
+            const my = e.clientY - rect.top;
+            
+            if (draggedIdx >= 0) {
+                const node = letterNodes[draggedIdx];
+                if (node) {
+                    node.x = mx;
+                    node.y = my;
+                }
+                if (Math.abs(mx - dragStartX) > 5 || Math.abs(my - dragStartY) > 5) {
+                    isDragging = true;
+                }
+                canvas.style.cursor = 'grabbing';
+            } else {
+                const hit = hitTest(mx, my);
+                hoveredIdx = hit;
+                canvas.style.cursor = hit >= 0 ? 'pointer' : 'default';
+            }
+        });
+
+        canvas.addEventListener('mouseup', (e) => {
+            if (draggedIdx >= 0) {
+                if (!isDragging) {
+                    if (expandedSet.has(draggedIdx)) {
+                        expandedSet.delete(draggedIdx);
+                    } else {
+                        expandedSet.clear();
+                        expandedSet.add(draggedIdx);
+                    }
+                }
+                draggedIdx = -1;
+                isDragging = false;
+                canvas.style.cursor = 'default';
+            } else {
+                expandedSet.clear();
+            }
+        });
+
+        canvas.addEventListener('mouseleave', () => {
+            hoveredIdx = -1;
+            draggedIdx = -1;
+            isDragging = false;
+            canvas.style.cursor = 'default';
+        });
+
+        // Touch support
+        canvas.addEventListener('touchstart', (e) => {
+            if (e.touches.length > 0) {
+                const touch = e.touches[0];
+                const rect = canvas.getBoundingClientRect();
+                const mx = touch.clientX - rect.left;
+                const my = touch.clientY - rect.top;
+                const hit = hitTest(mx, my);
+
+                if (hit >= 0) {
+                    e.preventDefault();
+                    draggedIdx = hit;
+                    isDragging = false;
+                    dragStartX = mx;
+                    dragStartY = my;
+                }
+            }
+        }, { passive: false });
+
+        canvas.addEventListener('touchmove', (e) => {
+            if (draggedIdx >= 0 && e.touches.length > 0) {
+                e.preventDefault();
+                const touch = e.touches[0];
+                const rect = canvas.getBoundingClientRect();
+                const mx = touch.clientX - rect.left;
+                const my = touch.clientY - rect.top;
+                
+                const node = letterNodes[draggedIdx];
+                if (node) {
+                    node.x = mx;
+                    node.y = my;
+                }
+                if (Math.abs(mx - dragStartX) > 5 || Math.abs(my - dragStartY) > 5) {
+                    isDragging = true;
+                }
+            }
+        }, { passive: false });
+
+        canvas.addEventListener('touchend', (e) => {
+            if (draggedIdx >= 0) {
+                if (!isDragging) {
+                    if (expandedSet.has(draggedIdx)) {
+                        expandedSet.delete(draggedIdx);
+                    } else {
+                        expandedSet.clear();
+                        expandedSet.add(draggedIdx);
+                    }
+                }
+                draggedIdx = -1;
+                isDragging = false;
+            } else {
+                if (e.target === canvas) expandedSet.clear();
+            }
+        });
+
+        // ===================================================================
+        // ANIMATION LOOP
+        // ===================================================================
+        function frame(t) {
+            animT = t * 0.001;
+            ctx.clearRect(0, 0, W, H);
+
+            drawParticles();
+            drawConnections();
+            drawCenterBox();
+            drawLetterNodes();
+            updateCards();
+
+            requestAnimationFrame(frame);
+        }
+
+        // ===================================================================
+        // INIT
+        // ===================================================================
+        window.addEventListener('resize', () => {
+            resize();
+            createCardElements();
+        });
+
+        resize();
+        createCardElements();
+        requestAnimationFrame(frame);
+    })();
+    </script>
+</body>
+</html>

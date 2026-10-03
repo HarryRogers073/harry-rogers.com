@@ -1,0 +1,32 @@
+---
+title: "DSP Filter Design, Simulink Modeling & FPGA HDL Export"
+summary: "Infinite Impulse Response (Butterworth) and FIR (Hamming window) filter synthesis, real-time audio validation in Simulink, and synthesizable HDL IP export."
+date: 2025-12-10
+tags: ["DSP", "MATLAB", "Simulink", "HDL Coder", "Audio Engineering", "Verilog"]
+featured: true
+status: "complete"
+repo: "https://github.com/HarryRogers073/dsp-filter-design-suite"
+order: 3
+---
+
+## Project Overview
+
+A digital signal processing and hardware filter design suite developed for the **EO626 - Digital Signal Processing** engineering module at the **University of Brighton**.
+
+The project synthesizes digital filter algorithms from analog transfer function prototypes and verifies them through time-domain and frequency-domain acoustic simulation before exporting them into synthesizable HDL for FPGA hardware acceleration.
+
+---
+
+## 🔬 Core Capabilities
+
+- **Bilinear Transformation with Frequency Pre-Warping:** Converts continuous $s$-domain Butterworth prototypes into discrete $z$-domain transfer functions.
+- **FIR Window Synthesis:** Designs linear-phase FIR filters using windowed sinc truncation and Kaiser/Hamming tapering.
+- **Simulink Acoustic Pipeline:** Dynamic multi-band audio filtering simulation comparing raw wave inputs, injected acoustic interference, and filtered outputs.
+- **Automated HDL Coder Generation:** Generates synthesizable Verilog/VHDL RTL filter cores from MATLAB transfer functions.
+
+---
+
+## ⚡ Source Code & Artifacts
+
+- **GitHub Repository:** [HarryRogers073/dsp-filter-design-suite](https://github.com/HarryRogers073/dsp-filter-design-suite)
+- **Tools:** MATLAB, Simulink, DSP System Toolbox, MATLAB HDL Coder

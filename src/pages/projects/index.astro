@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Engineering Projects" description="Portfolio of FPGA, verification, embedded systems, and robotics projects by Harry Rogers.">
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Portfolio</p>
+      <h1>Engineering Projects</h1>
+      <p class="muted intro">
+        A selection of digital logic designs, hardware-in-the-loop test frameworks, embedded systems, and robotics architectures. 
+        Each project is documented with schematics, Verilog/Python source code, and validation benchmarks.
+      </p>
+
+      <div class="grid grid-2 project-list">
+        {projects.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .intro { max-width: 44rem; font-size: 1.15rem; margin-bottom: 2.5rem; }
+  .project-list { margin-top: 2rem; }
+</style>

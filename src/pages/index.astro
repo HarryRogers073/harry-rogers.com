@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { profile } from '../data/profile';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+const featuredProjects = allProjects
+  .filter((p) => p.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const latestPosts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime()).slice(0, 3);
+---
+
+<BaseLayout>
+  <!-- Hero Section -->
+  <section class="section hero-section">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <p class="eyebrow">Hardware Test &amp; FPGA Verification Engineer</p>
+        <h1 class="hero-title">
+          Engineering reliable <span class="gradient-text">digital logic</span> &amp; automated hardware testbeds.
+        </h1>
+        <p class="hero-subtitle">
+          Hi, I’m <strong>Harry Rogers</strong>. I work in electro-optical surveillance testing at Chess Dynamics, 
+          graduated with First-Class Honours from the University of Brighton, and won <strong>The IET Prize 2026</strong>. 
+          Creator of the <strong>VAIDAR</strong> HIL verification framework.
+        </p>
+        <div class="actions">
+          <a class="btn" href="/projects">Explore Projects →</a>
+          <a class="btn ghost" href="/cv">View Master CV</a>
+          <a class="btn ghost" href="/terminal" title="Launch retro terminal">&gt;_ Retro CLI</a>
+        </div>
+      </div>
+
+      <div class="hero-badge-card card">
+        <div class="badge-header">
+          <span class="pulse-dot"></span>
+          <span class="status-text">Available for Verification Engineering</span>
+        </div>
+        <ul class="badge-stats">
+          <li>
+            <strong class="stat-number">91%</strong>
+            <span class="stat-label">Dissertation (A+)</span>
+          </li>
+          <li>
+            <strong class="stat-number">1st</strong>
+            <span class="stat-label">BEng Honours</span>
+          </li>
+          <li>
+            <strong class="stat-number">IET</strong>
+            <span class="stat-label">Prize Winner '26</span>
+          </li>
+        </ul>
+        <div class="tech-stack-row">
+          <span class="tag">Xilinx Vivado</span>
+          <span class="tag">Verilog HDL</span>
+          <span class="tag">Python HIL</span>
+          <span class="tag">MATLAB</span>
+          <span class="tag">Electro-Optics</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Portfolio</p>
+          <h2>Featured Engineering Projects</h2>
+        </div>
+        <a class="view-all" href="/projects">All projects ({allProjects.length}) →</a>
+      </div>
+
+      <div class="grid grid-2">
+        {featuredProjects.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- About Snapshot & Core Specialisms -->
+  <section class="section highlight-section">
+    <div class="container">
+      <div class="grid grid-2">
+        <div class="card">
+          <p class="eyebrow">Background</p>
+          <h3>Defence Testing &amp; FPGA Verification</h3>
+          <p class="muted">
+            Specializing in military-grade electro-optical surveillance system testing, hardware-in-the-loop (HIL)
+            validation rigs, and automated digital logic verification. Experienced in both high-reliability aerospace 
+            (BAE Systems placement) and land/maritime defence directors (Chess Dynamics).
+          </p>
+          <div class="actions">
+            <a class="btn ghost" href="/about">Full Biography →</a>
+            <a class="btn ghost" href={profile.cvPdf} download>Download CV (PDF)</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <p class="eyebrow">Technical Domains</p>
+          <h3>Core Competencies</h3>
+          <div class="skills-mini-grid">
+            <div class="skill-category">
+              <h4>Digital Logic &amp; RTL</h4>
+              <p class="muted">Verilog HDL, VHDL, Vivado, Artix-7, FSM design, timing closure.</p>
+            </div>
+            <div class="skill-category">
+              <h4>HIL Automation</h4>
+              <p class="muted">Python test engines, PySerial, PyVISA, automated fault triage.</p>
+            </div>
+            <div class="skill-category">
+              <h4>Instrumentation &amp; Bus</h4>
+              <p class="muted">Oscilloscopes, logic analyzers, UART, SPI, I2C, MIL-STD-1553.</p>
+            </div>
+            <div class="skill-category">
+              <h4>Embedded &amp; DSP</h4>
+              <p class="muted">PIC microcontrollers, MPLAB XC8, MATLAB App Designer, Simulink.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Notes & Articles -->
+  {latestPosts.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Writing</p>
+            <h2>Technical Notes &amp; Updates</h2>
+          </div>
+          <a class="view-all" href="/blog">All posts →</a>
+        </div>
+        <div class="grid grid-3">
+          {latestPosts.map((post) => (
+            <article class="card">
+              <span class="muted date">{post.data.date.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}</span>
+              <h3><a href={`/blog/${post.id}`}>{post.data.title}</a></h3>
+              <p class="muted">{post.data.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .hero-section { padding-top: 5rem; padding-bottom: 4rem; }
+  .hero-container { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: center; }
+  .hero-title { font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.25rem; }
+  .gradient-text { background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero-subtitle { font-size: 1.15rem; color: var(--muted); line-height: 1.6; max-width: 36rem; }
+  
+  .hero-badge-card { display: flex; flex-direction: column; gap: 1.5rem; padding: 2rem; border-color: color-mix(in srgb, var(--brand) 20%, var(--border)); }
+  .badge-header { display: flex; align-items: center; gap: 0.6rem; font-size: 0.85rem; font-weight: 600; color: var(--brand); }
+  .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2); }
+  .badge-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; list-style: none; padding: 0; margin: 0; text-align: center; }
+  .stat-number { display: block; font-size: 1.8rem; font-weight: 800; color: var(--text); font-family: var(--font-mono); }
+  .stat-label { font-size: 0.75rem; text-transform: uppercase; color: var(--muted); letter-spacing: 0.05em; font-weight: 600; }
+  .tech-stack-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; }
+  .view-all { color: var(--brand); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+  .view-all:hover { text-decoration: underline; }
+
+  .skills-mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+  .skill-category h4 { margin: 0 0 0.25rem; font-size: 0.95rem; }
+  .skill-category p { font-size: 0.85rem; margin: 0; }
+
+  @media (max-width: 900px) {
+    .hero-container { grid-template-columns: 1fr; gap: 2rem; }
+  }
+  @media (max-width: 600px) {
+    .skills-mini-grid { grid-template-columns: 1fr; }
+  }
+</style>

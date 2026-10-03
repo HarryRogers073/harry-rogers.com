@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props { project: CollectionEntry<'projects'>; }
+const { project } = Astro.props;
+const { title, summary, tags, status } = project.data;
+---
+
+<article class="card project">
+  <div class="meta">
+    <span class="tag">{status}</span>
+    <span class="muted year">{project.data.date.getFullYear()}</span>
+  </div>
+  <h3><a href={`/projects/${project.id}`}>{title}</a></h3>
+  <p class="muted">{summary}</p>
+  <ul class="tags">{tags.map((t) => <li class="tag">{t}</li>)}</ul>
+</article>
+
+<style>
+  .project { position: relative; display: flex; flex-direction: column; transition: transform .15s ease, border-color .15s ease; }
+  .project:hover { transform: translateY(-2px); border-color: var(--brand); }
+  .meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
+  h3 { margin: 0.75rem 0 0.5rem; }
+  h3 a { color: var(--text); text-decoration: none; }
+  h3 a::after { content: ''; position: absolute; inset: 0; } /* whole card clickable */
+  p { flex: 1; font-size: 0.97rem; }
+</style>

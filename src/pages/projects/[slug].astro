@@ -1,0 +1,76 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { title, summary, date, tags, repo, live, status } = project.data;
+const { Content } = await render(project);
+---
+
+<BaseLayout title={title} description={summary} type="article">
+  <article class="section">
+    <div class="container project-layout">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/projects">← Back to projects</a>
+      </nav>
+
+      <header class="project-header">
+        <div class="meta-row">
+          <span class="tag status-tag">{status}</span>
+          <time datetime={date.toISOString()} class="muted">
+            {date.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}
+          </time>
+        </div>
+        <h1>{title}</h1>
+        <p class="summary">{summary}</p>
+
+        <ul class="tags">
+          {tags.map((tag) => (
+            <li class="tag">{tag}</li>
+          ))}
+        </ul>
+
+        <div class="actions">
+          {repo && (
+            <a class="btn" href={repo} target="_blank" rel="noopener">
+              View on GitHub ↗
+            </a>
+          )}
+          {live && (
+            <a class="btn ghost" href={live} target="_blank" rel="noopener">
+              Live Demo / Site ↗
+            </a>
+          )}
+        </div>
+      </header>
+
+      <hr />
+
+      <div class="prose project-body">
+        <Content />
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .project-layout { max-width: 52rem; }
+  .breadcrumb { margin-bottom: 2rem; font-size: 0.95rem; }
+  .breadcrumb a { color: var(--muted); text-decoration: none; font-weight: 500; }
+  .breadcrumb a:hover { color: var(--brand); }
+  .meta-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+  .status-tag { text-transform: uppercase; font-size: 0.7rem; font-weight: 600; }
+  .summary { font-size: 1.2rem; color: var(--muted); line-height: 1.5; margin: 1rem 0 1.5rem; }
+  .project-header h1 { margin-bottom: 0.5rem; }
+  .project-body { margin-top: 2rem; }
+  :global(.project-body pre) { margin: 1.5rem 0; }
+  :global(.project-body img) { border-radius: 10px; border: 1px solid var(--border); }
+</style>

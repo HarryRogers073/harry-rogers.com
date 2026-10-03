@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<BaseLayout title="Engineering Blog & Notes" description="Articles and technical notes by Harry Rogers on hardware verification, FPGA logic, and embedded design.">
+  <section class="section">
+    <div class="container blog-container">
+      <p class="eyebrow">Writing</p>
+      <h1>Engineering Blog &amp; Notes</h1>
+      <p class="muted intro">
+        Thoughts, project retrospectives, and deep-dives into FPGA architectures, hardware-in-the-loop workflows, and software tooling.
+      </p>
+
+      <div class="posts-list">
+        {posts.map((post) => (
+          <article class="post-item card">
+            <div class="post-meta">
+              <time datetime={post.data.date.toISOString()} class="muted">
+                {post.data.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+              </time>
+              <ul class="tags">
+                {post.data.tags.map((t) => <li class="tag">{t}</li>)}
+              </ul>
+            </div>
+            <h2><a href={`/blog/${post.id}`}>{post.data.title}</a></h2>
+            <p class="muted">{post.data.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-container { max-width: 52rem; }
+  .intro { font-size: 1.15rem; margin-bottom: 3rem; }
+  .posts-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .post-item { transition: border-color .15s ease, transform .15s ease; }
+  .post-item:hover { border-color: var(--brand); transform: translateY(-2px); }
+  .post-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem; font-size: 0.85rem; }
+  .post-item h2 { margin: 0 0 0.5rem; font-size: 1.4rem; }
+  .post-item h2 a { color: var(--text); text-decoration: none; }
+  .post-item h2 a:hover { color: var(--brand); }
+</style>

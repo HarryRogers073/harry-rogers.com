@@ -1,0 +1,26 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/dissertation-project",
+      "destination": "/projects/vaidar-hil-framework",
+      "permanent": true
+    },
+    {
+      "source": "/dissertation-project/block-diagram",
+      "destination": "/projects/vaidar-hil-framework",
+      "permanent": true
+    },
+    {
+      "source": "/cv/portfolio-terminal",
+      "destination": "/terminal",
+      "permanent": true
+    }
+  ]
+}
