@@ -4,28 +4,328 @@ import ProjectCard from '../../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+
+const progressionTimeline = [
+  {
+    stage: "Final Year (2025–2026) | University of Brighton",
+    summary: "Advanced verification architectures, telecommunications theory, digital signal processing, and capstone dissertation.",
+    award: "First-Class Honours (80% Overall) • IET Prize Winner 2026",
+    modules: [
+      {
+        code: "XE636",
+        title: "VAIDAR: AI-Driven Hardware-in-the-Loop FPGA Verification Engine",
+        type: "Capstone BEng Dissertation",
+        grade: "91% (A+) Distinction • IET Prize Winner",
+        tools: "AMD Xilinx Vivado, Artix-7 FPGA, Python 3, PyTorch, Gemini 2.5 Pro, UART 921.6k Baud",
+        description: "Engineered a closed-loop HIL execution engine driving real-time stimulus into physical silicon at 968.9 tests/sec with automated LLM root-cause anomaly triage.",
+        link: "/projects/vaidar-hil-framework"
+      },
+      {
+        code: "EO628",
+        title: "Data Communications & Multi-Site WAN Network Architecture",
+        type: "Telecommunications & Networking",
+        grade: "First-Class Distinction",
+        tools: "Cisco Packet Tracer, Wireshark, TCP/IP, WPA2-PSK, V.35 Serial DTE/DCE, RF Sensing / CSI",
+        description: "Simulated a multi-site WAN with Layer 3 serial routing, WPA2 wireless security, and IoT event automation. Evaluated emerging RF sensing and Channel State Information (CSI) with Software-Defined Radios.",
+        link: "/projects/communications-network-architecture"
+      },
+      {
+        code: "EO626",
+        title: "Digital Signal Processing (DSP): IIR/FIR Filter Synthesis & Audio Pipelines",
+        type: "Signal Processing & Simulink",
+        grade: "First-Class Distinction",
+        tools: "MATLAB, Simulink, DSP System Toolbox, Bilinear Transformation, HDL Coder",
+        description: "Synthesized 11th-order Butterworth IIR filters with frequency pre-warping and 324th-order Hamming FIR filters. Built a dynamic audio crossover simulation and exported synthesizable RTL IP cores.",
+        link: "/projects/matlab-projects"
+      },
+      {
+        code: "EO631",
+        title: "Embedded Systems 3: Master/Slave PIC UART-PWM & Telemetry GUI",
+        type: "Embedded Hardware & App Designer",
+        grade: "84% (A+) Distinction",
+        tools: "PIC16F873, MPASM Assembly, MPLAB XC8, MATLAB App Designer, RS-232/UART",
+        description: "Implemented a full-duplex master/slave dual-microcontroller bus with dynamic PWM duty modulation and built an interactive 6-channel analog telemetry dashboard in MATLAB App Designer.",
+        link: "/projects/pic-microcontroller-code"
+      },
+      {
+        code: "XE624",
+        title: "Product Design: Sustainable Kinetic & Electrochemical Energy Systems",
+        type: "Engineering Analysis & Sustainability",
+        grade: "First-Class Distinction",
+        tools: "Excel Decision Matrices, Kinetic Energy Modeling, Flow Batteries, Sodium-Ion",
+        description: "Formulated loss models for high-speed flywheel kinetic storage and authored trade-off matrices evaluating flow batteries versus sodium-ion chemistries for grid-scale stabilization."
+      }
+    ]
+  },
+  {
+    stage: "Placement Year (2024–2025) | Industrial Experience",
+    summary: "12-month industrial placement in tier-one defence aerospace systems engineering and formal verification.",
+    award: "Industrial Placement Commendation",
+    modules: [
+      {
+        code: "IV&V",
+        title: "Systems Engineer - Integration, Verification & Validation (IV&V)",
+        type: "BAE Systems Placement",
+        grade: "Industry Practicum",
+        tools: "Python Automation, IBM DOORS (DXL), Enterprise Architect, Lab Testbenches, Defect Tracking",
+        description: "Executed verification protocols for complex defence avionics systems. Developed Python automation scripts, traced verification matrices against customer requirements in DOORS, and logged hardware discrepancies."
+      }
+    ]
+  },
+  {
+    stage: "Year 2 (2023–2024) | University of Brighton",
+    summary: "Embedded C firmware, autonomous robotics platforms, digital logic synthesis, and classical control theory.",
+    award: "2nd Place Robot Wars Podium Finish • 84% Digital Systems",
+    modules: [
+      {
+        code: "XE521 & EO524",
+        title: "Autonomous Combat Robotics Platform & Motor Controller",
+        type: "Robotics & Hardware Design",
+        grade: "82% (A+) Distinction • 2nd Place Tournament Winner",
+        tools: "Microchip PIC, MPLAB XC8, Labcenter Proteus, Dual H-Bridge MOSFETs, HC-SR04 Sonar",
+        description: "Led electrical architecture and embedded C firmware for an autonomous combat robot. Designed high-current motor drivers and timer capture sonar ranging, winning 2nd place in the inter-collegiate arena tournament.",
+        link: "/projects/robot-wars-combat-platform"
+      },
+      {
+        code: "Digital Systems",
+        title: "VHDL Digital Systems & FPGA Logic Design",
+        type: "RTL Design & Simulation",
+        grade: "84% (A+) Distinction",
+        tools: "IEEE Standard VHDL, Intel Quartus Prime, ModelSim-Intel FPGA, Cyclone FPGA",
+        description: "Synthesized a multi-floor elevator controller FSM, synchronous request arbitration queues, 2's complement ALU units, and shift registers verified via gate-level timing simulations.",
+        link: "/projects/vhdl-digital-systems"
+      },
+      {
+        code: "Control Systems",
+        title: "Classical Control Systems: Transfer Functions & Stability Analysis",
+        type: "Control Engineering",
+        grade: "Distinction Grade",
+        tools: "MATLAB, Simulink, Root Locus, Bode Plots, Block Diagram Reduction",
+        description: "Analyzed continuous-time open-loop and closed-loop feedback systems, derived block diagram reductions, and evaluated gain/phase stability margins for second-order dynamic plants."
+      }
+    ]
+  },
+  {
+    stage: "Year 1 (2022–2023) | University of Brighton",
+    summary: "Foundations of analogue circuit theory, operational amplifiers, CAD layout, and mechanical design.",
+    award: "First-Class Year 1 Standing",
+    modules: [
+      {
+        code: "EO529",
+        title: "Analogue Electronics & Circuit Simulation (AE&CS)",
+        type: "Analogue Circuit Design",
+        grade: "Distinction Grade",
+        tools: "Multimeter & Oscilloscope Instrumentation, LTspice, Proteus, Op-Amps, Transistors",
+        description: "Characterized LCR resonant tank circuits, operational amplifier active band-pass filters, transistor small-signal models, and bench-tested linear regulated DC power supplies under varying load currents."
+      },
+      {
+        code: "XE421",
+        title: "Electronic Engineering CAD & PCB Layout",
+        type: "EDA & Manufacturing",
+        grade: "Distinction Grade",
+        tools: "Proteus PCB, KiCad, Altium, IPC Standards, Surface Mount & Through-Hole Layout",
+        description: "Executed full-cycle schematic capture, design rule checking (DRC), trace impedance considerations, ground plane fills, and Gerber file generation for custom circuit boards."
+      },
+      {
+        code: "XE521",
+        title: "Engineering Design Principles & Structural Mechanics",
+        type: "Mechanical & Structural Design",
+        grade: "Distinction Grade",
+        tools: "3D CAD Modeling, Tensile Stress Testing, Truss Load Simulation, Gantt Scheduling",
+        description: "Modeled structural bridge truss designs in CAD, conducted material strength simulations, and led cross-functional team milestone planning."
+      }
+    ]
+  }
+];
 ---
 
-<BaseLayout title="Engineering Projects" description="Portfolio of FPGA, verification, embedded systems, and robotics projects by Harry Rogers.">
+<BaseLayout title="Engineering Projects & Academic Progression" description="Portfolio of FPGA, verification, embedded systems, networking, and robotics projects by Harry Rogers.">
   <section class="section">
     <div class="container">
-      <p class="eyebrow">Portfolio</p>
-      <h1>Engineering Projects</h1>
-      <p class="muted intro">
-        A selection of digital logic designs, hardware-in-the-loop test frameworks, embedded systems, and robotics architectures. 
-        Each project is documented with schematics, Verilog/Python source code, and validation benchmarks.
-      </p>
+      <div class="header-intro">
+        <p class="eyebrow">Portfolio &amp; Roadmap</p>
+        <h1>Engineering Projects &amp; Progression</h1>
+        <p class="muted intro">
+          A comprehensive record of my digital logic architectures, hardware-in-the-loop test frameworks, 
+          embedded firmware libraries, telecommunications simulations, and university coursework from Year 1 through to my capstone IET Prize-winning dissertation.
+        </p>
+      </div>
+
+      <!-- Major Case Studies Grid -->
+      <div class="section-subhead">
+        <h2>Flagship Engineering Case Studies</h2>
+        <p class="muted">Detailed project breakdowns with hardware schematics, physical silicon testbeds, and source code repositories.</p>
+      </div>
 
       <div class="grid grid-2 project-list">
         {projects.map((project) => (
           <ProjectCard project={project} />
         ))}
       </div>
+
+      <!-- Progression Over Time Timeline -->
+      <div class="timeline-section">
+        <div class="section-subhead">
+          <p class="eyebrow">Academic &amp; Technical Evolution</p>
+          <h2>Progression Over Time (2022 – Present)</h2>
+          <p class="muted">
+            Tracking my progression from foundational analogue circuit theory and PCB CAD in Year 1, through autonomous combat robotics and digital systems in Year 2, industrial defence verification during placement, and culminating in advanced FPGA verification, telecommunications, and DSP in my final year.
+          </p>
+        </div>
+
+        <div class="timeline-container">
+          {progressionTimeline.map((stage) => (
+            <div class="timeline-stage card">
+              <div class="stage-header">
+                <div>
+                  <span class="stage-tag">{stage.stage}</span>
+                  <p class="stage-summary muted">{stage.summary}</p>
+                </div>
+                <span class="award-pill">{stage.award}</span>
+              </div>
+
+              <div class="modules-grid">
+                {stage.modules.map((mod) => (
+                  <div class="module-card">
+                    <div class="module-top">
+                      <span class="mod-code">{mod.code}</span>
+                      <span class="mod-grade">{mod.grade}</span>
+                    </div>
+                    <h4>
+                      {mod.link ? (
+                        <a href={mod.link} class="mod-link">{mod.title} →</a>
+                      ) : (
+                        <span>{mod.title}</span>
+                      )}
+                    </h4>
+                    <p class="mod-desc muted">{mod.description}</p>
+                    <div class="mod-tools">
+                      <strong>Tools &amp; Tech:</strong> {mod.tools}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .intro { max-width: 44rem; font-size: 1.15rem; margin-bottom: 2.5rem; }
-  .project-list { margin-top: 2rem; }
+  .header-intro { max-width: 50rem; margin-bottom: 2.5rem; }
+  .intro { font-size: 1.15rem; line-height: 1.6; margin-top: 0.5rem; }
+  .section-subhead { margin: 3rem 0 1.5rem; }
+  .section-subhead h2 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+  .project-list { margin-top: 1.5rem; }
+
+  /* Timeline Styles */
+  .timeline-section {
+    margin-top: 4.5rem;
+    border-top: 1px solid var(--border);
+    padding-top: 3rem;
+  }
+  .timeline-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .timeline-stage {
+    padding: 1.75rem;
+    border: 1px solid var(--border);
+    background: var(--card-bg, #ffffff);
+    border-radius: 12px;
+  }
+  .stage-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .stage-tag {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .stage-summary {
+    margin: 0.25rem 0 0;
+    font-size: 0.95rem;
+  }
+  .award-pill {
+    background: #09090b;
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.3rem 0.8rem;
+    border-radius: 9999px;
+    letter-spacing: 0.02em;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.25rem;
+  }
+  .module-card {
+    background: var(--bg-soft, #f9fafb);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .module-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  .mod-code {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--border);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    color: var(--text);
+  }
+  .mod-grade {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #166534;
+  }
+  .module-card h4 {
+    margin: 0.25rem 0 0.5rem;
+    font-size: 1.05rem;
+    line-height: 1.4;
+  }
+  .mod-link {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .mod-link:hover {
+    color: var(--brand);
+  }
+  .mod-desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    flex: 1;
+    margin-bottom: 0.75rem;
+  }
+  .mod-tools {
+    font-size: 0.8rem;
+    color: var(--muted);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding-top: 0.5rem;
+    line-height: 1.4;
+  }
 </style>

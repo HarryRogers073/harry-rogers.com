@@ -1,0 +1,105 @@
+---
+title: "Data Communications & Multi-Site WAN Network Architecture"
+summary: "Hierarchical WAN topology in Cisco Packet Tracer: Layer 3 serial routing (V.35 DTE/DCE), WPA2-PSK wireless infrastructure, IoT automation, and RF Sensing / CSI analysis."
+date: 2025-12-19
+tags: ["Networking", "Cisco Packet Tracer", "TCP/IP", "WAN", "IoT", "RF Sensing", "Cybersecurity"]
+featured: true
+status: "complete"
+order: 3
+thumbnail: "/images/projects/communications/starship-physical-workspace.png"
+badge: "First-Class Distinction | EO628"
+---
+
+## Project Overview
+
+A comprehensive telecommunications systems investigation and network architecture simulation engineered for module **EO628 (Communications)** at the **University of Brighton**, taught by **Dr. Deshinder Singh Gill**.
+
+The project investigates data communications across all seven layers of the OSI model using **Cisco Packet Tracer**, culminating in the design and critical evaluation of an advanced, multi-layered Wide Area Network (WAN). Beyond standard networking primitives, the research evaluates emerging telecommunications paradigms, specifically the transition from conventional packet-switched data connectivity to **RF Sensing** and **Channel State Information (CSI)** analysis using Software-Defined Radios (SDR).
+
+---
+
+## 🗺️ Physical Topology & Hierarchical Architecture
+
+To test protocols under complex routing and physical isolation constraints, a multi-site network architecture was engineered spanning geographically separated locations connected across leased-line serial backbones:
+
+![Cisco Packet Tracer Physical Workspace Topology](/images/projects/communications/starship-physical-workspace.png)
+*Figure 1: Physical workspace layout mapping network zones, cabling conduits, wireless access zones, and server server racks.*
+
+### Site Hierarchy & Subnet Partitioning
+
+The architecture partitions network resources between primary and remote operational zones, ensuring strict broadcast domain isolation:
+
+![Multi-Site Physical Topology Hierarchy](/images/projects/communications/physical-topology-hierarchy.jpg)
+*Figure 2: Multi-site topological hierarchy showing localized Local Area Networks (LANs) bridged across wide-area serial routing points.*
+
+---
+
+## 🔒 Key Network Implementations & Protocols
+
+### 1. Secure Wireless Infrastructure (WPA2-PSK / AES)
+Unlike standard open networks, enterprise-grade wireless security was configured on the Gateway router using **WPA2-PSK (AES)** encryption to protect over-the-air frame transmission from eavesdropping and packet injection:
+
+![WPA2-PSK Wireless Security Configuration](/images/projects/communications/wpa2-security-config.png)
+*Figure 3: WPA2-PSK (AES) pre-shared key authentication configured on the gateway, serving secured wireless endpoints.*
+
+### 2. Layer 3 Serial WAN Routing (V.35 DTE/DCE)
+To simulate a commercial T1 leased line across subnets, a remote Web Server (`10.2.0.10`) was deployed across a **Serial V.35 physical link**. The link was configured as a **DTE/DCE pair**, where the local gateway router acted as Data Circuit-terminating Equipment (DCE) providing clock synchronization (`clock rate 64000`), and the remote gateway functioned as Data Terminal Equipment (DTE).
+
+![Serial V.35 WAN Routing and RIP Configuration](/images/projects/communications/wan-serial-routing.png)
+*Figure 4: Layer 3 serial routing table and RIP dynamic routing protocol exchange bridging distinct network segments.*
+
+![HTTP Client Request across WAN](/images/projects/communications/wan-http-request.png)
+*Figure 5: Verification of cross-subnet HTTP packet delivery across the serial link, confirming end-to-end packet delivery.*
+
+### 3. Protocol Data Unit (PDU) & TCP Handshake Analysis
+Every stage of network communication was verified using Packet Tracer's discrete-event simulation engine, capturing TCP 3-way handshakes (`SYN`, `SYN-ACK`, `ACK`), sequence number increments, and ARP table resolution:
+
+![TCP Protocol Data Unit (PDU) Dissection](/images/projects/communications/tcp-pdu-analysis.png)
+*Figure 6: Layer-by-layer PDU header breakdown examining source/destination ports, TCP flags, window sizing, and payload byte offsets.*
+
+### 4. Client-Server Application Services (SMTP / POP3 Email)
+Dedicated application layer services were deployed, configuring standalone DNS name resolution and SMTP/POP3 mail transfer agents:
+
+![SMTP and POP3 Email Delivery Verification](/images/projects/communications/smtp-pop3-email.png)
+*Figure 7: Successful mail transmission between isolated client endpoints across the network.*
+
+### 5. Automated Environmental IoT State Machine
+An integrated IoT sub-network was engineered using conditional logic routines on the Gateway controller to respond autonomously to simulated sensor inputs (e.g., automated ventilation actuation based on ambient atmospheric sensor readings):
+
+![Automated IoT Sensor Logic](/images/projects/communications/iot-automation-logic.png)
+*Figure 8: IoT event automation rules evaluating multi-condition sensor inputs to trigger physical actuators.*
+
+---
+
+## 📡 Advanced Theoretical Evaluation: From Data Connectivity to RF Sensing
+
+A central component of this research is a critical evaluation of simulation fidelity versus physical electromagnetic reality. While simulation tools assume ideal deterministic bit transfers, real-world communications are governed by multipath fading, shadow fading, and electromagnetic interference.
+
+### Channel State Information (CSI) & Software-Defined Radio (SDR)
+
+Drawing on cutting-edge research led by **Dr. Muhammad Bilal Khan** at the University of Brighton, the report critiques how IEEE 802.11 Wi-Fi signals can be repurposed beyond data transport for **RF Sensing**:
+
+- **Physical Wave Perturbation:** As radio frequency waves propagate through an environment, physical obstacles and human movements induce minute scattering, diffraction, and Doppler shifts.
+- **CSI Extraction:** Whereas received signal strength indicators (RSSI) provide only coarse power amplitude, Channel State Information captures fine-grained phase and amplitude matrices across individual OFDM subcarriers.
+- **SDR Integration:** Using Software-Defined Radios (such as USRP or HackRF), physical perturbations in CSI matrices can be classified via machine learning algorithms for human presence detection, respiration tracking, and non-line-of-sight gesture recognition without physical cameras or sensors.
+
+---
+
+## 🎥 Panopto Video Walkthroughs
+
+The network design, protocol configurations, and live packet simulations were recorded and presented as part of the academic submission:
+
+- **Module 1 (Getting Started):** [Watch Panopto Recording](https://brighton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=593377a1-ac1b-4f44-8f66-b39a00fcbc51)
+- **Module 2 (Exploring Networking & Routing):** [Watch Panopto Recording](https://brighton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=2b7b3bfa-96b7-4af5-a668-b3a80118ad00)
+- **Module 3 (IoT Automation & Logic):** [Watch Panopto Recording](https://brighton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=ea400487-04d4-4ee0-b316-b3a80122fc40)
+- **Final Custom Architecture (WAN & Starship Topology):** [Watch Panopto Recording](https://brighton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=eaae61dc-080e-4031-a039-b3b4009523f6)
+
+---
+
+## ⚡ Technical Summary & Academic Integrity
+
+- **Module:** EO628 Communications, University of Brighton
+- **Module Leader:** Dr. Deshinder Singh Gill
+- **Author:** Harry Rogers
+- **Tools:** Cisco Packet Tracer, Wireshark, IEEE 802.11 / 802.3 Protocol Stacks
+- **Academic Disclosure:** Topology diagrams, routing configurations, IoT conditional state logic, and report evaluation authored by Harry Rogers. The physical workspace background image was generated with generative AI assistance as disclosed in Appendix 7.1 of the submission report.

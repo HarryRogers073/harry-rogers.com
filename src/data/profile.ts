@@ -11,7 +11,7 @@ export const profile = {
   location: 'Brighton & Sussex, UK',
   email: 'harryrogers073@gmail.com',
   links: {
-    linkedin: 'https://www.linkedin.com/in/harryrogers',
+    linkedin: 'https://www.linkedin.com/in/harryrogers073/',
     github: 'https://github.com/HarryRogers073',
   },
   cvPdf: '/files/Harry_Rogers_Master_CV.pdf',
