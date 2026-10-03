@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProjectCard from '../components/ProjectCard.astro';
 import LinkedInFeed from '../components/LinkedInFeed.astro';
 import { profile } from '../data/profile';
 import { getCollection } from 'astro:content';
@@ -12,104 +11,68 @@ const featuredProjects = allProjects
 ---
 
 <BaseLayout>
-  <!-- Hero Section (Atmospheric, Interactive Telemetry & Flow) -->
-  <section class="section hero-section" id="hero-section">
-    <!-- Interactive Background Canvas & Ambient Lighting -->
+  <!-- Hero Section: Cinematic, Visual, Uncluttered & Flowing -->
+  <section class="hero-section" id="hero-section">
+    <!-- Interactive Ambient Canvas & Glowing Aurora -->
     <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
-    <div class="ambient-glow" aria-hidden="true"></div>
-    <div class="grid-overlay" aria-hidden="true"></div>
+    <div class="ambient-aurora" aria-hidden="true"></div>
+    <div class="grid-mesh" aria-hidden="true"></div>
 
     <div class="container hero-container">
-      <!-- Left Column: Editorial Headline & Actions -->
       <div class="hero-content reveal-on-scroll" id="hero-content">
-        <div class="tech-indicator">
+        <!-- Top Status Pill -->
+        <div class="hero-status-pill">
           <span class="pulse-dot"></span>
-          <span class="tech-indicator-tag">ACTIVE TEST RUNNER</span>
-          <span class="tech-indicator-sep">/</span>
-          <span class="tech-indicator-sub">CHESS DYNAMICS DEFENCE</span>
+          <span class="status-brand">THE IET PRIZE 2026 WINNER</span>
+          <span class="status-sep">/</span>
+          <span class="status-sub">FIRST-CLASS HONOURS (80%)</span>
         </div>
 
+        <!-- Mammoth Cinematic Headline -->
         <h1 class="hero-title">
           DIGITAL LOGIC <br />
           <span class="gradient-text">&amp; HARDWARE TESTBEDS.</span>
         </h1>
 
+        <!-- Confident, Uncluttered Subtitle -->
         <p class="hero-subtitle">
           Hi, I’m <strong>Harry Rogers</strong>. I push physical electro-optical defence platforms and FPGA silicon to verified limits — engineering automated test rigs, sub-microsecond RTL telemetry, and zero-defect validation suites.
         </p>
 
-        <div class="actions">
-          <a class="btn btn-hero" href="/projects">Explore Projects →</a>
-          <a class="btn ghost btn-hero" href="/cv">Master CV &amp; Marks</a>
-          <a class="btn ghost btn-hero" href="/terminal" title="Launch retro terminal">&gt;_ Retro CLI</a>
-        </div>
-      </div>
-
-      <!-- Right Column: McLaren/Norris Style Avionics & Silicon Telemetry HUD -->
-      <div class="telemetry-hud card reveal-on-scroll">
-        <!-- Reticle Corner Accents -->
-        <span class="hud-reticle tl" aria-hidden="true"></span>
-        <span class="hud-reticle tr" aria-hidden="true"></span>
-        <span class="hud-reticle bl" aria-hidden="true"></span>
-        <span class="hud-reticle br" aria-hidden="true"></span>
-
-        <div class="hud-header">
-          <div class="hud-title-wrap">
-            <span class="pulse-dot-sm"></span>
-            <span class="hud-title">SILICON TELEMETRY // CH-01</span>
+        <!-- Horizontal Floating Telemetry Bar (Clean & Visual, Zero Clutter) -->
+        <div class="telemetry-bar">
+          <div class="telemetry-cell">
+            <span class="telemetry-number stat-counter" data-target="91" data-suffix="%">91%</span>
+            <span class="telemetry-label">Dissertation (A+)</span>
           </div>
-          <span id="hud-clock" class="hud-clock font-mono">UTC --:--:--</span>
-        </div>
-
-        <!-- Academic & Industry Distinctions with Animated Counters -->
-        <ul class="metrics-stats">
-          <li>
-            <strong class="stat-number stat-counter" data-target="91" data-suffix="%">91%</strong>
-            <span class="stat-label">Dissertation (A+)</span>
-          </li>
-          <li>
-            <strong class="stat-number stat-counter" data-target="1" data-suffix="st">1st</strong>
-            <span class="stat-label">BEng Honours</span>
-          </li>
-          <li>
-            <strong class="stat-number brand-accent">IET</strong>
-            <span class="stat-label">Prize Winner '26</span>
-          </li>
-        </ul>
-
-        <!-- Hardware & System Specifications Matrix -->
-        <div class="hud-matrix">
-          <div class="matrix-row">
-            <span class="matrix-label">FPGA TARGETS</span>
-            <span class="matrix-value">Artix-7 &amp; Cyclone IV</span>
+          <div class="telemetry-divider" aria-hidden="true"></div>
+          <div class="telemetry-cell">
+            <span class="telemetry-number stat-counter" data-target="1" data-suffix="st">1st</span>
+            <span class="telemetry-label">BEng Honours</span>
           </div>
-          <div class="matrix-row">
-            <span class="matrix-label">HIL RUNNER BUS</span>
-            <span class="matrix-value">Python @ 921.6 kbaud</span>
+          <div class="telemetry-divider" aria-hidden="true"></div>
+          <div class="telemetry-cell">
+            <span class="telemetry-number brand-accent">IET</span>
+            <span class="telemetry-label">Prize Winner '26</span>
           </div>
-          <div class="matrix-row">
-            <span class="matrix-label">DEFENCE OPTRONICS</span>
-            <span class="matrix-value">Chess Dynamics</span>
-          </div>
-          <div class="matrix-row">
-            <span class="matrix-label">FLIGHT CRITICAL</span>
-            <span class="matrix-value">BAE Systems IV&amp;V</span>
+          <div class="telemetry-divider" aria-hidden="true"></div>
+          <div class="telemetry-cell">
+            <span class="telemetry-number">CHESS</span>
+            <span class="telemetry-label">Defence Optronics</span>
           </div>
         </div>
 
-        <!-- Live Signal Heartbeat Trace -->
-        <div class="hud-trace">
-          <div class="trace-bar"><span class="trace-progress"></span></div>
-          <div class="trace-meta">
-            <span class="trace-pulse"></span>
-            <span>RTL VERIFIED // 17 ACCREDITED DISTINCTIONS</span>
-          </div>
+        <!-- Action Links -->
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/projects">Explore Projects →</a>
+          <a class="btn ghost" href="/cv">Master CV</a>
+          <a class="btn ghost" href="/terminal" title="Launch retro terminal">&gt;_ Retro CLI</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Continuous Flowing Telemetry Strip (Masked Edges) -->
+  <!-- Continuous Telemetry Ticker Ribbon (Flowing Momentum) -->
   <div class="ticker-strip" aria-label="Key Distinctions Continuous Marquee">
     <div class="ticker-wrap">
       <div class="ticker-track">
@@ -118,7 +81,7 @@ const featuredProjects = allProjects
         <span class="ticker-node brand">⚡ CHESS DYNAMICS DEFENCE OPTRONICS</span>
         <span class="ticker-node">◆ BAE SYSTEMS IV&amp;V AVIONICS</span>
         <span class="ticker-node brand">⚡ XILINX ARTIX-7 RTL VERIFICATION</span>
-        <span class="ticker-node white">★ FIRST-CLASS HONOURS (80% OVERALL)</span>
+        <span class="ticker-node white">★ FIRST-CLASS HONOURS (80% ACCREDITED)</span>
         <span class="ticker-node">◆ 91% DISSERTATION DISTINCTION</span>
         <!-- Continuous loop copy -->
         <span class="ticker-node brand">◆ VAIDAR HIL FRAMEWORK</span>
@@ -126,14 +89,14 @@ const featuredProjects = allProjects
         <span class="ticker-node brand">⚡ CHESS DYNAMICS DEFENCE OPTRONICS</span>
         <span class="ticker-node">◆ BAE SYSTEMS IV&amp;V AVIONICS</span>
         <span class="ticker-node brand">⚡ XILINX ARTIX-7 RTL VERIFICATION</span>
-        <span class="ticker-node white">★ FIRST-CLASS HONOURS (80% OVERALL)</span>
+        <span class="ticker-node white">★ FIRST-CLASS HONOURS (80% ACCREDITED)</span>
         <span class="ticker-node">◆ 91% DISSERTATION DISTINCTION</span>
       </div>
     </div>
   </div>
 
-  <!-- Portfolio & Technical Case Studies Portal -->
-  <section class="section case-studies-section reveal-on-scroll">
+  <!-- Featured Case Studies: Cinematic Visual Showcase -->
+  <section class="section showcase-section reveal-on-scroll">
     <div class="container">
       <div class="section-header">
         <div>
@@ -143,16 +106,49 @@ const featuredProjects = allProjects
         <a class="view-all" href="/projects">Explore all {allProjects.length} projects →</a>
       </div>
 
-      <!-- Curated top 2 flagship hardware projects (VAIDAR & VHDL FPGA) -->
-      <div class="grid grid-2 reveal-stagger">
+      <!-- Large Visual Showcase Grid -->
+      <div class="showcase-grid reveal-stagger">
         {featuredProjects.slice(0, 2).map((project) => (
-          <div class="project-wrapper">
-            <ProjectCard project={project} />
-          </div>
+          <a href={`/projects/${project.id}`} class="showcase-card spotlight-card">
+            <div class="showcase-visual">
+              {project.data.thumbnail && (
+                <img
+                  src={project.data.thumbnail}
+                  alt={project.data.title}
+                  loading="lazy"
+                  class="showcase-img"
+                />
+              )}
+              <div class="showcase-scrim" aria-hidden="true"></div>
+              {project.data.badge && (
+                <span class="showcase-badge">{project.data.badge}</span>
+              )}
+              <span class="showcase-status">{project.data.status}</span>
+            </div>
+            <div class="showcase-body">
+              <div class="showcase-meta">
+                <span class="showcase-year font-mono">{project.data.date.getFullYear()}</span>
+                <span class="showcase-sep">/</span>
+                <span class="showcase-scope font-mono">FLAGSHIP SYSTEM</span>
+              </div>
+              <h3 class="showcase-title">{project.data.title}</h3>
+              <p class="showcase-summary">{project.data.summary}</p>
+              <div class="showcase-footer">
+                <ul class="showcase-tags">
+                  {project.data.tags.slice(0, 3).map((tag) => (
+                    <li class="tag">{tag}</li>
+                  ))}
+                </ul>
+                <span class="showcase-cta">
+                  View Case Study <span class="arrow">→</span>
+                </span>
+              </div>
+            </div>
+          </a>
         ))}
       </div>
 
-      <!-- Quick category jump pills to navigate projects subpage -->
+      <!-- Quick Category Navigation Jump Pills -->
       <div class="project-quick-links">
         <a href="/projects#fpga" class="pill-link"><span class="pill-sym">//</span> FPGA &amp; RTL Verilog →</a>
         <a href="/projects#embedded" class="pill-link"><span class="pill-sym">//</span> Embedded C &amp; PIC →</a>
@@ -174,15 +170,15 @@ const featuredProjects = allProjects
 
       <div class="portal-grid reveal-stagger">
         <a href="/experience" class="card portal-card spotlight-card">
-          <div class="portal-index">01</div>
+          <div class="portal-index font-mono">01</div>
           <div class="portal-badge">CAREER TIMELINE</div>
           <h3>Work Experience</h3>
-          <p class="muted">Chess Dynamics hardware test engineering &amp; BAE Systems 12-month flight IV&amp;V placement.</p>
+          <p class="muted">Chess Dynamics electro-optics test engineering &amp; BAE Systems 12-month flight IV&amp;V placement.</p>
           <span class="portal-cta">View career timeline <span class="arrow">→</span></span>
         </a>
 
         <a href="/cv" class="card portal-card spotlight-card">
-          <div class="portal-index">02</div>
+          <div class="portal-index font-mono">02</div>
           <div class="portal-badge">ACCREDITED MARKS</div>
           <h3>Curriculum Vitae</h3>
           <p class="muted">First-Class Honours degree breakdown, 17 accredited module marks, and downloadable Master PDF.</p>
@@ -190,7 +186,7 @@ const featuredProjects = allProjects
         </a>
 
         <a href="/about" class="card portal-card spotlight-card">
-          <div class="portal-index">03</div>
+          <div class="portal-index font-mono">03</div>
           <div class="portal-badge">ETHOS &amp; BIO</div>
           <h3>About &amp; Journey</h3>
           <p class="muted">Academic background, IET Prize 2026 award story, and verification engineering philosophy.</p>
@@ -198,7 +194,7 @@ const featuredProjects = allProjects
         </a>
 
         <a href="/contact" class="card portal-card spotlight-card">
-          <div class="portal-index">04</div>
+          <div class="portal-index font-mono">04</div>
           <div class="portal-badge">DIRECT COMMS</div>
           <h3>Get in Touch</h3>
           <p class="muted">Direct verified contact form, direct secure email address, and active messaging channels.</p>
@@ -208,13 +204,13 @@ const featuredProjects = allProjects
     </div>
   </section>
 
-  <!-- LinkedIn Updates & Network -->
+  <!-- LinkedIn Updates & Network (Clean Dispatch Mode) -->
   <section class="section network-section reveal-on-scroll">
     <div class="container">
       <div class="section-header">
         <div>
           <p class="eyebrow">// 03 DISPATCH WIRE</p>
-          <h2>Recent Updates</h2>
+          <h2>Field Notes &amp; Updates</h2>
         </div>
         <a class="view-all" href={profile.links.linkedin} target="_blank" rel="noopener noreferrer">
           LinkedIn Profile ↗
@@ -222,7 +218,7 @@ const featuredProjects = allProjects
       </div>
 
       <div class="reveal-stagger">
-        <LinkedInFeed />
+        <LinkedInFeed compact={true} />
       </div>
     </div>
   </section>
@@ -250,8 +246,6 @@ const featuredProjects = allProjects
       y: number;
       vx: number;
       vy: number;
-      baseX: number;
-      baseY: number;
       radius: number;
       alpha: number;
     }
@@ -280,12 +274,10 @@ const featuredProjects = allProjects
         nodes.push({
           x,
           y,
-          baseX: x,
-          baseY: y,
           vx: (Math.random() - 0.5) * 0.45,
           vy: (Math.random() - 0.5) * 0.45,
           radius: Math.random() * 1.5 + 1,
-          alpha: Math.random() * 0.4 + 0.2,
+          alpha: Math.random() * 0.45 + 0.25,
         });
       }
     }
@@ -297,17 +289,16 @@ const featuredProjects = allProjects
       const isDark = document.documentElement.dataset.theme !== 'light';
       const nodeColor = isDark ? '56, 189, 248' : '30, 108, 147';
 
-      // Update and draw nodes
+      // Update and render nodes
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
         n.x += n.vx;
         n.y += n.vy;
 
-        // Bounce at boundaries
         if (n.x < 0 || n.x > width) n.vx *= -1;
         if (n.y < 0 || n.y > height) n.vy *= -1;
 
-        // Mouse avoidance/repulsion
+        // Mouse repelling force
         const dx = mouse.x - n.x;
         const dy = mouse.y - n.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -323,12 +314,12 @@ const featuredProjects = allProjects
         ctx.fillStyle = `rgba(${nodeColor}, ${n.alpha})`;
         ctx.fill();
 
-        // Connect nearby nodes with hairline traces
+        // Connect nearby nodes
         for (let j = i + 1; j < nodes.length; j++) {
           const n2 = nodes[j];
           const dist2 = Math.hypot(n.x - n2.x, n.y - n2.y);
-          if (dist2 < 110) {
-            const lineAlpha = (1 - dist2 / 110) * 0.18;
+          if (dist2 < 115) {
+            const lineAlpha = (1 - dist2 / 115) * 0.18;
             ctx.beginPath();
             ctx.moveTo(n.x, n.y);
             ctx.lineTo(n2.x, n2.y);
@@ -391,26 +382,7 @@ const featuredProjects = allProjects
     animate();
   })();
 
-  // ---------- Live UTC Telemetry Clock ----------
-  (() => {
-    const clockEl = document.getElementById('hud-clock');
-    if (!clockEl) return;
-
-    function updateClock() {
-      const now = new Date();
-      const h = String(now.getUTCHours()).padStart(2, '0');
-      const m = String(now.getUTCMinutes()).padStart(2, '0');
-      const s = String(now.getUTCSeconds()).padStart(2, '0');
-      if (clockEl) {
-        clockEl.textContent = `UTC ${h}:${m}:${s}`;
-      }
-    }
-
-    updateClock();
-    setInterval(updateClock, 1000);
-  })();
-
-  // ---------- Animated Numbers Counter for Telemetry HUD ----------
+  // ---------- Animated Numbers Counter for Telemetry Bar ----------
   (() => {
     const counters = document.querySelectorAll<HTMLElement>('.stat-counter');
     if (!counters.length) return;
@@ -422,22 +394,20 @@ const featuredProjects = allProjects
             const el = entry.target as HTMLElement;
             const target = parseInt(el.dataset.target || '0', 10);
             const suffix = el.dataset.suffix || '';
-            const prefix = el.dataset.prefix || '';
             const duration = 1200;
             const startTime = performance.now();
 
             function updateCount(currentTime: number) {
               const elapsed = currentTime - startTime;
               const progress = Math.min(elapsed / duration, 1);
-              // Smooth ease-out cubic
               const ease = 1 - Math.pow(1 - progress, 3);
               const currentVal = Math.floor(ease * target);
-              el.textContent = `${prefix}${currentVal}${suffix}`;
+              el.textContent = `${currentVal}${suffix}`;
 
               if (progress < 1) {
                 requestAnimationFrame(updateCount);
               } else {
-                el.textContent = `${prefix}${target}${suffix}`;
+                el.textContent = `${target}${suffix}`;
               }
             }
 
@@ -454,7 +424,7 @@ const featuredProjects = allProjects
 
   // ---------- Interactive Spotlight Effect on Cards ----------
   (() => {
-    const cards = document.querySelectorAll<HTMLElement>('.spotlight-card, .project-card, .portal-card');
+    const cards = document.querySelectorAll<HTMLElement>('.spotlight-card');
     cards.forEach((card) => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
@@ -468,16 +438,18 @@ const featuredProjects = allProjects
 </script>
 
 <style>
-  /* ---------- Hero Section ---------- */
+  /* ---------- Hero Section (Cinematic & Spacious) ---------- */
   .hero-section {
     position: relative;
-    padding-top: 4.5rem;
-    padding-bottom: 4rem;
+    padding-top: 5.5rem;
+    padding-bottom: 5rem;
     overflow: hidden;
-    min-height: 80vh;
+    min-height: 82vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 
   .hero-canvas {
@@ -491,71 +463,76 @@ const featuredProjects = allProjects
   }
 
   /* Grid overlay for McLaren/FPGA telemetry feel */
-  .grid-overlay {
+  .grid-mesh {
     position: absolute;
     inset: 0;
     background-size: 36px 36px;
     background-image: 
-      linear-gradient(to right, color-mix(in srgb, var(--border) 20%, transparent) 1px, transparent 1px),
-      linear-gradient(to bottom, color-mix(in srgb, var(--border) 20%, transparent) 1px, transparent 1px);
-    -webkit-mask-image: radial-gradient(circle at 50% 35%, black 20%, transparent 75%);
-    mask-image: radial-gradient(circle at 50% 35%, black 20%, transparent 75%);
+      linear-gradient(to right, color-mix(in srgb, var(--border) 18%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--border) 18%, transparent) 1px, transparent 1px);
+    -webkit-mask-image: radial-gradient(circle at 50% 40%, black 25%, transparent 75%);
+    mask-image: radial-gradient(circle at 50% 40%, black 25%, transparent 75%);
     pointer-events: none;
     z-index: 0;
   }
 
-  /* Soft ambient radial background fade */
-  .ambient-glow {
+  /* Ambient radial background glow */
+  .ambient-aurora {
     position: absolute;
-    top: -15%;
-    left: 45%;
+    top: 5%;
+    left: 50%;
     transform: translateX(-50%);
-    width: min(850px, 92vw);
+    width: min(900px, 94vw);
     height: 520px;
-    background: radial-gradient(circle, color-mix(in srgb, var(--brand) 15%, transparent) 0%, color-mix(in srgb, var(--accent) 7%, transparent) 45%, transparent 75%);
+    background: radial-gradient(circle, color-mix(in srgb, var(--brand) 16%, transparent) 0%, color-mix(in srgb, var(--accent) 7%, transparent) 45%, transparent 75%);
     pointer-events: none;
-    filter: blur(90px);
+    filter: blur(95px);
     z-index: 0;
   }
 
   .hero-container {
     position: relative;
     z-index: 1;
-    display: grid;
-    grid-template-columns: 1.25fr 0.75fr;
-    gap: 3.5rem;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    max-width: 58rem;
   }
 
   .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     transition: transform 0.1s ease-out, opacity 0.1s ease-out;
     will-change: transform, opacity;
   }
 
-  .tech-indicator {
+  /* Status Badge */
+  .hero-status-pill {
     display: inline-flex;
     align-items: center;
-    gap: 0.55rem;
-    padding: 0.4rem 0.95rem;
-    border-radius: 8px;
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    margin-bottom: 1.6rem;
+    gap: 0.6rem;
+    padding: 0.45rem 1.1rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--surface) 80%, transparent);
+    backdrop-filter: blur(12px);
+    border: 1px solid color-mix(in srgb, var(--brand) 30%, var(--border));
+    margin-bottom: 2rem;
     font-family: var(--font-mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.06em;
+    font-size: 0.76rem;
+    letter-spacing: 0.08em;
   }
-  .tech-indicator-tag {
+  .status-brand {
     font-weight: 700;
-    color: var(--text);
+    color: var(--brand);
   }
-  .tech-indicator-sep {
+  .status-sep {
     color: var(--muted);
     opacity: 0.4;
   }
-  .tech-indicator-sub {
-    color: var(--muted);
-    font-weight: 500;
+  .status-sub {
+    color: var(--text);
+    font-weight: 600;
   }
 
   .pulse-dot {
@@ -566,220 +543,97 @@ const featuredProjects = allProjects
     box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
   }
 
-  .pulse-dot-sm {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #10b981;
-    box-shadow: 0 0 6px #10b981;
-  }
-
+  /* Title & Subtitle */
   .hero-title {
     font-family: var(--font-display, var(--font-sans));
-    font-size: clamp(2.4rem, 4.8vw, 3.8rem);
+    font-size: clamp(2.8rem, 6vw, 4.8rem);
     font-weight: 800;
-    line-height: 1.06;
-    letter-spacing: -0.025em;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
     text-transform: uppercase;
-    margin-bottom: 1.4rem;
+    margin-bottom: 1.6rem;
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, var(--brand) 0%, #38bdf8 55%, #818cf8 100%);
+    background: linear-gradient(135deg, var(--brand) 0%, #38bdf8 50%, #818cf8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .hero-subtitle {
-    font-size: 1.12rem;
+    font-size: clamp(1.05rem, 2vw, 1.22rem);
     color: var(--muted);
     line-height: 1.65;
-    max-width: 37rem;
+    max-width: 42rem;
+    margin-bottom: 2.25rem;
   }
 
-  .btn-hero {
-    padding: 0.72rem 1.4rem;
-    font-size: 0.94rem;
-  }
-
-  /* ---------- Telemetry Avionics HUD Card ---------- */
-  .telemetry-hud {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 1.35rem;
-    padding: 2rem 1.85rem;
-    border-radius: 12px;
-    border-color: color-mix(in srgb, var(--brand) 28%, var(--border));
-    background: color-mix(in srgb, var(--surface) 90%, transparent);
+  /* Horizontal Floating Telemetry Bar (Zero Clutter) */
+  .telemetry-bar {
+    display: inline-flex;
+    align-items: center;
+    background: color-mix(in srgb, var(--surface) 85%, transparent);
     backdrop-filter: blur(16px);
+    border: 1px solid color-mix(in srgb, var(--brand) 25%, var(--border));
+    border-radius: 14px;
+    padding: 0.85rem 1.85rem;
     box-shadow: var(--shadow);
-    overflow: hidden;
+    gap: 1.75rem;
+    margin-bottom: 2.5rem;
   }
-
-  /* Reticle Crosshairs in 4 corners */
-  .hud-reticle {
-    position: absolute;
-    width: 9px;
-    height: 9px;
-    pointer-events: none;
-    opacity: 0.7;
-  }
-  .hud-reticle.tl { top: -1px; left: -1px; border-top: 2px solid var(--brand); border-left: 2px solid var(--brand); }
-  .hud-reticle.tr { top: -1px; right: -1px; border-top: 2px solid var(--brand); border-right: 2px solid var(--brand); }
-  .hud-reticle.bl { bottom: -1px; left: -1px; border-bottom: 2px solid var(--brand); border-left: 2px solid var(--brand); }
-  .hud-reticle.br { bottom: -1px; right: -1px; border-bottom: 2px solid var(--brand); border-right: 2px solid var(--brand); }
-
-  .hud-header {
+  .telemetry-cell {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    font-size: 0.72rem;
+  }
+  .telemetry-number {
     font-family: var(--font-mono);
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .hud-title-wrap {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .hud-title {
-    color: var(--muted);
-  }
-  .hud-clock {
-    color: var(--brand);
-    font-weight: 700;
-    letter-spacing: 0.04em;
-  }
-
-  .metrics-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: center;
-  }
-  .metrics-stats li {
-    background: var(--surface-2);
-    padding: 0.85rem 0.4rem;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-  }
-  .stat-number {
-    display: block;
-    font-size: 1.85rem;
+    font-size: 1.75rem;
     font-weight: 800;
-    color: var(--text);
-    font-family: var(--font-mono);
     line-height: 1.1;
-  }
-  .brand-accent { color: var(--brand); }
-  .stat-label {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-    font-weight: 600;
-    margin-top: 0.25rem;
-    display: block;
-  }
-
-  /* Hardware Matrix Row */
-  .hud-matrix {
-    display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
-    font-family: var(--font-mono);
-    font-size: 0.74rem;
-    padding: 0.85rem 0.95rem;
-    background: color-mix(in srgb, var(--surface-2) 60%, transparent);
-    border-radius: 8px;
-    border: 1px solid var(--border);
-  }
-  .matrix-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .matrix-label {
-    color: var(--muted);
-    font-size: 0.68rem;
-    letter-spacing: 0.04em;
-  }
-  .matrix-value {
     color: var(--text);
-    font-weight: 600;
-    font-size: 0.72rem;
   }
-
-  /* Live Trace Bar */
-  .hud-trace {
-    display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
-  }
-  .trace-bar {
-    width: 100%;
-    height: 3px;
-    background: var(--surface-2);
-    border-radius: 2px;
-    overflow: hidden;
-    position: relative;
-  }
-  .trace-progress {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 45%;
-    background: linear-gradient(90deg, transparent, var(--brand), transparent);
-    animation: trace-scan 2.4s ease-in-out infinite;
-  }
-  @keyframes trace-scan {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(250%); }
-  }
-  .trace-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: var(--font-mono);
+  .telemetry-label {
     font-size: 0.68rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-top: 0.2rem;
+  }
+  .telemetry-divider {
+    width: 1px;
+    height: 32px;
+    background: var(--border);
+    opacity: 0.6;
+  }
+  .brand-accent {
     color: var(--brand);
-    letter-spacing: 0.05em;
-    font-weight: 700;
-  }
-  .trace-pulse {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--brand);
-    box-shadow: 0 0 5px var(--brand);
-    animation: pulse-ring 1.8s infinite;
-  }
-  @keyframes pulse-ring {
-    0% { transform: scale(0.9); opacity: 0.8; }
-    50% { transform: scale(1.3); opacity: 1; }
-    100% { transform: scale(0.9); opacity: 0.8; }
   }
 
-  /* ---------- Section Headers & Spacing ---------- */
-  .section.case-studies-section,
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.85rem;
+  }
+  .hero-actions .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  /* ---------- Section Spacing & Headers ---------- */
+  .section.showcase-section,
   .section.portal-section,
   .section.network-section {
-    padding: 3.5rem 0;
+    padding: 4rem 0;
   }
 
   .section-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 2rem;
+    margin-bottom: 2.25rem;
   }
   .view-all {
     color: var(--brand);
@@ -793,7 +647,153 @@ const featuredProjects = allProjects
   }
   .view-all:hover {
     color: var(--brand-strong);
-    transform: translateX(2px);
+    transform: translateX(3px);
+  }
+
+  /* ---------- Visual Showcase Grid (Flagship Projects) ---------- */
+  .showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .showcase-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text);
+    position: relative;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease, box-shadow 0.28s ease;
+  }
+  .showcase-card:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--brand) 70%, var(--border));
+    box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.18);
+  }
+
+  .showcase-visual {
+    position: relative;
+    width: 100%;
+    height: 270px;
+    background: var(--surface-2);
+    overflow: hidden;
+  }
+  .showcase-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .showcase-card:hover .showcase-img {
+    transform: scale(1.05);
+  }
+  .showcase-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, color-mix(in srgb, var(--surface) 95%, transparent) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .showcase-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: color-mix(in srgb, var(--surface) 90%, transparent);
+    backdrop-filter: blur(10px);
+    color: var(--brand);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 0.35rem 0.8rem;
+    border-radius: 6px;
+    border: 1px solid color-mix(in srgb, var(--brand) 30%, var(--border));
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  }
+
+  .showcase-status {
+    position: absolute;
+    bottom: 1rem;
+    left: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    backdrop-filter: blur(6px);
+  }
+
+  .showcase-body {
+    padding: 1.75rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .showcase-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.74rem;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+  }
+  .showcase-title {
+    font-family: var(--font-display, var(--font-sans));
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    color: var(--text);
+    margin: 0 0 0.6rem;
+  }
+  .showcase-summary {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--muted);
+    margin: 0 0 1.5rem;
+    flex: 1;
+  }
+  .showcase-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+  .showcase-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .showcase-cta {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--brand);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    white-space: nowrap;
+  }
+  .showcase-cta .arrow {
+    transition: transform 0.2s ease;
+  }
+  .showcase-card:hover .showcase-cta .arrow {
+    transform: translateX(4px);
   }
 
   /* Quick Category Links */
@@ -801,8 +801,8 @@ const featuredProjects = allProjects
     display: flex;
     flex-wrap: wrap;
     gap: 0.65rem;
-    margin-top: 1.75rem;
-    padding-top: 1.25rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
     border-top: 1px solid var(--border);
   }
   .pill-link {
@@ -811,7 +811,7 @@ const featuredProjects = allProjects
     font-family: var(--font-mono);
     color: var(--muted);
     text-decoration: none;
-    padding: 0.38rem 0.85rem;
+    padding: 0.4rem 0.95rem;
     background: var(--surface-2);
     border-radius: 9999px;
     border: 1px solid var(--border);
@@ -824,7 +824,7 @@ const featuredProjects = allProjects
   .pill-link:hover {
     color: var(--text);
     border-color: var(--brand);
-    background: color-mix(in srgb, var(--brand) 10%, var(--surface-2));
+    background: color-mix(in srgb, var(--brand) 12%, var(--surface-2));
     transform: translateY(-2px);
   }
 
@@ -846,7 +846,7 @@ const featuredProjects = allProjects
     border: 1px solid var(--border);
     position: relative;
     overflow: hidden;
-    min-height: 200px;
+    min-height: 195px;
     transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
   }
 
@@ -854,7 +854,6 @@ const featuredProjects = allProjects
     position: absolute;
     top: 0.85rem;
     right: 1.1rem;
-    font-family: var(--font-mono);
     font-size: 2.1rem;
     font-weight: 800;
     color: color-mix(in srgb, var(--text) 8%, transparent);
@@ -924,17 +923,22 @@ const featuredProjects = allProjects
     transform: translateX(4px);
   }
 
+  /* Responsive Breakpoints */
   @media (max-width: 900px) {
-    .hero-container { grid-template-columns: 1fr; gap: 2.25rem; }
+    .showcase-grid { grid-template-columns: 1fr; }
+    .telemetry-bar { flex-wrap: wrap; justify-content: center; gap: 1rem 1.5rem; padding: 1rem 1.25rem; }
+    .telemetry-divider { display: none; }
     .portal-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 600px) {
+    .hero-section { padding-top: 4rem; padding-bottom: 3.5rem; }
+    .hero-title { font-size: 2.4rem; }
     .portal-grid { grid-template-columns: 1fr; }
-    .hero-title { font-size: 2.3rem; }
-    .section.case-studies-section,
+    .telemetry-bar { width: 100%; justify-content: space-around; }
+    .section.showcase-section,
     .section.portal-section,
     .section.network-section {
-      padding: 2.5rem 0;
+      padding: 2.75rem 0;
     }
   }
 </style>

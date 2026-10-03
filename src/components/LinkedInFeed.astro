@@ -1,6 +1,12 @@
 ---
 import { linkedInPosts } from '../data/linkedin';
 import { profile } from '../data/profile';
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
 ---
 
 <div class="linkedin-feed">
@@ -10,7 +16,7 @@ import { profile } from '../data/profile';
         href={post.postUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="card linkedin-row"
+        class:list={['card', 'linkedin-row', { 'is-compact': compact }]}
         aria-label={`View post "${post.title}" on LinkedIn`}
       >
         <div class="row-left">
@@ -19,7 +25,7 @@ import { profile } from '../data/profile';
             <span class="post-date">{post.formattedDate}</span>
           </div>
           <h4 class="post-title">{post.title}</h4>
-          <p class="post-snippet">{post.content.slice(0, 130)}...</p>
+          {!compact && <p class="post-snippet">{post.content.slice(0, 130)}...</p>}
         </div>
         <div class="row-arrow" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -40,31 +46,37 @@ import { profile } from '../data/profile';
   .feed-list {
     display: flex;
     flex-direction: column;
-    gap: 1.1rem;
+    gap: 0.85rem;
   }
 
   .linkedin-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.35rem 1.6rem;
-    border-radius: 12px;
+    padding: 1.15rem 1.45rem;
+    border-radius: 10px;
     text-decoration: none;
     color: var(--text);
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-    gap: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.2s ease;
+    gap: 1.5rem;
   }
 
   .linkedin-row:hover {
-    transform: translateY(-3px);
-    border-color: color-mix(in srgb, var(--brand) 60%, var(--border));
-    box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--brand) 65%, var(--border));
+    box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.12);
+  }
+
+  .linkedin-row.is-compact {
+    padding: 0.95rem 1.25rem;
   }
 
   .row-left {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.25rem;
     min-width: 0;
   }
 
@@ -72,16 +84,17 @@ import { profile } from '../data/profile';
     display: flex;
     align-items: center;
     gap: 0.65rem;
-    font-size: 0.78rem;
+    font-size: 0.76rem;
   }
 
   .post-date {
     color: var(--muted);
-    font-size: 0.75rem;
+    font-size: 0.74rem;
+    font-family: var(--font-mono);
   }
 
   .post-title {
-    font-size: 1.05rem;
+    font-size: 1rem;
     font-weight: 700;
     margin: 0;
     line-height: 1.3;
@@ -99,8 +112,8 @@ import { profile } from '../data/profile';
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     background: var(--surface-2);
     color: var(--brand);
@@ -115,8 +128,8 @@ import { profile } from '../data/profile';
 
   @media (max-width: 640px) {
     .linkedin-row {
-      padding: 1rem;
-      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      gap: 0.65rem;
     }
   }
 </style>

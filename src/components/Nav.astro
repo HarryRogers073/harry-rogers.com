@@ -1,25 +1,38 @@
 ---
 const links = [
+  { href: '/', label: 'Home' },
   { href: '/projects', label: 'Projects' },
   { href: '/experience', label: 'Experience' },
   { href: '/cv', label: 'CV' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
+  { href: '/terminal', label: 'Terminal' },
 ];
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
-const isActive = (href: string) => path === href || path.startsWith(href + '/');
+const isActive = (href: string) => {
+  if (href === '/') return path === '/';
+  return path === href || path.startsWith(href + '/');
+};
 ---
 
 <header class="site-header">
   <nav class="container nav" aria-label="Main">
-    <a href="/" class="brand">
+    <a href="/" class="brand" aria-label="Harry Rogers - Home">
       <img src="/favicon.png" alt="HR" width="22" height="22" class="brand-logo logo-light" />
       <img src="/favicon-dark.png" alt="HR" width="22" height="22" class="brand-logo logo-dark" />
-      harry-rogers
+      <span class="brand-name">harry-rogers</span>
     </a>
     <ul class="links">
       {links.map((l) => (
-        <li><a href={l.href} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a></li>
+        <li>
+          <a
+            href={l.href}
+            aria-current={isActive(l.href) ? 'page' : undefined}
+            class={l.href === '/terminal' ? 'nav-terminal' : undefined}
+          >
+            {l.href === '/terminal' ? '>_ CLI' : l.label}
+          </a>
+        </li>
       ))}
     </ul>
     <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle dark mode" title="Toggle theme">
@@ -47,28 +60,106 @@ const isActive = (href: string) => path === href || path.startsWith(href + '/');
 
 <style>
   .site-header {
-    position: sticky; top: 0; z-index: 50;
-    background: color-mix(in srgb, var(--bg) 82%, transparent);
-    backdrop-filter: saturate(180%) blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: saturate(180%) blur(12px);
     border-bottom: 1px solid var(--border);
   }
-  .nav { display: flex; align-items: center; gap: 1.5rem; height: 4rem; }
-  .brand { display: flex; align-items: center; gap: 0.55rem; font-family: var(--font-mono); font-weight: 500; color: var(--text); text-decoration: none; white-space: nowrap; }
-  .brand-logo { border-radius: 4px; display: inline-block; vertical-align: middle; }
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    height: 4rem;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    white-space: nowrap;
+    font-size: 0.95rem;
+  }
+  .brand-logo {
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
+  }
   .logo-dark { display: none; }
   :global([data-theme='dark']) .logo-light { display: none; }
   :global([data-theme='dark']) .logo-dark { display: inline-block; }
-  .links { display: flex; gap: 0.25rem; list-style: none; margin: 0 0 0 auto; padding: 0; overflow-x: auto; }
-  .links a { display: block; padding: 0.4rem 0.7rem; border-radius: 8px; color: var(--muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; }
-  .links a:hover { color: var(--text); background: var(--surface-2); }
-  .links a[aria-current='page'] { color: var(--brand); background: color-mix(in srgb, var(--brand) 10%, transparent); }
-  .icon-btn { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; flex: none; }
+
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    list-style: none;
+    margin: 0 0 0 auto;
+    padding: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .links::-webkit-scrollbar {
+    display: none;
+  }
+  .links a {
+    display: block;
+    padding: 0.38rem 0.65rem;
+    border-radius: 6px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+  .links a:hover {
+    color: var(--text);
+    background: var(--surface-2);
+  }
+  .links a[aria-current='page'] {
+    color: var(--brand);
+    background: color-mix(in srgb, var(--brand) 12%, transparent);
+    font-weight: 700;
+  }
+  .nav-terminal {
+    font-family: var(--font-mono);
+    font-size: 0.8rem !important;
+    color: var(--brand) !important;
+    opacity: 0.9;
+  }
+  .nav-terminal:hover {
+    opacity: 1;
+  }
+
+  .icon-btn {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    flex: none;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .icon-btn:hover {
+    border-color: var(--brand);
+    transform: translateY(-1px);
+  }
   :global([data-theme='dark']) .sun { display: none; }
   :global([data-theme='light']) .moon { display: none; }
-  @media (max-width: 640px) {
-    .nav { gap: 0.75rem; }
-    .brand { display: none; }
-    .links { margin-left: 0; }
-    .links a { padding: 0.4rem 0.5rem; font-size: 0.9rem; }
+
+  @media (max-width: 768px) {
+    .nav { gap: 0.5rem; height: 3.5rem; }
+    .brand-name { display: none; } /* keep logo visible so brand is always accessible */
+    .links a { padding: 0.35rem 0.45rem; font-size: 0.82rem; }
   }
 </style>
