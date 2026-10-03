@@ -5,7 +5,7 @@
 
 export const profile = {
   name: 'Harry Rogers',
-  title: 'Test Engineer & FPGA Verification Specialist',
+  title: 'Hardware Test Engineer',
   tagline:
     'Hardware test engineer working on defence robotics and Hawkeye electro-optics at Chess Dynamics; building FPGA verification tooling.',
   location: 'Sussex, UK',
