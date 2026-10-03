@@ -2,25 +2,113 @@
 import type { CollectionEntry } from 'astro:content';
 interface Props { project: CollectionEntry<'projects'>; }
 const { project } = Astro.props;
-const { title, summary, tags, status } = project.data;
+const { title, summary, tags, status, thumbnail, badge } = project.data;
 ---
 
 <article class="card project">
-  <div class="meta">
-    <span class="tag">{status}</span>
-    <span class="muted year">{project.data.date.getFullYear()}</span>
+  {thumbnail && (
+    <div class="thumb-container">
+      <img src={thumbnail} alt={title} loading="lazy" class="thumb-img" />
+      {badge && <span class="award-badge">{badge}</span>}
+    </div>
+  )}
+  <div class="card-body">
+    <div class="meta">
+      <span class="tag status-tag">{status}</span>
+      <span class="muted year">{project.data.date.getFullYear()}</span>
+    </div>
+    <h3><a href={`/projects/${project.id}`}>{title}</a></h3>
+    <p class="muted summary">{summary}</p>
+    <ul class="tags">{tags.slice(0, 4).map((t) => <li class="tag">{t}</li>)}</ul>
   </div>
-  <h3><a href={`/projects/${project.id}`}>{title}</a></h3>
-  <p class="muted">{summary}</p>
-  <ul class="tags">{tags.map((t) => <li class="tag">{t}</li>)}</ul>
 </article>
 
 <style>
-  .project { position: relative; display: flex; flex-direction: column; transition: transform .15s ease, border-color .15s ease; }
-  .project:hover { transform: translateY(-2px); border-color: var(--brand); }
-  .meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
-  h3 { margin: 0.75rem 0 0.5rem; }
-  h3 a { color: var(--text); text-decoration: none; }
-  h3 a::after { content: ''; position: absolute; inset: 0; } /* whole card clickable */
-  p { flex: 1; font-size: 0.97rem; }
+  .project {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .project:hover {
+    transform: translateY(-4px);
+    border-color: var(--brand);
+    box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.08);
+  }
+  .thumb-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background: var(--bg-soft, #f4f4f5);
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+  }
+  .project:hover .thumb-img {
+    transform: scale(1.04);
+  }
+  .award-badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: #09090b;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    letter-spacing: 0.02em;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+  .status-tag {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  h3 {
+    margin: 0.25rem 0 0.5rem;
+    font-size: 1.25rem;
+    line-height: 1.35;
+  }
+  h3 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  h3 a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .summary {
+    flex: 1;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+  .tags {
+    margin-top: auto;
+  }
 </style>

@@ -11,7 +11,7 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
-const { title, summary, date, tags, repo, live, status } = project.data;
+const { title, summary, date, tags, repo, live, status, thumbnail, badge } = project.data;
 const { Content } = await render(project);
 ---
 
@@ -28,6 +28,7 @@ const { Content } = await render(project);
           <time datetime={date.toISOString()} class="muted">
             {date.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}
           </time>
+          {badge && <span class="badge-pill">{badge}</span>}
         </div>
         <h1>{title}</h1>
         <p class="summary">{summary}</p>
@@ -52,6 +53,12 @@ const { Content } = await render(project);
         </div>
       </header>
 
+      {thumbnail && (
+        <div class="hero-image-box">
+          <img src={thumbnail} alt={title} class="hero-image" />
+        </div>
+      )}
+
       <hr />
 
       <div class="prose project-body">
@@ -70,7 +77,31 @@ const { Content } = await render(project);
   .status-tag { text-transform: uppercase; font-size: 0.7rem; font-weight: 600; }
   .summary { font-size: 1.2rem; color: var(--muted); line-height: 1.5; margin: 1rem 0 1.5rem; }
   .project-header h1 { margin-bottom: 0.5rem; }
+  .badge-pill {
+    background: #09090b;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.65rem;
+    border-radius: 9999px;
+    letter-spacing: 0.02em;
+  }
+  .hero-image-box {
+    margin: 2rem 0 1.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06);
+    background: var(--bg-soft, #f4f4f5);
+  }
+  .hero-image {
+    width: 100%;
+    max-height: 480px;
+    object-fit: contain;
+    display: block;
+    background: #09090b;
+  }
   .project-body { margin-top: 2rem; }
   :global(.project-body pre) { margin: 1.5rem 0; }
-  :global(.project-body img) { border-radius: 10px; border: 1px solid var(--border); }
+  :global(.project-body img) { border-radius: 10px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin: 1.5rem 0; width: 100%; }
 </style>

@@ -7,21 +7,62 @@ featured: true
 status: "complete"
 repo: "https://github.com/HarryRogers073/pic-microcontroller-code"
 order: 2
+thumbnail: "/images/projects/pic/dual-pic-schematic.jpg"
+badge: "84% (A+) Distinction"
 ---
 
 ## Project Overview
 
-A dedicated embedded firmware library developed across **EO631 (Embedded Systems 3)** and **EO524 (Embedded Systems)** modules at the **University of Brighton** (Grade: **84% Distinction / A+**).
+A comprehensive bare-metal embedded firmware library developed across **EO631 (Embedded Systems 3)** and **EO524 (Embedded Systems)** modules at the **University of Brighton**, earning an **84% Distinction Grade (A+)**.
 
-Focuses on bare-metal and register-level control of **Microchip PIC16F84A**, **PIC16F873**, and **PIC18** microcontrollers using both **MPASM Assembly** and **MPLAB XC8 Embedded C**.
+The codebase demonstrates cycle-accurate, register-level control of **Microchip PIC16F873**, **PIC16F84A**, and **PIC18** microcontrollers using both **MPASM Assembly** and **MPLAB XC8 Embedded C**.
 
 ---
 
-## 🎯 Architecture & Modules
+## ⚡ Circuit Schematic: Master/Slave Dual PIC Architecture
+
+The flagship hardware system pairs two PIC16F873 microcontrollers over a full-duplex hardware UART serial bus. The master controller samples real-time analog/digital inputs and streams command packets to the slave controller, which dynamically computes PWM waveforms and drives high-power peripheral loads.
+
+![Dual PIC Microcontroller Circuit Schematic](/images/projects/pic/dual-pic-schematic.jpg)
+*Figure 1: Complete circuit schematic of the dual-PIC architecture showing the master-to-slave UART bus, crystal oscillator clock networks, dual 7-segment hex displays, and multi-channel PWM outputs.*
+
+---
+
+## 🔬 System Specifications & Registers
+
+| Feature | Hardware Implementation | Target Registers |
+| :--- | :--- | :--- |
+| **Microcontroller** | Microchip PIC16F873 (28-pin DIP, 20 MHz Crystal) | `PORTA`, `PORTB`, `PORTC` |
+| **Serial Bus** | Hardware USART (Asynchronous 9600 Baud, 8-N-1) | `RCSTA`, `TXSTA`, `SPBRG`, `RCREG` |
+| **PWM Output** | Hardware CCP1/CCP2 in PWM Mode with Timer 2 | `CCP1CON`, `CCPR1L`, `T2CON`, `PR2` |
+| **Display Drivers** | Multiplexed Common-Cathode 7-Segment Hex Displays | Direct bit latching on `PORTB` & `PORTC` |
+| **Interrupts** | RX Serial Interrupt & Timer Overflow ISR | `INTCON`, `PIE1`, `PIR1` |
+
+---
+
+## 🔄 PWM Modulation & Timer State Machine
+
+The pulse-width modulation subsystem relies on hardware Timer 2 (`TMR2`) and period register `PR2` to generate clean, jitter-free square waves without loading the CPU:
+
+![PWM State Flowchart & Period Modulation](/images/projects/pic/pwm-flowchart.png)
+*Figure 2: Execution flowchart for dynamic PWM duty cycle adjustment and UART packet decoding state transitions.*
+
+---
+
+## 💻 Register-Level MPASM Assembly Implementation
+
+The assembly routines leverage direct bit manipulation, bank switching (`STATUS, RP0`), and cycle-accurate delay loops:
+
+![MPASM Assembly UART-to-PWM Firmware Card](/images/projects/pic/code-mpasm-uart-pwm.png)
+*Figure 3: Carbon-style syntax-highlighted MPASM assembly showing USART configuration, bank selection, and CCP1 PWM duty cycle loading.*
+
+---
+
+## 📦 Firmware Modules in Repository
 
 ### 1. MPASM Assembly Routines (`firmware_asm/`)
 - **`16F873_RX_to_PWM.asm`:** Hardware UART packet reception triggering dynamic PWM duty-cycle modulation.
-- **`16F873_RX_to_LEDs_PORTC.ASM`:** Direct byte latching and parallel register bit driving.
+- **`16F873_RX_to_LEDs_PORTC.ASM`:** Direct byte latching and parallel register bit driving for visual diagnostics.
 - **`PWM.asm` & `PWM_Simple.asm`:** Hardware Timer 2 (TMR2) and PR2 period registers for high-efficiency pulse modulation.
 
 ### 2. Embedded C Drivers (`firmware_c/`)
@@ -32,8 +73,9 @@ Focuses on bare-metal and register-level control of **Microchip PIC16F84A**, **P
 
 ---
 
-## ⚡ Source Code & Artifacts
+## ⚡ Source Code & Toolchain
 
 - **GitHub Repository:** [HarryRogers073/pic-microcontroller-code](https://github.com/HarryRogers073/pic-microcontroller-code)
-- **Target Microcontrollers:** Microchip PIC16F873, PIC16F84A
+- **Target Silicon:** Microchip PIC16F873, PIC16F84A
 - **Compilers & IDEs:** Microchip MPLAB X IDE, MPASM, MPLAB XC8
+- **Programmer:** Microchip PICkit 3 / PICkit 4 In-Circuit Debugger

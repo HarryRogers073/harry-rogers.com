@@ -7,42 +7,78 @@ featured: true
 status: "complete"
 repo: "https://github.com/HarryRogers073/matlab-projects"
 order: 3
+thumbnail: "/images/projects/matlab/matlab-telemetry-gui.png"
+badge: "First-Class Honours Suite"
 ---
 
 ## Project Overview
 
-A consolidated collection of engineering instruments and analytical pipelines built in **MATLAB & Simulink** across BEng coursework (EO631 & EO626) at the **University of Brighton**.
+A consolidated collection of engineering instruments, digital signal processing (DSP) pipelines, and simulation tools built in **MATLAB & Simulink** across BEng coursework (EO631 & EO626) at the **University of Brighton**.
 
-Combines graphical user interface development in **App Designer**, opcode-level instruction architecture simulation, bilinear transformation DSP filter synthesis, and automated HDL IP core generation.
+The repository bridges graphical desktop application design in **MATLAB App Designer**, low-level microprocessor architecture simulation, continuous-to-discrete filter synthesis via the **Bilinear Transformation**, and automated synthesizable **HDL IP core generation**.
 
 ---
 
-## 🎯 Flagship Engineering Components
+## 🖥️ Flagship App 1: Multi-Channel Telemetry Dashboard
 
-### 1. App Designer Instruments (`app_designer/`)
-- **Multi-Channel Hardware Sensor Dashboard (`HarryRogers_22835293_EO631_GUI_APP.mlapp`):**
-  - Real-time time-series telemetry, gain scaling, offset calibration, and safety threshold alerts for analog inputs (`A0` – `A5`).
-  - JSON-driven hardware profiles allowing instant loading/saving of sensor configurations.
-- **PIC16F84A Instruction Explorer (`PIC16F84A_Instruction_Explorer.mlapp`):**
-  - Visual step-by-step assembly execution emulator visualizing opcode decoding, register file transitions (W, STATUS, PORTA, PORTB), and flag states.
+Developed for real-time monitoring of embedded sensors over serial COM interfaces. Features live strip-chart plotting, dynamic gain scaling, calibration offsets, and audible out-of-bounds safety alarms.
 
-### 2. DSP Filter Design & Audio Processing (`dsp_filter_design/`)
-- **Bilinear Transformation Filter Synthesis (`Butterworth.m`):**
-  - Synthesizes continuous-to-discrete Butterworth low-pass and band-pass filters with frequency pre-warping.
-- **FIR Linear-Phase Windowing (`Hamming.m`):**
-  - Sinc truncation with Hamming window tapering, trading off stopband attenuation and transition bandwidth.
+![MATLAB App Designer Telemetry & Sensor Dashboard](/images/projects/matlab/matlab-telemetry-gui.png)
+*Figure 1: Interactive App Designer telemetry suite featuring real-time analog sensor plotting (`A0`–`A5`), COM port baud rate selector, circular needle gauges, and dynamic JSON calibration loading.*
 
-### 3. Simulink Dynamic Acoustic Harness (`simulink/`)
-- **`Final_Model_2025A.slx`:**
-  - Real-time streaming audio filtering simulation comparing raw wave inputs, injected acoustic interference, and filtered outputs.
+---
 
-### 4. Synthesizable HDL IP Export (`hdl_export/`)
-- **Automated HDL Coder Pipeline (`export_hdl_IP.m`):**
-  - Generates synthesizable Verilog/VHDL RTL filter cores from MATLAB transfer functions with automated testbench verification.
+## 🖥️ Flagship App 2: PIC16F84A Instruction Explorer
+
+An interactive CPU architectural emulator designed for embedded systems pedagogy. Visualizes how machine opcodes are decoded and trace register state modifications cycle-by-cycle:
+
+![PIC16F84A Opcode & Architecture Instruction Explorer](/images/projects/matlab/pic16f84a-instruction-explorer.png)
+*Figure 2: PIC16F84A Instruction Explorer app showing opcode disassembly, Working Register (`W`), `STATUS` register zero/carry flags, and I/O port bitmasks.*
+
+---
+
+## 🎛️ Digital Signal Processing (DSP) Filter Design
+
+The suite includes mathematically rigorous digital filter synthesis using both IIR (Infinite Impulse Response) and FIR (Finite Impulse Response) methodologies:
+
+| Filter Type | Order | Design Method | Passband Ripple | Stopband Attenuation | Phase Response |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Butterworth IIR** | 11th Order | Bilinear Transform with Frequency Pre-warping | Flat (0 dB) | -66 dB / decade roll-off | Non-linear |
+| **Hamming Window FIR** | 324th Order | Sinc truncation with Hamming window tapering | ±0.05 dB | -53 dB | Perfectly Linear |
+
+### Frequency Response & Spectrum Analysis
+
+Comparing the attenuation characteristics and stopband rejection between the 11th-order Butterworth IIR filter and 324th-order Hamming FIR filter:
+
+![324th-Order Hamming FIR vs 11th-Order Butterworth IIR Spectrum Analysis](/images/projects/matlab/dsp-spectrum-analyzer.jpg)
+*Figure 3: Spectrum analyzer comparison between the synthesized 324th-order Hamming FIR filter and 11th-order Butterworth IIR filter under white noise and audio stimulus.*
+
+### Bode & Phase Angle Characterisation
+
+![Filter Bode Response and Phase Angle Plots](/images/projects/matlab/dsp-filter-bode-comparison.jpg)
+*Figure 4: Magnitude and phase Bode plots showing pole/zero placement, cutoff transition steepness, and phase linearity across the audible frequency band.*
+
+---
+
+## 💻 Bilinear Transformation MATLAB Implementation
+
+Below is the core MATLAB algorithm applying frequency pre-warping to translate continuous analog $s$-domain transfer functions into discrete $z$-domain filter coefficients:
+
+![MATLAB Bilinear Transformation Filter Synthesis Card](/images/projects/matlab/code-matlab-butterworth.png)
+*Figure 5: Carbon-style syntax-highlighted MATLAB script computing pre-warped cutoff frequencies and synthesising normalized filter polynomials.*
+
+---
+
+## 📦 Repository Structure & Modules
+
+- **`app_designer/`**: Contains `.mlapp` standalone binary and source definitions for the Telemetry Dashboard and PIC16F84A CPU Explorer.
+- **`dsp_filter_design/`**: Filter synthesis scripts (`Butterworth.m`, `Hamming.m`) and spectrum analysis plotting functions.
+- **`simulink/`**: `Final_Model_2025A.slx` audio crossover simulation harness with dynamic interference injection.
+- **`hdl_export/`**: Automated script invoking MATLAB HDL Coder to generate synthesizable VHDL/Verilog RTL cores from discrete filter objects.
 
 ---
 
 ## ⚡ Source Code & Artifacts
 
 - **GitHub Repository:** [HarryRogers073/matlab-projects](https://github.com/HarryRogers073/matlab-projects)
-- **Tools:** MATLAB (R2022b+), Simulink, DSP System Toolbox, MATLAB HDL Coder
+- **Environment:** MATLAB R2022b–R2024b, Simulink, DSP System Toolbox, HDL Coder

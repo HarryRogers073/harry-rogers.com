@@ -7,26 +7,89 @@ featured: true
 status: "complete"
 repo: "https://github.com/HarryRogers073/robot-wars"
 order: 4
+thumbnail: "/images/projects/robot-wars/robot-annotated.png"
+badge: "82% (A+) | Robot Wars 2nd Place"
 ---
 
 ## Project Overview
 
-Hardware schematics, PCB design, and embedded C firmware for the **University of Brighton Robot Wars Competition** (modules XE521 Engineering Design & EO524 Embedded Systems).
+Hardware schematics, custom PCB power distribution, and bare-metal embedded C firmware for an **Autonomous Combat Robotics Platform** built for the **University of Brighton Robot Wars Tournament** (Engineering Modules XE521 & EO524).
 
-Our autonomous combat robot achieved a **2nd Place Podium Finish** in the inter-collegiate arena tournament and earned an **82% Distinction Grade (A+)**.
+The platform achieved a **2nd Place Podium Finish** in the collegiate combat tournament and earned an **82% Distinction Grade (A+)** for mechanical reliability, control responsiveness, and electrical system design.
 
 ---
 
-## 🏆 Key Features
+## 🤖 Physical Robot Anatomy & 3D CAD
 
-- **Podium Finish (2nd Place):** Survived intense bracket elimination rounds against competing collegiate robotics teams.
-- **High-Current H-Bridge Motor Driver:** Custom dual-channel MOSFET driver schematic engineered and verified in **Labcenter Proteus Design Suite**.
-- **Ultrasonic Sonar Guidance:** Real-time obstacle evasion and target engagement routines driven by hardware timer capture of HC-SR04 ultrasonic echo pulses.
-- **Embedded C Control Firmware:** Modular state machine executing differential steering, weapon actuation, and diagnostic logging to an onboard LCD screen.
+The chassis was engineered to withstand severe physical impacts in the combat arena while maintaining a low center of gravity for traction and rapid differential turning.
+
+![Autonomous Combat Robot Component Anatomy](/images/projects/robot-wars/robot-annotated.png)
+*Figure 1: Full component anatomy of the combat buggy, highlighting the HC-SR04 sonar array, 4-phase stepper lifter, dual high-torque drive DC motors, LCD telemetry display, and onboard speaker alert system.*
+
+### Mechanical CAD Modeling
+
+Before manufacturing and 3D printing custom brackets, the entire assembly was modeled in CAD to balance mass distribution, gear ratios, and battery placement:
+
+![Robot 3D CAD Assembly Render](/images/projects/robot-wars/robot-cad-render.png)
+*Figure 2: 3D CAD mechanical render showing structural chassis plates, motor gearboxes, and bumper mounting geometry.*
+
+---
+
+## 🏆 Arena Tournament Performance
+
+| Parameter | Specification / Benchmark |
+| :--- | :--- |
+| **Tournament Placement** | **2nd Place Overall (Podium Finish)** |
+| **Academic Grade** | **82% Distinction (A+)** |
+| **Microcontroller** | Microchip PIC16F Series (Bare-metal Embedded C) |
+| **Motor Drive Topology** | Dual H-Bridge High-Current MOSFET Driver with PWM Throttle |
+| **Obstacle Detection** | Ultrasonic Sonar Transducer (HC-SR04) with Timer Capture |
+| **Turning Agility** | Zero-radius Differential Steering (Independent Left/Right PWM) |
+| **Tactical Subsystem** | 4-Phase Stepper Flipping Actuator + Audio/Visual Status Indicators |
+
+---
+
+## 📸 Physical Hardware Construction
+
+The physical build integrated custom laser-cut chassis layers, dual battery rails for digital logic isolation, and heavy-duty wiring harnesses:
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+  <div>
+    <img src="/images/projects/robot-wars/robot-hardware-front.png" alt="Combat Robot Front View" style="border-radius: 8px; border: 1px solid var(--border); width: 100%; height: 220px; object-fit: cover;" />
+    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; text-align: center;">Front view: HC-SR04 ultrasonic sonar eyes & reinforced ramming wedge.</p>
+  </div>
+  <div>
+    <img src="/images/projects/robot-wars/robot-hardware-top.png" alt="Combat Robot Top View" style="border-radius: 8px; border: 1px solid var(--border); width: 100%; height: 220px; object-fit: cover;" />
+    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; text-align: center;">Top view: Dual PIC microcontroller boards, logic rails & stepper driver.</p>
+  </div>
+  <div>
+    <img src="/images/projects/robot-wars/robot-hardware-side.png" alt="Combat Robot Side View" style="border-radius: 8px; border: 1px solid var(--border); width: 100%; height: 220px; object-fit: cover;" />
+    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; text-align: center;">Side profile: Low-slung drive wheels, high-traction tires & battery bay.</p>
+  </div>
+</div>
+
+---
+
+## ⚡ Circuit Schematics & Electrical Architecture
+
+To prevent motor inductive spikes from resetting the microcontroller during rapid forward-to-reverse transitions, the motor power stage was isolated with flyback diodes, decoupling capacitors, and dedicated ground planes.
+
+![Full Circuit Wiring & Microcontroller Schematic](/images/projects/robot-wars/robot-wiring-schematic.png)
+*Figure 3: Complete wiring schematic illustrating PIC microcontroller GPIO routing, motor driver H-bridge interfaces, sonar echo capture, and Hitachi HD44780 LCD pinout.*
+
+---
+
+## 💻 Embedded C Firmware Architecture
+
+The firmware was implemented in bare-metal C using **MPLAB XC8**, structured as a non-blocking finite state machine (FSM) executing real-time sonar range polling, defensive evasion, and aggressive pursuit.
+
+![Embedded C Motor Driver & Steering Routine](/images/projects/robot-wars/code-c-motor-driver.png)
+*Figure 4: Core Embedded C differential steering driver mapping tactical states (`DRIVE_FORWARD`, `PIVOT_LEFT`, `DEFENSIVE_SPIN`) to PWM duty cycles and H-bridge direction registers.*
 
 ---
 
 ## ⚡ Source Code & Artifacts
 
-- **GitHub Repository:** [HarryRogers073/robot-wars-combat-platform](https://github.com/HarryRogers073/robot-wars)
-- **EDA & Firmware Tools:** Labcenter Proteus 8 Professional, Microchip MPLAB X IDE, XC8 Compiler
+- **GitHub Repository:** [HarryRogers073/robot-wars](https://github.com/HarryRogers073/robot-wars)
+- **EDA & Simulation:** Labcenter Proteus 8 Professional
+- **Firmware Toolchain:** Microchip MPLAB X IDE, XC8 Compiler

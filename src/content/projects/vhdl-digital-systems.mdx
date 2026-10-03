@@ -7,47 +7,77 @@ featured: true
 status: "complete"
 repo: "https://github.com/HarryRogers073/vhdl-digital-systems"
 order: 5
+thumbnail: "/images/projects/vhdl/vhdl-hardware-testbed.jpg"
+badge: "84% (A+) Distinction"
 ---
 
 ## Project Overview
 
-A modular digital logic and FPGA hardware description library written in **IEEE standard VHDL**, developed for the **Digital Systems Design** module at the **University of Brighton** (Grade: **84% Distinction / A+**).
+A modular digital logic and FPGA hardware description library written in **IEEE standard VHDL**, developed for the **Digital Systems Design** module at the **University of Brighton** and earning an **84% Distinction Grade (A+)**.
 
-The library implements synchronous finite state machines (FSMs), priority request queues, arithmetic sub-units (adders, multipliers, comparators), sequential shift registers, and seven-segment hexadecimal display decoders verified in **Intel Quartus Prime** and **ModelSim**.
+The repository implements synchronous finite state machines (FSMs), priority request arbitration queues, arithmetic sub-units (ALUs, ripple adders, multipliers, magnitude comparators), sequential shift registers, and seven-segment display decoders synthesized in **Intel Quartus Prime** and verified through gate-level timing simulations in **ModelSim**.
 
 ---
 
-## 🎯 Flagship Design: Multi-Floor Elevator Controller FSM
+## 🔬 Physical FPGA Hardware Testbed
 
-The centerpiece is an industrial multi-floor elevator controller architecture featuring arbitration queues, door actuation timing, and safety stop interlocks:
+The flagship multi-floor elevator controller was compiled onto an **Altera/Intel Cyclone FPGA** and deployed to a physical hardware testing harness consisting of tactile floor call switches, emergency stop buttons, and LED position indicators:
 
-- **`Lift.vhd` & `Lift_tb.vhd`:** Main elevator controller Finite State Machine coordinating floor states (`IDLE`, `MOVING_UP`, `MOVING_DOWN`, `DOOR_OPEN`, `EMERGENCY_STOP`).
-- **`Queue.vhd`:** Synchronous request register queue latching floor call events and scheduling optimal dispatch.
-- **`doors_but_better.vhd`:** Door actuation timing module with sensor interlocks.
+![Physical FPGA Breadboard Elevator Testbed](/images/projects/vhdl/vhdl-hardware-testbed.jpg)
+*Figure 1: Physical FPGA hardware validation testbed featuring tactile floor request matrices, door sensor simulation inputs, status LEDs, and breadboard signal routing connected to FPGA GPIO headers.*
+
+---
+
+## ⏱️ ModelSim Timing Simulation & Verification
+
+Prior to silicon programming, the complete digital architecture underwent cycle-accurate timing simulation in **ModelSim** to verify setup/hold slack, asynchronous reset handling, and state transition latency:
+
+![ModelSim Timing Waveform Verification Matrix](/images/projects/vhdl/modelsim-timing-simulation.png)
+*Figure 2: ModelSim functional and timing waveform trace illustrating clock edge alignment, floor queue arbitration, door open/close timeouts, and state register transitions.*
+
+---
+
+## 🎯 Architecture Specifications: Multi-Floor Elevator Controller
+
+| Subsystem Module | Entity Name | Description | Key Signals |
+| :--- | :--- | :--- | :--- |
+| **Main FSM Controller** | `Lift.vhd` | Finite state machine coordinating motor direction, floor arrival, and door sequencing. | `clk`, `reset`, `floor_req`, `motor_up`, `motor_down`, `door_open` |
+| **Synchronous Queue** | `Queue.vhd` | FIFO/priority queue latching external floor calls and scheduling the shortest path. | `req_in`, `serviced`, `next_target` |
+| **Door Actuator** | `doors_but_better.vhd` | Timed door cycle controller with safety obstacle pause and auto-retract. | `door_sensor`, `timer_done`, `door_state` |
+| **Clock Prescaler** | `clock_div1.vhd` | Integer clock divider converting 50 MHz FPGA system clock down to 1 Hz visual update pulses. | `clk_50MHz`, `clk_1Hz` |
+| **Display Decoder** | `bin2hex.vhd` | 4-bit binary to active-low 7-segment hex character mapping. | `data_in[3:0]`, `seg_out[6:0]` |
+
+---
+
+## 💻 VHDL Finite State Machine Implementation
+
+The core elevator logic is structured as a two-process synchronous FSM separating combinatorial next-state logic from clocked sequential state registers:
+
+![VHDL Elevator Finite State Machine Code Card](/images/projects/vhdl/code-vhdl-lift-fsm.png)
+*Figure 3: Carbon-style syntax-highlighted IEEE VHDL listing defining the finite state enumeration (`IDLE`, `MOVING_UP`, `MOVING_DOWN`, `DOOR_OPEN`), clock synchronization process, and next-state transition logic.*
 
 ---
 
 ## 🧩 Arithmetic & Sequential Building Blocks
 
-### 1. Arithmetic & Combinational Units
+In addition to the elevator system, the repository contains a library of synthesizable digital logic primitives:
+
+### 1. Arithmetic Units
 - **`Adder_Sub.vhd`:** Selectable ripple-carry adder/subtractor with 2's complement logic and overflow detection.
-- **`full_adder_vhdl_code.vhd`:** Structural 1-bit full adder primitive.
-- **`bitMultip.vhd`:** 2-bit combinational binary multiplier.
+- **`full_adder_vhdl_code.vhd`:** Structural 1-bit full adder primitive with carry propagation.
+- **`bitMultip.vhd`:** Combinational binary multiplier array.
 - **`Comp4.vhd`:** 4-bit unsigned magnitude comparator ($A > B$, $A = B$, $A < B$).
 - **`Sub4.vhd`:** 4-bit dedicated binary subtractor.
 
-### 2. Sequential Logic & Timing
-- **`ShiftReg1.vhd`:** Multi-mode parallel-in serial-out (PISO) / serial-in parallel-out (SIPO) shift register.
+### 2. Sequential Logic & Registers
+- **`ShiftReg1.vhd`:** Multi-mode parallel-in serial-out (PISO) and serial-in parallel-out (SIPO) shift register.
 - **`Counter.vhd`:** Modulo-$N$ synchronous up/down counter with asynchronous reset and terminal count flag.
-- **`clock_div1.vhd`:** Integer clock prescaler divider converting high-frequency oscillators (e.g. 50 MHz) to human-visible frequencies.
-
-### 3. Display Drivers
-- **`bin2hex.vhd`:** Combinational 4-bit binary to 7-segment active-low common-anode LED decoder.
 
 ---
 
-## ⚡ Source Code & Verification
+## ⚡ Source Code & Toolchain
 
 - **GitHub Repository:** [HarryRogers073/vhdl-digital-systems](https://github.com/HarryRogers073/vhdl-digital-systems)
-- **EDA Tools:** Intel Quartus Prime Lite / Standard, ModelSim-Intel FPGA
-- **Language Standard:** IEEE 1076-1993 VHDL
+- **Synthesis & P&R:** Intel Quartus Prime Lite / Standard Edition
+- **Simulation:** ModelSim-Intel FPGA Starter Edition
+- **Hardware Target:** Altera / Intel Cyclone II / IV / DE2 Development Boards
