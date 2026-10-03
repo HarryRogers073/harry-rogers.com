@@ -38,7 +38,7 @@ export const experience: Role[] = [
   {
     role: 'Hardware Test Engineer',
     company: 'Chess Dynamics',
-    location: 'Brighton, UK',
+    location: 'Horsham, West Sussex, UK',
     period: 'June 2026 – Present',
     highlights: [
       'Testing electro-optical surveillance systems and precision Electro-Optical Directors (EODs) across land and maritime defence domains.',
