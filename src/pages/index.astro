@@ -64,8 +64,8 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
           </div>
           <div class="fact-sep" aria-hidden="true"></div>
           <div class="fact-item">
-            <span class="fact-number">CHESS</span>
-            <span class="fact-label">Hawkeye Land Systems</span>
+            <span class="fact-number fact-text">Land System</span>
+            <span class="fact-label">Hardware</span>
           </div>
         </div>
 
@@ -720,6 +720,10 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
   }
   .brand-accent {
     color: var(--brand);
+  }
+  .fact-number.fact-text {
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
   }
 
   .hero-actions {
