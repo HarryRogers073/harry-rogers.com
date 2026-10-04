@@ -20,7 +20,7 @@ const projects = defineCollection({
     tags: z.array(z.string()).default([]),
     featured: z.boolean().default(false),
     status: z.enum(['complete', 'ongoing', 'archived']).default('complete'),
-    repo: z.string().url().optional(),
+    repo: z.string().optional(),
     live: z.string().optional(),
     order: z.number().default(100),
     thumbnail: z.string().optional(),

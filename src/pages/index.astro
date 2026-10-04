@@ -287,8 +287,9 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
     const canvas = document.getElementById('bg-flow-canvas') as HTMLCanvasElement | null;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    const rawCtx = canvas.getContext('2d');
+    if (!rawCtx) return;
+    const ctx: CanvasRenderingContext2D = rawCtx;
 
     let width = 0;
     let height = 0;
