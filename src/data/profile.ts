@@ -196,7 +196,7 @@ export const rankedModules: RankedModule[] = [
     name: 'Digital Signal Processing (LTI Audio Crossover & Microcontroller DSP)',
     level: 'Level 6 (Final Year)',
     grade: 68,
-    gradeLabel: '68% (Merit, B+)',
+    gradeLabel: 'Upper Second Class 68%',
     specialismBadge: 'Digital Signal Processing & Filter Design',
     summary: 'Designed digital FIR and IIR crossover filters for loudspeakers in MATLAB, and wrote real-time audio filtering code for microcontrollers.',
     tech: ['MATLAB DSP Toolbox', 'FIR & IIR Filters', 'Butterworth / Chebyshev', 'FFT Spectral Analysis', 'Microcontroller DSP'],
@@ -238,7 +238,7 @@ export const rankedModules: RankedModule[] = [
     name: 'Engineering Practice (Electronic CAD, PCB Design & SPICE Simulation)',
     level: 'Level 4 (First Year)',
     grade: 69,
-    gradeLabel: '69% (Merit, B+)',
+    gradeLabel: 'Upper Second Class 69%',
     specialismBadge: 'Electronic CAD & PCB Simulation',
     summary: 'Captured schematics and routed single-sided PCBs. Ran LTspice AC frequency sweeps and transient signal integrity simulations.',
     tech: ['Proteus Ares PCB', 'Altium Designer', 'LTspice XVII', 'AC Frequency Sweeps', 'Transient Analysis', 'PCB Routing Rules']
@@ -280,7 +280,7 @@ export const rankedModules: RankedModule[] = [
     name: 'Analogue & Digital Electronics 2 (Multistage Amplifiers & Sequential Logic)',
     level: 'Level 4 (First Year)',
     grade: 62,
-    gradeLabel: '62% (Merit, B-)',
+    gradeLabel: 'Upper Second Class 62%',
     specialismBadge: 'Multistage Amplifiers & Sequential Memory',
     summary: 'Designed multistage BJT amplifiers and analysed differential input stages alongside sequential digital logic like flip-flops and counters.',
     tech: ['Multistage BJT Amplifiers', 'Differential Pairs', 'Frequency Response Cutoffs', 'Sequential Logic', 'Flip-Flops & Counters']
@@ -300,7 +300,7 @@ export const rankedModules: RankedModule[] = [
     name: 'Product Design (Systems Engineering & Commercial Feasibility)',
     level: 'Level 6 (Final Year)',
     grade: 62,
-    gradeLabel: '62% (Merit, B-)',
+    gradeLabel: 'Upper Second Class 62%',
     specialismBadge: 'Product Engineering & Systems Feasibility',
     summary: 'Acted as systems engineer in an interdisciplinary team to develop a commercial grid energy storage concept, applying NPD stage-gate methods.',
     tech: ['New Product Development (NPD)', 'Stage-Gate Pitching', 'Techno-Economic Feasibility', 'Gantt Planning', 'Commercial Viability']

@@ -154,7 +154,7 @@ import { profile, experience, education, skills, leadership, otherWork, rankedMo
                     </div>
                   </div>
                   <div class="grade-and-award">
-                    <span class={`grade-pill-bold ${m.grade && m.grade >= 80 ? 'pill-high' : 'pill-mid'}`}>{m.gradeLabel}</span>
+                    <span class={`grade-pill-bold ${m.grade && m.grade >= 70 ? 'pill-high' : 'pill-mid'}`}>{m.gradeLabel}</span>
                     {m.award && <span class="award-tag-pill">{m.award}</span>}
                   </div>
                 </div>
@@ -192,7 +192,7 @@ import { profile, experience, education, skills, leadership, otherWork, rankedMo
                   {m.items.map(([name, grade]) => (
                     <li>
                       <span class="module-name-text">{name}</span>
-                      <strong class={grade >= 80 ? 'grade-high' : grade >= 70 ? 'grade-mid' : 'grade-pass'}>
+                      <strong class={grade >= 70 ? 'grade-high' : grade >= 60 ? 'grade-mid' : 'grade-pass'}>
                         {grade}%
                       </strong>
                     </li>
