@@ -1,4 +1,13 @@
 ---
+/**
+ * =============================================================================
+ * File:         index.astro
+ * Written by:   Harry Rogers
+ * Date:         October 2026
+ * Description:  Projects index gallery filtering hardware, FPGA, firmware, and software projects
+ * =============================================================================
+ */
+
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
@@ -187,6 +196,7 @@ const progressionTimeline = [
     ]
   }
 ];
+
 ---
 
 <BaseLayout title="Engineering Projects & Academic Progression" description="Portfolio of FPGA, verification, embedded systems, networking, and robotics projects by Harry Rogers.">

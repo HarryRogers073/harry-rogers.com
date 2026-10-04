@@ -1,6 +1,10 @@
 /**
- * Interactive Terminal Command Handling Engine
- * Author: Harry Rogers CV & Portfolio SPA
+ * =============================================================================
+ * File:         terminal.js
+ * Written by:   Harry Rogers
+ * Date:         October 2026
+ * Description:  Interactive retro CRT terminal command engine and SPA controller
+ * =============================================================================
  */
 
 (function() {

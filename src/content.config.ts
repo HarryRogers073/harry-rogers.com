@@ -1,3 +1,12 @@
+/**
+ * =============================================================================
+ * File:         content.config.ts
+ * Written by:   Harry Rogers
+ * Date:         October 2026
+ * Description:  Astro content collections schema configuration for portfolio projects
+ * =============================================================================
+ */
+
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';

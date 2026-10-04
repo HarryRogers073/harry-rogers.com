@@ -1,4 +1,13 @@
 ---
+/**
+ * =============================================================================
+ * File:         [slug].astro
+ * Written by:   Harry Rogers
+ * Date:         October 2026
+ * Description:  Dynamic case study layout rendering project MDX content and media
+ * =============================================================================
+ */
+
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
@@ -13,6 +22,7 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { title, summary, date, tags, repo, live, status, thumbnail, badge } = project.data;
 const { Content } = await render(project);
+
 ---
 
 <BaseLayout title={title} description={summary} type="article">

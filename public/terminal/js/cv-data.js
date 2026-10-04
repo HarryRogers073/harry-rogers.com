@@ -1,9 +1,12 @@
 /**
- * CV Data Store for Harry Rogers - Interactive Retro Terminal Interface
- * 
- * Contains verified resume profile, educational history, professional experience,
- * technical skills matrix, honors/awards, portfolio projects, and contact details.
+ * =============================================================================
+ * File:         cv-data.js
+ * Written by:   Harry Rogers
+ * Date:         October 2026
+ * Description:  Verified engineering CV profile, educational records, and project dataset
+ * =============================================================================
  */
+
 (function() {
     'use strict';
 

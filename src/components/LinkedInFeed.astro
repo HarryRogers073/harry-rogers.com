@@ -1,4 +1,13 @@
 ---
+/**
+ * =============================================================================
+ * File:         LinkedInFeed.astro
+ * Written by:   Harry Rogers
+ * Date:         October 2026
+ * Description:  LinkedIn activity timeline feed component with expandable posts
+ * =============================================================================
+ */
+
 import { linkedInPosts } from '../data/linkedin';
 import { profile } from '../data/profile';
 
@@ -7,6 +16,7 @@ interface Props {
 }
 
 const { compact = false } = Astro.props;
+
 ---
 
 <div class="linkedin-feed">

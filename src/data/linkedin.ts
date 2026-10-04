@@ -1,3 +1,12 @@
+/**
+ * =============================================================================
+ * File:         linkedin.ts
+ * Written by:   Harry Rogers
+ * Date:         October 2026
+ * Description:  Verified LinkedIn career milestones and professional update dataset
+ * =============================================================================
+ */
+
 export interface LinkedInPost {
   id: string;
   date: string;

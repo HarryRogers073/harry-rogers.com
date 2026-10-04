@@ -1,4 +1,13 @@
 ---
+/**
+ * =============================================================================
+ * File:         Nav.astro
+ * Written by:   Harry Rogers
+ * Date:         October 2026
+ * Description:  Global navigation bar with sensory accent glow and responsive mobile drawer
+ * =============================================================================
+ */
+
 const links = [
   { href: '/', label: 'Home' },
   { href: '/projects', label: 'Projects' },
@@ -13,6 +22,7 @@ const isActive = (href: string) => {
   if (href === '/') return path === '/';
   return path === href || path.startsWith(href + '/');
 };
+
 ---
 
 <header class="site-header">

@@ -1,8 +1,18 @@
 ---
+/**
+ * =============================================================================
+ * File:         ProjectCard.astro
+ * Written by:   Harry Rogers
+ * Date:         October 2026
+ * Description:  Project preview card component with sensory highlight borders and badges
+ * =============================================================================
+ */
+
 import type { CollectionEntry } from 'astro:content';
 interface Props { project: CollectionEntry<'projects'>; }
 const { project } = Astro.props;
 const { title, summary, tags, status, thumbnail, badge } = project.data;
+
 ---
 
 <article class="card project">

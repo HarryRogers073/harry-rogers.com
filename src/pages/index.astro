@@ -1,4 +1,13 @@
 ---
+/**
+ * =============================================================================
+ * File:         index.astro
+ * Written by:   Harry Rogers
+ * Date:         October 2026
+ * Description:  Homepage showcasing engineering background, flagship project, and timeline
+ * =============================================================================
+ */
+
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LinkedInFeed from '../components/LinkedInFeed.astro';
 import { profile } from '../data/profile';
@@ -6,6 +15,7 @@ import { getCollection } from 'astro:content';
 
 const allProjects = await getCollection('projects');
 const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') || allProjects[0];
+
 ---
 
 <BaseLayout>

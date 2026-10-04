@@ -1,4 +1,13 @@
 /**
+ * =============================================================================
+ * File:         profile.ts
+ * Written by:   Harry Rogers
+ * Date:         October 2026
+ * Description:  Structured professional engineering profile and site metadata
+ * =============================================================================
+ */
+
+/**
  * Single source of truth for personal/CV data used across the site.
  * Content migrated from the live Google Sites pages (Oct 2026).
  */
