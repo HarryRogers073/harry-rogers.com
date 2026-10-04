@@ -97,58 +97,112 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
       </div>
 
       <div class="defence-card spotlight-card">
-        <div class="defence-media">
-          <img
-            src="/images/defence/chess-hawkeye-vehicle.jpg"
-            alt="Chess Dynamics Hawkeye Electro-Optical Director on Armoured Combat Vehicle"
-            loading="lazy"
-            class="defence-img"
-          />
-          <div class="media-overlay" aria-hidden="true"></div>
-          <span class="defence-badge">Chess Dynamics • West Sussex</span>
+        <div class="defence-schematic-col">
+          <div class="schematic-top">
+            <span class="defence-badge">Chess Dynamics • West Sussex</span>
+            <span class="schematic-label font-mono">FAT Architecture</span>
+          </div>
+
+          <div class="schematic-body">
+            <!-- Host Station -->
+            <div class="schematic-box host-box">
+              <div class="box-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="box-content">
+                <strong>Host Test Station</strong>
+                <span class="muted">Automated Python &amp; PyVISA Test Rig</span>
+              </div>
+            </div>
+
+            <!-- Interconnect Busses -->
+            <div class="schematic-buses">
+              <div class="bus-item">
+                <span class="bus-pill">RS-422 / 485</span>
+                <span class="bus-name">Pan/Tilt Servo &amp; Optical Telemetry</span>
+              </div>
+              <div class="bus-item">
+                <span class="bus-pill">CAN 2.0B</span>
+                <span class="bus-name">Vehicle Power &amp; Platform Subsystems</span>
+              </div>
+              <div class="bus-item">
+                <span class="bus-pill">Gigabit Eth</span>
+                <span class="bus-name">Digital Video Stream &amp; Sensor Pipelines</span>
+              </div>
+            </div>
+
+            <!-- Unit Under Test -->
+            <div class="schematic-box uut-box">
+              <div class="box-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 10 10"/><circle cx="12" cy="12" r="4"/><path d="M12 8v8M8 12h8"/></svg>
+              </div>
+              <div class="box-content">
+                <strong>Director Under Test (Hawkeye Series)</strong>
+                <span class="muted">Daylight HD Optics • Cooled MWIR • Eye-Safe LRF</span>
+              </div>
+            </div>
+
+            <!-- Qualifications Row -->
+            <div class="schematic-qual-row">
+              <div class="qual-cell">
+                <span class="qual-title">Boresighting</span>
+                <span class="qual-desc">Optical Axis Alignment</span>
+              </div>
+              <div class="qual-sep" aria-hidden="true"></div>
+              <div class="qual-cell">
+                <span class="qual-title">ESS Testing</span>
+                <span class="qual-desc">Thermal &amp; Vibration</span>
+              </div>
+              <div class="qual-sep" aria-hidden="true"></div>
+              <div class="qual-cell">
+                <span class="qual-title">Slip-Ring</span>
+                <span class="qual-desc">Continuous 360° Bus</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="defence-content">
           <div class="defence-meta">
-            <span class="meta-tag">Active Platform</span>
+            <span class="meta-tag">Land Systems</span>
             <span class="meta-sep">•</span>
-            <span class="meta-scope">Land Systems Test Lead</span>
+            <span class="meta-scope">Test Team Lead</span>
           </div>
 
           <h3 class="defence-title">
-            Hawkeye Electro-Optical Directors &amp; Vehicle Systems
+            Land Systems Testing &amp; Electro-Optic Integration
           </h3>
 
           <p class="defence-description">
-            I am the test lead for the Land Systems division at Chess Dynamics. I run Factory Acceptance Testing, environmental qualification, and board-level diagnostics on the <strong>Hawkeye</strong> family of electro-optical directors.
+            I am the test lead for the Land Systems division at Chess Dynamics in West Sussex. I coordinate Factory Acceptance Testing (FAT), board-level fault diagnostics, and environmental qualification on the <strong>Hawkeye</strong> family of electro-optical tracking directors.
           </p>
 
           <p class="defence-description">
-            These are precision-stabilised camera and laser platforms deployed on armoured vehicles for international defence programmes. They integrate daylight HD optics, cooled thermal imagers, and eye-safe laser rangefinders.
+            These precision-stabilised camera and laser platforms integrate daylight HD optics, cooled thermal imagers, and eye-safe laser rangefinders onto defence vehicle platforms for international allied programmes.
           </p>
 
           <div class="defence-update-callout">
             <span class="update-label font-mono">2026 Role Scope &amp; Focus</span>
             <p>
-              Serving as primary Test Point of Contact for the Land Integrated Portfolio Team (IPT). Responsibilities encompass coordinating Factory Acceptance Testing (FAT), multi-channel serial telemetry verification (RS-422, CAN, Ethernet), optical boresighting, and environmental qualification on combat vehicle surveillance directors. All technical descriptions cite public Chess Dynamics product literature.
+              Serving as primary Test Point of Contact for the Land Integrated Portfolio Team (IPT). Responsibilities encompass coordinating Factory Acceptance Testing (FAT), multi-channel serial telemetry verification (RS-422, CAN, Ethernet), optical boresighting, and environmental qualification. All technical descriptions cite public Chess Dynamics product literature.
             </p>
           </div>
 
           <ul class="defence-tags">
-            <li class="tag">Hawkeye Land Series</li>
-            <li class="tag">Stabilised Pan/Tilt Robotics</li>
-            <li class="tag">International Allied Programmes</li>
-            <li class="tag">Thermal MWIR / LWIR</li>
-            <li class="tag">Continuous Slip-Ring Comms</li>
-            <li class="tag">Environmental Mil-Spec Profiling</li>
+            <li class="tag">Land IPT Test Coordination</li>
+            <li class="tag">Factory Acceptance Testing (FAT)</li>
+            <li class="tag">Optical Boresighting</li>
+            <li class="tag">RS-422 / CAN / Ethernet Telemetry</li>
+            <li class="tag">Environmental Qualification (ESS)</li>
+            <li class="tag">Defect Diagnostics &amp; SOPs</li>
           </ul>
 
           <div class="defence-actions">
-            <a href="/experience" class="btn btn-primary">
+            <a href="/experience#chess-dynamics" class="btn btn-primary">
               Explore Work Experience Timeline →
             </a>
-            <a href="/about" class="btn ghost">
-              About My Engineering Background
+            <a href="https://www.chess-dynamics.com/products/hawkeye/" target="_blank" rel="noopener noreferrer" class="btn ghost">
+              Official Hawkeye Specifications ↗
             </a>
           </div>
         </div>
@@ -834,26 +888,22 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
     box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.18);
   }
 
-  .defence-media {
+  .defence-schematic-col {
     position: relative;
-    background: var(--surface-2);
-    min-height: 420px;
-    overflow: hidden;
+    background: linear-gradient(145deg, var(--surface-2) 0%, color-mix(in srgb, var(--surface) 60%, var(--surface-2)) 100%);
+    border-right: 1px solid var(--border);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
-  .defence-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .defence-card:hover .defence-img {
-    transform: scale(1.03);
+  .schematic-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
   }
   .defence-badge {
-    position: absolute;
-    top: 1.1rem;
-    left: 1.1rem;
     background: color-mix(in srgb, var(--surface) 92%, transparent);
     backdrop-filter: blur(10px);
     color: var(--brand);
@@ -865,6 +915,115 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
     border-radius: 6px;
     border: 1px solid color-mix(in srgb, var(--brand) 30%, var(--border));
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  .schematic-label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .schematic-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+    justify-content: center;
+  }
+  .schematic-box {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.9rem 1.1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .schematic-box.host-box {
+    border-left: 3px solid var(--brand);
+  }
+  .schematic-box.uut-box {
+    border-left: 3px solid #818cf8;
+  }
+  .box-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
+    background: var(--surface-2);
+    color: var(--brand);
+    flex-shrink: 0;
+  }
+  .box-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .box-content strong {
+    font-size: 0.92rem;
+    color: var(--text);
+  }
+  .box-content span {
+    font-size: 0.76rem;
+  }
+  .schematic-buses {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding: 0 0.5rem;
+  }
+  .bus-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.78rem;
+  }
+  .bus-pill {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--brand);
+    background: color-mix(in srgb, var(--brand) 12%, transparent);
+    padding: 0.18rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid color-mix(in srgb, var(--brand) 25%, transparent);
+    flex-shrink: 0;
+  }
+  .bus-name {
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+  .schematic-qual-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-top: 0.5rem;
+  }
+  .qual-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .qual-title {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .qual-desc {
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
+  .qual-sep {
+    width: 1px;
+    height: 22px;
+    background: var(--border);
   }
 
   .defence-content {
