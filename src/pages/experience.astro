@@ -153,7 +153,13 @@ const experiences = [
                 <span class="badge-pill">{exp.badge}</span>
                 <h2>{exp.role}</h2>
                 <p class="company-line">
-                  <strong>{exp.company}</strong> • <span>{exp.location}</span>
+                  <strong>
+                    {exp.company === 'Chess Dynamics' ? (
+                      <a href="https://www.chess-dynamics.com" target="_blank" rel="noopener noreferrer" class="company-link">{exp.company} ↗</a>
+                    ) : (
+                      exp.company
+                    )}
+                  </strong> • <span>{exp.location}</span>
                 </p>
               </div>
               <div class="period-box">
@@ -181,6 +187,20 @@ const experiences = [
                 ))}
               </ul>
             </div>
+
+            {exp.company === 'Chess Dynamics' && (
+              <div class="card-footer-actions">
+                <a
+                  href="https://www.chess-dynamics.com/products/hawkeye/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn ghost btn-sm"
+                  title="View official Hawkeye electro-optical directors and vehicle imagery on Chess Dynamics"
+                >
+                  View Official Hawkeye Platform Images &amp; Specs ↗
+                </a>
+              </div>
+            )}
           </article>
         );
       })}
@@ -273,6 +293,16 @@ const experiences = [
     color: var(--text);
   }
 
+  .company-link {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .company-link:hover {
+    color: var(--brand);
+    text-decoration: underline;
+  }
+
   .period-box {
     text-align: right;
   }
@@ -331,6 +361,19 @@ const experiences = [
     font-weight: 600;
     color: var(--muted);
     font-family: var(--font-mono);
+  }
+
+  .card-footer-actions {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px dashed var(--border);
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .btn-sm {
+    font-size: 0.82rem;
+    padding: 0.4rem 0.9rem;
   }
 
   .cv-cta-card {

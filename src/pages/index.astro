@@ -98,7 +98,14 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
 
       <div class="defence-card spotlight-card">
         <div class="defence-media defence-logo-stage">
-          <div class="logo-display-card">
+          <a
+            href="https://www.chess-dynamics.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="logo-display-card"
+            title="Visit official Chess Dynamics website (chess-dynamics.com)"
+            aria-label="Visit Chess Dynamics official corporate website"
+          >
             <img
               src="/images/defence/chess-dynamics-logo.png"
               alt="Chess Dynamics — A Cohort plc Company logo"
@@ -107,8 +114,19 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
               height="119"
               loading="lazy"
             />
-          </div>
+            <span class="logo-link-hint font-mono">chess-dynamics.com ↗</span>
+          </a>
           <span class="defence-badge">Chess Dynamics • West Sussex</span>
+
+          <a
+            href="https://www.chess-dynamics.com/products/hawkeye/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hawkeye-media-link"
+            title="View official Hawkeye electro-optical directors and vehicle imagery on Chess Dynamics"
+          >
+            <span>Hawkeye Vehicle Photos &amp; Specs ↗</span>
+          </a>
         </div>
 
         <div class="defence-content">
@@ -150,8 +168,14 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
             <a href="/experience#chess-dynamics" class="btn btn-primary">
               Explore Work Experience Timeline →
             </a>
-            <a href="https://www.chess-dynamics.com/products/hawkeye/" target="_blank" rel="noopener noreferrer" class="btn ghost">
-              Official Hawkeye Specifications ↗
+            <a
+              href="https://www.chess-dynamics.com/products/hawkeye/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn ghost"
+              title="View official Hawkeye electro-optical directors and vehicle imagery on Chess Dynamics"
+            >
+              Hawkeye Gallery &amp; Official Specs ↗
             </a>
           </div>
         </div>
@@ -840,9 +864,11 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
   .defence-logo-stage {
     position: relative;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 3rem 2rem;
+    gap: 1.25rem;
+    padding: 3.25rem 2rem 2.5rem;
     background: linear-gradient(145deg, color-mix(in srgb, var(--surface-2) 85%, #004b79 15%) 0%, var(--surface-2) 100%);
     border-right: 1px solid var(--border);
     overflow: hidden;
@@ -860,23 +886,61 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
     z-index: 1;
     background: #ffffff;
     border-radius: 14px;
-    padding: 2.25rem 2.5rem;
+    padding: 2rem 2.25rem 1.6rem;
     box-shadow: 0 12px 32px -10px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(0, 0, 0, 0.08);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
   }
-  .defence-card:hover .logo-display-card {
-    transform: scale(1.04);
+  .logo-display-card:hover {
+    transform: translateY(-3px) scale(1.03);
     box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.28), 0 0 0 1px color-mix(in srgb, var(--brand) 40%, transparent);
   }
   .defence-logo-img {
-    max-width: 230px;
+    max-width: 210px;
     width: 100%;
     height: auto;
     object-fit: contain;
     display: block;
+  }
+  .logo-link-hint {
+    margin-top: 0.85rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #004b79;
+    letter-spacing: 0.02em;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+  }
+  .logo-display-card:hover .logo-link-hint {
+    opacity: 1;
+    text-decoration: underline;
+  }
+  .hawkeye-media-link {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--brand);
+    background: color-mix(in srgb, var(--surface) 85%, transparent);
+    backdrop-filter: blur(8px);
+    border: 1px solid color-mix(in srgb, var(--brand) 30%, var(--border));
+    padding: 0.4rem 0.9rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+  .hawkeye-media-link:hover {
+    transform: translateY(-2px);
+    border-color: var(--brand);
+    background: color-mix(in srgb, var(--surface) 95%, transparent);
   }
   .defence-badge {
     position: absolute;
