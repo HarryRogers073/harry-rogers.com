@@ -333,9 +333,9 @@
                 <h3 style="color: var(--accent-purple); margin-bottom: 4px;">${ab.name || hd.name || 'Harry Rogers'}</h3>
                 <div style="color: var(--accent-cyan); font-weight: 500;">${ab.role || hd.title || 'Test & FPGA Verification Engineer'}</div>
                 <div style="color: var(--accent-amber); margin: 6px 0;">
-                    <span class="tag-badge tag-amber">🏆 ${ab.award || 'IET Prize Winner 2026'}</span>
-                    <span class="tag-badge tag-emerald">🎓 ${ab.degree || 'First-Class BEng (Hons)'}</span>
-                    <span class="tag-badge tag-purple">💼 ${ab.currentEmployer || 'Chess Dynamics'}</span>
+                    <span class="tag-badge tag-amber">${ab.award || 'IET Prize Winner 2026'}</span>
+                    <span class="tag-badge tag-emerald">${ab.degree || 'First-Class BEng (Hons)'}</span>
+                    <span class="tag-badge tag-purple">${ab.currentEmployer || 'Chess Dynamics'}</span>
                 </div>
                 ${bioHtml}
                 <div style="margin-top: 10px;">
@@ -381,7 +381,7 @@
 
         const itemsHtml = exp.map(e => {
             const highlightsHtml = e.highlights ? e.highlights.map(h => `<li>${h}</li>`).join('') : '';
-            const awardHtml = e.award ? `<div style="color: var(--accent-amber); font-weight: 600; margin-top: 4px;"><span class="tag-badge tag-amber">🏆 ${e.award}</span></div>` : '';
+            const awardHtml = e.award ? `<div style="color: var(--accent-amber); font-weight: 600; margin-top: 4px;"><span class="tag-badge tag-amber">${e.award}</span></div>` : '';
             return `
                 <div style="border-left: 3px solid var(--accent-cyan); padding-left: 12px; margin-bottom: 14px;">
                     <div style="color: var(--accent-cyan); font-weight: 700; font-size: 1rem;">${e.role} @ ${e.company}</div>
@@ -448,7 +448,7 @@
                 <ul style="margin-left: 18px; margin-top: 4px; color: var(--text-primary); font-size: 0.88rem;">
                     ${modulesHtml}
                 </ul>
-                ${ed.certificatePdf ? `<div style="margin-top: 8px;"><a href="${ed.certificatePdf}" target="_blank" style="color: var(--accent-cyan); font-size: 0.85rem; text-decoration: underline;">📄 View Verified Degree Certificate PDF ↗</a></div>` : ''}
+                ${ed.certificatePdf ? `<div style="margin-top: 8px;"><a href="${ed.certificatePdf}" target="_blank" style="color: var(--accent-cyan); font-size: 0.85rem; text-decoration: underline;">View Verified Degree Certificate PDF ↗</a></div>` : ''}
             </div>
         `;
     }
@@ -463,7 +463,7 @@
             return `
                 <div style="background: var(--bg-card); padding: 10px 14px; border-radius: 6px; border: 1px solid var(--border-color); margin-bottom: 8px;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <strong style="color: var(--accent-amber); font-size: 0.95rem;">🏆 ${a.title}</strong>
+                        <strong style="color: var(--accent-amber); font-size: 0.95rem;">${a.title}</strong>
                         <span class="tag-badge tag-amber">${a.status}</span>
                     </div>
                     <div style="color: var(--accent-cyan); font-size: 0.85rem;">${a.organization}</div>
@@ -490,13 +490,13 @@
             <div class="cmd-result">
                 <div style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 8px;">Contact & Professional Links:</div>
                 <div style="line-height: 1.8; font-size: 0.9rem;">
-                    <div>📧 <strong>Email:</strong> <a href="mailto:${ct.email}" style="color: var(--accent-emerald); text-decoration: underline;">${ct.email}</a></div>
-                    <div>📍 <strong>Location:</strong> <span style="color: var(--text-primary);">${ct.location}</span></div>
-                    <div>🌐 <strong>Website:</strong> <a href="${ct.website}" target="_blank" style="color: var(--accent-cyan); text-decoration: underline;">${ct.website}</a></div>
-                    <div>💼 <strong>LinkedIn:</strong> <a href="${ct.linkedin}" target="_blank" style="color: var(--accent-purple); text-decoration: underline;">${ct.linkedin}</a></div>
-                    <div>📄 <strong>Master CV PDF:</strong> <a href="${ct.masterCvPdf}" target="_blank" style="color: var(--accent-amber); text-decoration: underline;">Download / View PDF ↗</a></div>
-                    <div>🎓 <strong>Degree Certificate PDF:</strong> <a href="${ct.degreeCertificatePdf}" target="_blank" style="color: var(--accent-amber); text-decoration: underline;">View BEng Certificate ↗</a></div>
-                    <div>🏆 <strong>IET Prize Badge PDF:</strong> <a href="${ct.ietBadgePdf}" target="_blank" style="color: var(--accent-amber); text-decoration: underline;">View IET Award Badge ↗</a></div>
+                    <div><strong>Email:</strong> <a href="mailto:${ct.email}" style="color: var(--accent-emerald); text-decoration: underline;">${ct.email}</a></div>
+                    <div><strong>Location:</strong> <span style="color: var(--text-primary);">${ct.location}</span></div>
+                    <div><strong>Website:</strong> <a href="${ct.website}" target="_blank" style="color: var(--accent-cyan); text-decoration: underline;">${ct.website}</a></div>
+                    <div><strong>LinkedIn:</strong> <a href="${ct.linkedin}" target="_blank" style="color: var(--accent-purple); text-decoration: underline;">${ct.linkedin}</a></div>
+                    <div><strong>Master CV PDF:</strong> <a href="${ct.masterCvPdf}" target="_blank" style="color: var(--accent-amber); text-decoration: underline;">Download / View PDF ↗</a></div>
+                    <div><strong>Degree Certificate PDF:</strong> <a href="${ct.degreeCertificatePdf}" target="_blank" style="color: var(--accent-amber); text-decoration: underline;">View BEng Certificate ↗</a></div>
+                    <div><strong>IET Prize Badge PDF:</strong> <a href="${ct.ietBadgePdf}" target="_blank" style="color: var(--accent-amber); text-decoration: underline;">View IET Award Badge ↗</a></div>
                 </div>
             </div>
         `;
@@ -609,7 +609,7 @@
             state.currentTheme = target;
             document.body.setAttribute('data-theme', target);
             const indicator = document.getElementById('theme-indicator');
-            if (indicator) indicator.innerText = `🎨 Theme: ${target.charAt(0).toUpperCase() + target.slice(1)}`;
+            if (indicator) indicator.innerText = `Theme: ${target.charAt(0).toUpperCase() + target.slice(1)}`;
             return `<div class="cmd-result" style="color: var(--accent-emerald);">Theme switched to <strong>${target}</strong>.</div>`;
         }
         return `<div class="cmd-result" style="color: var(--accent-rose);">Invalid theme '${escapeHtml(target)}'. Choose from: ${available.join(', ')}</div>`;
