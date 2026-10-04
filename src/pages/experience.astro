@@ -140,8 +140,14 @@ const experiences = [
       </div>
 
       <div class="experience-list">
-        {experiences.map((exp) => (
-          <article class="card experience-card">
+        {experiences.map((exp) => {
+          const cardId = exp.company.toLowerCase().includes('chess')
+            ? 'chess-dynamics'
+            : exp.company.toLowerCase().includes('bae')
+              ? 'bae-systems'
+              : undefined;
+          return (
+            <article class="card experience-card" id={cardId}>
             <div class="card-top">
               <div class="title-meta">
                 <span class="badge-pill">{exp.badge}</span>
@@ -176,7 +182,8 @@ const experiences = [
               </ul>
             </div>
           </article>
-        ))}
+        );
+      })}
       </div>
 
       <!-- Call to Action Box -->

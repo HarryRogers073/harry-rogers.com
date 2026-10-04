@@ -4,7 +4,7 @@
  * File:         index.astro
  * Written by:   Harry Rogers
  * Date:         October 2026
- * Description:  Projects index gallery filtering hardware, FPGA, firmware, and software projects
+ * Description:  Projects index showcase focusing on engineering outcomes and capabilities
  * =============================================================================
  */
 
@@ -14,207 +14,93 @@ import { getCollection } from 'astro:content';
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 
-const progressionTimeline = [
+const capabilities = [
   {
-    stage: "Final Year (2025–2026) | University of Brighton",
-    summary: "Advanced verification architectures, telecommunications theory, digital signal processing, and capstone dissertation.",
-    award: "First Class 80% • IET Prize Winner 2026",
-    modules: [
-      {
-        discipline: "FPGA / AI Verification",
-        title: "VAIDAR: AI-Driven Hardware-in-the-Loop FPGA Verification Engine",
-        type: "Capstone BEng Dissertation",
-        grade: "First Class 91% (A+) • IET Prize Winner",
-        tools: "AMD Xilinx Vivado, Artix-7 FPGA, Python 3, PyTorch, Gemini 2.5 Pro, UART 921.6k Baud",
-        description: "Engineered a closed-loop HIL execution engine driving real-time stimulus into physical silicon at 968.9 tests/sec with automated LLM root-cause anomaly triage.",
-        link: "/projects/vaidar-hil-framework"
-      },
-      {
-        discipline: "Telecommunications",
-        title: "Data Communications & Multi-Site WAN Network Architecture",
-        type: "Telecommunications & Networking",
-        grade: "First Class 90% (A+)",
-        tools: "Cisco Packet Tracer, Wireshark, TCP/IP, WPA2-PSK, V.35 Serial DTE/DCE, RF Sensing / CSI",
-        description: "Simulated a multi-site WAN with Layer 3 serial routing, WPA2 wireless security, and IoT event automation. Evaluated emerging RF sensing and Channel State Information (CSI) with Software-Defined Radios.",
-        link: "/projects/communications-network-architecture"
-      },
-      {
-        discipline: "Signal Processing",
-        title: "Digital Signal Processing (DSP): IIR/FIR Filter Synthesis & Audio Pipelines",
-        type: "Signal Processing & Simulink",
-        grade: "Upper Second Class 68%",
-        tools: "MATLAB, Simulink, DSP System Toolbox, Bilinear Transformation, HDL Coder",
-        description: "Synthesised 11th-order Butterworth IIR filters with frequency pre-warping and 324th-order Hamming FIR filters. Built a dynamic audio crossover simulation and exported synthesiseable RTL IP cores.",
-        link: "/projects/matlab-projects"
-      },
-      {
-        discipline: "Virtual Instruments",
-        title: "Virtual Instrumentation: Desktop Oscilloscope in MATLAB App Designer",
-        type: "Embedded Instrumentation",
-        grade: "First Class 84% (A+)",
-        tools: "MATLAB App Designer, Dynamic ADC Modulation, Serial Telemetry, COM Ports",
-        description: "Engineered a dual-channel real-time oscilloscope application turning an external microcontroller into an interactive laboratory instrument with live waveform plotting and trigger holdoff.",
-        link: "/projects/matlab-projects"
-      },
-      {
-        discipline: "Assembly Firmware",
-        title: "Low-Level PIC Microcontroller Assembly (MPASM) Library",
-        type: "Microprocessor Architecture & Assembly",
-        grade: "First Class 79% (A)",
-        tools: "PIC16F873, MPASM Assembly, Timer 2 Registers, CCP1 PWM, Hardware USART",
-        description: "Engineered cycle-accurate assembly routines for full-duplex master/slave dual-microcontroller bus communication, dynamic PWM duty modulation, and parallel hex display latching.",
-        link: "/projects/pic-microcontroller-code"
-      },
-      {
-        discipline: "Energy Systems",
-        title: "Sustainable Product Design: Kinetic & Electrochemical Energy Systems",
-        type: "Engineering Analysis & Sustainability",
-        grade: "Upper Second Class 62%",
-        tools: "Excel Decision Matrices, Kinetic Energy Modelling, Flow Batteries, Sodium-Ion",
-        description: "Formulated loss models for high-speed flywheel kinetic storage and authored trade-off matrices evaluating flow batteries versus sodium-ion chemistries for grid-scale stabilisation."
-      }
-    ]
+    discipline: "FPGA & Hardware Verification",
+    badge: "Silicon Validation",
+    description:
+      "Physical silicon Hardware-in-the-Loop testbeds streaming automated Python stimulus into physical AMD Xilinx Artix-7 and Intel Cyclone FPGAs at 968.9 tests/second. Automated anomaly triage, timing closure, and Vivado/ModelSim verification.",
+    keyOutcomes: [
+      "968.9 tests/sec physical throughput across 921,600 baud serial bridge",
+      "Automated discrepancy triage comparing physical silicon against golden reference models",
+      "RTL state machines, 16-bit ALU datapaths, and synchronous arbitration queues in Verilog & VHDL",
+    ],
+    relatedLink: "/projects/vaidar-hil-framework",
+    relatedTitle: "VAIDAR HIL Framework",
   },
   {
-    stage: "Placement Year (2024–2025) | Industrial Experience",
-    summary: "12-month industrial placement in tier-one defence aerospace systems engineering and formal verification.",
-    award: "Industrial Placement Commendation",
-    modules: [
-      {
-        discipline: "Defence Aerospace",
-        title: "Systems Engineer - Integration, Verification & Validation (IV&V)",
-        type: "BAE Systems Placement",
-        grade: "Industry Practicum",
-        tools: "Python Automation, IBM DOORS (DXL), Enterprise Architect, Lab Testbenches, Defect Tracking",
-        description: "Executed verification protocols for complex defence avionics systems. Developed Python automation scripts, traced verification matrices against customer requirements in DOORS, and logged hardware discrepancies."
-      }
-    ]
+    discipline: "Autonomous Robotics & Control",
+    badge: "Hardware & Firmware",
+    description:
+      "Embedded C control software, multi-microcontroller distributed architectures, and custom discrete motor drivers for autonomous corridor-navigating platforms and combat robotics.",
+    keyOutcomes: [
+      "2nd Place podium finish in inter-collegiate combat robotics arena tournament",
+      "Dual PIC microcontroller task partitioning with calibrated ADC thermistor and sonar evasion",
+      "High-current MOSFET H-bridge motor controllers with PWM speed modulation",
+    ],
+    relatedLink: "/projects/robot-wars-combat-platform",
+    relatedTitle: "Combat Robotics Platform",
   },
   {
-    stage: "Year 2 (2023–2024) | University of Brighton",
-    summary: "Embedded C firmware, autonomous robotics platforms, digital logic synthesis, RF communications, and classical control theory.",
-    award: "2nd Place Robot Wars Podium Finish • First Class 84% Digital Systems",
-    modules: [
-      {
-        discipline: "Embedded Robotics",
-        title: "Autonomous Mobile Sensor Buggy & Dual-Display System",
-        type: "Embedded C & Sensor Integration",
-        grade: "First Class 79% (A)",
-        tools: "Dual PIC16F873, MPLAB XC8, Dual I2C LCD Screens, ADC Thermistor, HC-SR04 Sonar",
-        description: "Constructed an autonomous corridor-navigating mobile robot with task-partitioned dual microcontrollers, real-time ambient temperature calculation in Celsius, obstacle evasion, and dual status displays.",
-        link: "/projects/autonomous-sensor-buggy"
-      },
-      {
-        discipline: "Combat Robotics",
-        title: "Autonomous Combat Robotics Platform & Motor Controller",
-        type: "Robotics & Hardware Design",
-        grade: "First Class 82% (A+) • 2nd Place Tournament Winner",
-        tools: "Microchip PIC, MPLAB XC8, Labcenter Proteus, Dual H-Bridge MOSFETs, HC-SR04 Sonar",
-        description: "Led electrical architecture and embedded C firmware for an autonomous combat robot. Designed high-current motor drivers and timer capture sonar ranging, winning 2nd place in the inter-collegiate arena tournament.",
-        link: "/projects/robot-wars-combat-platform"
-      },
-      {
-        discipline: "Digital Logic RTL",
-        title: "VHDL Digital Systems & FPGA Logic Design",
-        type: "RTL Design & Simulation",
-        grade: "First Class 84% (A+)",
-        tools: "IEEE Standard VHDL, Intel Quartus Prime, ModelSim-Intel FPGA, Cyclone FPGA",
-        description: "Synthesised a multi-floor elevator controller FSM, synchronous request arbitration queues, 2's complement ALU units, and shift registers verified via gate-level timing simulations.",
-        link: "/projects/vhdl-digital-systems"
-      },
-      {
-        discipline: "Discrete RF Systems",
-        title: "Superheterodyne AM Radio Receiver & Discrete RF Electronics",
-        type: "Analogue RF Design",
-        grade: "First Class 70% (A-)",
-        tools: "Superhet Architecture, Tuned LC Tanks, LM358 Op-Amps, 555/556 PWM, Veroboard",
-        description: "Engineered discrete analogue electronics on copper: assembled and aligned a functional superheterodyne AM MW/LW radio receiver receiving live broadcast signals with hand-tuned resonant LC tanks."
-      },
-      {
-        discipline: "Control Engineering",
-        title: "Closed-Loop PID Control & Dynamic Stability Modelling",
-        type: "Control Systems",
-        grade: "First Class 70% (A-) • First Class 92% in MATLAB Exam",
-        tools: "MATLAB pidTuner, Simulink, Laplace & z-Transforms, Bode & Nyquist, Root Locus",
-        description: "Derived 1st/2nd-order transfer functions for physical motor plants. Simulated dynamic stability margins, and tuned closed-loop PI/PID feedback controllers in MATLAB pidTuner, achieving 92% in the practical examination."
-      },
-      {
-        discipline: "Three-Phase Power",
-        title: "Industrial Three-Phase Power & Electrical Machines",
-        type: "Heavy Power Systems",
-        grade: "First Class 76% (A)",
-        tools: "3-Phase Star/Delta, Induction Motors, Power Transformers, Power Factor Correction, BS 7671",
-        description: "Calculated high-voltage 3-phase industrial power distributions, transformer magnetic core hysteresis/saturation, induction motor slip-torque curves, and power factor correction to UK BS 7671 standards."
-      }
-    ]
+    discipline: "Low-Level Firmware & Microprocessors",
+    badge: "Cycle-Accurate Assembly",
+    description:
+      "Bare-metal assembly firmware targeting Microchip PIC microcontrollers. Direct hardware register manipulation, interrupt-driven peripherals, and full-duplex communication protocols.",
+    keyOutcomes: [
+      "Cycle-accurate MPASM assembly routines for PIC16F873 and PIC16F84A",
+      "Full-duplex master-slave communications bus and parallel display latching",
+      "Timer 2 register configuration and CCP1 module PWM duty modulation",
+    ],
+    relatedLink: "/projects/pic-microcontroller-code",
+    relatedTitle: "PIC Microcontroller Library",
   },
   {
-    stage: "Year 1 (2022–2023) | University of Brighton",
-    summary: "Foundations of semiconductor physics, operational amplifiers, CAD layout, electromagnetic networks, and advanced mathematics.",
-    award: "First Class Year 1 Standing • Contributed to IET Sussex Prize",
-    modules: [
-      {
-        discipline: "Semiconductor Physics",
-        title: "Semiconductor Electronics & Combinational Logic Design",
-        type: "Solid-State Electronics",
-        grade: "First Class 87% (A+) • IET Sussex Prize Winner",
-        tools: "BJT & MOSFET Transistors, Operational Amplifiers, Boolean Algebra, Karnaugh Maps",
-        description: "Transistor biasing and switching physics, active operational amplifier stages, and Boolean logic reduction via Karnaugh mapping, contributing to winning the IET Sussex Prize for first-year academic excellence.",
-        link: undefined
-      },
-      {
-        discipline: "Electrical Networks",
-        title: "Electromagnetics & AC Phasor Network Analysis",
-        type: "Electrical Physics",
-        grade: "First Class 87% (A+) • IET Sussex Prize Winner",
-        tools: "Thévenin/Norton Theorems, Reactive Impedance, AC Phasor Analysis, Magnetic Circuits",
-        description: "Mastered fundamental circuit network reductions, reactive capacitive/inductive impedance, magnetic core fluxes, and complex AC phasor transformations."
-      },
-      {
-        discipline: "Engineering Mathematics",
-        title: "Differential Equations, Laplace Transforms & Numerical Solvers",
-        type: "Advanced Mathematics",
-        grade: "First Class 84% (A+)",
-        tools: "2nd-Order ODEs, Laplace Transforms, Fourier Series, Matrices & Eigenvalues, MATLAB",
-        description: "Formulated and solved 2nd-order ordinary differential equations for RLC dynamic networks, applied Laplace/Fourier expansions, and engineered numerical solvers in MATLAB."
-      },
-      {
-        discipline: "PCB & CAD Design",
-        title: "Electronic Engineering CAD & PCB Layout",
-        type: "EDA & Manufacturing",
-        grade: "Upper Second Class 69%",
-        tools: "Proteus PCB, KiCad, Altium, IPC Standards, Surface Mount & Through-Hole Layout",
-        description: "Executed full-cycle schematic capture, design rule checking (DRC), trace impedance considerations, ground plane fills, and Gerber file generation for custom circuit boards."
-      },
-      {
-        discipline: "Structural Mechanics",
-        title: "Engineering Design Principles & Structural Mechanics",
-        type: "Mechanical & Structural Design",
-        grade: "First Class 84% (A+)",
-        tools: "3D CAD Modelling, Tensile Stress Testing, Truss Load Simulation, Gantt Scheduling",
-        description: "Modelled structural bridge truss designs in CAD, conducted material strength simulations, and led cross-functional team milestone planning."
-      }
-    ]
-  }
+    discipline: "Telecommunications & Networking",
+    badge: "Network Architecture",
+    description:
+      "Multi-site WAN topological design, enterprise routing architectures, wireless network infrastructure, and radio frequency sensing research.",
+    keyOutcomes: [
+      "Layer 3 hierarchical WAN routing with V.35 serial DTE/DCE topologies in Cisco Packet Tracer",
+      "WPA2-PSK enterprise wireless infrastructure and IoT event-triggered automation",
+      "Channel State Information (CSI) evaluating human presence sensing using Software-Defined Radios",
+    ],
+    relatedLink: "/projects/communications-network-architecture",
+    relatedTitle: "WAN & RF Architecture",
+  },
+  {
+    discipline: "Virtual Instrumentation & DSP",
+    badge: "Signal Processing",
+    description:
+      "Custom interactive desktop telemetry applications, digital filter synthesis, and dynamic audio processing pipelines in MATLAB and Simulink.",
+    keyOutcomes: [
+      "Dual-channel real-time desktop oscilloscope turning external microcontrollers into lab instruments",
+      "11th-order Butterworth IIR and 324th-order Hamming FIR filter synthesis with Bilinear Transformation",
+      "Dynamic 3-band audio crossover and synthesiseable RTL IP core export via HDL Coder",
+    ],
+    relatedLink: "/projects/matlab-projects",
+    relatedTitle: "MATLAB Engineering Suite",
+  },
 ];
 
 ---
 
-<BaseLayout title="Engineering Projects & Academic Progression" description="Portfolio of FPGA, verification, embedded systems, networking, and robotics projects by Harry Rogers.">
+<BaseLayout
+  title="Engineering Projects & Systems"
+  description="Portfolio of FPGA verification, embedded systems, networking, and robotics engineering projects by Harry Rogers."
+>
   <section class="section">
     <div class="container">
       <div class="header-intro">
-        <p class="eyebrow">Portfolio &amp; Roadmap</p>
-        <h1>Engineering Projects &amp; Progression</h1>
+        <p class="eyebrow">Engineering Portfolio</p>
+        <h1>Projects &amp; Technical Systems</h1>
         <p class="muted intro">
-          A comprehensive record of my digital logic architectures, hardware-in-the-loop test frameworks, 
-          embedded firmware libraries, telecommunications simulations, and university coursework from Year 1 through to my capstone IET Prize-winning dissertation.
+          Hardware-in-the-loop testbeds, FPGA digital architectures, autonomous robotics, low-level firmware libraries, and telecommunications simulations built across academia and industry.
         </p>
       </div>
 
-      <!-- Major Case Studies Grid -->
+      <!-- Flagship Case Studies Grid -->
       <div class="section-subhead">
-        <h2>Flagship Engineering Case Studies</h2>
+        <h2>Flagship Engineering Projects</h2>
         <p class="muted">Detailed project breakdowns with hardware schematics, physical silicon testbeds, and source code repositories.</p>
       </div>
 
@@ -224,50 +110,62 @@ const progressionTimeline = [
         ))}
       </div>
 
-      <!-- Progression Over Time Timeline -->
-      <div class="timeline-section">
+      <!-- Core Technical Competencies & Systems Capabilities -->
+      <div class="capabilities-section">
         <div class="section-subhead">
-          <p class="eyebrow">Academic &amp; Technical Evolution</p>
-          <h2>Progression Over Time (2022 – Present)</h2>
+          <p class="eyebrow">Technical Competencies</p>
+          <h2>Engineering Disciplines &amp; System Capabilities</h2>
           <p class="muted">
-            Tracking my progression from foundational analogue circuit theory and PCB CAD in Year 1, through autonomous combat robotics and digital systems in Year 2, industrial defence verification during placement, and culminating in advanced FPGA verification, telecommunications, and DSP in my final year.
+            Key engineering capabilities and verified technical outcomes demonstrated across physical hardware, digital logic, and software automation.
           </p>
         </div>
 
-        <div class="timeline-container">
-          {progressionTimeline.map((stage) => (
-            <div class="timeline-stage card">
-              <div class="stage-header">
-                <div>
-                  <span class="stage-tag">{stage.stage}</span>
-                  <p class="stage-summary muted">{stage.summary}</p>
-                </div>
-                <span class="award-pill">{stage.award}</span>
+        <div class="capabilities-grid">
+          {capabilities.map((cap) => (
+            <div class="capability-card card">
+              <div class="capability-header">
+                <h3>{cap.discipline}</h3>
+                <span class="cap-badge">{cap.badge}</span>
+              </div>
+              <p class="cap-desc muted">{cap.description}</p>
+              
+              <div class="outcomes-box">
+                <span class="outcomes-title font-mono">Key Technical Outcomes</span>
+                <ul class="outcomes-list">
+                  {cap.keyOutcomes.map((outcome) => (
+                    <li>{outcome}</li>
+                  ))}
+                </ul>
               </div>
 
-              <div class="modules-grid">
-                {stage.modules.map((mod) => (
-                  <div class="module-card">
-                    <div class="module-top">
-                      <span class="mod-code">{mod.discipline}</span>
-                      <span class="mod-grade">{mod.grade}</span>
-                    </div>
-                    <h4>
-                      {mod.link ? (
-                        <a href={mod.link} class="mod-link">{mod.title} →</a>
-                      ) : (
-                        <span>{mod.title}</span>
-                      )}
-                    </h4>
-                    <p class="mod-desc muted">{mod.description}</p>
-                    <div class="mod-tools">
-                      <strong>Tools &amp; Tech:</strong> {mod.tools}
-                    </div>
-                  </div>
-                ))}
+              <div class="cap-footer">
+                <a href={cap.relatedLink} class="cap-link">
+                  <span>Explore Case Study: <strong>{cap.relatedTitle}</strong></span>
+                  <span class="arrow">→</span>
+                </a>
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      <!-- Academic Transcript Callout Banner -->
+      <div class="academic-callout card">
+        <div class="callout-content">
+          <div class="callout-pill">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            <span>Academic Credentials &amp; Transcripts</span>
+          </div>
+          <h3>Looking for Year-by-Year Academic Grades?</h3>
+          <p class="muted">
+            All 17 university module marks across all three years, First-Class Honours (80%) classification, 
+            and The IET Prize 2026 citation are comprehensively documented in the Curriculum Vitae.
+          </p>
+        </div>
+        <div class="callout-actions">
+          <a href="/cv#education-modules" class="btn btn-primary">
+            View Academic Transcript on CV →
+          </a>
         </div>
       </div>
 
@@ -282,114 +180,155 @@ const progressionTimeline = [
   .section-subhead h2 { font-size: 1.75rem; margin-bottom: 0.25rem; }
   .project-list { margin-top: 1.5rem; }
 
-  /* Timeline Styles */
-  .timeline-section {
+  /* Capabilities Section */
+  .capabilities-section {
     margin-top: 4.5rem;
     border-top: 1px solid var(--border);
     padding-top: 3rem;
   }
-  .timeline-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+  .capabilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
     margin-top: 2rem;
   }
-  .timeline-stage {
+  .capability-card {
+    display: flex;
+    flex-direction: column;
     padding: 1.75rem;
+    border-radius: 12px;
     border: 1px solid var(--border);
     background: var(--surface);
-    border-radius: 12px;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.2s ease;
   }
-  .stage-header {
+  .capability-card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--brand) 60%, var(--border));
+    box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.14);
+  }
+  .capability-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    flex-wrap: wrap;
     gap: 1rem;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 1.25rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
   }
-  .stage-tag {
-    font-size: 1.2rem;
+  .capability-header h3 {
+    font-size: 1.25rem;
+    margin: 0;
+    line-height: 1.3;
+  }
+  .cap-badge {
+    font-size: 0.72rem;
     font-weight: 700;
-    color: var(--text);
-  }
-  .stage-summary {
-    margin: 0.25rem 0 0;
-    font-size: 0.95rem;
-  }
-  .award-pill {
-    background: var(--surface-2);
-    color: var(--brand);
-    border: 1px solid var(--border);
-    font-size: 0.8rem;
-    font-weight: 600;
-    padding: 0.3rem 0.8rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.25rem 0.65rem;
     border-radius: 9999px;
-    letter-spacing: 0.02em;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--brand);
+    white-space: nowrap;
   }
-  .modules-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.25rem;
+  .cap-desc {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
   }
-  .module-card {
+  .outcomes-box {
     background: var(--surface-2);
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 1.25rem;
-    display: flex;
-    flex-direction: column;
+    padding: 1rem 1.15rem;
+    margin-bottom: 1.25rem;
+    flex: 1;
   }
-  .module-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-  }
-  .mod-code {
-    font-size: 0.75rem;
+  .outcomes-title {
+    display: block;
+    font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    background: var(--border);
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-    color: var(--text);
-  }
-  .mod-grade {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #059669;
-  }
-  :global([data-theme='dark']) .mod-grade {
-    color: #34d399;
-  }
-  .module-card h4 {
-    margin: 0.25rem 0 0.5rem;
-    font-size: 1.05rem;
-    line-height: 1.4;
-  }
-  .mod-link {
-    color: var(--text);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .mod-link:hover {
-    color: var(--brand);
-  }
-  .mod-desc {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    flex: 1;
-    margin-bottom: 0.75rem;
-  }
-  .mod-tools {
-    font-size: 0.8rem;
+    letter-spacing: 0.06em;
     color: var(--muted);
+    margin-bottom: 0.6rem;
+  }
+  .outcomes-list {
+    margin: 0;
+    padding-left: 1.15rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .cap-footer {
     border-top: 1px solid var(--border);
-    padding-top: 0.5rem;
-    line-height: 1.4;
+    padding-top: 1rem;
+    margin-top: auto;
+  }
+  .cap-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.88rem;
+    color: var(--brand);
+    text-decoration: none;
+    font-weight: 500;
+    transition: transform 0.15s ease;
+  }
+  .cap-link:hover .arrow {
+    transform: translateX(4px);
+  }
+  .cap-link .arrow {
+    transition: transform 0.2s ease;
+  }
+
+  /* Academic Callout Banner */
+  .academic-callout {
+    margin-top: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2.25rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+    border: 1px solid color-mix(in srgb, var(--brand) 30%, var(--border));
+  }
+  .callout-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--brand);
+    margin-bottom: 0.5rem;
+  }
+  .callout-content h3 {
+    font-size: 1.4rem;
+    margin: 0 0 0.5rem;
+  }
+  .callout-content p {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin: 0;
+    max-width: 44rem;
+  }
+  .callout-actions {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .academic-callout {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+      padding: 1.5rem;
+    }
   }
 </style>

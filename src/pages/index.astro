@@ -43,8 +43,14 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
 
         <!-- Genuine, Grounded Subtitle: Explicitly Sussex, UK -->
         <p class="hero-subtitle">
-          Hi, I’m <strong>Harry Rogers</strong>, a <strong>Hardware Test Engineer</strong> based in <strong>Sussex, UK</strong>. I verify precision electro-optics and robotics for the defence sector at Chess Dynamics. In my own time, I build hardware-in-the-loop validation tools for FPGAs.
+          Hi, I’m <strong>Harry Rogers</strong>, a <strong>Hardware Test Engineer</strong> based in <strong>Sussex, UK</strong>. I lead test operations for Land Systems electro-optics at Chess Dynamics and develop automated hardware-in-the-loop validation tools for FPGAs.
         </p>
+
+        <!-- Availability / Collaboration Callout -->
+        <div class="hero-collaboration-note">
+          <span class="pulse-dot-green"></span>
+          <span>Open to technical discussions on FPGA testbenches, automated verification &amp; defence robotics</span>
+        </div>
 
         <!-- Understated, Clean Key Facts Bar -->
         <div class="facts-bar">
@@ -73,7 +79,7 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
         <div class="hero-actions">
           <a class="btn btn-primary" href="#defence-robotics">Explore Defence Robotics ↓</a>
           <a class="btn ghost" href="#featured-project">VAIDAR FPGA Testbed</a>
-          <a class="btn ghost" href="/cv">Read Full CV</a>
+          <a class="btn ghost" href="/contact">Get in Touch</a>
         </div>
       </div>
     </div>
@@ -120,6 +126,13 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
           <p class="defence-description">
             These are precision-stabilised camera and laser platforms deployed on armoured vehicles for international defence programmes. They integrate daylight HD optics, cooled thermal imagers, and eye-safe laser rangefinders.
           </p>
+
+          <div class="defence-update-callout">
+            <span class="update-label font-mono">2026 Role Scope &amp; Focus</span>
+            <p>
+              Serving as primary Test Point of Contact for the Land Integrated Portfolio Team (IPT). Responsibilities encompass coordinating Factory Acceptance Testing (FAT), multi-channel serial telemetry verification (RS-422, CAN, Ethernet), optical boresighting, and environmental qualification on combat vehicle surveillance directors. All technical descriptions cite public Chess Dynamics product literature.
+            </p>
+          </div>
 
           <ul class="defence-tags">
             <li class="tag">Hawkeye Land Series</li>
@@ -198,8 +211,11 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
             <a href={`/projects/${vaidarProject.id}`} class="btn btn-primary">
               Read the Full Case Study →
             </a>
+            <a href="https://github.com/HarryRogers073/vaidar" target="_blank" rel="noopener noreferrer" class="btn ghost">
+              View Source on GitHub ↗
+            </a>
             <a href="/projects" class="btn ghost">
-              View All Projects ({allProjects.length})
+              All Projects ({allProjects.length})
             </a>
           </div>
         </div>
@@ -266,11 +282,11 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
     <div class="container">
       <div class="section-header">
         <div>
-          <p class="eyebrow">Updates</p>
-          <h2>Recent Posts &amp; News</h2>
+          <p class="eyebrow">Professional Highlights</p>
+          <h2>Recent Milestones &amp; Updates</h2>
         </div>
         <a class="view-all" href={profile.links.linkedin} target="_blank" rel="noopener noreferrer">
-          LinkedIn Profile ↗
+          Connect on LinkedIn ↗
         </a>
       </div>
 
@@ -678,7 +694,37 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
     color: var(--muted);
     line-height: 1.65;
     max-width: 39rem;
-    margin-bottom: 2.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Availability / Collaboration Note */
+  .hero-collaboration-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.84rem;
+    color: var(--text);
+    background: color-mix(in srgb, var(--surface) 90%, transparent);
+    backdrop-filter: blur(12px);
+    border: 1px solid color-mix(in srgb, var(--brand) 30%, var(--border));
+    padding: 0.4rem 1.1rem;
+    border-radius: 9999px;
+    margin-bottom: 1.85rem;
+    max-width: 95%;
+  }
+  .pulse-dot-green {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    animation: pulseGreen 2s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes pulseGreen {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
   }
 
   /* Understated Facts Bar */
@@ -858,6 +904,29 @@ const vaidarProject = allProjects.find((p) => p.id === 'vaidar-hil-framework') |
     margin: 0 0 1rem;
   }
   .defence-description strong {
+    color: var(--text);
+  }
+  .defence-update-callout {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--brand);
+    border-radius: 6px;
+    padding: 0.95rem 1.15rem;
+    margin: 1.15rem 0 1.35rem;
+  }
+  .update-label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--brand);
+    margin-bottom: 0.35rem;
+  }
+  .defence-update-callout p {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin: 0;
     color: var(--text);
   }
   .defence-tags {

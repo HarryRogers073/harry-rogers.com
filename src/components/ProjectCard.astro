@@ -18,7 +18,7 @@ const { title, summary, tags, status, thumbnail, badge } = project.data;
 <article class="card project">
   {thumbnail && (
     <div class="thumb-container">
-      <img src={thumbnail} alt={title} loading="lazy" class="thumb-img" />
+      <img src={thumbnail} alt={`${title} — system architecture and implementation`} loading="lazy" class="thumb-img" />
       {badge && <span class="award-badge">{badge}</span>}
     </div>
   )}
