@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="91mm" height="61mm" viewBox="0 0 1075 720" style="background:#090e15; font-family:'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e1724"/>
+      <stop offset="60%" stop-color="#090e15"/>
+      <stop offset="100%" stop-color="#04070a"/>
+    </linearGradient>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#2dd4bf"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#dfb15b"/>
+      <stop offset="100%" stop-color="#a16207"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1075" height="720" fill="url(#bgGrad)"/>
+
+  <!-- Circuit Traces Vector Overlay -->
+  <g stroke="#1e2c3d" stroke-width="2.5" fill="none" opacity="0.6">
+    <path d="M 0 180 L 120 180 L 160 220 L 280 220" />
+    <circle cx="280" cy="220" r="4.5" fill="#38bdf8" />
+    <path d="M 0 230 L 80 230 L 140 290 L 320 290" />
+    <circle cx="320" cy="290" r="4.5" fill="#38bdf8" />
+    <path d="M 0 480 L 140 480 L 190 430 L 260 430" />
+    <circle cx="260" cy="430" r="4.5" fill="#38bdf8" />
+    <path d="M 0 540 L 110 540 L 160 490 L 340 490" />
+    <circle cx="340" cy="490" r="4.5" fill="#38bdf8" />
+    <path d="M 1075 160 L 935 160 L 875 220 L 775 220" />
+    <circle cx="775" cy="220" r="4.5" fill="#2dd4bf" />
+    <path d="M 1075 210 L 975 210 L 905 280 L 835 280" />
+    <circle cx="835" cy="280" r="4.5" fill="#2dd4bf" />
+    <path d="M 1075 500 L 955 500 L 895 440 L 795 440" />
+    <circle cx="795" cy="440" r="4.5" fill="#2dd4bf" />
+    <path d="M 1075 560 L 995 560 L 925 490 L 755 490" />
+    <circle cx="755" cy="490" r="4.5" fill="#2dd4bf" />
+  </g>
+
+  <!-- Top Logo Monogram Badge -->
+  <g transform="translate(80, 80)">
+    <rect width="120" height="120" rx="24" fill="#0f1622" stroke="#1e2c3d" stroke-width="2"/>
+    <image href="data:image/png;base64,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" x="10" y="10" width="100" height="100"/>
+  </g>
+
+  <!-- Top Right: IET Prize Award Pill -->
+  <g transform="translate(680, 85)">
+    <rect width="315" height="48" rx="12" fill="#221c10" stroke="#dfb15b" stroke-width="1.8"/>
+    <text x="157" y="31" fill="url(#goldGrad)" font-size="19" font-weight="700" letter-spacing="1" text-anchor="middle">★ THE IET PRIZE 2026 WINNER</text>
+    <text x="315" y="80" fill="#8b9bb0" font-size="18" font-weight="600" letter-spacing="0.5" text-anchor="end">FIRST CLASS HONOURS (80%)</text>
+  </g>
+
+  <!-- Name & Postnominals -->
+  <text x="80" y="325" fill="#f0f6fc" font-size="58" font-weight="800" letter-spacing="-1">Harry Rogers</text>
+  <text x="475" y="322" fill="#38bdf8" font-size="24" font-weight="600" font-family="'JetBrains Mono', monospace">BEng (Hons) MIET</text>
+
+  <!-- Role Title -->
+  <text x="80" y="380" fill="#2dd4bf" font-size="34" font-weight="700">Hardware Test Engineer</text>
+
+  <!-- Specialisation Subtitle -->
+  <text x="80" y="425" fill="#8b9bb0" font-size="24" font-weight="500">FPGA &amp; Digital Logic Verification  •  Automated HIL Testbenches</text>
+
+  <!-- Divider Line -->
+  <line x1="80" y1="490" x2="995" y2="490" stroke="#1e2c3d" stroke-width="2"/>
+  <line x1="80" y1="490" x2="340" y2="490" stroke="url(#brandGrad)" stroke-width="3"/>
+
+  <!-- Footer Info & Skills -->
+  <text x="80" y="540" fill="#f0f6fc" font-size="21" font-weight="600">AMD Xilinx Artix-7  •  Verilog / VHDL  •  Python ATE  •  UART / SPI / CAN</text>
+  <text x="80" y="585" fill="#8b9bb0" font-size="19" font-weight="500">BEng Electronic &amp; Computer Engineering  •  University of Brighton</text>
+
+  <!-- Canonical Domain -->
+  <text x="995" y="570" fill="#38bdf8" font-size="30" font-weight="700" text-anchor="end" font-family="'JetBrains Mono', monospace">harry-rogers.com</text>
+</svg>

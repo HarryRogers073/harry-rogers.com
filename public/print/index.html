@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harry Rogers — Print Ready Business Cards</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap');
+
+    :root {
+      --bg: #090e15;
+      --surface: #0f1622;
+      --surface-2: #15202e;
+      --border: #1e2c3d;
+      --brand: #38bdf8;
+      --accent: #2dd4bf;
+      --text: #f0f6fc;
+      --muted: #8b9bb0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1.5rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+    }
+
+    header {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    h1 { font-size: 1.85rem; font-weight: 800; letter-spacing: -0.02em; }
+    .subtitle { color: var(--muted); font-size: 0.95rem; margin-top: 0.35rem; }
+
+    .actions-bar {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--brand);
+      color: #04080e;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 0.65rem 1.15rem;
+      border-radius: 10px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+    .btn:hover { opacity: 0.92; transform: translateY(-1px); }
+    .btn.secondary {
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    /* Cards Showcase Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    @media (max-width: 840px) {
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+
+    .card-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .card-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .card-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--brand);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+    }
+
+    .card-preview-img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 16px 36px -10px rgba(0,0,0,0.6);
+      border: 1px solid var(--border);
+      aspect-ratio: 1075 / 720;
+      object-fit: cover;
+    }
+
+    .download-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .download-row a {
+      flex: 1;
+      text-align: center;
+      padding: 0.55rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--border);
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+    .download-row a:hover {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: var(--brand);
+      color: var(--brand);
+    }
+
+    /* Print Info Box */
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+    .info-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+    }
+    .specs-table td {
+      padding: 0.45rem 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .specs-table td:first-child {
+      color: var(--muted);
+      width: 35%;
+      font-weight: 600;
+    }
+    .specs-table td:last-child {
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* STRICT PRINT MEDIA STYLES FOR DIRECT BROWSER PDF GENERATION */
+    @media print {
+      @page {
+        size: 85mm 55mm;
+        margin: 0;
+      }
+      html, body {
+        background: #000000 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 85mm !important;
+        height: 55mm !important;
+      }
+      header, .actions-bar, .info-card, .download-row, .card-panel-header {
+        display: none !important;
+      }
+      .container { max-width: none !important; width: 100% !important; margin: 0 !important; }
+      .cards-grid {
+        display: block !important;
+        margin: 0 !important;
+        gap: 0 !important;
+      }
+      .card-panel {
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        page-break-after: always !important;
+        width: 85mm !important;
+        height: 55mm !important;
+        overflow: hidden !important;
+      }
+      .card-preview-img {
+        width: 85mm !important;
+        height: 55mm !important;
+        border-radius: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div>
+        <h1>Harry Rogers — Print Ready Business Cards</h1>
+        <p class="subtitle">Standard 85 × 55 mm UK/EU (3.5 × 2.0" compatible) &bull; 300 DPI with 3mm Bleed Margin</p>
+      </div>
+      <div class="actions-bar">
+        <button class="btn" onclick="window.print()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Save to PDF (Print Dialog)
+        </button>
+        <a class="btn secondary" href="/">Back to Website →</a>
+      </div>
+    </header>
+
+    <main class="cards-grid">
+      <!-- Front Card Panel -->
+      <div class="card-panel">
+        <div class="card-panel-header">
+          <div class="card-title">
+            <span>Front Side</span>
+            <span class="badge">91 × 61 mm (300 DPI)</span>
+          </div>
+          <span style="font-size:0.75rem; color:var(--accent);">Identity &amp; Qualifications</span>
+        </div>
+        <img src="/print/business-card-front.png" alt="Harry Rogers Business Card Front" class="card-preview-img" />
+        <div class="download-row">
+          <a href="/print/business-card-front.png" download="Harry_Rogers_Card_Front_300DPI.png">Download PNG (300 DPI)</a>
+          <a href="/print/business-card-front.svg" download="Harry_Rogers_Card_Front_Vector.svg">Download Vector SVG</a>
+        </div>
+      </div>
+
+      <!-- Back Card Panel -->
+      <div class="card-panel">
+        <div class="card-panel-header">
+          <div class="card-title">
+            <span>Back Side</span>
+            <span class="badge">91 × 61 mm (300 DPI)</span>
+          </div>
+          <span style="font-size:0.75rem; color:var(--brand);">Scannable QR &amp; Contacts</span>
+        </div>
+        <img src="/print/business-card-back.png" alt="Harry Rogers Business Card Back" class="card-preview-img" />
+        <div class="download-row">
+          <a href="/print/business-card-back.png" download="Harry_Rogers_Card_Back_300DPI.png">Download PNG (300 DPI)</a>
+          <a href="/print/business-card-back.svg" download="Harry_Rogers_Card_Back_Vector.svg">Download Vector SVG</a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Upload Instructions / Print Spec -->
+    <section class="info-card">
+      <h3>Online Print Shop Upload Instructions (Moo, VistaPrint, Instantprint, Printed.com)</h3>
+      <p style="color:var(--muted); margin-bottom:0.75rem;">
+        These files are calibrated with standard 3 mm exterior bleed and a 4 mm interior safe zone. When placing an order on any professional printing website, upload either the <strong>300 DPI PNGs</strong> or <strong>Vector SVGs</strong> directly into the designer tool.
+      </p>
+
+      <table class="specs-table">
+        <tr>
+          <td>Trim Dimensions (Finished)</td>
+          <td>85.0 mm × 55.0 mm (Standard UK/EU) / 3.35" × 2.16"</td>
+        </tr>
+        <tr>
+          <td>Full Bleed Dimensions</td>
+          <td>91.0 mm × 61.0 mm (with 3.0 mm bleed on all 4 sides)</td>
+        </tr>
+        <tr>
+          <td>Raster Resolution</td>
+          <td>1075 × 720 pixels @ 300 DPI (Lossless sRGB)</td>
+        </tr>
+        <tr>
+          <td>Safe Zone (Inner Margin)</td>
+          <td>All typography and QR code kept &gt; 4 mm from cutting line</td>
+        </tr>
+        <tr>
+          <td>Brand Assets Used</td>
+          <td>Official HR monogram logo (/favicon.png), JetBrains Mono typography, direct QR code to harry-rogers.com</td>
+        </tr>
+        <tr>
+          <td>Recommended Paper Stock</td>
+          <td>400–450 gsm Soft-Touch Velvet Matte Laminate with optional Spot UV gloss on the HR logo</td>
+        </tr>
+      </table>
+    </section>
+  </div>
+
+</body>
+</html>

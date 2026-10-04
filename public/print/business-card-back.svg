@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="91mm" height="61mm" viewBox="0 0 1075 720" style="background:#090e15; font-family:'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f1622"/>
+      <stop offset="60%" stop-color="#0b1019"/>
+      <stop offset="100%" stop-color="#05080c"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1075" height="720" fill="url(#bgGrad2)"/>
+
+  <!-- Top Header Bar -->
+  <line x1="80" y1="120" x2="995" y2="120" stroke="#1e2c3d" stroke-width="2"/>
+  <text x="80" y="95" fill="#38bdf8" font-size="21" font-weight="700" letter-spacing="1.5">DIRECT ENGINEERING CONTACT &amp; CREDENTIALS</text>
+  <text x="995" y="95" fill="#2dd4bf" font-size="18" font-weight="700" letter-spacing="1" text-anchor="end">AVAILABLE FOR CONTRACT / HIRE</text>
+
+  <!-- Contact List Column -->
+  <g transform="translate(80, 175)">
+    <!-- Item 1: Portfolio -->
+    <text x="0" y="0" fill="#2dd4bf" font-size="15" font-weight="700" letter-spacing="1">PORTFOLIO</text>
+    <text x="0" y="28" fill="#38bdf8" font-size="24" font-weight="700" font-family="'JetBrains Mono', monospace">https://www.harry-rogers.com</text>
+
+    <!-- Item 2: Email -->
+    <text x="0" y="80" fill="#2dd4bf" font-size="15" font-weight="700" letter-spacing="1">DIRECT EMAIL</text>
+    <text x="0" y="108" fill="#f0f6fc" font-size="24" font-weight="600" font-family="'JetBrains Mono', monospace">harryrogers073@gmail.com</text>
+
+    <!-- Item 3: LinkedIn -->
+    <text x="0" y="160" fill="#2dd4bf" font-size="15" font-weight="700" letter-spacing="1">LINKEDIN</text>
+    <text x="0" y="188" fill="#8b9bb0" font-size="23" font-weight="500">linkedin.com/in/harryrogers073</text>
+
+    <!-- Item 4: GitHub -->
+    <text x="0" y="240" fill="#2dd4bf" font-size="15" font-weight="700" letter-spacing="1">GITHUB REPOSITORIES</text>
+    <text x="0" y="268" fill="#8b9bb0" font-size="23" font-weight="500">github.com/HarryRogers073</text>
+
+    <!-- Item 5: Location -->
+    <text x="0" y="320" fill="#2dd4bf" font-size="15" font-weight="700" letter-spacing="1">LOCATION</text>
+    <text x="0" y="348" fill="#8b9bb0" font-size="23" font-weight="500">Sussex &amp; London, United Kingdom</text>
+  </g>
+
+  <!-- QR Code Container on Right -->
+  <g transform="translate(685, 175)">
+    <rect width="310" height="310" rx="20" fill="#ffffff" stroke="#38bdf8" stroke-width="3"/>
+    <image href="data:image/png;base64,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" x="15" y="15" width="280" height="280"/>
+    <text x="155" y="345" fill="#38bdf8" font-size="16" font-weight="700" letter-spacing="1" text-anchor="middle">SCAN FOR PORTFOLIO &amp; REPOS</text>
+  </g>
+
+  <!-- Footer Line -->
+  <line x1="80" y1="620" x2="995" y2="620" stroke="#1e2c3d" stroke-width="2"/>
+  <text x="80" y="655" fill="#8b9bb0" font-size="18" font-weight="500">Verified BEng (Hons) Graduate  •  IET Prize Recipient  •  Hardware Test Specialist</text>
+  <text x="995" y="655" fill="#38bdf8" font-size="18" font-weight="700" text-anchor="end">harry-rogers.com</text>
+</svg>

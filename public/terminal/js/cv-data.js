@@ -117,7 +117,7 @@
                 "Static Timing Analysis (STA)", "Finite State Machines (FSM)"
             ],
             hilAutomation: [
-                "Python HIL Test Engines", "PyVISA", "PySerial", "PyTorch (AI Stimulus Generation)",
+                "Python HIL Test Engines", "PySerial", "Signal Injection Testbenches",
                 "Automated Test Equipment (ATE)", "FAT/SAT Test Suites", "Automated Failure Triage"
             ],
             electroOptics: [
