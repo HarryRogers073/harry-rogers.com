@@ -86,8 +86,14 @@ The firmware was implemented in bare-metal C using **MPLAB XC8**, structured as 
 
 ---
 
-## Source Code & Artifacts
+## Source Code & Academic Attribution
 
 - **GitHub Repository:** [HarryRogers073/robot-wars](https://github.com/HarryRogers073/robot-wars)
+- **Author & Individual Role:** Harry Rogers (Lead Systems & Firmware Engineer)
+- **Context:** University of Brighton Robot Wars Competition (Collegiate Team Project)
 - **EDA & Simulation:** Labcenter Proteus 8 Professional
 - **Firmware Toolchain:** Microchip MPLAB X IDE, XC8 Compiler
+- **Attribution & Provenance:**
+  - **Individual Contributions:** Harry Rogers engineered the high-current MOSFET H-bridge motor driver schematic in Proteus (`schematics_proteus/`), differential PWM drive routines (`MovementCode.c`), stepper weapon sequencing (`newmain.c`), and HC-SR04 sonar timer capture routines (`ultrasonic_driver.c`).
+  - **External Reference Code:** The LCD diagnostic module (`lcd.c`) was adapted from a tutorial by Khaled Magdy (DeepBlueEmbedded) by team member Kay Hendriksen / team.
+  - Microchip device registers and peripheral headers are copyright Microchip Technology Inc. EDA schematic library components are copyright Labcenter Electronics.

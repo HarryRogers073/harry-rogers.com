@@ -67,9 +67,14 @@ The assembly routines leverage direct bit manipulation, bank switching (`STATUS,
 
 ---
 
-## Source Code & Toolchain
+## Source Code & Academic Attribution
 
 - **GitHub Repository:** [HarryRogers073/pic-microcontroller-code](https://github.com/HarryRogers073/pic-microcontroller-code)
+- **Author:** Harry Rogers (University of Brighton)
 - **Target Silicon:** Microchip PIC16F873, PIC16F84A
-- **Compilers & IDEs:** Microchip MPLAB X IDE, MPASM Assembler
+- **Compilers & IDEs:** Microchip MPLAB X IDE, MPASM Assembler, MPLAB XC8
 - **Programmer:** Microchip PICkit 3 / PICkit 4 In-Circuit Debugger
+- **Attribution & Provenance:**
+  - **MPASM Assembly Firmware (`firmware_asm/`):** All register-level assembly routines (`16F873_RX_to_PWM.asm`, `16F873_RX_to_LEDs_PORTC.ASM`, `PWM.asm`, `SimplePWMTest.asm`) were authored and verified by Harry Rogers.
+  - **Embedded C Drivers (`firmware_c/`):** Differential drive, ultrasonic ranging, and sensor routines developed for the mobile sensor buggy project by Harry Rogers & Albie Gullis. The I2C character LCD driver (`lcd.c`) was adapted from a tutorial by Khaled Magdy (DeepBlueEmbedded).
+  - Microchip register include files (`p16f873.inc`, `<xc.h>`) are copyright Microchip Technology Inc.

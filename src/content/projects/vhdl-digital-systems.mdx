@@ -26,7 +26,7 @@ The flagship multi-floor elevator controller was compiled onto an **Altera/Intel
 
 ---
 
-##  ModelSim Timing Simulation & Verification
+## ModelSim Timing Simulation & Verification
 
 Prior to silicon programming, the complete digital architecture underwent cycle-accurate timing simulation in **ModelSim** to verify setup/hold slack, asynchronous reset handling, and state transition latency:
 
@@ -60,22 +60,26 @@ The core elevator logic is structured as a two-process synchronous FSM separatin
 
 In addition to the elevator system, the repository contains a library of synthesiseable digital logic primitives:
 
-### 1. Arithmetic Units
-- **`Adder_Sub.vhd`:** Selectable ripple-carry adder/subtractor with 2's complement logic and overflow detection.
-- **`full_adder_vhdl_code.vhd`:** Structural 1-bit full adder primitive with carry propagation.
-- **`bitMultip.vhd`:** Combinational binary multiplier array.
+### 1. Original RTL by Harry Rogers
+- **`bitMultip.vhd`:** Combinational 2-bit binary multiplier array.
 - **`Comp4.vhd`:** 4-bit unsigned magnitude comparator ($A > B$, $A = B$, $A < B$).
 - **`Sub4.vhd`:** 4-bit dedicated binary subtractor.
+- **`full_adder_vhdl_code.vhd`:** Structural 1-bit full adder primitive with carry propagation.
+- **`bin2hex.vhd`:** 4-bit binary to 7-segment hex display decoder.
+- **`clock_div1.vhd`:** Synchronous integer clock frequency prescaler.
 
-### 2. Sequential Logic & Registers
-- **`ShiftReg1.vhd`:** Multi-mode parallel-in serial-out (PISO) and serial-in parallel-out (SIPO) shift register.
-- **`Counter.vhd`:** Modulo-$N$ synchronous up/down counter with asynchronous reset and terminal count flag.
+### 2. University Coursework Reference Modules (Designed by Chris Knight)
+- **`Adder_Sub.vhd`:** Selectable ripple-carry adder/subtractor provided as laboratory coursework reference material.
+- **`Counter.vhd` & `CounterTB.vhd`:** Synchronous up/down counter reference implementation.
+- **`ShiftReg1.vhd`:** 4-bit shift register reference implementation.
 
 ---
 
-## Source Code & Toolchain
+## Source Code & Academic Attribution
 
 - **GitHub Repository:** [HarryRogers073/vhdl-digital-systems](https://github.com/HarryRogers073/vhdl-digital-systems)
+- **Author:** Harry Rogers (University of Brighton)
+- **Coursework Context:** Digital Systems Design (84% Distinction Grade, A+)
 - **Synthesis & P&R:** Intel Quartus Prime Lite / Standard Edition
 - **Simulation:** ModelSim-Intel FPGA Starter Edition
 - **Hardware Target:** Altera / Intel Cyclone II / IV / DE2 Development Boards

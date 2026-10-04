@@ -47,7 +47,7 @@ The desktop control application (shown in the header interface overview) provide
 
 ---
 
-##  Hardware & Software Architecture
+## Hardware & Software Architecture
 
 ### 1. Hardware Silicon: 16-Bit Arithmetic Logic Unit (ALU)
 The Device-Under-Test (DUT) is a multi-stage 16-bit Verilog ALU synthesised onto the **AMD Xilinx Artix-7** FPGA fabric supporting 18 arithmetic, logical, and memory operations:
@@ -71,9 +71,15 @@ The Python orchestrator incorporates an autonomous stimulus generation and telem
 
 ---
 
-## Academic Deliverables
+## Academic Deliverables & Attribution
 
 - **GitHub Repository:** [HarryRogers073/vaidar](https://github.com/HarryRogers073/vaidar)
+- **Author:** Harry Rogers (University of Brighton)
+- **Academic Context:** Capstone BEng Individual Dissertation Project (91% Distinction, IET Prize Winner 2026)
 - **Academic Exhibition Poster:** [Download High-Resolution Vector PDF](/files/VAIDAR_Academic_Poster.pdf)
 - **Target Silicon:** Digilent Nexys A7 FPGA (AMD Xilinx Artix-7 `XC7A100T`)
 - **EDA Tools:** Xilinx Vivado Design Suite 2024.1, ModelSim-Intel FPGA
+- **Attribution & Provenance:**
+  - **Custom Code & RTL:** The Python HIL test execution engine, golden reference model, CustomTkinter desktop interface, 16-bit Verilog ALU, and 7-segment display driver were authored by Harry Rogers.
+  - **Adapted Hardware:** The physical UART receiver (`uart_receiver.v`) was adapted from Russell Merrick's Nandland open-source serial receiver module with custom framing logic.
+  - **Open-Source Libraries:** Makes use of standard Python open-source libraries (`pyserial`, `customtkinter`, `matplotlib`, and official Google/Anthropic/OpenAI SDKs).

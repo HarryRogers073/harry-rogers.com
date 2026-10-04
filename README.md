@@ -1,43 +1,75 @@
-# Astro Starter Kit: Minimal
+# Harry Rogers - Personal Engineering Portfolio
 
-```sh
-npm create astro@latest -- --template minimal
+The official portfolio website for **Harry Rogers**, Hardware Test Engineer based in Sussex, UK.
+
+Showcases professional defence robotics test engineering at Chess Dynamics, industrial avionics experience at BAE Systems, and capstone academic projects in FPGA digital systems, Hardware-in-the-Loop (HIL) verification, embedded firmware, and autonomous robotics.
+
+- **Production URL:** [www.harry-rogers.com](https://www.harry-rogers.com)
+- **LinkedIn:** [linkedin.com/in/harryrogers073](https://www.linkedin.com/in/harryrogers073/)
+- **GitHub:** [github.com/HarryRogers073](https://github.com/HarryRogers073)
+
+---
+
+## Technical Stack
+
+- **Framework:** [Astro 5](https://astro.build) (Static Site Generation)
+- **Language:** TypeScript, HTML5, Modern CSS (Glassmorphism & Custom Properties)
+- **Content:** MDX Content Collections for detailed technical case studies
+- **Deployment:** Cloudflare Pages / Vercel with automated CI/CD pipeline
+- **Optimization:** Zero external client frameworks; lightweight custom canvas for background flow animations
+
+---
+
+## Local Development
+
+### Prerequisites
+- Node.js (v18.17.0 or higher)
+- npm or pnpm
+
+### Setup
+```bash
+# Clone the repository
+git clone https://github.com/HarryRogers073/harry-rogers.com.git
+cd harry-rogers.com
+
+# Install dependencies
+npm install
+
+# Start local development server
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Build & Verification
+```bash
+# Verify referenced images and build static bundle
+npm run build
 
-## 🚀 Project Structure
+# Preview production build locally
+npm run preview
+```
 
-Inside of your Astro project, you'll see the following folders and files:
+---
+
+## Project Structure
 
 ```text
-/
-├── public/
+harry-rogers.com/
+├── public/                 # Static assets, schematics, and project figures
+├── scripts/                # Build pre-check scripts (e.g. image verification)
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/         # Reusable UI elements (Nav, Footer, Cards)
+│   ├── content/
+│   │   └── projects/       # MDX engineering case studies
+│   ├── data/
+│   │   └── profile.ts      # Core profile, CV data, and module records
+│   ├── layouts/            # BaseLayout with SEO, meta, and lightbox
+│   ├── pages/              # Astro routes (index, about, experience, cv, contact)
+│   └── styles/             # Global CSS design tokens and animations
+└── astro.config.mjs        # Astro configuration
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+---
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## License
 
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Personal content and project case studies © Harry Rogers. Source code licensed under the [MIT License](LICENSE).
