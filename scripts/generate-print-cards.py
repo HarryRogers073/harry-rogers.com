@@ -209,7 +209,7 @@ draw_b.text((qr_x + (qr_size - qr_lbl_w) // 2, qr_y + qr_size + 24), qr_label, f
 # Left Column: Contact Items
 contact_items = [
     ("PORTFOLIO", "https://www.harry-rogers.com", COLOR_BRAND),
-    ("EMAIL", "harryrogers073@gmail.com", COLOR_TEXT),
+    ("EMAIL", "harry@harry-rogers.com", COLOR_TEXT),
     ("LINKEDIN", "linkedin.com/in/harryrogers073", COLOR_MUTED),
     ("GITHUB", "github.com/HarryRogers073", COLOR_MUTED),
     ("LOCATION", "Sussex & London, United Kingdom", COLOR_MUTED),

@@ -59,7 +59,7 @@
             exec: handleEducation
         },
         awards: {
-            desc: 'Display honors and professional distinctions (IET Prize 2026, BAE Systems Commendation)',
+            desc: 'Display honors and professional distinctions (The IET Prize 2026, IET Sussex Prize 2023)',
             usage: 'awards',
             exec: handleAwards
         },

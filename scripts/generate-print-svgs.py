@@ -121,7 +121,7 @@ svg_back = f'''<svg xmlns="http://www.w3.org/2000/svg" width="91mm" height="61mm
 
     <!-- Item 2: Email -->
     <text x="0" y="80" fill="#2dd4bf" font-size="15" font-weight="700" letter-spacing="1">DIRECT EMAIL</text>
-    <text x="0" y="108" fill="#f0f6fc" font-size="24" font-weight="600" font-family="'JetBrains Mono', monospace">harryrogers073@gmail.com</text>
+    <text x="0" y="108" fill="#f0f6fc" font-size="24" font-weight="600" font-family="'JetBrains Mono', monospace">harry@harry-rogers.com</text>
 
     <!-- Item 3: LinkedIn -->
     <text x="0" y="160" fill="#2dd4bf" font-size="15" font-weight="700" letter-spacing="1">LINKEDIN</text>

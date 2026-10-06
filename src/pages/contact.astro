@@ -114,7 +114,7 @@ import { profile } from '../data/profile';
     const json = JSON.stringify(object);
 
     try {
-      const res = await fetch('https://formsubmit.co/ajax/harryrogers073@gmail.com', {
+      const res = await fetch('https://formsubmit.co/ajax/harry@harry-rogers.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -133,7 +133,7 @@ import { profile } from '../data/profile';
       }
     } catch (err) {
       feedback.className = 'form-feedback error';
-      feedback.innerText = 'Could not send message automatically. Please email me directly at harryrogers073@gmail.com.';
+      feedback.innerText = 'Could not send message automatically. Please email me directly at harry@harry-rogers.com.';
       feedback.style.display = 'block';
     } finally {
       btn.disabled = false;

@@ -79,13 +79,13 @@
         experience: [
             {
                 company: "Chess Dynamics",
-                location: "Sussex, UK",
-                role: "Test Engineer",
-                period: "2024 – Present",
+                location: "Horsham, West Sussex, UK",
+                role: "Hardware Test Engineer & Land IPT Test Point of Contact",
+                period: "June 2026 – Present",
                 type: "Full-Time",
                 description: "Specialist defence & security enterprise manufacturing ultra-precise electro-optical tracking, surveillance, and gimbals.",
                 highlights: [
-                    "System-Level Verification & Testing: Lead comprehensive testing for multi-sensor electro-optical surveillance heads, pan-tilt gimbals, thermal imagers, and radar tracking assemblies.",
+                    "System-Level Verification & Testing: Coordinate comprehensive testing for multi-sensor electro-optical surveillance heads, pan-tilt gimbals, thermal imagers, and radar tracking assemblies.",
                     "Test Procedure Authoring: Author & execute formal Acceptance Test Procedures (ATP), Factory Acceptance Tests (FAT), and Site Acceptance Tests (SAT) under military & industrial standards.",
                     "Automated Test Suite Development: Design Python & hardware-based automated scripts for sensor calibration, optical target collation, and regression testing (40% setup time reduction).",
                     "Cross-Functional Fault Isolation: Isolate complex root-cause anomalies across multi-board microprocessors, video transmission protocols (Camera Link/SDI), and servo control feedback loops.",
@@ -94,12 +94,11 @@
             },
             {
                 company: "BAE Systems",
-                location: "UK",
-                role: "Systems Engineer — Integration, Verification & Validation (IV&V)",
-                period: "12-Month Industrial Placement",
-                type: "Industrial Placement",
+                location: "Rochester, Kent, UK",
+                role: "Systems Engineer — Integration, Verification & Validation (IV&V) Placement",
+                period: "June 2024 – June 2025",
+                type: "12-Month Industrial Placement",
                 description: "Global defence, aerospace, and security contractor developing mission systems.",
-                award: "BAE Systems IV&V Performance Commendation",
                 highlights: [
                     "IV&V Lifecycle Execution: Executed end-to-end IV&V protocols for mission-critical hardware and electronic system architectures.",
                     "HIL Testbench Assembly & Rig Operation: Constructed, wired, and calibrated HIL testbenches with real-time signal injection and telemetry feedback loops.",
@@ -137,7 +136,7 @@
 
         education: {
             degree: "BEng (Hons) Electronic & Computer Engineering",
-            grade: "First-Class Honours (1st Class)",
+            grade: "First Class 80%",
             institution: "University of Brighton",
             graduationYear: "2026",
             modules: [
@@ -161,10 +160,10 @@
                 badgeUrl: "https://drive.google.com/file/d/19GDAzXFtHfdsel3uywczHKlfzlRzslaX/view"
             },
             {
-                title: "BAE Systems IV&V Performance Commendation",
-                organization: "BAE Systems",
-                status: "Commendation",
-                description: "Recognized during 12-month industrial placement for exceptional setup of hardware-in-the-loop testbench rigs and zero-defect requirements verification execution."
+                title: "IET Sussex Prize 2023",
+                organization: "The Institution of Engineering and Technology (IET)",
+                status: "Winner",
+                description: "Awarded for outstanding first-year academic performance in Analogue & Digital Electronics and Electrical Engineering at the University of Brighton."
             }
         ],
 
@@ -194,12 +193,13 @@
         ],
 
         contact: {
-            email: "harryrogers073@gmail.com",
-            location: "Sussex / Brighton, United Kingdom",
-            website: "https://harry-rogers.com",
-            dissertationLink: "https://www.harry-rogers.com/dissertation-project",
-            linkedin: "https://www.linkedin.com/in/harryrogers",
-            masterCvPdf: "https://drive.google.com/file/d/1p_ZhEquE2a6kWzHNxUqJ0RfyqnqE6tbR/view?usp=sharing",
+            email: "harry@harry-rogers.com",
+            location: "Sussex, United Kingdom",
+            website: "https://www.harry-rogers.com",
+            dissertationLink: "https://www.harry-rogers.com/projects/vaidar-hil-framework",
+            linkedin: "https://www.linkedin.com/in/harryrogers073/",
+            github: "https://github.com/HarryRogers073",
+            masterCvPdf: "/files/Harry_Rogers_Master_CV.pdf",
             degreeCertificatePdf: "https://drive.google.com/file/d/1AdEBtt5kGBFWuy3C_u3CsFVBmXnDHa-Z/view?usp=sharing",
             ietBadgePdf: "https://drive.google.com/file/d/19GDAzXFtHfdsel3uywczHKlfzlRzslaX/view"
         },
@@ -212,7 +212,7 @@
             experience: "List detailed professional work history (Chess Dynamics, BAE Systems)",
             projects: "Show featured engineering portfolio projects (VAIDAR, Optical Test Bench, FPV Avionics)",
             education: "Display degree credentials, University of Brighton details, and course modules",
-            awards: "Display honors and professional distinctions (IET Prize 2026, BAE Systems Commendation)",
+            awards: "Display honors and professional distinctions (The IET Prize 2026, IET Sussex Prize 2023)",
             contact: "Display contact email, location, website, LinkedIn, and PDF document links",
             vaidar: "Deep dive into the VAIDAR HIL FPGA verification framework architecture & sample code",
             banner: "Print retro header ASCII banner",
