@@ -13,11 +13,19 @@ badge: "IET Prize 2026 • Capstone"
 
 ## Project Overview
 
-**VAIDAR** (*Verification & Artificial Intelligence for Digital Architecture Runtime*) is an automated **Hardware-in-the-Loop (HIL) verification execution engine** developed as my Final Year BEng Individual Dissertation Project at the **University of Brighton**. 
+**VAIDAR** (**V**erification & **A**rtificial **I**ntelligence for **D**igital **A**rchitecture **R**untime) is an automated **Hardware-in-the-Loop (HIL) verification execution engine** developed as my Final Year BEng Individual Dissertation Project at the **University of Brighton**. 
 
 The project achieved a **First Class 91% (A+)** and was recognised with **The IET Prize 2026** by the Institution of Engineering and Technology.
 
-Traditional FPGA verification relies heavily on manual bench testing with oscilloscopes and function generators, or slow software RTL simulation that can consume up to 70% of the hardware design lifecycle. VAIDAR bridges physical silicon with modern software testing by wrapping high-speed serial transports in an intuitive Python architecture and integrating LLM-assisted edge-case test generation.
+| Letter | Component | Engineering Role in the System |
+| :---: | :--- | :--- |
+| **V** | **Verification** | Automated HIL assertion testbench & cycle-accurate software golden model |
+| **AI** | **Artificial Intelligence** | LLM edge-case stimulus synthesis & automated failure triage |
+| **D** | **Digital** | Register-transfer level (RTL) Verilog logic & control FSM design |
+| **A** | **Architecture** | 16-bit ALU core synthesized onto AMD Xilinx Artix-7 silicon |
+| **R** | **Runtime** | Real-time 921,600 baud streaming execution engine (~1,000 tests/sec) |
+
+Traditional FPGA verification relies heavily on manual bench testing with oscilloscopes and function generators, or slow software RTL simulation that can consume up to 70% of the hardware design lifecycle. Inspired by telemetry principles in RADAR and LiDAR systems, VAIDAR bridges physical silicon with modern software testing by wrapping high-speed serial transports in an intuitive Python architecture and integrating LLM-assisted edge-case test generation.
 
 ---
 
