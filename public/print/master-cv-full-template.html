@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Curriculum Vitae | Harry Rogers — Hardware Test Engineer</title>
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 8.8pt;
+            line-height: 1.38;
+            color: #111827;
+            background-color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            max-height: 297mm;
+            margin: 0 auto;
+            background: #FFFFFF;
+            padding: 13mm 16mm 11mm 16mm;
+            position: relative;
+            page-break-after: always;
+            break-after: page;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, p {
+            margin: 0;
+        }
+
+        .header-title {
+            font-size: 20pt;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #111827;
+        }
+
+        .header-subtitle {
+            font-size: 10.5pt;
+            font-weight: 700;
+            color: #374151;
+            margin-top: 1px;
+        }
+
+        .header-tagline {
+            font-size: 8.5pt;
+            color: #4B5563;
+            margin-top: 2px;
+            font-style: italic;
+        }
+
+        .contact-row {
+            font-size: 8pt;
+            color: #374151;
+            margin-top: 5px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            border-top: 1px solid #E5E7EB;
+            padding-top: 5px;
+        }
+
+        .contact-row a {
+            color: #111827;
+            text-decoration: none;
+        }
+
+        .contact-row a:hover {
+            text-decoration: underline;
+        }
+
+        .section {
+            margin-top: 11px;
+        }
+
+        .section-header {
+            font-size: 9.2pt;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #111827;
+            border-bottom: 1.5px solid #111827;
+            padding-bottom: 2px;
+            margin-bottom: 6px;
+        }
+
+        .running-header {
+            font-size: 8pt;
+            font-family: "JetBrains Mono", Consolas, monospace;
+            color: #4B5563;
+            border-bottom: 1px solid #E5E7EB;
+            padding-bottom: 4px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .running-header strong {
+            color: #111827;
+        }
+
+        .item {
+            margin-bottom: 8px;
+        }
+
+        .item:last-child {
+            margin-bottom: 0;
+        }
+
+        .item-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1.5px;
+        }
+
+        .item-title {
+            font-size: 9.2pt;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .item-subtitle {
+            font-size: 8.3pt;
+            font-weight: 600;
+            color: #4B5563;
+        }
+
+        .item-date {
+            font-size: 8pt;
+            font-family: "JetBrains Mono", Consolas, monospace;
+            color: #4B5563;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .item-desc {
+            font-size: 8pt;
+            color: #4B5563;
+            font-style: italic;
+            margin-bottom: 3px;
+        }
+
+        ul.bullets {
+            margin: 0;
+            padding-left: 14px;
+            list-style-type: square;
+        }
+
+        ul.bullets li {
+            font-size: 8pt;
+            color: #1F2937;
+            margin-bottom: 2.5px;
+            line-height: 1.34;
+        }
+
+        ul.bullets li strong {
+            color: #111827;
+        }
+
+        /* Technical Grid */
+        .skills-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 7.8pt;
+            margin-top: 3px;
+        }
+
+        .skills-table td {
+            padding: 3px 0;
+            vertical-align: top;
+            border-bottom: 1px solid #F3F4F6;
+        }
+
+        .skills-table td.cat {
+            width: 25%;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .skills-table td.items {
+            width: 75%;
+            color: #374151;
+        }
+
+        /* Academic modules mini table */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            font-size: 7.5pt;
+            margin-top: 5px;
+        }
+
+        .module-col {
+            border: 1px solid #E5E7EB;
+            padding: 5px 7px;
+            border-radius: 3px;
+            background: #FAFAFA;
+        }
+
+        .module-col h5 {
+            font-size: 7.8pt;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 2px;
+            border-bottom: 1px solid #E5E7EB;
+            padding-bottom: 2px;
+        }
+
+        .module-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .module-col ul li {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.2px 0;
+            border-bottom: 1px dotted #E5E7EB;
+            color: #374151;
+        }
+
+        .module-col ul li:last-child {
+            border-bottom: none;
+        }
+
+        .module-col ul li strong {
+            font-family: monospace;
+            color: #111827;
+        }
+
+        .footer-note {
+            font-size: 7.2pt;
+            color: #6B7280;
+            border-top: 1px solid #E5E7EB;
+            padding-top: 4px;
+            display: flex;
+            justify-content: space-between;
+            font-family: "JetBrains Mono", Consolas, monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================================================================== -->
+    <!-- PAGE 1: Profile, Executive Summary, Matrix & Accolades            -->
+    <!-- ================================================================== -->
+    <div class="page">
+        <div>
+            <!-- Document Header -->
+            <header>
+                <h1 class="header-title">Harry Rogers, BEng (Hons)</h1>
+                <p class="header-subtitle">Hardware Test Engineer &amp; Land IPT Test Point of Contact</p>
+                <p class="header-tagline">Specialising in Hardware-in-the-Loop (HIL) Verification • Electro-Optical Systems Testing • Digital Logic &amp; FPGAs</p>
+                <div class="contact-row">
+                    <span><strong>Email:</strong> <a href="mailto:harry@harry-rogers.com">harry@harry-rogers.com</a></span>
+                    <span><strong>Location:</strong> Sussex, United Kingdom</span>
+                    <span><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/harryrogers073/">linkedin.com/in/harryrogers073</a></span>
+                    <span><strong>Portfolio:</strong> <a href="https://www.harry-rogers.com">harry-rogers.com</a></span>
+                    <span><strong>GitHub:</strong> <a href="https://github.com/HarryRogers073">github.com/HarryRogers073</a></span>
+                </div>
+            </header>
+
+            <!-- Executive Engineering Profile -->
+            <section class="section">
+                <h2 class="section-header">Executive Engineering Profile</h2>
+                <p style="font-size: 8.3pt; color: #1F2937; text-align: justify; line-height: 1.42;">
+                    Accomplished <strong>Hardware Test Engineer</strong> and <strong>FPGA Verification Specialist</strong> with a First-Class 80% BEng (Hons) in Electronic and Computer Engineering and recipient of <strong>The IET Prize 2026</strong>. Technical background spanning military-grade electro-optical surveillance director qualification, automated hardware-in-the-loop (HIL) testbench design, and FPGA digital logic verification. Currently serving as the test department point of contact for Land Systems at Chess Dynamics, advising project management on test scoping, coordinating Factory Acceptance Testing (FAT), conducting precision optical boresighting, and managing environmental stress screening to military specifications. Developer of <strong>VAIDAR</strong>, a novel Python-native HIL execution engine that bridges machine learning stimulus synthesis with physical AMD Xilinx Artix-7 FPGA silicon to eliminate verification bottlenecks. Highly experienced in full Integration, Verification &amp; Validation (IV&amp;V) lifecycles, IBM DOORS requirements management, serial telemetry protocols, and multidisciplinary defect resolution.
+                </p>
+            </section>
+
+            <!-- Official Honours & Key Credentials -->
+            <section class="section">
+                <h2 class="section-header">Official Honours &amp; Academic Distinctions</h2>
+                <div class="item">
+                    <div class="item-head">
+                        <span class="item-title">The IET Prize 2026</span>
+                        <span class="item-date">Graduation 2026</span>
+                    </div>
+                    <div class="item-subtitle">The Institution of Engineering and Technology (IET)</div>
+                    <p style="font-size: 8.1pt; color: #374151; margin-top: 1.5px;">
+                        Awarded for outstanding academic distinction and graduating First Class (80%) in BEng (Hons) Electronic &amp; Computer Engineering at the University of Brighton. Certificate signed by Ed Almond (Chief Executive), Dawn Ohlson (IET President 2025–26), and Warren East (Board of Trustees).
+                    </p>
+                </div>
+                <div class="item" style="margin-top: 6px;">
+                    <div class="item-head">
+                        <span class="item-title">IET Sussex Prize 2023</span>
+                        <span class="item-date">2023</span>
+                    </div>
+                    <div class="item-subtitle">The Institution of Engineering and Technology (IET)</div>
+                    <p style="font-size: 8.1pt; color: #374151; margin-top: 1.5px;">
+                        Awarded for outstanding first-year academic performance across Analogue &amp; Digital Electronics and Introduction to Electrical Engineering at the University of Brighton.
+                    </p>
+                </div>
+                <div class="item" style="margin-top: 6px;">
+                    <div class="item-head">
+                        <span class="item-title">Flagship BEng Individual Project Distinction (91%)</span>
+                        <span class="item-date">May 2026</span>
+                    </div>
+                    <div class="item-subtitle">University of Brighton • Final Year Capstone Project (XE636)</div>
+                    <p style="font-size: 8.1pt; color: #374151; margin-top: 1.5px;">
+                        First-Class 91% (A+) award for VAIDAR: AI-Driven Hardware-in-the-Loop FPGA Verification Framework on AMD Xilinx Artix-7 silicon.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Technical Competencies & Systems Index -->
+            <section class="section">
+                <h2 class="section-header">Technical Competencies &amp; Instrumentation Index</h2>
+                <table class="skills-table">
+                    <tr>
+                        <td class="cat">FPGA &amp; Digital Logic</td>
+                        <td class="items">Verilog HDL, IEEE VHDL, AMD Xilinx Vivado Design Suite, Intel Quartus Prime, Artix-7, Zynq-7000, ModelSim, RTL simulation, Finite State Machines (FSMs), timing closure (XDC constraints), static timing analysis (STA).</td>
+                    </tr>
+                    <tr>
+                        <td class="cat">HIL &amp; Automation</td>
+                        <td class="items">Python HIL test engines, PySerial, Automated Test Equipment (ATE), FAT/SAT/ATP test suites, real-time telemetry streaming, automated discrepancy logging, machine learning stimulus generation.</td>
+                    </tr>
+                    <tr>
+                        <td class="cat">Electro-Optics &amp; Sensors</td>
+                        <td class="items">Hawkeye land surveillance directors, daylight HD cameras, continuous-zoom cooled thermal imagers, eye-safe laser rangefinders, precision optical collimation, laser power metering, optical boresighting, environmental stress screening (thermal cycling &amp; vibration).</td>
+                    </tr>
+                    <tr>
+                        <td class="cat">Bus Protocols &amp; Comms</td>
+                        <td class="items">RS-422, RS-485, CAN Bus, Ethernet, TCP/IP, SPI, I2C, UART, PCIe, MIL-STD-1553, ARINC 429, Camera Link, SDI, slip-ring communication links.</td>
+                    </tr>
+                    <tr>
+                        <td class="cat">Lab Test Equipment</td>
+                        <td class="items">Digital storage oscilloscopes, logic analysers, RF spectrum analysers, precision blackbody infrared emitters, optical collimators, JTAG boundary scan, bench power supplies, precision multimeters.</td>
+                    </tr>
+                    <tr>
+                        <td class="cat">Software &amp; Tools</td>
+                        <td class="items">Python 3.x, Embedded C (Microchip XC8), MPASM, C/C++, MATLAB, Simulink, IBM DOORS (DXL), Enterprise Architect, Git, GitHub Actions, Linux, Vercel, Supabase PostgreSQL, Prisma ORM.</td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+
+        <div class="footer-note">
+            <span>Harry Rogers • Master Curriculum Vitae</span>
+            <span>Page 1 of 4</span>
+        </div>
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- PAGE 2: Primary Professional Work Experience (Chess, BAE, BRAS)   -->
+    <!-- ================================================================== -->
+    <div class="page">
+        <div>
+            <div class="running-header">
+                <span><strong>Harry Rogers, BEng (Hons)</strong> • Master Curriculum Vitae</span>
+                <span>Professional Work Experience</span>
+            </div>
+
+            <!-- Role 1: Chess Dynamics -->
+            <section class="section" style="margin-top: 4px;">
+                <h2 class="section-header">Primary Defence &amp; Systems Engineering Roles</h2>
+                <div class="item">
+                    <div class="item-head">
+                        <span class="item-title">Hardware Test Engineer &amp; Land IPT Test Point of Contact</span>
+                        <span class="item-date">June 2026 – Present</span>
+                    </div>
+                    <div class="item-subtitle">Chess Dynamics • Horsham, West Sussex, UK (Full-Time Industry)</div>
+                    <p class="item-desc">
+                        Specialist defence enterprise manufacturing high-precision electro-optical surveillance, fire-control tracking, and stabilised director payloads for allied defence programmes.
+                    </p>
+                    <ul class="bullets">
+                        <li><strong>Land IPT Test Point of Contact:</strong> Serve as the primary test department point of contact for the Land Integrated Portfolio Team (IPT), advising project managers and systems leads on test scoping, verification feasibility, and qualification schedules.</li>
+                        <li><strong>Factory Acceptance Testing (FAT):</strong> Run formal Factory Acceptance Testing on the Hawkeye family of electro-optical directors, verifying daylight HD optics, cooled thermal imagers, and eye-safe laser rangefinders against military customer specifications.</li>
+                        <li><strong>Board-Level Fault Diagnostics:</strong> Perform hardware diagnostics and root-cause fault isolation across complex multi-layer PCBs, motor control servo feedback loops, slip-ring serial links (RS-422, CAN, Ethernet), and high-bandwidth video pipelines.</li>
+                        <li><strong>Optical Boresighting &amp; Calibration:</strong> Conduct precision optical boresighting and laser rangefinder calibration routines using optical collimators and blackbody targets to ensure exact weapon-system alignment.</li>
+                        <li><strong>Environmental Stress Screening (ESS):</strong> Coordinate environmental qualification testing, including climatic chamber thermal profiling (-40°C to +70°C) and multi-axis vibration testing to military standards.</li>
+                        <li><strong>Documentation &amp; Quality SOPs:</strong> Author formal Factory Acceptance Test reports, engineering discrepancy logs, and Standard Operating Procedures (SOPs) for repeatable lab operations.</li>
+                    </ul>
+                </div>
+
+                <!-- Role 2: BAE Systems -->
+                <div class="item" style="margin-top: 10px;">
+                    <div class="item-head">
+                        <span class="item-title">Systems Engineer — Integration, Verification &amp; Validation (IV&amp;V) Placement</span>
+                        <span class="item-date">June 2024 – June 2025</span>
+                    </div>
+                    <div class="item-subtitle">BAE Systems • Rochester, Kent, UK (12-Month Industrial Placement)</div>
+                    <p class="item-desc">
+                        Tier-one defence, aerospace, and security enterprise developing mission-critical electronic systems and active vehicle electronics.
+                    </p>
+                    <ul class="bullets">
+                        <li><strong>IV&amp;V Lifecycle Execution:</strong> Executed end-to-end Integration, Verification &amp; Validation (IV&amp;V) procedures on safety-critical electronic systems hardware and testbench architectures.</li>
+                        <li><strong>Python Test Automation:</strong> Developed modular Python-based automated test scripts for hardware/software integration and laboratory testbenches, accelerating test execution and regression coverage.</li>
+                        <li><strong>Requirements Traceability (IBM DOORS):</strong> Managed bidirectional requirements verification matrices in IBM DOORS, mapping high-level system requirements to granular hardware test cases with 100% audit traceability.</li>
+                        <li><strong>Signal Integrity &amp; Simulation:</strong> Verified electronic hardware subsystems using signal injection, high-bandwidth oscilloscopes, and MATLAB/Simulink models, including Frequency Response Analysis (FRA).</li>
+                        <li><strong>Anomaly Debugging &amp; ERB Reviews:</strong> Collaborated with multidisciplinary hardware, software, and systems teams to diagnose hardware root-cause anomalies, authoring defect reports presented at Engineering Review Boards.</li>
+                        <li><strong>STEM Ambassador:</strong> Delivered interactive "STEM in a Box" engineering workshops to over 400 school students across Kent as a certified STEM Ambassador.</li>
+                    </ul>
+                </div>
+
+                <!-- Role 3: Brighton Real Ale Society -->
+                <div class="item" style="margin-top: 10px;">
+                    <div class="item-head">
+                        <span class="item-title">Co-President, Vice President &amp; Web Architect</span>
+                        <span class="item-date">October 2025 – June 2026</span>
+                    </div>
+                    <div class="item-subtitle">Brighton Real Ale Society • University of Brighton, UK (Executive Leadership)</div>
+                    <p class="item-desc">
+                        Elected executive committee leader managing administration, safety licensing, budgeting, and official digital web infrastructure.
+                    </p>
+                    <ul class="bullets">
+                        <li><strong>Executive Governance:</strong> Directed weekly executive committee operations, managed finances and event budgeting, and liaised with the Brighton Students' Union on risk assessments, health, and event licensing for 100+ active members.</li>
+                        <li><strong>Full-Stack Platform Engineering:</strong> Architected, developed, and deployed the official society web application (Next.js / React 19, Prisma ORM, Supabase PostgreSQL) with automated CI/CD on Vercel.</li>
+                        <li><strong>Interactive Member Features:</strong> Built secure member authentication, real-time rating leaderboards, interactive voting modules, dynamic event calendars, and historical venue archives.</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <div class="footer-note">
+            <span>Harry Rogers • Master Curriculum Vitae</span>
+            <span>Page 2 of 4</span>
+        </div>
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- PAGE 3: Education, Full Transcripts & Additional History           -->
+    <!-- ================================================================== -->
+    <div class="page">
+        <div>
+            <div class="running-header">
+                <span><strong>Harry Rogers, BEng (Hons)</strong> • Master Curriculum Vitae</span>
+                <span>Academic Education &amp; Additional Employment</span>
+            </div>
+
+            <!-- Academic Education -->
+            <section class="section" style="margin-top: 4px;">
+                <h2 class="section-header">Academic Education &amp; Module Transcripts</h2>
+
+                <div class="item">
+                    <div class="item-head">
+                        <span class="item-title">BEng (Hons) Electronic &amp; Computer Engineering — First Class Honours (80%)</span>
+                        <span class="item-date">2022 – 2026</span>
+                    </div>
+                    <div class="item-subtitle">University of Brighton • Graduated July 2026 • Winner of The IET Prize 2026</div>
+                    <p class="item-desc">
+                        Accredited engineering degree covering digital systems, embedded microprocessors, signal processing, and control theory.
+                    </p>
+
+                    <!-- Module Performance Grid -->
+                    <div class="modules-grid">
+                        <div class="module-col">
+                            <h5>Level 6 (Final Year) — 80%</h5>
+                            <ul>
+                                <li><span>Individual Project (VAIDAR)</span> <strong>91%</strong></li>
+                                <li><span>Communications &amp; Networks</span> <strong>90%</strong></li>
+                                <li><span>Embedded Systems 3 (MATLAB)</span> <strong>84%</strong></li>
+                                <li><span>Digital Signal Processing</span> <strong>68%</strong></li>
+                                <li><span>Product Design (Grid NPD)</span> <strong>62%</strong></li>
+                            </ul>
+                        </div>
+                        <div class="module-col">
+                            <h5>Level 5 (Second Year) — 77%</h5>
+                            <ul>
+                                <li><span>Digital Systems (FPGA VHDL)</span> <strong>84%</strong></li>
+                                <li><span>Engineering Design (Robotics)</span> <strong>82%</strong></li>
+                                <li><span>Embedded Systems 2 (XC8 C)</span> <strong>79%</strong></li>
+                                <li><span>Electrical Engineering 2</span> <strong>76%</strong></li>
+                                <li><span>Analogue Electronics (Radio)</span> <strong>70%</strong></li>
+                                <li><span>Control &amp; Applications</span> <strong>70%</strong></li>
+                            </ul>
+                        </div>
+                        <div class="module-col">
+                            <h5>Level 4 (First Year) — 78%</h5>
+                            <ul>
+                                <li><span>Analogue &amp; Digital 1</span> <strong>87%</strong></li>
+                                <li><span>Intro Electrical Engineering</span> <strong>87%</strong></li>
+                                <li><span>Engineering Mathematics</span> <strong>84%</strong></li>
+                                <li><span>Embedded Systems 1 (MPASM)</span> <strong>79%</strong></li>
+                                <li><span>Engineering Practice (PCB)</span> <strong>69%</strong></li>
+                                <li><span>Analogue &amp; Digital 2</span> <strong>62%</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item" style="margin-top: 10px;">
+                    <div class="item-head">
+                        <span class="item-title">A-Levels: Mathematics, Physics &amp; Computer Science</span>
+                        <span class="item-date">2020 – 2022</span>
+                    </div>
+                    <div class="item-subtitle">Barton Peveril Sixth Form College • Eastleigh, Hampshire, UK</div>
+                </div>
+
+                <div class="item" style="margin-top: 6px;">
+                    <div class="item-head">
+                        <span class="item-title">GCSEs: 10 GCSEs at Grades 9–4 (Including Mathematics, English &amp; Sciences)</span>
+                        <span class="item-date">2015 – 2020</span>
+                    </div>
+                    <div class="item-subtitle">Wyvern College • Fair Oak, Hampshire, UK</div>
+                </div>
+            </section>
+
+            <!-- Additional Work History -->
+            <section class="section">
+                <h2 class="section-header">Additional Employment &amp; Commercial Leadership</h2>
+
+                <div class="item">
+                    <div class="item-head">
+                        <span class="item-title">Customer Service Assistant &amp; Team Member</span>
+                        <span class="item-date">December 2023 – June 2026</span>
+                    </div>
+                    <div class="item-subtitle">bp / M&amp;S Simply Food • Sussex, UK (Part-Time Employment)</div>
+                    <ul class="bullets">
+                        <li>Delivered frontline customer service in high-turnover retail and forecourt environments alongside university engineering studies.</li>
+                        <li>Managed daily fresh food temperature auditing, stock rotation, inventory reconciliation, and cash handling procedures.</li>
+                        <li>Enforced strict forecourt health, safety, and hazardous materials protocols.</li>
+                    </ul>
+                </div>
+
+                <div class="item" style="margin-top: 8px;">
+                    <div class="item-head">
+                        <span class="item-title">Shift Manager</span>
+                        <span class="item-date">August 2020 – March 2024</span>
+                    </div>
+                    <div class="item-subtitle">McDonald's • Eastleigh, Hampshire, UK (Operations &amp; Team Leadership)</div>
+                    <ul class="bullets">
+                        <li>Led operational shifts directing teams of up to 30 crew members across front-of-house, kitchen, and drive-thru under strict time and quality constraints.</li>
+                        <li>Managed shift labour scheduling, station rotations, food hygiene compliance, and temperature logging standards.</li>
+                        <li>Conducted register balancing, safe drops, end-of-day cash reconciliation, and resolved customer escalations diplomatically.</li>
+                    </ul>
+                </div>
+
+                <div class="item" style="margin-top: 8px;">
+                    <div class="item-head">
+                        <span class="item-title">Bicycle Courier</span>
+                        <span class="item-date">September 2023 – June 2024</span>
+                    </div>
+                    <div class="item-subtitle">Deliveroo • Brighton, UK (Independent Logistics)</div>
+                    <ul class="bullets">
+                        <li>Executed time-critical on-demand logistics across Brighton under strict delivery time windows.</li>
+                    </ul>
+                </div>
+
+                <div class="item" style="margin-top: 8px;">
+                    <div class="item-head">
+                        <span class="item-title">Volunteer Computer Refurbisher</span>
+                        <span class="item-date">May 2021 – October 2021</span>
+                    </div>
+                    <div class="item-subtitle">Jamie's Computers • Southampton, UK (Voluntary Engineering Support)</div>
+                    <ul class="bullets">
+                        <li>Diagnosed, disassembled, and repaired legacy desktop and laptop PCs for low-income households and charities.</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <div class="footer-note">
+            <span>Harry Rogers • Master Curriculum Vitae</span>
+            <span>Page 3 of 4</span>
+        </div>
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- PAGE 4: In-Depth Engineering Projects & Professional References   -->
+    <!-- ================================================================== -->
+    <div class="page">
+        <div>
+            <div class="running-header">
+                <span><strong>Harry Rogers, BEng (Hons)</strong> • Master Curriculum Vitae</span>
+                <span>Key Engineering Projects Portfolio &amp; References</span>
+            </div>
+
+            <!-- Key Engineering Projects -->
+            <section class="section" style="margin-top: 4px;">
+                <h2 class="section-header">Key Engineering &amp; Research Projects Portfolio</h2>
+
+                <!-- Project 1: VAIDAR -->
+                <div class="item">
+                    <div class="item-head">
+                        <span class="item-title">VAIDAR: AI-Driven Hardware-in-the-Loop FPGA Verification Framework</span>
+                        <span class="item-date">Grade: First Class 91% (A+)</span>
+                    </div>
+                    <div class="item-subtitle">BEng Final Year Capstone Project (XE636) • Winner of The IET Prize 2026</div>
+                    <p style="font-size: 8.1pt; color: #374151; margin-top: 2px; text-align: justify; line-height: 1.36;">
+                        Architected an automated hardware-in-the-loop verification engine bridging host software directly to physical <strong>AMD Xilinx Artix-7 FPGA</strong> silicon over high-speed 921,600-baud UART to eliminate the 70% lifecycle bottleneck of software simulation.
+                    </p>
+                    <ul class="bullets" style="margin-top: 3px;">
+                        <li><strong>Physical Silicon-to-Software Bridge:</strong> Streamed stimulus vectors bidirectionally between host Python test logic and a synthesised 16-bit ALU on physical Digilent Nexys A7 FPGA hardware.</li>
+                        <li><strong>Adaptive Stimulus Synthesis:</strong> Integrated PyTorch machine learning models to dynamically generate test vectors targeting hard-to-reach finite state machine branches, achieving 99.9%+ logic coverage closure in 65% less runtime than constrained random testing.</li>
+                        <li><strong>Real-Time Execution Speed:</strong> Achieved sustained verification throughput of <strong>968.9 tests/second</strong> on physical hardware—roughly 44,000x faster than manual bench testing.</li>
+                        <li><strong>Automated NLP Discrepancy Triage:</strong> Developed an automated failure analysis pipeline grouping simulation/silicon discrepancies by root-cause signature, eliminating manual waveform inspection.</li>
+                    </ul>
+                </div>
+
+                <!-- Project 2: Combat Robotics -->
+                <div class="item" style="margin-top: 10px;">
+                    <div class="item-head">
+                        <span class="item-title">Robot Wars Autonomous Combat Robotics Platform &amp; Motor Drives</span>
+                        <span class="item-date">Grade: First Class 82%</span>
+                    </div>
+                    <div class="item-subtitle">Level 5 Engineering Design • 2nd Place University Championship</div>
+                    <ul class="bullets">
+                        <li>Engineered custom high-current MOSFET dual H-bridge motor drivers capable of handling 30A+ stall currents for dual high-torque DC drive motors.</li>
+                        <li>Modelled complete chassis structure in SolidWorks CAD with CNC aluminium armouring; integrated Microchip PIC microcontroller firmware with optical feedback.</li>
+                        <li>Validated power distribution, transient voltage suppression, and thermal dissipation under aggressive continuous load.</li>
+                    </ul>
+                </div>
+
+                <!-- Project 3: VHDL Elevator Controller -->
+                <div class="item" style="margin-top: 10px;">
+                    <div class="item-head">
+                        <span class="item-title">VHDL Multi-Floor Elevator Controller (Intel DE0-Nano FPGA)</span>
+                        <span class="item-date">Grade: First Class 84%</span>
+                    </div>
+                    <div class="item-subtitle">Level 5 Digital Systems Design • Intel Cyclone IV FPGA</div>
+                    <ul class="bullets">
+                        <li>Designed, synthesised, and verified a multi-floor commercial elevator controller in IEEE VHDL using Quartus Prime.</li>
+                        <li>Implemented complex Finite State Machines (FSMs), debounced floor sensor inputs, door motor timers, and fail-safe safety interlocks, simulated via ModelSim.</li>
+                    </ul>
+                </div>
+
+                <!-- Project 4: Virtual Oscilloscope -->
+                <div class="item" style="margin-top: 10px;">
+                    <div class="item-head">
+                        <span class="item-title">Virtual Dual-Channel Oscilloscope &amp; Real-Time Telemetry</span>
+                        <span class="item-date">Grade: First Class 84%</span>
+                    </div>
+                    <div class="item-subtitle">Level 6 Embedded Systems 3 • MATLAB App Designer &amp; Microcontroller ADC</div>
+                    <ul class="bullets">
+                        <li>Developed a virtual dual-channel desktop oscilloscope in MATLAB communicating with a physical microcontroller over serial telemetry with real-time FFT spectrum analysis.</li>
+                    </ul>
+                </div>
+
+                <!-- Project 5: Autonomous Sensor Buggy -->
+                <div class="item" style="margin-top: 10px;">
+                    <div class="item-head">
+                        <span class="item-title">Autonomous Obstacle-Navigating Sensor Buggy</span>
+                        <span class="item-date">Grade: First Class 79%</span>
+                    </div>
+                    <div class="item-subtitle">Level 5 Embedded Systems 2 • Dual Microchip PIC Microcontrollers &amp; XC8 C</div>
+                    <ul class="bullets">
+                        <li>Wrote embedded XC8 C firmware for HC-SR04 ultrasonic sonar timing, ADC thermistor readings, and PWM motor steering across dual microcontrollers.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Professional Affiliations & References -->
+            <section class="section" style="margin-top: 10px;">
+                <h2 class="section-header">Professional Memberships &amp; References</h2>
+                <div style="font-size: 8.2pt; color: #1F2937; line-height: 1.4;">
+                    <p><strong>Professional Affiliation:</strong> Member of The Institution of Engineering and Technology (IET).</p>
+                    <p style="margin-top: 2px;"><strong>Professional &amp; Academic References:</strong> Comprehensive references from engineering managers at Chess Dynamics, systems leads at BAE Systems, and senior academic faculty at the University of Brighton are available upon request.</p>
+                </div>
+            </section>
+        </div>
+
+        <div class="footer-note">
+            <span>Harry Rogers • Master Curriculum Vitae</span>
+            <span>Page 4 of 4</span>
+        </div>
+    </div>
+
+</body>
+</html>

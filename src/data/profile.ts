@@ -24,6 +24,7 @@ export const profile = {
     github: 'https://github.com/HarryRogers073',
   },
   cvPdf: '/files/Harry_Rogers_Master_CV.pdf',
+  compactCvPdf: '/files/Harry_Rogers_Compact_CV.pdf',
   ietCertificate: 'https://drive.google.com/file/d/19GDAzXFtHfdsel3uywczHKlfzlRzslaX/view',
   formEndpoint: 'https://formsubmit.co/ajax/harry@harry-rogers.com',
 };

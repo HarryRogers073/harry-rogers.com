@@ -200,6 +200,7 @@
             linkedin: "https://www.linkedin.com/in/harryrogers073/",
             github: "https://github.com/HarryRogers073",
             masterCvPdf: "/files/Harry_Rogers_Master_CV.pdf",
+            compactCvPdf: "/files/Harry_Rogers_Compact_CV.pdf",
             degreeCertificatePdf: "https://drive.google.com/file/d/1AdEBtt5kGBFWuy3C_u3CsFVBmXnDHa-Z/view?usp=sharing",
             ietBadgePdf: "https://drive.google.com/file/d/19GDAzXFtHfdsel3uywczHKlfzlRzslaX/view"
         },
