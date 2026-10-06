@@ -30,7 +30,7 @@ export const profile = {
 };
 
 export const about = [
-  'I’m a Hardware Test Engineer at Chess Dynamics in West Sussex, serving as the test department point of contact for Land Systems. My work focuses on verifying electro-optical directors and robotics for international defence programmes.',
+  'I’m a Hardware Test Engineer at Chess Dynamics in West Sussex, verifying military-grade electro-optical tracking directors and stabilised gimbal systems for international defence programmes.',
   'I spend a lot of my time working with FPGAs and digital logic. For my final-year project, I built an automated hardware-in-the-loop test framework to verify physical Xilinx FPGAs against golden models using Python.',
   'I graduated from the University of Brighton with a First Class 80% degree in Electronic & Computer Engineering, and was awarded the IET Prize in 2026.',
   'Before joining Chess, I spent a year at BAE Systems working on integration and automated testbenches for electronic systems.',
@@ -50,23 +50,22 @@ export interface ExperienceItem {
 
 export const experiences: ExperienceItem[] = [
   {
-    role: 'Hardware Test Engineer & Land IPT Test Point of Contact',
+    role: 'Hardware Test Engineer',
     company: 'Chess Dynamics',
     location: 'Horsham, West Sussex, UK',
     period: 'June 2026 – Present',
     type: 'Full-Time Industry',
-    badge: 'Current Role | Land IPT Test Point of Contact',
-    summary: 'Test department point of contact for Land Systems, conducting Factory Acceptance Testing and environmental qualification on Hawkeye electro-optical directors.',
+    badge: 'Current Role',
+    summary: 'Conducting Factory Acceptance Testing (FAT), board-level fault diagnostics, and environmental qualification on Hawkeye electro-optical directors.',
     responsibilities: [
-      'Act as the test department point of contact for the Land Integrated Portfolio Team (IPT), advising project managers on test scoping and feasibility.',
-      'Run Factory Acceptance Testing (FAT) on Hawkeye electro-optical directors, verifying daylight optics, thermal imagers, and laser rangefinders.',
+      'Execute formal Factory Acceptance Testing (FAT) on Hawkeye electro-optical directors, verifying daylight optics, thermal imagers, and laser rangefinders against military customer specifications.',
       'Perform board-level fault diagnosis across multi-layer PCBs, slip-ring comms (RS-422, CAN, Ethernet), and video pipelines.',
       'Conduct precision optical boresighting and laser rangefinder calibration.',
       'Manage environmental qualification, including thermal profiling and vibration testing to military specifications.',
       'Write FAT documentation, discrepancy logs, and standard operating procedures (SOPs).'
     ],
     skills: [
-      'Land IPT Test Coordination',
+      'Hardware Integration & Test',
       'Electro-Optic Directors',
       'Factory Acceptance Testing (FAT)',
       'Optical Boresighting & Calibration',
@@ -223,13 +222,12 @@ export type Role = {
 
 export const experience: Role[] = [
   {
-    role: 'Hardware Test Engineer & Land IPT Test Point of Contact',
+    role: 'Hardware Test Engineer',
     company: 'Chess Dynamics',
     location: 'Horsham, West Sussex, UK',
     period: 'June 2026 – Present',
     highlights: [
-      'Test department point of contact for the Land Integrated Portfolio Team (IPT), advising project managers on test scoping and feasibility.',
-      'Run Factory Acceptance Testing (FAT) on Hawkeye electro-optical directors, verifying daylight optics, thermal imagers, and laser rangefinders.',
+      'Execute formal Factory Acceptance Testing (FAT) on Hawkeye electro-optical directors, verifying daylight optics, thermal imagers, and laser rangefinders.',
       'Board-level fault diagnosis across multi-layer PCBs, slip-ring comms (RS-422, CAN, Ethernet), and video pipelines.',
       'Conduct precision optical boresighting and laser rangefinder calibration.',
       'Manage environmental qualification, including thermal profiling and vibration testing to military specifications.',

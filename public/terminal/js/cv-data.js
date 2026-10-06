@@ -80,7 +80,7 @@
             {
                 company: "Chess Dynamics",
                 location: "Horsham, West Sussex, UK",
-                role: "Hardware Test Engineer & Land IPT Test Point of Contact",
+                role: "Hardware Test Engineer",
                 period: "June 2026 – Present",
                 type: "Full-Time",
                 description: "Specialist defence & security enterprise manufacturing ultra-precise electro-optical tracking, surveillance, and gimbals.",

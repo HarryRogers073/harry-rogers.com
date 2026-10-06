@@ -49,7 +49,7 @@ export const linkedInPosts: LinkedInPost[] = [
     category: 'Career Milestone',
     title: 'Joining Chess Dynamics as Hardware Test Engineer',
     content:
-      'Excited to announce that I have joined Chess Dynamics as a Hardware Test Engineer! In this role, I am acting as the primary Test Team Point of Contact for the Land Integrated Portfolio Team (IPT), driving system integration, factory acceptance testing (FAT), and fault diagnostics on precision electro-optical surveillance directors.',
+      'Excited to announce that I have joined Chess Dynamics as a Hardware Test Engineer! In this role, I am driving system integration, factory acceptance testing (FAT), and fault diagnostics on precision electro-optical surveillance directors.',
     tags: ['DefenceTech', 'HardwareTesting', 'ElectroOptics', 'SystemsEngineering'],
     postUrl: '/experience#chess-dynamics',
     actionLabel: 'View Role Overview →',
