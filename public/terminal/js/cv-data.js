@@ -28,7 +28,7 @@
             degree: "First-Class BEng (Hons) Electronic & Computer Engineering",
             award: "IET Prize Winner 2026",
             bio: [
-                "Test Engineer at Chess Dynamics in Sussex, UK, specializing in electro-optical surveillance payloads, thermal imagers, pan-tilt gimbals, and automated test environments.",
+                "Test Engineer at Chess Dynamics in Sussex, UK, specialising in electro-optical surveillance payloads, thermal imagers, pan-tilt gimbals, and automated test environments.",
                 "Graduated with First-Class Honours from the University of Brighton, winning the prestigious IET Prize 2026 for academic distinction.",
                 "Completed a 12-month industrial placement at BAE Systems in Systems Engineering (IV&V), building HIL testbench rigs and managing DOORS requirement traceability.",
                 "Creator of VAIDAR: a Python-native Hardware-in-the-Loop AI verification framework for FPGA logic designs."
@@ -72,7 +72,7 @@
                 runtimeReduction: "65% runtime reduction compared to constrained random test vectors",
                 grade: "Distinction Grade (1st Class)"
             },
-            codeSnippet: `import vaidarsys as vdr\n\n# Initialize FPGA target via serial interface\nfpga = vdr.Target(interface="COM3", baudrate=115200)\n\n# Load trained AI coverage agent model\nai_engine = vdr.Intelligence(model_path="models/alu_coverage_agent.pth")\n\n# Start smart HIL execution loop\nruntime = vdr.Runtime(target=fpga, intelligence=ai_engine)\nruntime.start_hil_loop(target_coverage=99.9)\n\n# Print verification metrics report\nprint(runtime.get_verification_report())`,
+            codeSnippet: `import vaidarsys as vdr\n\n# Initialise FPGA target via serial interface\nfpga = vdr.Target(interface="COM3", baudrate=115200)\n\n# Load trained AI coverage agent model\nai_engine = vdr.Intelligence(model_path="models/alu_coverage_agent.pth")\n\n# Start smart HIL execution loop\nruntime = vdr.Runtime(target=fpga, intelligence=ai_engine)\nruntime.start_hil_loop(target_coverage=99.9)\n\n# Print verification metrics report\nprint(runtime.get_verification_report())`,
             link: "https://www.harry-rogers.com/dissertation-project"
         },
 
@@ -153,7 +153,7 @@
         awards: [
             {
                 title: "The IET Prize 2026",
-                organization: "The Institution of Engineering and Technology (IET)",
+                organisation: "The Institution of Engineering and Technology (IET)",
                 status: "Winner",
                 description: "Awarded for outstanding distinction and academic excellence in BEng Electronic & Computer Engineering at the University of Brighton.",
                 signatories: ["Ed Almond (Chief Executive)", "Dawn Ohlson (IET President 2025-26)", "Warren East (Board of Trustees)"],
@@ -161,7 +161,7 @@
             },
             {
                 title: "IET Sussex Prize 2023",
-                organization: "The Institution of Engineering and Technology (IET)",
+                organisation: "The Institution of Engineering and Technology (IET)",
                 status: "Winner",
                 description: "Awarded for outstanding first-year academic performance in Analogue & Digital Electronics and Electrical Engineering at the University of Brighton."
             }
@@ -181,14 +181,14 @@
                 name: "Automated Electro-Optical Target Collimation Test Bench",
                 tagline: "Precision Optical Payload Calibration",
                 category: "Test Engineering & Automation",
-                summary: "Script-driven calibration routine for multi-spectral optical payloads synchronizing pan-tilt stages with IR blackbody emitters for MRTD and bore-sighting metrics."
+                summary: "Script-driven calibration routine for multi-spectral optical payloads synchronising pan-tilt stages with IR blackbody emitters for MRTD and bore-sighting metrics."
             },
             {
                 id: "fpv-avionics",
                 name: "High-Speed FPV Avionics & Telemetry Systems",
                 tagline: "Custom Flight Controllers & Telemetry",
                 category: "Embedded & Systems Engineering",
-                summary: "Custom FPV quadcopters with low-latency video, RF tuning, blackbox flight telemetry logging, PID optimization, and ESC timing."
+                summary: "Custom FPV quadcopters with low-latency video, RF tuning, blackbox flight telemetry logging, PID optimisation, and ESC timing."
             }
         ],
 
@@ -207,13 +207,13 @@
 
         commands: {
             help: "List all available terminal commands and usage examples",
-            about: "Show Harry Rogers background, current role at Chess Dynamics, and academic honors",
+            about: "Show Harry Rogers background, current role at Chess Dynamics, and academic honours",
             cv: "Alias for about command — display Master CV summary",
-            skills: "Display organized matrix of FPGA, HIL, Electro-Optics, Protocol, and Software skills",
+            skills: "Display organised matrix of FPGA, HIL, Electro-Optics, Protocol, and Software skills",
             experience: "List detailed professional work history (Chess Dynamics, BAE Systems)",
             projects: "Show featured engineering portfolio projects (VAIDAR, Optical Test Bench, FPV Avionics)",
             education: "Display degree credentials, University of Brighton details, and course modules",
-            awards: "Display honors and professional distinctions (The IET Prize 2026, IET Sussex Prize 2023)",
+            awards: "Display honours and professional distinctions (The IET Prize 2026, IET Sussex Prize 2023)",
             contact: "Display contact email, location, website, LinkedIn, and PDF document links",
             vaidar: "Deep dive into the VAIDAR HIL FPGA verification framework architecture & sample code",
             banner: "Print retro header ASCII banner",

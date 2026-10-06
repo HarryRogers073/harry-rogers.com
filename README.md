@@ -16,7 +16,7 @@ Showcases professional defence robotics test engineering at Chess Dynamics, indu
 - **Language:** TypeScript, HTML5, Modern CSS (Glassmorphism & Custom Properties)
 - **Content:** MDX Content Collections for detailed technical case studies
 - **Deployment:** Cloudflare Pages / Vercel with automated CI/CD pipeline
-- **Optimization:** Zero external client frameworks; lightweight custom canvas for background flow animations
+- **Optimisation:** Zero external client frameworks; lightweight custom canvas for background flow animations
 
 ---
 

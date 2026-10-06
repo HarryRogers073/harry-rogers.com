@@ -39,7 +39,7 @@
             exec: handleAbout
         },
         skills: {
-            desc: 'Display organized matrix of FPGA, HIL, Electro-Optics, Protocol, and Software skills',
+            desc: 'Display organised matrix of FPGA, HIL, Electro-Optics, Protocol, and Software skills',
             usage: 'skills [category]',
             exec: handleSkills
         },
@@ -100,7 +100,7 @@
         }
     };
 
-    // Initialize Event Listeners
+    // Initialise Event Listeners
     function initTerminal() {
         outputEl = document.getElementById('terminal-output');
         inputEl = document.getElementById('command-input');
@@ -470,7 +470,7 @@
                         <strong style="color: var(--accent-amber); font-size: 0.95rem;">${a.title}</strong>
                         <span class="tag-badge tag-amber">${a.status}</span>
                     </div>
-                    <div style="color: var(--accent-cyan); font-size: 0.85rem;">${a.organization}</div>
+                    <div style="color: var(--accent-cyan); font-size: 0.85rem;">${a.organisation || a.organization}</div>
                     <p style="font-size: 0.88rem; color: var(--text-primary); margin-top: 4px;">${a.description}</p>
                     ${sigsHtml}
                     ${linkHtml}
