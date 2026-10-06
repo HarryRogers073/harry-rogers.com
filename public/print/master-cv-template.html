@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master CV | Harry Rogers — Hardware Test Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            purple: '#5C2D91',
+                            deepPurple: '#4A2177',
+                            lightPurple: '#9D58DB',
+                            dark: '#0F172A',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+        * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            color: #0F172A;
+            margin: 0;
+            padding: 0;
+        }
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            height: 297mm;
+            padding: 14mm 16mm 12mm 16mm;
+            margin: 0 auto;
+            background: #FFFFFF;
+            position: relative;
+            page-break-after: always;
+            break-after: page;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+        .page-content {
+            flex-grow: 1;
+        }
+        .tag-pill {
+            display: inline-block;
+            padding: 1.5px 6px;
+            font-size: 8pt;
+            font-weight: 600;
+            background-color: #F1F5F9;
+            color: #334155;
+            border: 1px solid #CBD5E1;
+            border-radius: 4px;
+        }
+        .bullet-item {
+            position: relative;
+            padding-left: 12px;
+            margin-bottom: 3.5px;
+            font-size: 8.4pt;
+            line-height: 1.35;
+            color: #1E293B;
+        }
+        .bullet-item::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #5C2D91;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- ================================================================== -->
+    <!-- PAGE 1: Profile, Core Matrix & Chess Dynamics Role                 -->
+    <!-- ================================================================== -->
+    <section class="page">
+        <div class="page-content">
+            <!-- Header Row -->
+            <div class="border-b-2 border-[#5C2D91] pb-4 mb-4">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">Harry Rogers</h1>
+                        <p class="text-sm font-bold text-[#5C2D91] mt-0.5">Hardware Test Engineer &amp; Land IPT Test Point of Contact</p>
+                        <p class="text-[9.5pt] text-slate-600 font-mono mt-0.5">Specialising in Hardware-in-the-Loop (HIL) • Electro-Optics Testing • FPGA Verification</p>
+                    </div>
+                    <div class="text-[8.5pt] space-y-1 text-slate-700 text-right font-medium">
+                        <div><span class="text-[#5C2D91] font-mono font-semibold">Email:</span> <a href="mailto:harry@harry-rogers.com" class="text-slate-900 hover:underline">harry@harry-rogers.com</a></div>
+                        <div><span class="text-[#5C2D91] font-mono font-semibold">Location:</span> Sussex, United Kingdom</div>
+                        <div><span class="text-[#5C2D91] font-mono font-semibold">LinkedIn:</span> <a href="https://www.linkedin.com/in/harryrogers073/" class="text-slate-900 hover:underline">linkedin.com/in/harryrogers073</a></div>
+                        <div><span class="text-[#5C2D91] font-mono font-semibold">Portfolio:</span> <a href="https://www.harry-rogers.com" class="text-slate-900 hover:underline">harry-rogers.com</a></div>
+                    </div>
+                </div>
+
+                <!-- Distinction Banner -->
+                <div class="mt-3.5 p-2.5 rounded-lg bg-purple-50 border border-purple-200 flex items-center justify-between text-[8.5pt]">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 rounded bg-[#5C2D91] text-white font-bold text-[7.5pt] uppercase tracking-wider">Winner</span>
+                        <strong class="text-[#5C2D91]">The IET Prize 2026</strong>
+                        <span class="text-slate-600">• Awarded by The Institution of Engineering and Technology</span>
+                    </div>
+                    <div class="font-bold text-[#5C2D91]">
+                        First Class 80% BEng (Hons) Electronic &amp; Computer Engineering
+                    </div>
+                </div>
+            </div>
+
+            <!-- Executive Summary -->
+            <div class="mb-4">
+                <h2 class="text-[9.5pt] font-extrabold uppercase tracking-wider text-[#5C2D91] font-mono mb-1.5 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#5C2D91]"></span>
+                    Executive Summary
+                </h2>
+                <p class="text-[8.5pt] text-slate-800 leading-relaxed">
+                    Accomplished <strong>Hardware Test Engineer &amp; FPGA Verification Specialist</strong> with a First-Class 80% BEng (Hons) in Electronic and Computer Engineering and recipient of <strong>The IET Prize 2026</strong>. Proven technical expertise spanning military-grade electro-optical surveillance system testing, hardware-in-the-loop (HIL) testbench design, and automated digital logic verification. Developer of <strong>VAIDAR</strong>, an automated Python-native execution engine bridging machine learning stimulus generation with physical AMD Xilinx Artix-7 FPGA silicon for accelerated coverage closure. Highly experienced in full-lifecycle Integration, Verification &amp; Validation (IV&amp;V), requirements traceability, protocol debugging, and cross-functional engineering collaboration.
+                </p>
+            </div>
+
+            <!-- Core Technical Competencies Matrix -->
+            <div class="mb-4">
+                <h2 class="text-[9.5pt] font-extrabold uppercase tracking-wider text-[#5C2D91] font-mono mb-2 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#5C2D91]"></span>
+                    Core Technical Competencies Matrix
+                </h2>
+                <div class="grid grid-cols-2 gap-2 text-[8pt]">
+                    <div class="p-2.5 rounded bg-slate-50 border border-slate-200">
+                        <span class="font-bold text-[#5C2D91] block mb-1">FPGA &amp; Digital Logic Design</span>
+                        <p class="text-slate-700 leading-snug">
+                            Verilog HDL, VHDL, AMD Xilinx Vivado Design Suite, Artix-7, Zynq-7000, RTL Simulation (ModelSim/Vivado Simulator), Logic Synthesis, XDC Timing Constraints, Static Timing Analysis (STA), Finite State Machines (FSM).
+                        </p>
+                    </div>
+                    <div class="p-2.5 rounded bg-slate-50 border border-slate-200">
+                        <span class="font-bold text-[#5C2D91] block mb-1">Hardware-in-the-Loop (HIL) &amp; Automation</span>
+                        <p class="text-slate-700 leading-snug">
+                            Python HIL Test Engines, PySerial, Automated Test Equipment (ATE), FAT/SAT/ATP Test Suites, Signal Injection Rigs, Real-Time Hardware Telemetry, Automated Discrepancy &amp; Log Triage.
+                        </p>
+                    </div>
+                    <div class="p-2.5 rounded bg-slate-50 border border-slate-200">
+                        <span class="font-bold text-[#5C2D91] block mb-1">Electro-Optics &amp; Systems Testing</span>
+                        <p class="text-slate-700 leading-snug">
+                            Hawkeye Electro-Optical Surveillance Directors, Daylight HD Optics, Cooled Thermal Imagers, Eye-Safe Laser Rangefinders, Optical Boresighting, Environmental Qualification (ESS Thermal &amp; Vibration), DOORS Traceability.
+                        </p>
+                    </div>
+                    <div class="p-2.5 rounded bg-slate-50 border border-slate-200">
+                        <span class="font-bold text-[#5C2D91] block mb-1">Protocols &amp; Lab Instrumentation</span>
+                        <p class="text-slate-700 leading-snug">
+                            Digital Storage Oscilloscopes, Logic Analysers, Spectrum Analysers, JTAG Boundary Scan, UART, PCIe, Ethernet, SPI, I2C, CAN Bus, RS-422 / RS-485, Camera Link, SDI, High-Speed Differential Signals.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professional Work Experience: Role 1 -->
+            <div>
+                <h2 class="text-[9.5pt] font-extrabold uppercase tracking-wider text-[#5C2D91] font-mono mb-2 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#5C2D91]"></span>
+                    Professional Work Experience
+                </h2>
+
+                <div class="p-3.5 rounded-lg border border-purple-200 bg-purple-50/40">
+                    <div class="flex justify-between items-baseline mb-1">
+                        <div>
+                            <h3 class="text-sm font-bold text-slate-900">Hardware Test Engineer &amp; Land IPT Test Point of Contact</h3>
+                            <span class="text-[8.5pt] font-semibold text-[#5C2D91]">Chess Dynamics • Horsham, West Sussex, UK</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-[8pt] font-mono font-bold text-slate-700 bg-white border border-slate-200 px-2 py-0.5 rounded">June 2026 – Present</span>
+                            <span class="text-[7.5pt] text-slate-500 block">Full-Time Industry</span>
+                        </div>
+                    </div>
+                    <p class="text-[8pt] text-slate-600 mb-2 italic">
+                        Specialist defence enterprise manufacturing high-precision electro-optical tracking, surveillance directors, and stabilised payloads for allied defence programmes.
+                    </p>
+                    <div>
+                        <div class="bullet-item"><strong>Land IPT Test Point of Contact:</strong> Serve as the primary test department point of contact for the Land Integrated Portfolio Team (IPT), advising project managers and systems leads on test scoping, verification feasibility, and qualification schedules.</div>
+                        <div class="bullet-item"><strong>Factory Acceptance Testing (FAT):</strong> Run rigorous Factory Acceptance Testing on Hawkeye electro-optical directors, verifying daylight HD cameras, cooled continuous-zoom thermal imagers, and laser rangefinders against strict customer specifications.</div>
+                        <div class="bullet-item"><strong>Hardware Diagnostics &amp; Fault Isolation:</strong> Conduct board-level fault diagnosis across complex multi-layer PCBs, slip-ring comms (RS-422, CAN, Ethernet), motor controller feedback loops, and video processing pipelines.</div>
+                        <div class="bullet-item"><strong>Optical Boresighting &amp; Calibration:</strong> Perform precision optical boresighting and laser rangefinder alignment to achieve high-accuracy weapon system and tracking alignment.</div>
+                        <div class="bullet-item"><strong>Environmental Qualification (ESS):</strong> Coordinate environmental stress screening, including thermal chamber cycling (-40°C to +70°C) and multi-axis vibration testing to military standards.</div>
+                        <div class="bullet-item"><strong>Documentation &amp; Compliance:</strong> Author formal Factory Acceptance Test reports, engineering discrepancy logs, and Standard Operating Procedures (SOPs).</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="pt-2 border-t border-slate-200 flex justify-between items-center text-[7.5pt] text-slate-500 font-mono">
+            <span>Harry Rogers • Master Curriculum Vitae</span>
+            <span>Page 1 of 3</span>
+        </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- PAGE 2: BAE Systems, Real Ale Leadership & Flagship Projects       -->
+    <!-- ================================================================== -->
+    <section class="page">
+        <div class="page-content">
+            <!-- Running Header -->
+            <div class="border-b border-purple-200 pb-2 mb-4 flex justify-between items-center text-[8pt] text-slate-500 font-mono">
+                <span class="font-bold text-[#5C2D91]">Harry Rogers • Master Curriculum Vitae</span>
+                <span>Systems Engineering, Leadership &amp; Engineering Projects</span>
+            </div>
+
+            <!-- Role 2: BAE Systems -->
+            <div class="mb-4">
+                <div class="p-3.5 rounded-lg border border-slate-200 bg-slate-50/60">
+                    <div class="flex justify-between items-baseline mb-1">
+                        <div>
+                            <h3 class="text-sm font-bold text-slate-900">Systems Engineer — Integration, Verification &amp; Validation (IV&amp;V) Placement</h3>
+                            <span class="text-[8.5pt] font-semibold text-[#5C2D91]">BAE Systems • Rochester, Kent, UK</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-[8pt] font-mono font-bold text-slate-700 bg-white border border-slate-200 px-2 py-0.5 rounded">June 2024 – June 2025</span>
+                            <span class="text-[7.5pt] text-slate-500 block">12-Month Industrial Placement</span>
+                        </div>
+                    </div>
+                    <p class="text-[8pt] text-slate-600 mb-2 italic">
+                        Global tier-one defence and aerospace enterprise delivering mission-critical electronic systems and active vehicle electronics.
+                    </p>
+                    <div>
+                        <div class="bullet-item"><strong>IV&amp;V Lifecycle Execution:</strong> Executed end-to-end Integration, Verification &amp; Validation (IV&amp;V) procedures on safety-critical electronic systems hardware and testbench architectures.</div>
+                        <div class="bullet-item"><strong>Python Testbench Automation:</strong> Developed modular Python-based automated test scripts for lab testbenches and signal injection hardware, significantly accelerating regression testing throughput.</div>
+                        <div class="bullet-item"><strong>Requirements Traceability (IBM DOORS):</strong> Managed bidirectional requirements verification matrices in IBM DOORS, mapping high-level system requirements to granular hardware test cases with 100% audit traceability.</div>
+                        <div class="bullet-item"><strong>Signal Integrity &amp; Simulation:</strong> Verified electronic hardware subsystems using signal injection, high-bandwidth oscilloscopes, and MATLAB/Simulink models, including Frequency Response Analysis (FRA).</div>
+                        <div class="bullet-item"><strong>Anomaly Debugging &amp; ERB Reviews:</strong> Collaborated with multidisciplinary hardware, software, and systems teams to diagnose hardware root-cause anomalies, authoring defect reports presented at Engineering Review Boards.</div>
+                        <div class="bullet-item"><strong>STEM Outreach:</strong> Delivered interactive "STEM in a Box" engineering workshops to over 400 school students across Kent as a certified STEM Ambassador.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Role 3: Brighton Real Ale Society Leadership -->
+            <div class="mb-4">
+                <div class="p-3 rounded-lg border border-slate-200 bg-white">
+                    <div class="flex justify-between items-baseline mb-1">
+                        <div>
+                            <h3 class="text-[9pt] font-bold text-slate-900">Co-President, Vice President &amp; Web Architect</h3>
+                            <span class="text-[8pt] font-semibold text-[#5C2D91]">Brighton Real Ale Society • University of Brighton, UK</span>
+                        </div>
+                        <span class="text-[7.5pt] font-mono font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded">October 2025 – June 2026</span>
+                    </div>
+                    <div>
+                        <div class="bullet-item">Elected executive leader managing society administration, event licensing, risk assessments, and financial budgeting for 100+ active university members.</div>
+                        <div class="bullet-item">Architected, developed, and deployed the society's official web application (<a href="https://github.com/brightonale/bras-website" class="text-[#5C2D91] underline">bras-website</a>) using Next.js (React 19), Prisma ORM, and Supabase PostgreSQL with automated CI/CD on Vercel.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Engineering Projects -->
+            <div>
+                <h2 class="text-[9.5pt] font-extrabold uppercase tracking-wider text-[#5C2D91] font-mono mb-2 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#5C2D91]"></span>
+                    Featured Engineering &amp; Research Projects
+                </h2>
+
+                <!-- Project 1: VAIDAR -->
+                <div class="p-3 rounded-lg border border-purple-300 bg-purple-50/50 mb-2.5">
+                    <div class="flex justify-between items-start mb-1">
+                        <div>
+                            <h3 class="text-[9pt] font-bold text-slate-900">
+                                VAIDAR: AI-Driven Hardware-in-the-Loop FPGA Verification Engine
+                            </h3>
+                            <span class="text-[7.5pt] font-mono text-[#5C2D91] font-semibold">Final Year Capstone Project • Grade: First Class 91% (A+) • The IET Prize Winner 2026</span>
+                        </div>
+                        <span class="tag-pill text-[7pt]">AMD Xilinx Artix-7</span>
+                    </div>
+                    <p class="text-[8pt] text-slate-700 leading-snug mb-1.5">
+                        Architected an automated hardware-in-the-loop verification engine bridging host software directly to physical FPGA silicon over high-speed 921,600-baud UART to solve the 70% lifecycle bottleneck of software simulation.
+                    </p>
+                    <div class="grid grid-cols-2 gap-2 text-[7.5pt] mb-1">
+                        <div class="p-1.5 rounded bg-white border border-purple-200">
+                            <strong class="text-[#5C2D91] block">Physical Hardware Testbed</strong>
+                            <p class="text-slate-600">High-speed serial transport between host Python runtime and synthesised 16-bit ALU on Digilent Nexys A7 FPGA silicon.</p>
+                        </div>
+                        <div class="p-1.5 rounded bg-white border border-purple-200">
+                            <strong class="text-[#5C2D91] block">Machine Learning Stimulus Synthesis</strong>
+                            <p class="text-slate-600">Integrated adaptive stimulus generation and automated LLM discrepancy triage, delivering 99.9%+ logic coverage closure.</p>
+                        </div>
+                    </div>
+                    <div class="bullet-item">Achieved <strong>968.9 tests/second</strong> throughput on physical silicon (~44,000x faster than manual bench testing with 100% physical accuracy).</div>
+                </div>
+
+                <!-- Project 2: Combat Robotics -->
+                <div class="p-2.5 rounded-lg border border-slate-200 bg-white mb-2">
+                    <div class="flex justify-between items-baseline mb-0.5">
+                        <h3 class="text-[8.5pt] font-bold text-slate-900">Robot Wars Autonomous Combat Platform &amp; Motor Drives</h3>
+                        <span class="text-[7.5pt] font-mono text-[#5C2D91]">2nd Place Championship • Grade: First Class 82%</span>
+                    </div>
+                    <p class="text-[7.8pt] text-slate-700 leading-snug">
+                        Engineered high-current MOSFET dual H-bridge motor drives, SolidWorks CAD aluminium chassis, and PIC microcontroller firmware for autonomous combat buggy.
+                    </p>
+                </div>
+
+                <!-- Project 3: VHDL Digital Systems -->
+                <div class="p-2.5 rounded-lg border border-slate-200 bg-white">
+                    <div class="flex justify-between items-baseline mb-0.5">
+                        <h3 class="text-[8.5pt] font-bold text-slate-900">VHDL Multi-Floor Elevator Controller (Intel DE0-Nano FPGA)</h3>
+                        <span class="text-[7.5pt] font-mono text-[#5C2D91]">Level 5 Digital Systems Design • Grade: First Class 84%</span>
+                    </div>
+                    <p class="text-[7.8pt] text-slate-700 leading-snug">
+                        Implemented robust finite state machines (FSM), debounced input registers, and hardware interlocks in IEEE VHDL, verified via ModelSim RTL testbenches.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="pt-2 border-t border-slate-200 flex justify-between items-center text-[7.5pt] text-slate-500 font-mono">
+            <span>Harry Rogers • Master Curriculum Vitae</span>
+            <span>Page 2 of 3</span>
+        </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- PAGE 3: Education, Honours, Additional History & Tools Index      -->
+    <!-- ================================================================== -->
+    <section class="page">
+        <div class="page-content">
+            <!-- Running Header -->
+            <div class="border-b border-purple-200 pb-2 mb-4 flex justify-between items-center text-[8pt] text-slate-500 font-mono">
+                <span class="font-bold text-[#5C2D91]">Harry Rogers • Master Curriculum Vitae</span>
+                <span>Education, Official Honours, Employment History &amp; Tooling</span>
+            </div>
+
+            <!-- Education & Degree Performance -->
+            <div class="mb-4">
+                <h2 class="text-[9.5pt] font-extrabold uppercase tracking-wider text-[#5C2D91] font-mono mb-2 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#5C2D91]"></span>
+                    Education &amp; Academic Distinction
+                </h2>
+
+                <div class="p-3.5 rounded-lg border border-purple-200 bg-purple-50/40">
+                    <div class="flex justify-between items-baseline mb-1">
+                        <div>
+                            <h3 class="text-sm font-extrabold text-slate-900">BEng (Hons) Electronic &amp; Computer Engineering</h3>
+                            <p class="text-[8.5pt] font-bold text-[#5C2D91]">University of Brighton • First Class 80%</p>
+                        </div>
+                        <span class="text-[8pt] font-mono font-bold text-[#5C2D91] bg-white border border-purple-200 px-2.5 py-0.5 rounded">Graduated July 2026</span>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2 mt-2 pt-2 border-t border-purple-100 text-[7.5pt]">
+                        <div class="p-2 rounded bg-white border border-purple-100">
+                            <strong class="text-[#5C2D91] block">Level 6 (Final Year) — 80%</strong>
+                            <p class="text-slate-600">• Individual Project (VAIDAR): 91%</p>
+                            <p class="text-slate-600">• Communications &amp; Networks: 90%</p>
+                            <p class="text-slate-600">• Embedded Systems 3 (MATLAB): 84%</p>
+                            <p class="text-slate-600">• Digital Signal Processing: 68%</p>
+                        </div>
+                        <div class="p-2 rounded bg-white border border-purple-100">
+                            <strong class="text-[#5C2D91] block">Level 5 (Second Year) — 77%</strong>
+                            <p class="text-slate-600">• Digital Systems (FPGA VHDL): 84%</p>
+                            <p class="text-slate-600">• Engineering Design (Robotics): 82%</p>
+                            <p class="text-slate-600">• Embedded Systems 2 (XC8 C): 79%</p>
+                            <p class="text-slate-600">• Electrical Engineering 2 (Power): 76%</p>
+                        </div>
+                        <div class="p-2 rounded bg-white border border-purple-100">
+                            <strong class="text-[#5C2D91] block">Level 4 (First Year) — 78%</strong>
+                            <p class="text-slate-600">• Analogue &amp; Digital 1: 87% (IET Prize)</p>
+                            <p class="text-slate-600">• Intro Electrical Engineering: 87%</p>
+                            <p class="text-slate-600">• Engineering Mathematics: 84%</p>
+                            <p class="text-slate-600">• Embedded Systems 1 (MPASM): 79%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Official Honours & Awards -->
+            <div class="mb-4">
+                <h2 class="text-[9.5pt] font-extrabold uppercase tracking-wider text-[#5C2D91] font-mono mb-2 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#5C2D91]"></span>
+                    Official Engineering Honours &amp; Distinctions
+                </h2>
+
+                <div class="space-y-2 text-[8pt]">
+                    <!-- Award 1 -->
+                    <div class="p-2.5 rounded-lg border border-purple-300 bg-purple-50/60 flex justify-between items-center">
+                        <div>
+                            <div class="flex items-center gap-2 mb-0.5">
+                                <span class="px-1.5 py-0.2 rounded bg-[#5C2D91] text-white font-bold text-[7pt] uppercase">Winner</span>
+                                <h3 class="font-bold text-slate-900 text-[8.5pt]">The IET Prize 2026</h3>
+                            </div>
+                            <p class="text-slate-700">Awarded by <strong>The Institution of Engineering and Technology (IET)</strong> for outstanding academic distinction and graduating First Class 80% in BEng Electronic &amp; Computer Engineering at the University of Brighton.</p>
+                            <p class="text-slate-500 text-[7pt] mt-0.5">Signatories: Ed Almond (Chief Executive), Dawn Ohlson (IET President 2025–26), Warren East (Board of Trustees).</p>
+                        </div>
+                        <span class="font-mono text-[#5C2D91] font-bold text-[8pt] shrink-0 ml-3">2026</span>
+                    </div>
+
+                    <!-- Award 2 -->
+                    <div class="p-2.5 rounded-lg border border-slate-200 bg-white flex justify-between items-center">
+                        <div>
+                            <div class="flex items-center gap-2 mb-0.5">
+                                <span class="px-1.5 py-0.2 rounded bg-slate-700 text-white font-bold text-[7pt] uppercase">Winner</span>
+                                <h3 class="font-bold text-slate-900 text-[8.5pt]">IET Sussex Prize 2023</h3>
+                            </div>
+                            <p class="text-slate-700">Awarded by <strong>The Institution of Engineering and Technology (IET)</strong> for outstanding first-year academic performance across Analogue &amp; Digital Electronics and Electrical Engineering.</p>
+                        </div>
+                        <span class="font-mono text-[#5C2D91] font-bold text-[8pt] shrink-0 ml-3">2023</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Work History & Operational Leadership -->
+            <div class="mb-4">
+                <h2 class="text-[9.5pt] font-extrabold uppercase tracking-wider text-[#5C2D91] font-mono mb-2 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#5C2D91]"></span>
+                    Additional Work History &amp; Commercial Leadership
+                </h2>
+
+                <div class="grid grid-cols-2 gap-2 text-[7.8pt]">
+                    <div class="p-2.5 rounded bg-slate-50 border border-slate-200">
+                        <div class="flex justify-between items-baseline">
+                            <strong class="text-slate-900">Customer Service Assistant &amp; Team Member</strong>
+                            <span class="font-mono text-[7pt] text-slate-500">Dec 2023 – June 2026</span>
+                        </div>
+                        <span class="text-[#5C2D91] font-semibold block mb-0.5">bp / M&amp;S Simply Food • Sussex, UK</span>
+                        <p class="text-slate-600 leading-snug">Forecourt safety compliance, hazardous materials handling, fresh food auditing, and cash handling procedures.</p>
+                    </div>
+
+                    <div class="p-2.5 rounded bg-slate-50 border border-slate-200">
+                        <div class="flex justify-between items-baseline">
+                            <strong class="text-slate-900">Shift Manager</strong>
+                            <span class="font-mono text-[7pt] text-slate-500">Aug 2020 – Mar 2024</span>
+                        </div>
+                        <span class="text-[#5C2D91] font-semibold block mb-0.5">McDonald's • Eastleigh, Hampshire, UK</span>
+                        <p class="text-slate-600 leading-snug">Directed high-tempo shifts with up to 30 personnel, labour scheduling, hygiene audits, safe drops, and customer conflict resolution.</p>
+                    </div>
+
+                    <div class="p-2.5 rounded bg-slate-50 border border-slate-200">
+                        <div class="flex justify-between items-baseline">
+                            <strong class="text-slate-900">Bicycle Courier</strong>
+                            <span class="font-mono text-[7pt] text-slate-500">Sept 2023 – June 2024</span>
+                        </div>
+                        <span class="text-[#5C2D91] font-semibold block mb-0.5">Deliveroo • Brighton, UK</span>
+                        <p class="text-slate-600 leading-snug">Time-critical urban food logistics across complex city topography under strict delivery time windows.</p>
+                    </div>
+
+                    <div class="p-2.5 rounded bg-slate-50 border border-slate-200">
+                        <div class="flex justify-between items-baseline">
+                            <strong class="text-slate-900">Volunteer Computer Refurbisher</strong>
+                            <span class="font-mono text-[7pt] text-slate-500">May 2021 – Oct 2021</span>
+                        </div>
+                        <span class="text-[#5C2D91] font-semibold block mb-0.5">Jamie's Computers • Southampton, UK</span>
+                        <p class="text-slate-600 leading-snug">Hardware diagnostics, component testing (RAM/PSU/drives), secure data wiping, and OS installs for community reuse.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comprehensive Technical Tooling Index -->
+            <div>
+                <h2 class="text-[9.5pt] font-extrabold uppercase tracking-wider text-[#5C2D91] font-mono mb-2 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#5C2D91]"></span>
+                    Technical Tooling &amp; Systems Index
+                </h2>
+
+                <div class="grid grid-cols-4 gap-2 text-[7.5pt]">
+                    <div class="p-2 rounded bg-slate-50 border border-slate-200">
+                        <span class="font-bold text-[#5C2D91] block mb-1">HDL &amp; EDA</span>
+                        <p class="text-slate-700 leading-snug">• Verilog HDL<br>• IEEE VHDL<br>• AMD Xilinx Vivado<br>• ModelSim RTL<br>• Quartus Prime<br>• XDC Constraints</p>
+                    </div>
+                    <div class="p-2 rounded bg-slate-50 border border-slate-200">
+                        <span class="font-bold text-[#5C2D91] block mb-1">Software &amp; Scripting</span>
+                        <p class="text-slate-700 leading-snug">• Python 3.x / PySerial<br>• Embedded C / C++<br>• MATLAB / Simulink<br>• DXL (IBM DOORS)<br>• TypeScript / React<br>• Linux / Git / CI/CD</p>
+                    </div>
+                    <div class="p-2 rounded bg-slate-50 border border-slate-200">
+                        <span class="font-bold text-[#5C2D91] block mb-1">Bus Protocols</span>
+                        <p class="text-slate-700 leading-snug">• RS-422 / RS-485<br>• CAN Bus<br>• Ethernet / TCP/IP<br>• UART / SPI / I2C<br>• MIL-STD-1553<br>• Camera Link / SDI</p>
+                    </div>
+                    <div class="p-2 rounded bg-slate-50 border border-slate-200">
+                        <span class="font-bold text-[#5C2D91] block mb-1">Lab Instrumentation</span>
+                        <p class="text-slate-700 leading-snug">• Storage Oscilloscopes<br>• Logic Analysers<br>• Spectrum Analysers<br>• Thermal Blackbodies<br>• Optical Collimators<br>• JTAG Boundary Scan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="pt-2 border-t border-slate-200 flex justify-between items-center text-[7.5pt] text-slate-500 font-mono">
+            <span>Harry Rogers • Master Curriculum Vitae</span>
+            <span>Page 3 of 3</span>
+        </div>
+    </section>
+
+</body>
+</html>
