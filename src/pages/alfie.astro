@@ -1,0 +1,749 @@
+---
+/**
+ * =============================================================================
+ * File:         alfie.astro
+ * Written by:   Harry Rogers
+ * Date:         October 2026
+ * Description:  Hidden easter-egg archive of historical & global Alfie O'Connors
+ * =============================================================================
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const alfieDossiers = [
+  {
+    id: 'sheep-choreographer',
+    name: 'Alfie "The Iron Whistle" O’Connor',
+    era: '1888 – 1961',
+    periodType: 'historical',
+    location: 'Connemara, County Galway, Ireland',
+    flag: '🇮🇪',
+    title: 'Highland Sheep Choreographer & Tax Evasion Virtuoso',
+    summary: 'A celebrated Connemara shepherd who famously trained a flock of 400 Blackface Mountain sheep to graze in the exact geometric silhouette of the O’Connor family crest whenever government inspectors crested the Twelve Bens.',
+    funFact: 'Local parish archives record that he never owned a single border collie; he controlled sheep movements entirely through four distinct whistle frequencies and an intimidating tweed cap.',
+    quote: 'The sheep understand property law far better than the magistrate, and they eat less paperwork.',
+    badge: 'Historical Legend'
+  },
+  {
+    id: 'cape-horn-poet',
+    name: 'Alfonso "Alfie" O’Connor',
+    era: '1921 – 1998',
+    periodType: 'twentieth',
+    location: 'Valparaíso & Cape Horn, Chile',
+    flag: '🇨🇱',
+    title: 'The Poetic Maritime Telegraphist of the Southern Ocean',
+    summary: 'An Anglo-Chilean radio telegraphist stationed on remote lighthouse outposts across Tierra del Fuego. Known throughout maritime radio circles for sending the most unnecessarily dramatic Morse code transmissions in naval history.',
+    funFact: 'During a Force 10 squall in 1952, he transmitted a 14-line sonnet in flawless iambic pentameter just to request two extra tins of sweetened condensed milk from the mainland harbour master.',
+    quote: 'Punctuation preserves naval safety at sea; poetic adjectives keep the frost out of the bones.',
+    badge: 'Maritime Lore'
+  },
+  {
+    id: 'medieval-brewer',
+    name: 'Brother Alfie O’Connor',
+    era: '1342 – 1405',
+    periodType: 'historical',
+    location: 'Abbey of St. Gall & County Kerry',
+    flag: '☘️',
+    title: 'Franciscan Friar & "Accidental Distiller"',
+    summary: 'A wandering Franciscan friar credited in local monastic oral histories with inventing "turbo-fermentation" after accidentally dropping wild honeycomb and bog myrtle into the monastery’s sacramental copper brew-kettle.',
+    funFact: 'The resulting winter tonic was so legendary that the visiting Archbishop reportedly remitted all diocesan tithes for fifteen years in exchange for six flagons per autumn.',
+    quote: 'A pious heart need not endure a timid draught in the depths of winter.',
+    badge: 'Monastic Archive'
+  },
+  {
+    id: 'nullarbor-mechanic',
+    name: 'Alfie "Brakeless" O’Connor',
+    era: '1904 – 1979',
+    periodType: 'twentieth',
+    location: 'Nullarbor Plain, Western Australia',
+    flag: '🇦🇺',
+    title: 'Outback Bush Mechanic & Sand Dune Speedster',
+    summary: 'A legendary bush mechanic who successfully completed the grueling 1,200-mile Nullarbor desert crossing in a 1928 Ford Model A without functioning brakes, a radiator cap, or spare tyres.',
+    funFact: 'He cooled the engine block by running copper brewing coils directly into his billy tea kettle, and brought the vehicle to a halt using a weighted boat anchor fashioned from a shearing motor.',
+    quote: 'Brakes only breed hesitation in red dust. Keep her pointed east and keep the billy on.',
+    badge: 'Outback Pioneer'
+  },
+  {
+    id: 'victorian-botanist',
+    name: 'Sir Alfred "Alfie" O’Connor FRS',
+    era: '1845 – 1922',
+    periodType: 'historical',
+    location: 'Manchester & The Western Desert, Egypt',
+    flag: '🇬🇧',
+    title: 'Victorian Beetle Enthusiast & Accidental Cartographer',
+    summary: 'A Manchester industrialist turned desert naturalist who mapped four previously uncharted oasis routes in North Africa simply because he kept wandering off following a rare iridescent scarab beetle.',
+    funFact: 'Refused a royal knighthood investiture until Buckingham Palace agreed to permit his prized terrier "Barnaby" into the throne room wearing a bespoke velvet waistcoat.',
+    quote: 'The Empire runs on steam and tea; true discovery runs on stubborn curiosity and good boots.',
+    badge: 'Royal Society'
+  },
+  {
+    id: 'acoustic-oracle',
+    name: 'Alfie "Sonar" O’Connor',
+    era: '1968 – Present',
+    periodType: 'modern',
+    location: 'St. John’s, Newfoundland, Canada',
+    flag: '🇨🇦',
+    title: 'North Atlantic Acoustic Oracle & Cribbage Champion',
+    summary: 'A deep-sea trawler acoustic specialist who claims he can identify schools of Arctic cod solely by listening to the resonant pitch of his galley kettle vibrating against the ship’s iron hull.',
+    funFact: 'Holds the unofficial Grand Banks record for playing 72 consecutive games of cribbage during a Force 11 North Atlantic blizzard without spilling a single drop of dry stout.',
+    quote: 'The cod don’t answer radio hails, but they definitely know when water reaches a boil.',
+    badge: 'Maritime Specialist'
+  },
+  {
+    id: 'bell-tower-rebel',
+    name: 'Alfie O’Connor the Younger',
+    era: '1774 – 1839',
+    periodType: 'historical',
+    location: 'Covent Garden, London, England',
+    flag: '🇬🇧',
+    title: 'Horologist & Bell-Tower Renegade',
+    summary: 'A master clockmaker and apprentice bell-founder who was permanently barred from London parish belfries in 1812 after rewiring a cathedral clock escapement to strike a lively Irish slip-jig every Tuesday noon.',
+    funFact: 'When questioned by parish wardens, he argued that standard Gregorian chimes were "chronometrically depressing" and insisted that time was better served with a brisk tempo.',
+    quote: 'Time marches on regardless of our dignity; it may as well have a proper rhythm.',
+    badge: 'Clockwork Rebel'
+  },
+  {
+    id: 'space-cheddar',
+    name: 'Cosmonaut Candidate Alfie O’Connor',
+    era: '1974 (Folklore)',
+    periodType: 'twentieth',
+    location: 'Baikonur Cosmodrome / Shannon Airport',
+    flag: '🚀',
+    title: 'The Legendary Zero-G Cheese Smuggler',
+    summary: 'A folkloric figure among international aerospace telemetry crews who allegedly attempted to smuggle a 4kg wheel of mature Dubliner farmhouse cheddar into a Soyuz flight centrifuge test chamber.',
+    funFact: 'When caught by the mission director, he defended his actions by submitting an 18-page technical thesis claiming that vacuum exposure accelerates rind maturation by 400%.',
+    quote: 'Zero gravity is wasted on mankind if you cannot melt farmhouse cheese in orbit.',
+    badge: 'Cosmic Folklore'
+  },
+  {
+    id: 'sussex-legend',
+    name: 'Alfie O’Connor (The Modern Legend)',
+    era: 'Present Day',
+    periodType: 'modern',
+    location: 'Sussex, United Kingdom',
+    flag: '👑',
+    title: 'Connoisseur of Good Vibes & Domain Pioneer',
+    summary: 'The living namesake himself. Internationally verified to elevate average room happiness by 42.7% upon entry, master of effortless style, and official owner of a bespoke @harry-rogers.com email identity.',
+    funFact: 'Holds the 2026 distinction for inspiring this entire classified repository simply by requesting a world-class custom email address with unmatched swagger.',
+    quote: 'Email requested. History documented. The legend continues.',
+    badge: 'The Living Legend'
+  }
+];
+---
+
+<BaseLayout 
+  title="The Global Annals of Alfie O'Connor" 
+  description="A classified compendium of notable, eccentric, and legendary figures named Alfie O'Connor across world history."
+  noindex={true}
+>
+  <div class="alfie-page">
+    
+    <!-- Top Classified Banner -->
+    <header class="alfie-hero">
+      <div class="container">
+        <div class="classified-pill">
+          <span class="lock-icon">🔒</span>
+          <span>RESTRICTED ARCHIVE // DOSSIER #0803 // CLASSIFIED EYES ONLY</span>
+        </div>
+
+        <h1 class="hero-title">
+          The Chronicles of <br />
+          <span class="gradient-name">Alfie O’Connor</span>
+        </h1>
+
+        <p class="hero-sub">
+          An entirely exhaustive, peer-unreviewed compendium of remarkable navigators, hillside choreographers, 
+          clockwork rebels, and modern legends who have carried the venerable name of <strong>Alfie O’Connor</strong> 
+          across global history.
+        </p>
+
+        <!-- Stats Counter -->
+        <div class="alfie-stats">
+          <div class="stat-box">
+            <span class="stat-num">9</span>
+            <span class="stat-label">Alfies Catalogued</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">6</span>
+            <span class="stat-label">Continents Traversed</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">684</span>
+            <span class="stat-label">Years of Recorded Lore</span>
+          </div>
+          <div class="stat-box highlight">
+            <span class="stat-num">1</span>
+            <span class="stat-label">Custom Domain Email</span>
+          </div>
+        </div>
+
+        <!-- Random Fact Generator CTA -->
+        <div class="generator-card">
+          <div class="generator-header">
+            <div>
+              <span class="generator-badge">✨ INTERACTIVE ORACLE</span>
+              <h3 class="generator-title">Random Alfie Fact Generator</h3>
+            </div>
+            <button id="roll-fact-btn" class="btn roll-btn" type="button">
+              <span>🎲 Roll for Random Alfie</span>
+            </button>
+          </div>
+          
+          <div id="random-fact-display" class="random-fact-box">
+            <p class="fact-quote" id="fact-quote">"Press the button above to summon a peer-reviewed snippet of Alfie O’Connor lore from the global registry."</p>
+            <p class="fact-attribution" id="fact-attribution">— The Archivist</p>
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Filter Bar & Dossier Grid -->
+    <section class="dossiers-section">
+      <div class="container">
+
+        <div class="section-top">
+          <div>
+            <p class="eyebrow">Classified Registry</p>
+            <h2>The Global Matrix</h2>
+          </div>
+
+          <!-- Era Filter Tabs -->
+          <div class="filter-group" role="tablist" aria-label="Filter Alfies by era">
+            <button class="filter-btn active" data-filter="all">All Eras (9)</button>
+            <button class="filter-btn" data-filter="historical">Pre-1900</button>
+            <button class="filter-btn" data-filter="twentieth">20th Century</button>
+            <button class="filter-btn" data-filter="modern">Modern Day</button>
+          </div>
+        </div>
+
+        <!-- Grid of Alfies -->
+        <div class="grid grid-2 alfie-grid">
+          {alfieDossiers.map((alfie) => (
+            <article class="alfie-card card" data-period={alfie.periodType} id={alfie.id}>
+              
+              <div class="card-header">
+                <div class="header-left">
+                  <span class="country-flag">{alfie.flag}</span>
+                  <div>
+                    <h3 class="alfie-name">{alfie.name}</h3>
+                    <p class="alfie-meta">
+                      <span>{alfie.era}</span> • <span>{alfie.location}</span>
+                    </p>
+                  </div>
+                </div>
+                <span class={`status-pill pill-${alfie.periodType}`}>{alfie.badge}</span>
+              </div>
+
+              <div class="alfie-role-badge">
+                <span class="role-icon">⚡</span>
+                <span class="role-text">{alfie.title}</span>
+              </div>
+
+              <p class="alfie-summary">{alfie.summary}</p>
+
+              <div class="fact-highlight">
+                <div class="fact-title">
+                  <span class="lightbulb">💡</span>
+                  <strong>Verified Fun Fact</strong>
+                </div>
+                <p class="fact-body">{alfie.funFact}</p>
+              </div>
+
+              <blockquote class="alfie-quote">
+                “{alfie.quote}”
+              </blockquote>
+
+            </article>
+          ))}
+        </div>
+
+        <!-- Secret Inbound Dispatch -->
+        <div class="alfie-dispatch-box card">
+          <div class="dispatch-content">
+            <span class="dispatch-icon">📬</span>
+            <div>
+              <h3>Official Dispatch Channel</h3>
+              <p class="dispatch-text">
+                Need to transmit priority missives, verify genealogical records, or send high-calibre banter to the reigning Alfie of Sussex?
+              </p>
+            </div>
+          </div>
+          <div class="dispatch-action">
+            <a href="mailto:alfie@harry-rogers.com" class="btn email-btn">
+              <span>Send Message to Alfie@harry-rogers.com →</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Interactive Script for Filtering and Fact Generator -->
+  <script is:inline define:vars={{ dossiersJson: JSON.stringify(alfieDossiers) }}>
+    const dossiers = JSON.parse(dossiersJson);
+
+    // 1. Fact Generator Logic
+    const rollBtn = document.getElementById('roll-fact-btn');
+    const quoteEl = document.getElementById('fact-quote');
+    const attrEl = document.getElementById('fact-attribution');
+    const factBox = document.getElementById('random-fact-display');
+
+    if (rollBtn && quoteEl && attrEl && factBox) {
+      let lastIndex = -1;
+
+      rollBtn.addEventListener('click', () => {
+        let nextIndex;
+        do {
+          nextIndex = Math.floor(Math.random() * dossiers.length);
+        } while (nextIndex === lastIndex && dossiers.length > 1);
+        lastIndex = nextIndex;
+
+        const picked = dossiers[nextIndex];
+        
+        // Gentle pulse animation
+        factBox.style.opacity = '0.3';
+        factBox.style.transform = 'translateY(4px)';
+
+        setTimeout(() => {
+          quoteEl.innerHTML = `“${picked.funFact}”`;
+          attrEl.innerHTML = `— <strong>${picked.name}</strong> (${picked.location}, ${picked.era})`;
+          factBox.style.opacity = '1';
+          factBox.style.transform = 'translateY(0)';
+        }, 150);
+      });
+    }
+
+    // 2. Era Filtering Logic
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.alfie-card');
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filterVal = btn.dataset.filter;
+
+        cards.forEach((card) => {
+          if (filterVal === 'all' || card.dataset.period === filterVal) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  /* ---------- Page Aesthetics ---------- */
+  .alfie-page {
+    padding-bottom: 5rem;
+  }
+
+  .alfie-hero {
+    padding: 3.5rem 0 2rem;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    background: radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--brand) 12%, transparent) 0%, transparent 70%);
+  }
+
+  .classified-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, #ef4444 14%, var(--surface));
+    color: #ef4444;
+    border: 1px solid color-mix(in srgb, #ef4444 30%, transparent);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    line-height: 1.1;
+    font-weight: 800;
+    margin: 0 0 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .gradient-name {
+    background: linear-gradient(135deg, var(--brand) 0%, #a855f7 50%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 48rem;
+    line-height: 1.6;
+    margin: 0 0 2rem;
+  }
+
+  /* Stats Counter */
+  .alfie-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .stat-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow);
+  }
+
+  .stat-box.highlight {
+    border-color: color-mix(in srgb, var(--brand) 40%, transparent);
+    background: color-mix(in srgb, var(--brand) 8%, var(--surface));
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+  }
+
+  .stat-box.highlight .stat-num {
+    color: var(--brand);
+  }
+
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  /* Interactive Generator Card */
+  .generator-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1rem;
+  }
+
+  .generator-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .generator-badge {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #a855f7;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .generator-title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .roll-btn {
+    background: linear-gradient(135deg, var(--brand) 0%, #8b5cf6 100%);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.95rem;
+    padding: 0.7rem 1.4rem;
+  }
+
+  .random-fact-box {
+    background: var(--surface-2);
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .fact-quote {
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--text);
+    margin: 0 0 0.5rem;
+    line-height: 1.5;
+  }
+
+  .fact-attribution {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin: 0;
+    text-align: right;
+  }
+
+  /* Filter Navigation */
+  .dossiers-section {
+    padding: 3rem 0;
+  }
+
+  .section-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-top h2 {
+    font-family: var(--font-display);
+    font-size: 1.85rem;
+    margin: 0;
+    font-weight: 800;
+  }
+
+  .filter-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .filter-btn:hover {
+    color: var(--text);
+    border-color: var(--brand);
+  }
+
+  .filter-btn.active {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #fff;
+  }
+
+  /* Dossier Cards */
+  .alfie-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .alfie-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem;
+    border-radius: 14px;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .alfie-card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--brand) 45%, var(--border));
+    box-shadow: 0 8px 30px -6px color-mix(in srgb, var(--brand) 20%, transparent);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .country-flag {
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+
+  .alfie-name {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.2rem;
+    line-height: 1.2;
+    color: var(--text);
+  }
+
+  .alfie-meta {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .status-pill {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .pill-historical {
+    background: color-mix(in srgb, #f59e0b 15%, var(--surface));
+    color: #f59e0b;
+    border: 1px solid color-mix(in srgb, #f59e0b 35%, transparent);
+  }
+
+  .pill-twentieth {
+    background: color-mix(in srgb, #38bdf8 15%, var(--surface));
+    color: #38bdf8;
+    border: 1px solid color-mix(in srgb, #38bdf8 35%, transparent);
+  }
+
+  .pill-modern {
+    background: color-mix(in srgb, #10b981 15%, var(--surface));
+    color: #10b981;
+    border: 1px solid color-mix(in srgb, #10b981 35%, transparent);
+  }
+
+  .alfie-role-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--surface-2);
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 1rem;
+    width: fit-content;
+  }
+
+  .role-icon {
+    color: var(--brand);
+    font-size: 0.85rem;
+  }
+
+  .alfie-summary {
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.55;
+    margin: 0 0 1.25rem;
+    flex: 1;
+  }
+
+  .fact-highlight {
+    background: color-mix(in srgb, var(--brand) 6%, var(--surface-2));
+    border-left: 3px solid var(--brand);
+    border-radius: 0 8px 8px 0;
+    padding: 0.85rem 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .fact-title {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--brand);
+    margin-bottom: 0.35rem;
+  }
+
+  .fact-body {
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .alfie-quote {
+    font-style: italic;
+    font-size: 0.88rem;
+    color: var(--muted);
+    border: none;
+    padding: 0;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* Dispatch Box */
+  .alfie-dispatch-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--brand) 12%, var(--surface)) 0%, var(--surface) 100%);
+    border: 1px solid color-mix(in srgb, var(--brand) 30%, var(--border));
+    padding: 2rem;
+    border-radius: 16px;
+  }
+
+  .dispatch-content {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    max-width: 36rem;
+  }
+
+  .dispatch-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .dispatch-content h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    margin: 0 0 0.25rem;
+  }
+
+  .dispatch-text {
+    font-size: 0.92rem;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .email-btn {
+    white-space: nowrap;
+    font-size: 0.95rem;
+    padding: 0.75rem 1.5rem;
+  }
+</style>
