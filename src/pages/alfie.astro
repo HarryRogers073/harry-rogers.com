@@ -4,136 +4,148 @@
  * File:         alfie.astro
  * Written by:   Harry Rogers
  * Date:         October 2026
- * Description:  Hidden easter-egg archive of historical & global Alfie O'Connors
+ * Description:  Hidden easter-egg archive celebrating Alfie O'Connor
+ *               (Paralegal at Moore Barlow LLP, Bristol Chemistry, Barton Peveril)
  * =============================================================================
  */
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+const LINKEDIN_URL = 'https://www.linkedin.com/in/alfieoconnor/';
+
 const alfieDossiers = [
+  {
+    id: 'netball-tactician',
+    name: 'Alfie "The Creative Pivot" O’Connor',
+    era: 'June 2026',
+    periodType: 'modern',
+    location: 'Moore Barlow LLP, Hampshire',
+    flag: '🏐',
+    title: 'Rathbones Tournament Netball Rulebook Reinterpreter',
+    summary: 'Representing Moore Barlow in the Rathbones Charity Tournament for Winchester Youth Counselling, Alfie unleashed a masterclass in dynamic spatial navigation. Umpires were reportedly seen frantically cross-referencing statutory instruments as Alfie pioneered bold, unprecedented interpretations of the non-stepping rule.',
+    funFact: 'Witnesses confirmed that while the weather was grim, Alfie’s passion was unyielding. Colleagues officially recorded his performance as "creative legal advocacy applied to a regulation size 5 netball".',
+    quote: 'The rules state one cannot run with the ball; they say nothing about the tectonic plates shifting beneath my trainers.',
+    badge: 'Tournament Lore',
+    link: LINKEDIN_URL
+  },
+  {
+    id: 'bristol-chemist',
+    name: 'Alfie "The Stoichiometric" O’Connor',
+    era: '2021 – 2024',
+    periodType: 'twentieth',
+    location: 'University of Bristol',
+    flag: '🧪',
+    title: 'BSc Chemistry (2:1 Hons) & Molecular Dispute Settler',
+    summary: 'Before taking the English legal sector by storm, Alfie mastered molecular thermodynamics and chemical synthesis at the University of Bristol. Rumour holds he could balance 12-variable redox equations in his head while nonchalantly brewing Earl Grey in a volumetric flask.',
+    funFact: 'His final-year research was so rigorously structured that three separate covalent bonds voluntarily settled out of court to avoid facing his NMR spectroscopy cross-examination.',
+    quote: 'Organic chemistry is essentially financial services litigation: complex bonds form, unexpected liabilities break, and entropy takes a commission.',
+    badge: 'Bristol Alumnus',
+    link: LINKEDIN_URL
+  },
+  {
+    id: 'barton-peveril-legend',
+    name: 'Alfred "A* A* A" O’Connor',
+    era: '2019 – 2021',
+    periodType: 'twentieth',
+    location: 'Barton Peveril Sixth Form College',
+    flag: '📚',
+    title: 'Further Maths & Chemical Prodigy (with Harry Rogers)',
+    summary: 'The legendary Barton Peveril era where Alfie and Harry Rogers first crossed academic paths. While Harry was programming microcontrollers and dreaming of FPGA logic, Alfie was casually dismantling A-Level Chemistry, Maths, and Further Maths with a clean sweep of A* A* A grades.',
+    funFact: 'Known across the Barton Peveril mathematics concourse for completing 3-hour hyperbolic calculus exams with 40 minutes remaining, using the spare time to draft preemptive legal waivers.',
+    quote: 'Further Maths is straightforward. The real challenge is finding a decent mechanical pencil in Eastleigh.',
+    badge: 'Barton Peveril Royalty',
+    link: LINKEDIN_URL
+  },
+  {
+    id: 'rabat-lab-intern',
+    name: 'Alfie "El Químico" O’Connor',
+    era: 'Summer 2023',
+    periodType: 'twentieth',
+    location: 'Rabat, Morocco',
+    flag: '🇲🇦',
+    title: 'Clinical Laboratory Intern & Multilingual Diplomat',
+    summary: 'Stationed at the Laboratoire d’analyses médicales mamounia in Rabat, Morocco. Alfie navigated clinical biochemistry analysis, high-speed centrifugation, and blood serum metrics while seamlessly deploying full professional Spanish and international charm.',
+    funFact: 'Local lab technicians noted that he could centrifuge blood samples and explain the nuances of Spanish contract law simultaneously without missing a pipetting rhythm.',
+    quote: 'La ciencia es universal, pero el café marroquí es absolutamente no negociable.',
+    badge: 'Clinical Overseas',
+    link: LINKEDIN_URL
+  },
+  {
+    id: 'financial-litigator',
+    name: 'Alfie "The Precedent" O’Connor',
+    era: '2026 – Present',
+    periodType: 'modern',
+    location: 'Moore Barlow LLP, Southampton',
+    flag: '⚖️',
+    title: 'Financial Services Litigation Paralegal & Clause Hunter',
+    summary: 'Embedded within the powerhouse Financial Services Litigation team at Moore Barlow LLP (Top 100 Law Firm, Chambers & Legal 500 recommended). Specialises in dissecting financial disputes, regulatory compliance, and uncovering statutory loopholes that have slumbered since the 19th century.',
+    funFact: 'Has never once lost an office debate regarding pre-action disclosure protocols or who is responsible for the Friday morning patisserie run.',
+    quote: 'A competent paralegal knows the precedent. A superior paralegal knows which bundle contains the smoking gun before the partner even asks.',
+    badge: 'Moore Barlow LLP',
+    link: LINKEDIN_URL
+  },
+  {
+    id: 'spanish-linguist',
+    name: 'Alfie "El Catedrático" O’Connor',
+    era: 'Evergreen',
+    periodType: 'modern',
+    location: 'Eastleigh & Valencia',
+    flag: '🇪🇸',
+    title: 'Master of Castilian & Endorsed by William Terry',
+    summary: 'Officially certified with full professional proficiency in Spanish and carrying the prestigious peer-endorsement of Hampshire icon William Terry. Whether negotiating tapas tariffs in Andalusia or translating civil law treatises, Alfie speaks with effortless Iberian cadence.',
+    funFact: 'Legend states he once negotiated a 35% discount on an authentic seafood paella simply by citing civil liability warranties in flawless subjunctive tense.',
+    quote: 'Si no está por escrito en la cláusula cuatro, querido amigo, jurídicamente no ha sucedido jamás.',
+    badge: 'William Terry Endorsed',
+    link: LINKEDIN_URL
+  },
+  {
+    id: 'gammon-piercy-origins',
+    name: 'Alfie "The Dispute Resolver" O’Connor',
+    era: 'September 2025',
+    periodType: 'twentieth',
+    location: 'Gammon Piercy & Gaiger LLP, Southampton',
+    flag: '🏛️',
+    title: 'Southampton Legal Trainee & Mediation Strategist',
+    summary: 'The formative legal crucible. Alfie honed his razor-sharp analytical acumen in Southampton, pioneering the "affable mediation method"—resolving contentious matters over tea before litigation costs could even be calculated.',
+    funFact: 'Drafted dispute summaries with such surgical lucidity that opposing counsel reportedly sent thank-you cards for saving them billable reading hours.',
+    quote: 'Settlement is always preferable to trial, particularly when lunch is booked for twelve-thirty.',
+    badge: 'Hampshire Legal History',
+    link: LINKEDIN_URL
+  },
   {
     id: 'sheep-choreographer',
     name: 'Alfie "The Iron Whistle" O’Connor',
-    era: '1888 – 1961',
+    era: '1888 – 1961 (Ancestral)',
     periodType: 'historical',
     location: 'Connemara, County Galway, Ireland',
-    flag: '🇮🇪',
-    title: 'Highland Sheep Choreographer & Tax Evasion Virtuoso',
-    summary: 'A celebrated Connemara shepherd who famously trained a flock of 400 Blackface Mountain sheep to graze in the exact geometric silhouette of the O’Connor family crest whenever government inspectors crested the Twelve Bens.',
-    funFact: 'Local parish archives record that he never owned a single border collie; he controlled sheep movements entirely through four distinct whistle frequencies and an intimidating tweed cap.',
-    quote: 'The sheep understand property law far better than the magistrate, and they eat less paperwork.',
-    badge: 'Historical Legend'
-  },
-  {
-    id: 'cape-horn-poet',
-    name: 'Alfonso "Alfie" O’Connor',
-    era: '1921 – 1998',
-    periodType: 'twentieth',
-    location: 'Valparaíso & Cape Horn, Chile',
-    flag: '🇨🇱',
-    title: 'The Poetic Maritime Telegraphist of the Southern Ocean',
-    summary: 'An Anglo-Chilean radio telegraphist stationed on remote lighthouse outposts across Tierra del Fuego. Known throughout maritime radio circles for sending the most unnecessarily dramatic Morse code transmissions in naval history.',
-    funFact: 'During a Force 10 squall in 1952, he transmitted a 14-line sonnet in flawless iambic pentameter just to request two extra tins of sweetened condensed milk from the mainland harbour master.',
-    quote: 'Punctuation preserves naval safety at sea; poetic adjectives keep the frost out of the bones.',
-    badge: 'Maritime Lore'
-  },
-  {
-    id: 'medieval-brewer',
-    name: 'Brother Alfie O’Connor',
-    era: '1342 – 1405',
-    periodType: 'historical',
-    location: 'Abbey of St. Gall & County Kerry',
     flag: '☘️',
-    title: 'Franciscan Friar & "Accidental Distiller"',
-    summary: 'A wandering Franciscan friar credited in local monastic oral histories with inventing "turbo-fermentation" after accidentally dropping wild honeycomb and bog myrtle into the monastery’s sacramental copper brew-kettle.',
-    funFact: 'The resulting winter tonic was so legendary that the visiting Archbishop reportedly remitted all diocesan tithes for fifteen years in exchange for six flagons per autumn.',
-    quote: 'A pious heart need not endure a timid draught in the depths of winter.',
-    badge: 'Monastic Archive'
+    title: 'Hillside Sheep Choreographer & Common Law Pioneer',
+    summary: 'Alfie’s illustrious 19th-century Irish ancestor. When Crown bailiffs arrived to seize farmland, Alfie deployed 400 mountain sheep to graze in the exact geometric arrangement of a High Court injunction across the Galway hills.',
+    funFact: 'The resident magistrate was forced to adjourn proceedings because the sheep refused to waive their collective right of pasture under common law precedent.',
+    quote: 'The flock has entered an appearance, your Honour. The court is obliged to hear their bleat.',
+    badge: 'Ancestral Myth',
+    link: LINKEDIN_URL
   },
   {
-    id: 'nullarbor-mechanic',
-    name: 'Alfie "Brakeless" O’Connor',
-    era: '1904 – 1979',
-    periodType: 'twentieth',
-    location: 'Nullarbor Plain, Western Australia',
-    flag: '🇦🇺',
-    title: 'Outback Bush Mechanic & Sand Dune Speedster',
-    summary: 'A legendary bush mechanic who successfully completed the grueling 1,200-mile Nullarbor desert crossing in a 1928 Ford Model A without functioning brakes, a radiator cap, or spare tyres.',
-    funFact: 'He cooled the engine block by running copper brewing coils directly into his billy tea kettle, and brought the vehicle to a halt using a weighted boat anchor fashioned from a shearing motor.',
-    quote: 'Brakes only breed hesitation in red dust. Keep her pointed east and keep the billy on.',
-    badge: 'Outback Pioneer'
-  },
-  {
-    id: 'victorian-botanist',
-    name: 'Sir Alfred "Alfie" O’Connor FRS',
-    era: '1845 – 1922',
-    periodType: 'historical',
-    location: 'Manchester & The Western Desert, Egypt',
-    flag: '🇬🇧',
-    title: 'Victorian Beetle Enthusiast & Accidental Cartographer',
-    summary: 'A Manchester industrialist turned desert naturalist who mapped four previously uncharted oasis routes in North Africa simply because he kept wandering off following a rare iridescent scarab beetle.',
-    funFact: 'Refused a royal knighthood investiture until Buckingham Palace agreed to permit his prized terrier "Barnaby" into the throne room wearing a bespoke velvet waistcoat.',
-    quote: 'The Empire runs on steam and tea; true discovery runs on stubborn curiosity and good boots.',
-    badge: 'Royal Society'
-  },
-  {
-    id: 'acoustic-oracle',
-    name: 'Alfie "Sonar" O’Connor',
-    era: '1968 – Present',
-    periodType: 'modern',
-    location: 'St. John’s, Newfoundland, Canada',
-    flag: '🇨🇦',
-    title: 'North Atlantic Acoustic Oracle & Cribbage Champion',
-    summary: 'A deep-sea trawler acoustic specialist who claims he can identify schools of Arctic cod solely by listening to the resonant pitch of his galley kettle vibrating against the ship’s iron hull.',
-    funFact: 'Holds the unofficial Grand Banks record for playing 72 consecutive games of cribbage during a Force 11 North Atlantic blizzard without spilling a single drop of dry stout.',
-    quote: 'The cod don’t answer radio hails, but they definitely know when water reaches a boil.',
-    badge: 'Maritime Specialist'
-  },
-  {
-    id: 'bell-tower-rebel',
-    name: 'Alfie O’Connor the Younger',
-    era: '1774 – 1839',
-    periodType: 'historical',
-    location: 'Covent Garden, London, England',
-    flag: '🇬🇧',
-    title: 'Horologist & Bell-Tower Renegade',
-    summary: 'A master clockmaker and apprentice bell-founder who was permanently barred from London parish belfries in 1812 after rewiring a cathedral clock escapement to strike a lively Irish slip-jig every Tuesday noon.',
-    funFact: 'When questioned by parish wardens, he argued that standard Gregorian chimes were "chronometrically depressing" and insisted that time was better served with a brisk tempo.',
-    quote: 'Time marches on regardless of our dignity; it may as well have a proper rhythm.',
-    badge: 'Clockwork Rebel'
-  },
-  {
-    id: 'space-cheddar',
-    name: 'Cosmonaut Candidate Alfie O’Connor',
-    era: '1974 (Folklore)',
-    periodType: 'twentieth',
-    location: 'Baikonur Cosmodrome / Shannon Airport',
-    flag: '🚀',
-    title: 'The Legendary Zero-G Cheese Smuggler',
-    summary: 'A folkloric figure among international aerospace telemetry crews who allegedly attempted to smuggle a 4kg wheel of mature Dubliner farmhouse cheddar into a Soyuz flight centrifuge test chamber.',
-    funFact: 'When caught by the mission director, he defended his actions by submitting an 18-page technical thesis claiming that vacuum exposure accelerates rind maturation by 400%.',
-    quote: 'Zero gravity is wasted on mankind if you cannot melt farmhouse cheese in orbit.',
-    badge: 'Cosmic Folklore'
-  },
-  {
-    id: 'sussex-legend',
-    name: 'Alfie O’Connor (The Modern Legend)',
+    id: 'the-living-legend',
+    name: 'Alfie O’Connor (The Living Legend)',
     era: 'Present Day',
     periodType: 'modern',
-    location: 'Sussex, United Kingdom',
+    location: 'Eastleigh / Sussex / Southampton',
     flag: '👑',
-    title: 'Connoisseur of Good Vibes & Domain Pioneer',
-    summary: 'The living namesake himself. Internationally verified to elevate average room happiness by 42.7% upon entry, master of effortless style, and official owner of a bespoke @harry-rogers.com email identity.',
-    funFact: 'Holds the 2026 distinction for inspiring this entire classified repository simply by requesting a world-class custom email address with unmatched swagger.',
-    quote: 'Email requested. History documented. The legend continues.',
-    badge: 'The Living Legend'
+    title: 'Chambers-Tier Operator & Domain Royalty',
+    summary: 'The true namesake. Renowned across Hampshire for walking into any establishment and immediately elevating room morale by a verified 42.7%. Chemist, financial litigator, netball rulebook innovator, and official possessor of the prestigious Alfie@harry-rogers.com email handle.',
+    funFact: 'Consistently ranked #1 in the unofficial Chambers & Partners Guide to Immaculate Vibes, Unmatched Work Ethic, and Top-Tier Banter.',
+    quote: 'Precedent cited. Netball contested. Case won. Connect with me on LinkedIn.',
+    badge: 'The Official Alfie',
+    link: LINKEDIN_URL
   }
 ];
 ---
 
 <BaseLayout 
   title="The Global Annals of Alfie O'Connor" 
-  description="A classified compendium of notable, eccentric, and legendary figures named Alfie O'Connor across world history."
+  description="The classified compendium of Alfie O'Connor: Paralegal at Moore Barlow LLP, Bristol Chemist, Barton Peveril Alumnus, and Netball Legend."
   noindex={true}
 >
   <div class="alfie-page">
@@ -141,39 +153,72 @@ const alfieDossiers = [
     <!-- Top Classified Banner -->
     <header class="alfie-hero">
       <div class="container">
-        <div class="classified-pill">
-          <span class="lock-icon">🔒</span>
-          <span>RESTRICTED ARCHIVE // DOSSIER #0803 // CLASSIFIED EYES ONLY</span>
+        
+        <div class="hero-top-badges">
+          <div class="classified-pill">
+            <span class="lock-icon">🔒</span>
+            <span>RESTRICTED ARCHIVE // DOSSIER #0803 // MOORE BARLOW SPECIAL EDITION</span>
+          </div>
+
+          <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" class="linkedin-pill">
+            <svg class="linkedin-svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            <span>Verified 1st Connection: Alfie O'Connor ↗</span>
+          </a>
         </div>
 
         <h1 class="hero-title">
           The Chronicles of <br />
-          <span class="gradient-name">Alfie O’Connor</span>
+          <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" class="gradient-name-link" title="Open Alfie's LinkedIn Profile">
+            Alfie O’Connor
+          </a>
         </h1>
 
-        <p class="hero-sub">
-          An entirely exhaustive, peer-unreviewed compendium of remarkable navigators, hillside choreographers, 
-          clockwork rebels, and modern legends who have carried the venerable name of <strong>Alfie O’Connor</strong> 
-          across global history.
-        </p>
+        <!-- Executive Profile Teaser Box -->
+        <div class="profile-highlight-box card">
+          <div class="profile-header-split">
+            <div class="profile-text-side">
+              <div class="role-location-line">
+                <span class="firm-tag">⚖️ Moore Barlow LLP</span>
+                <span class="firm-tag ranking">Top 100 Law Firm • Chambers Ranked</span>
+                <span class="loc-text">📍 Eastleigh & Southampton, UK</span>
+              </div>
+              <p class="profile-summary-text">
+                Paralegal in <strong>Financial Services Litigation</strong>, 
+                <strong>BSc Chemistry (2:1 Hons)</strong> graduate from the <strong>University of Bristol</strong>, 
+                and proud <strong>Barton Peveril Sixth Form College</strong> alumnus (A* A* A with Harry Rogers, 2019–2021). 
+                Celebrated for sharp analytical precision, bilingual Spanish flair, and unprecedented netball footwork.
+              </p>
+            </div>
+            <div class="profile-action-side">
+              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" class="btn linkedin-cta-btn">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+                <span>View Official LinkedIn ↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
 
         <!-- Stats Counter -->
         <div class="alfie-stats">
           <div class="stat-box">
-            <span class="stat-num">9</span>
-            <span class="stat-label">Alfies Catalogued</span>
+            <span class="stat-num">A* A* A</span>
+            <span class="stat-label">Barton Peveril Legend</span>
           </div>
           <div class="stat-box">
-            <span class="stat-num">6</span>
-            <span class="stat-label">Continents Traversed</span>
+            <span class="stat-num">Top 100</span>
+            <span class="stat-label">Moore Barlow Law Firm</span>
           </div>
           <div class="stat-box">
-            <span class="stat-num">684</span>
-            <span class="stat-label">Years of Recorded Lore</span>
+            <span class="stat-num">BSc 2:1</span>
+            <span class="stat-label">Bristol Chemistry</span>
           </div>
           <div class="stat-box highlight">
             <span class="stat-num">1</span>
-            <span class="stat-label">Custom Domain Email</span>
+            <span class="stat-label">Alfie@harry-rogers.com</span>
           </div>
         </div>
 
@@ -185,12 +230,12 @@ const alfieDossiers = [
               <h3 class="generator-title">Random Alfie Fact Generator</h3>
             </div>
             <button id="roll-fact-btn" class="btn roll-btn" type="button">
-              <span>🎲 Roll for Random Alfie</span>
+              <span>🎲 Roll for Random Alfie Fact</span>
             </button>
           </div>
           
           <div id="random-fact-display" class="random-fact-box">
-            <p class="fact-quote" id="fact-quote">"Press the button above to summon a peer-reviewed snippet of Alfie O’Connor lore from the global registry."</p>
+            <p class="fact-quote" id="fact-quote">"Press the button above to summon peer-reviewed lore regarding Moore Barlow litigation, Bristol chemistry, or creative netball footwork."</p>
             <p class="fact-attribution" id="fact-attribution">— The Archivist</p>
           </div>
         </div>
@@ -205,15 +250,15 @@ const alfieDossiers = [
         <div class="section-top">
           <div>
             <p class="eyebrow">Classified Registry</p>
-            <h2>The Global Matrix</h2>
+            <h2>The Complete Alfie Dossiers</h2>
           </div>
 
           <!-- Era Filter Tabs -->
           <div class="filter-group" role="tablist" aria-label="Filter Alfies by era">
-            <button class="filter-btn active" data-filter="all">All Eras (9)</button>
-            <button class="filter-btn" data-filter="historical">Pre-1900</button>
-            <button class="filter-btn" data-filter="twentieth">20th Century</button>
-            <button class="filter-btn" data-filter="modern">Modern Day</button>
+            <button class="filter-btn active" data-filter="all">All Dossiers (9)</button>
+            <button class="filter-btn" data-filter="modern">Moore Barlow & Modern (4)</button>
+            <button class="filter-btn" data-filter="twentieth">Academic & Overseas (4)</button>
+            <button class="filter-btn" data-filter="historical">Ancestral Lore (1)</button>
           </div>
         </div>
 
@@ -226,7 +271,11 @@ const alfieDossiers = [
                 <div class="header-left">
                   <span class="country-flag">{alfie.flag}</span>
                   <div>
-                    <h3 class="alfie-name">{alfie.name}</h3>
+                    <h3 class="alfie-name">
+                      <a href={alfie.link} target="_blank" rel="noopener noreferrer" class="alfie-name-link" title="Open LinkedIn Profile">
+                        {alfie.name} ↗
+                      </a>
+                    </h3>
                     <p class="alfie-meta">
                       <span>{alfie.era}</span> • <span>{alfie.location}</span>
                     </p>
@@ -254,6 +303,15 @@ const alfieDossiers = [
                 “{alfie.quote}”
               </blockquote>
 
+              <div class="card-footer-action">
+                <a href={alfie.link} target="_blank" rel="noopener noreferrer" class="card-linkedin-link">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  </svg>
+                  <span>Verify on LinkedIn (Alfie O'Connor) →</span>
+                </a>
+              </div>
+
             </article>
           ))}
         </div>
@@ -265,13 +323,16 @@ const alfieDossiers = [
             <div>
               <h3>Official Dispatch Channel</h3>
               <p class="dispatch-text">
-                Need to transmit priority missives, verify genealogical records, or send high-calibre banter to the reigning Alfie of Sussex?
+                Need to transmit priority litigation bundles, review stoichiometric ratios, or send high-calibre banter to the reigning Alfie of Moore Barlow?
               </p>
             </div>
           </div>
-          <div class="dispatch-action">
+          <div class="dispatch-action-group">
             <a href="mailto:alfie@harry-rogers.com" class="btn email-btn">
-              <span>Send Message to Alfie@harry-rogers.com →</span>
+              <span>Email Alfie@harry-rogers.com →</span>
+            </a>
+            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" class="btn ghost linkedin-ghost-btn">
+              <span>LinkedIn Profile ↗</span>
             </a>
           </div>
         </div>
@@ -282,7 +343,7 @@ const alfieDossiers = [
   </div>
 
   <!-- Interactive Script for Filtering and Fact Generator -->
-  <script is:inline define:vars={{ dossiersJson: JSON.stringify(alfieDossiers) }}>
+  <script is:inline define:vars={{ dossiersJson: JSON.stringify(alfieDossiers), LINKEDIN_URL }}>
     const dossiers = JSON.parse(dossiersJson);
 
     // 1. Fact Generator Logic
@@ -309,7 +370,7 @@ const alfieDossiers = [
 
         setTimeout(() => {
           quoteEl.innerHTML = `“${picked.funFact}”`;
-          attrEl.innerHTML = `— <strong>${picked.name}</strong> (${picked.location}, ${picked.era})`;
+          attrEl.innerHTML = `— <a href="${LINKEDIN_URL}" target="_blank" rel="noopener" style="color:var(--brand); text-decoration:underline;"><strong>${picked.name}</strong></a> (${picked.location}, ${picked.era})`;
           factBox.style.opacity = '1';
           factBox.style.transform = 'translateY(0)';
         }, 150);
@@ -346,10 +407,18 @@ const alfieDossiers = [
   }
 
   .alfie-hero {
-    padding: 3.5rem 0 2rem;
+    padding: 3rem 0 2rem;
     position: relative;
     border-bottom: 1px solid var(--border);
     background: radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--brand) 12%, transparent) 0%, transparent 70%);
+  }
+
+  .hero-top-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
   }
 
   .classified-pill {
@@ -359,13 +428,33 @@ const alfieDossiers = [
     font-family: var(--font-mono);
     font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     padding: 0.35rem 0.85rem;
     border-radius: 999px;
     background: color-mix(in srgb, #ef4444 14%, var(--surface));
     color: #ef4444;
     border: 1px solid color-mix(in srgb, #ef4444 30%, transparent);
-    margin-bottom: 1.25rem;
+  }
+
+  .linkedin-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, #0077b5 15%, var(--surface));
+    color: #0077b5;
+    border: 1px solid color-mix(in srgb, #0077b5 35%, transparent);
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+  .linkedin-pill:hover {
+    background: #0077b5;
+    color: #fff;
+    transform: translateY(-1px);
   }
 
   .hero-title {
@@ -373,22 +462,87 @@ const alfieDossiers = [
     font-size: clamp(2.2rem, 5vw, 3.8rem);
     line-height: 1.1;
     font-weight: 800;
-    margin: 0 0 1rem;
+    margin: 0 0 1.25rem;
     letter-spacing: -0.02em;
   }
 
-  .gradient-name {
+  .gradient-name-link {
     background: linear-gradient(135deg, var(--brand) 0%, #a855f7 50%, #ec4899 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity 0.15s ease;
+  }
+  .gradient-name-link:hover {
+    opacity: 0.9;
   }
 
-  .hero-sub {
-    font-size: 1.15rem;
-    color: var(--muted);
+  /* Profile Highlight Card */
+  .profile-highlight-box {
+    background: var(--surface);
+    border: 1px solid color-mix(in srgb, var(--brand) 30%, var(--border));
+    border-radius: 16px;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+  }
+
+  .profile-header-split {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .profile-text-side {
     max-width: 48rem;
-    line-height: 1.6;
-    margin: 0 0 2rem;
+  }
+
+  .role-location-line {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+  }
+
+  .firm-tag {
+    background: color-mix(in srgb, var(--brand) 12%, var(--surface-2));
+    color: var(--brand);
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    font-weight: 700;
+  }
+  .firm-tag.ranking {
+    background: color-mix(in srgb, #f59e0b 14%, var(--surface-2));
+    color: #d97706;
+  }
+
+  .loc-text {
+    color: var(--muted);
+  }
+
+  .profile-summary-text {
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .linkedin-cta-btn {
+    background: #0077b5;
+    border-color: #0077b5;
+    color: #fff;
+    white-space: nowrap;
+    padding: 0.65rem 1.25rem;
+  }
+  .linkedin-cta-btn:hover {
+    background: #005582;
+    border-color: #005582;
   }
 
   /* Stats Counter */
@@ -416,15 +570,17 @@ const alfieDossiers = [
 
   .stat-num {
     font-family: var(--font-display);
-    font-size: 2rem;
+    font-size: 1.7rem;
     font-weight: 800;
-    line-height: 1;
+    line-height: 1.1;
     color: var(--text);
     margin-bottom: 0.35rem;
   }
 
   .stat-box.highlight .stat-num {
     color: var(--brand);
+    font-size: 1.25rem;
+    word-break: break-all;
   }
 
   .stat-label {
@@ -498,7 +654,7 @@ const alfieDossiers = [
 
   .fact-attribution {
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     color: var(--muted);
     margin: 0;
     text-align: right;
@@ -601,7 +757,15 @@ const alfieDossiers = [
     font-weight: 700;
     margin: 0 0 0.2rem;
     line-height: 1.2;
+  }
+
+  .alfie-name-link {
     color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .alfie-name-link:hover {
+    color: var(--brand);
   }
 
   .alfie-meta {
@@ -700,8 +864,30 @@ const alfieDossiers = [
     color: var(--muted);
     border: none;
     padding: 0;
-    margin: 0;
+    margin: 0 0 1.25rem;
     line-height: 1.4;
+  }
+
+  .card-footer-action {
+    border-top: 1px solid var(--border);
+    padding-top: 0.85rem;
+    margin-top: auto;
+  }
+
+  .card-linkedin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--brand);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .card-linkedin-link:hover {
+    color: var(--brand-strong);
+    text-decoration: underline;
   }
 
   /* Dispatch Box */
@@ -741,9 +927,29 @@ const alfieDossiers = [
     margin: 0;
   }
 
+  .dispatch-action-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
   .email-btn {
     white-space: nowrap;
-    font-size: 0.95rem;
-    padding: 0.75rem 1.5rem;
+    font-size: 0.92rem;
+    padding: 0.7rem 1.3rem;
+  }
+
+  .linkedin-ghost-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 0.92rem;
+    padding: 0.7rem 1.3rem;
+  }
+  .linkedin-ghost-btn:hover {
+    background: var(--surface-2);
+    border-color: var(--brand);
+    color: var(--brand);
   }
 </style>
