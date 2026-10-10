@@ -219,7 +219,7 @@
             banner: "Print retro header ASCII banner",
             clear: "Clear output buffer",
             history: "View command input history log",
-            theme: "Switch theme scheme (default, matrix, cyberpunk, amber, dracula)",
+            theme: "Switch theme scheme (default, matrix, cyberpunk, amber, dracula, zombie)",
             echo: "Print custom text string to terminal output"
         }
     };

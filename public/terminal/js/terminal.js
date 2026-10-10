@@ -89,7 +89,7 @@
             exec: handleHistory
         },
         theme: {
-            desc: 'Switch theme scheme (default, matrix, cyberpunk, amber, dracula)',
+            desc: 'Switch theme scheme (default, matrix, cyberpunk, amber, dracula, zombie)',
             usage: 'theme [theme_name]',
             exec: handleTheme
         },
@@ -130,6 +130,18 @@
             inputEl.addEventListener('keydown', handleKeyDown);
             inputEl.focus();
         }
+
+        // Restore saved theme if available
+        try {
+            const savedTheme = localStorage.getItem('term_theme');
+            const availableThemes = ['default', 'matrix', 'cyberpunk', 'amber', 'dracula', 'zombie'];
+            if (savedTheme && availableThemes.includes(savedTheme)) {
+                state.currentTheme = savedTheme;
+                document.body.setAttribute('data-theme', savedTheme);
+                const indicator = document.getElementById('theme-indicator');
+                if (indicator) indicator.innerText = `🎨 Theme: ${savedTheme.charAt(0).toUpperCase() + savedTheme.slice(1)}`;
+            }
+        } catch (e) {}
 
         // Display initial banner
         handleBanner();
@@ -603,7 +615,7 @@
     }
 
     function handleTheme(args) {
-        const available = ['default', 'matrix', 'cyberpunk', 'amber', 'dracula'];
+        const available = ['default', 'matrix', 'cyberpunk', 'amber', 'dracula', 'zombie'];
         if (args.length === 0) {
             const chips = available.map(t => `<span class="cmd-chip" onclick="executeCommand('theme ${t}')">${t}</span>`).join(' ');
             return `<div class="cmd-result">Active theme: <strong style="color: var(--accent-emerald);">${state.currentTheme}</strong>.<br/>Available themes: ${chips}</div>`;
@@ -612,8 +624,9 @@
         if (available.includes(target)) {
             state.currentTheme = target;
             document.body.setAttribute('data-theme', target);
+            try { localStorage.setItem('term_theme', target); } catch (e) {}
             const indicator = document.getElementById('theme-indicator');
-            if (indicator) indicator.innerText = `Theme: ${target.charAt(0).toUpperCase() + target.slice(1)}`;
+            if (indicator) indicator.innerText = `🎨 Theme: ${target.charAt(0).toUpperCase() + target.slice(1)}`;
             return `<div class="cmd-result" style="color: var(--accent-emerald);">Theme switched to <strong>${target}</strong>.</div>`;
         }
         return `<div class="cmd-result" style="color: var(--accent-rose);">Invalid theme '${escapeHtml(target)}'. Choose from: ${available.join(', ')}</div>`;
