@@ -10,7 +10,7 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      filter: (page) => !page.includes('/alfie'),
+      filter: (page) => !page.includes('/alfie') && !page.includes('/james'),
     }),
   ],
   markdown: {

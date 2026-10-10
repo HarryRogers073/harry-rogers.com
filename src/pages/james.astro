@@ -1,0 +1,948 @@
+---
+/**
+ * =============================================================================
+ * File:         james.astro
+ * Written by:   Harry Rogers
+ * Date:         October 2026
+ * Description:  Hidden easter-egg archive celebrating James Barkes
+ *               (Exeter Maths & Computer Science, Timepiece, McDonald's Veteran)
+ * =============================================================================
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const LINKEDIN_URL = 'https://www.linkedin.com/in/james-barkes-51a447238/';
+
+const jamesDossiers = [
+  {
+    id: 'mcdonalds-veteran',
+    name: 'James "The Drive-Thru Maestro" Barkes',
+    era: 'Oct 2019 – Sep 2023 (4 Years!)',
+    periodType: 'modern',
+    location: 'McDonald’s (with Harry Rogers)',
+    flag: '🍟',
+    title: '4-Year Fast Food Veteran & Peak-Hour Queue Strategist',
+    summary: 'Alongside fellow crew member and shift manager Harry Rogers, James served an illustrious 4-year tour of duty through peak Friday-night drive-thru warfare. Famously applied Exeter algorithmic queueing theory to the fry hopper, increasing golden-fry throughput by 34% during football match-day rushes.',
+    funFact: 'Rumour has it he is one of only two mortals alive who knows the secret technical incantation required to keep the soft-serve ice cream machine running during a British heatwave.',
+    quote: 'A double cheeseburger is fundamentally an NP-hard packing problem solved in ninety seconds flat.',
+    badge: '4-Year McDonald’s Legend',
+    link: LINKEDIN_URL
+  },
+  {
+    id: 'timepiece-alchemist',
+    name: 'James "The TP Alchemist" Barkes',
+    era: 'Mar 2023 – Jul 2024',
+    periodType: 'modern',
+    location: 'Timepiece Nightclub ("TP"), Exeter',
+    flag: '🍸',
+    title: 'Exeter Nightlife Mixologist & Crowd Dynamics Specialist',
+    summary: 'Stationed on the front lines of Exeter’s most legendary nightlife cathedral: Timepiece. Successfully poured 400 VKs, three tequilas, and solved a quadratic equation simultaneously during Wednesday sports socials while deftly dodging flying glitter and inflatables.',
+    funFact: 'Holds the unofficial Timepiece bar record for dispensing double vodkas with sub-millisecond latency while maintaining an unshakeable, zen-like customer service smile.',
+    quote: 'Nightclub bartending is 10% mixology and 90% applied fluid dynamics under heavy subwoofer bass frequencies.',
+    badge: 'Timepiece Exeter Veteran',
+    link: LINKEDIN_URL
+  },
+  {
+    id: 'exeter-mathematician',
+    name: 'James "The Discrete Logic" Barkes',
+    era: '2021 – 2024',
+    periodType: 'modern',
+    location: 'University of Exeter',
+    flag: '📐',
+    title: 'BASc Mathematics & Computer Science Pioneer',
+    summary: 'Mastered the sacred intersection of pure mathematics and computational algorithms at Exeter. Proved mathematically that the shortest distance between Exeter St David’s station and the Forum hill is an asymptotic illusion specifically designed by architects to build calf muscles.',
+    funFact: 'Could trace binary search trees and write recursive algorithms by hand in Python faster than the university lecture Wi-Fi could connect.',
+    quote: 'If your code compiles on the first attempt, you’ve either achieved mathematical perfection or forgotten a closing brace.',
+    badge: 'Exeter BASc Alumnus',
+    link: LINKEDIN_URL
+  },
+  {
+    id: 'barton-peveril-brotherhood',
+    name: 'James "The Double Maths" Barkes',
+    era: 'Sep 2019 – Jun 2021',
+    periodType: 'twentieth',
+    location: 'Barton Peveril Sixth Form College',
+    flag: '📚',
+    title: 'Barton Peveril Computing & Maths Alumnus (with Harry Rogers)',
+    summary: 'The original Hampshire crucible where James and Harry Rogers first bonded over maths, computing, and college canteen banter before taking over the local McDonald’s. Documented in Eastleigh folklore for solving calculus integration problems on paper napkins while waiting for the college bus.',
+    funFact: 'Survived two full years of intense Hampshire sixth-form maths exams fueled almost exclusively by meal deals and sheer computational willpower.',
+    quote: 'Calculus never lies. The Southampton bus timetable, however, is purely theoretical fiction.',
+    badge: 'Barton Peveril Royalty',
+    link: LINKEDIN_URL
+  },
+  {
+    id: 'arctic-navigator',
+    name: 'Captain James "Barkentine" Barkes',
+    era: '1852 – 1914 (Ancestral)',
+    periodType: 'historical',
+    location: 'The Northwest Passage & North Sea',
+    flag: '⚓',
+    title: 'Arctic Clipper Navigator & Celestial Mathematician',
+    summary: 'James’s daring 19th-century maritime ancestor. Navigated three-masted wooden barques through treacherous ice floes using only a pocket sextant, a compass made from a magnetised sewing needle, and lunar orbital calculations sketched onto an empty biscuit tin.',
+    funFact: 'Once navigated an entire 600-mile stretch of the Norwegian Sea blindfolded during a blizzard just to win a ten-shilling bet with the ship’s first mate.',
+    quote: 'Keep her nose into the swell, lads, and never trust an iceberg with a gentle slope.',
+    badge: 'Maritime Ancestry',
+    link: LINKEDIN_URL
+  },
+  {
+    id: 'monastic-accountant',
+    name: 'Brother James "The Abacus" Barkes',
+    era: '1388 – 1441 (Medieval)',
+    periodType: 'historical',
+    location: 'Buckfast Abbey & Exeter Cathedral',
+    flag: '📜',
+    title: 'Devonshire Cider Cellarer & Medieval Ledger Master',
+    summary: 'A Benedictine monk and mathematician credited in medieval Devonshire folklore with inventing "cider margin optimisation". By calculating fermentation yields with early Arabic numerals, he ensured the abbey always had an extra cask of scrumpy set aside for the cellarers’ feast.',
+    funFact: 'The Bishop of Exeter once inspected his books and noted: "Brother James’s arithmetic is either divinely inspired or delightfully suspect, but his cider is beyond dispute."',
+    quote: 'Heaven rejoices in an honest ledger, but permits a generous top-up for the man who counts the barrels.',
+    badge: 'Monastic Archive',
+    link: LINKEDIN_URL
+  },
+  {
+    id: 'big-o-optimizer',
+    name: 'James "O(1) Constant Time" Barkes',
+    era: 'Evergreen',
+    periodType: 'modern',
+    location: 'Greater London & The Cloud',
+    flag: '💻',
+    title: 'Algorithmic Complexity Crusader & Code Refactorer',
+    summary: 'Can look at an inefficient O(n²) nested loop and reduce it to O(log n) through sheer force of intellect and a flat white coffee. Legend says he once refused to order at a sandwich deli until the clerk explained their bread-selection sorting algorithm.',
+    funFact: 'Has never experienced a merge conflict he couldn’t resolve in three minutes with a witty terminal commit message.',
+    quote: 'Premature optimisation is the root of all evil; running slow code at 2 AM is the root of genuine despair.',
+    badge: 'Algorithm Master',
+    link: LINKEDIN_URL
+  },
+  {
+    id: 'olympic-crew',
+    name: 'James "Headset Hero" Barkes',
+    era: '2020 – 2023 Rushes',
+    periodType: 'twentieth',
+    location: 'Eastleigh Drive-Thru',
+    flag: '🍔',
+    title: 'The Undisputed Drive-Thru Headset Olympic Champion',
+    summary: 'Holds the unrecorded Southern Hampshire record for taking three complex drive-thru orders simultaneously through the headset while bagging hash browns and explaining quadratic graphs to the kitchen team.',
+    funFact: 'Could tell whether a customer wanted extra sweet curry sauce or barbecue dip before their car had even triggered the ground sensor at speaker box one.',
+    quote: 'Order ready on window two. Extra napkins, zero pickles, perfect thermodynamic temperature.',
+    badge: 'Drive-Thru Veteran',
+    link: LINKEDIN_URL
+  },
+  {
+    id: 'the-living-legend-james',
+    name: 'James Barkes (The Living Legend)',
+    era: 'Present Day',
+    periodType: 'modern',
+    location: 'Greater London / Exeter / Hampshire',
+    flag: '👑',
+    title: 'Exeter Math & CS Powerhouse • McDonald’s Brother-in-Arms',
+    summary: 'The living legend. Exeter mathematician and computer scientist, Timepiece nightlife veteran, 4-year McDonald’s warrior alongside Harry Rogers, Barton Peveril alumnus, and verified 1st connection. Globally celebrated for razor-sharp logic, effortless charm, and legendary stamina.',
+    funFact: 'Unanimously voted #1 in the unofficial Guide to Immaculate Mathematical Intuition, Flawless Pint Pours, and Top-Tier Banter.',
+    quote: 'Maths solved. Shift completed. Drinks poured. Connect with me on LinkedIn.',
+    badge: 'The Official James',
+    link: LINKEDIN_URL
+  }
+];
+---
+
+<BaseLayout 
+  title="The Global Annals of James Barkes" 
+  description="The classified compendium of James Barkes: University of Exeter Maths & Computer Science, Timepiece Bartender, McDonald's 4-Year Veteran, and Barton Peveril Alumnus."
+  noindex={true}
+>
+  <div class="james-page">
+    
+    <!-- Top Classified Banner -->
+    <header class="james-hero">
+      <div class="container">
+        
+        <div class="hero-top-badges">
+          <div class="classified-pill">
+            <span class="lock-icon">🔒</span>
+            <span>RESTRICTED ARCHIVE // DOSSIER #0914 // EXETER & TIMEPIECE SPECIAL EDITION</span>
+          </div>
+
+          <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" class="linkedin-pill">
+            <svg class="linkedin-svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            <span>Verified 1st Connection: James Barkes ↗</span>
+          </a>
+        </div>
+
+        <h1 class="hero-title">
+          The Chronicles of <br />
+          <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" class="gradient-name-link" title="Open James's LinkedIn Profile">
+            James Barkes
+          </a>
+        </h1>
+
+        <!-- Executive Profile Teaser Box -->
+        <div class="profile-highlight-box card">
+          <div class="profile-header-split">
+            <div class="profile-text-side">
+              <div class="role-location-line">
+                <span class="firm-tag">🎓 University of Exeter</span>
+                <span class="firm-tag ranking">BASc Mathematics &amp; Computer Science</span>
+                <span class="loc-text">📍 Greater London &amp; Exeter, UK</span>
+              </div>
+              <p class="profile-summary-text">
+                Graduate in <strong>Mathematics and Computer Science</strong> from the <strong>University of Exeter</strong> (2021–2024), 
+                veteran of the legendary <strong>Timepiece Nightclub ("TP")</strong> bar in Exeter, and proud 
+                <strong>Barton Peveril Sixth Form College</strong> alumnus. Served an epic 
+                <strong>4-year tour of duty at McDonald's</strong> (2019–2023) alongside fellow crew member &amp; shift manager <strong>Harry Rogers</strong>.
+              </p>
+            </div>
+            <div class="profile-action-side">
+              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" class="btn linkedin-cta-btn">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+                <span>View Official LinkedIn ↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats Counter -->
+        <div class="james-stats">
+          <div class="stat-box">
+            <span class="stat-num">4 Years</span>
+            <span class="stat-label">McDonald's Tour of Duty</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">Maths + CS</span>
+            <span class="stat-label">Exeter BASc Degree</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">Timepiece</span>
+            <span class="stat-label">Legendary Exeter Bar</span>
+          </div>
+          <div class="stat-box highlight">
+            <span class="stat-num">Barton Peveril</span>
+            <span class="stat-label">Harry Rogers Brotherhood</span>
+          </div>
+        </div>
+
+        <!-- Random Fact Generator CTA -->
+        <div class="generator-card">
+          <div class="generator-header">
+            <div>
+              <span class="generator-badge">✨ INTERACTIVE ORACLE</span>
+              <h3 class="generator-title">Random James Barkes Fact Generator</h3>
+            </div>
+            <button id="roll-fact-btn" class="btn roll-btn" type="button">
+              <span>🎲 Roll for Random James Fact</span>
+            </button>
+          </div>
+          
+          <div id="random-fact-display" class="random-fact-box">
+            <p class="fact-quote" id="fact-quote">"Press the button above to summon peer-reviewed lore regarding Exeter algorithms, Timepiece nightclub heroics, or McDonald's drive-thru mastery."</p>
+            <p class="fact-attribution" id="fact-attribution">— The Archivist</p>
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Filter Bar & Dossier Grid -->
+    <section class="dossiers-section">
+      <div class="container">
+
+        <div class="section-top">
+          <div>
+            <p class="eyebrow">Classified Registry</p>
+            <h2>The Complete James Barkes Dossiers</h2>
+          </div>
+
+          <!-- Era Filter Tabs -->
+          <div class="filter-group" role="tablist" aria-label="Filter James dossiers by era">
+            <button class="filter-btn active" data-filter="all">All Dossiers (9)</button>
+            <button class="filter-btn" data-filter="modern">Exeter &amp; TP Era (5)</button>
+            <button class="filter-btn" data-filter="twentieth">McDonald's &amp; Barton (2)</button>
+            <button class="filter-btn" data-filter="historical">Ancestral Lore (2)</button>
+          </div>
+        </div>
+
+        <!-- Grid of Dossiers -->
+        <div class="grid grid-2 james-grid">
+          {jamesDossiers.map((james) => (
+            <article class="james-card card" data-period={james.periodType} id={james.id}>
+              
+              <div class="card-header">
+                <div class="header-left">
+                  <span class="country-flag">{james.flag}</span>
+                  <div>
+                    <h3 class="james-name">
+                      <a href={james.link} target="_blank" rel="noopener noreferrer" class="james-name-link" title="Open LinkedIn Profile">
+                        {james.name} ↗
+                      </a>
+                    </h3>
+                    <p class="james-meta">
+                      <span>{james.era}</span> • <span>{james.location}</span>
+                    </p>
+                  </div>
+                </div>
+                <span class={`status-pill pill-${james.periodType}`}>{james.badge}</span>
+              </div>
+
+              <div class="james-role-badge">
+                <span class="role-icon">⚡</span>
+                <span class="role-text">{james.title}</span>
+              </div>
+
+              <p class="james-summary">{james.summary}</p>
+
+              <div class="fact-highlight">
+                <div class="fact-title">
+                  <span class="lightbulb">💡</span>
+                  <strong>Verified Fun Fact</strong>
+                </div>
+                <p class="fact-body">{james.funFact}</p>
+              </div>
+
+              <blockquote class="james-quote">
+                “{james.quote}”
+              </blockquote>
+
+              <div class="card-footer-action">
+                <a href={james.link} target="_blank" rel="noopener noreferrer" class="card-linkedin-link">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  </svg>
+                  <span>Verify on LinkedIn (James Barkes) →</span>
+                </a>
+              </div>
+
+            </article>
+          ))}
+        </div>
+
+        <!-- Secret Inbound Dispatch -->
+        <div class="james-dispatch-box card">
+          <div class="dispatch-content">
+            <span class="dispatch-icon">📬</span>
+            <div>
+              <h3>Official Dispatch Channel</h3>
+              <p class="dispatch-text">
+                Need to discuss computational asymptotic complexity, verify peak drive-thru records, or connect with the Exeter math and Timepiece veteran himself?
+              </p>
+            </div>
+          </div>
+          <div class="dispatch-action-group">
+            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" class="btn linkedin-cta-btn">
+              <span>Connect on LinkedIn (James Barkes) ↗</span>
+            </a>
+            <a href="mailto:harry@harry-rogers.com" class="btn ghost contact-ghost-btn">
+              <span>Inquire via Harry Rogers →</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Interactive Script for Filtering and Fact Generator -->
+  <script is:inline define:vars={{ dossiersJson: JSON.stringify(jamesDossiers), LINKEDIN_URL }}>
+    const dossiers = JSON.parse(dossiersJson);
+
+    // 1. Fact Generator Logic
+    const rollBtn = document.getElementById('roll-fact-btn');
+    const quoteEl = document.getElementById('fact-quote');
+    const attrEl = document.getElementById('fact-attribution');
+    const factBox = document.getElementById('random-fact-display');
+
+    if (rollBtn && quoteEl && attrEl && factBox) {
+      let lastIndex = -1;
+
+      rollBtn.addEventListener('click', () => {
+        let nextIndex;
+        do {
+          nextIndex = Math.floor(Math.random() * dossiers.length);
+        } while (nextIndex === lastIndex && dossiers.length > 1);
+        lastIndex = nextIndex;
+
+        const picked = dossiers[nextIndex];
+        
+        // Gentle pulse animation
+        factBox.style.opacity = '0.3';
+        factBox.style.transform = 'translateY(4px)';
+
+        setTimeout(() => {
+          quoteEl.innerHTML = `“${picked.funFact}”`;
+          attrEl.innerHTML = `— <a href="${LINKEDIN_URL}" target="_blank" rel="noopener" style="color:var(--brand); text-decoration:underline;"><strong>${picked.name}</strong></a> (${picked.location}, ${picked.era})`;
+          factBox.style.opacity = '1';
+          factBox.style.transform = 'translateY(0)';
+        }, 150);
+      });
+    }
+
+    // 2. Era Filtering Logic
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.james-card');
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filterVal = btn.dataset.filter;
+
+        cards.forEach((card) => {
+          if (filterVal === 'all' || card.dataset.period === filterVal) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  /* ---------- Page Aesthetics ---------- */
+  .james-page {
+    padding-bottom: 5rem;
+  }
+
+  .james-hero {
+    padding: 3rem 0 2rem;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    background: radial-gradient(circle at 50% 0%, color-mix(in srgb, #0ea5e9 12%, transparent) 0%, transparent 70%);
+  }
+
+  .hero-top-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+  }
+
+  .classified-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, #ef4444 14%, var(--surface));
+    color: #ef4444;
+    border: 1px solid color-mix(in srgb, #ef4444 30%, transparent);
+  }
+
+  .linkedin-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, #0077b5 15%, var(--surface));
+    color: #0077b5;
+    border: 1px solid color-mix(in srgb, #0077b5 35%, transparent);
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+  .linkedin-pill:hover {
+    background: #0077b5;
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    line-height: 1.1;
+    font-weight: 800;
+    margin: 0 0 1.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  .gradient-name-link {
+    background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity 0.15s ease;
+  }
+  .gradient-name-link:hover {
+    opacity: 0.9;
+  }
+
+  /* Profile Highlight Card */
+  .profile-highlight-box {
+    background: var(--surface);
+    border: 1px solid color-mix(in srgb, #0ea5e9 30%, var(--border));
+    border-radius: 16px;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+  }
+
+  .profile-header-split {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .profile-text-side {
+    max-width: 48rem;
+  }
+
+  .role-location-line {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+  }
+
+  .firm-tag {
+    background: color-mix(in srgb, #0ea5e9 14%, var(--surface-2));
+    color: #0284c7;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    font-weight: 700;
+  }
+  .firm-tag.ranking {
+    background: color-mix(in srgb, #8b5cf6 14%, var(--surface-2));
+    color: #7c3aed;
+  }
+
+  .loc-text {
+    color: var(--muted);
+  }
+
+  .profile-summary-text {
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .linkedin-cta-btn {
+    background: #0077b5;
+    border-color: #0077b5;
+    color: #fff;
+    white-space: nowrap;
+    padding: 0.65rem 1.25rem;
+  }
+  .linkedin-cta-btn:hover {
+    background: #005582;
+    border-color: #005582;
+  }
+
+  /* Stats Counter */
+  .james-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .stat-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow);
+  }
+
+  .stat-box.highlight {
+    border-color: color-mix(in srgb, #0ea5e9 40%, transparent);
+    background: color-mix(in srgb, #0ea5e9 8%, var(--surface));
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+  }
+
+  .stat-box.highlight .stat-num {
+    color: #0284c7;
+    font-size: 1.25rem;
+  }
+
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  /* Interactive Generator Card */
+  .generator-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1rem;
+  }
+
+  .generator-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .generator-badge {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #6366f1;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .generator-title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .roll-btn {
+    background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.95rem;
+    padding: 0.7rem 1.4rem;
+  }
+
+  .random-fact-box {
+    background: var(--surface-2);
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .fact-quote {
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--text);
+    margin: 0 0 0.5rem;
+    line-height: 1.5;
+  }
+
+  .fact-attribution {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin: 0;
+    text-align: right;
+  }
+
+  /* Filter Navigation */
+  .dossiers-section {
+    padding: 3rem 0;
+  }
+
+  .section-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-top h2 {
+    font-family: var(--font-display);
+    font-size: 1.85rem;
+    margin: 0;
+    font-weight: 800;
+  }
+
+  .filter-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .filter-btn:hover {
+    color: var(--text);
+    border-color: #0ea5e9;
+  }
+
+  .filter-btn.active {
+    background: #0ea5e9;
+    border-color: #0ea5e9;
+    color: #fff;
+  }
+
+  /* Dossier Cards */
+  .james-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .james-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem;
+    border-radius: 14px;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .james-card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, #0ea5e9 45%, var(--border));
+    box-shadow: 0 8px 30px -6px color-mix(in srgb, #0ea5e9 20%, transparent);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .country-flag {
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+
+  .james-name {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.2rem;
+    line-height: 1.2;
+  }
+
+  .james-name-link {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .james-name-link:hover {
+    color: #0284c7;
+  }
+
+  .james-meta {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .status-pill {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .pill-historical {
+    background: color-mix(in srgb, #f59e0b 15%, var(--surface));
+    color: #f59e0b;
+    border: 1px solid color-mix(in srgb, #f59e0b 35%, transparent);
+  }
+
+  .pill-twentieth {
+    background: color-mix(in srgb, #38bdf8 15%, var(--surface));
+    color: #38bdf8;
+    border: 1px solid color-mix(in srgb, #38bdf8 35%, transparent);
+  }
+
+  .pill-modern {
+    background: color-mix(in srgb, #10b981 15%, var(--surface));
+    color: #10b981;
+    border: 1px solid color-mix(in srgb, #10b981 35%, transparent);
+  }
+
+  .james-role-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--surface-2);
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 1rem;
+    width: fit-content;
+  }
+
+  .role-icon {
+    color: #0284c7;
+    font-size: 0.85rem;
+  }
+
+  .james-summary {
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.55;
+    margin: 0 0 1.25rem;
+    flex: 1;
+  }
+
+  .fact-highlight {
+    background: color-mix(in srgb, #0ea5e9 6%, var(--surface-2));
+    border-left: 3px solid #0ea5e9;
+    border-radius: 0 8px 8px 0;
+    padding: 0.85rem 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .fact-title {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #0284c7;
+    margin-bottom: 0.35rem;
+  }
+
+  .fact-body {
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .james-quote {
+    font-style: italic;
+    font-size: 0.88rem;
+    color: var(--muted);
+    border: none;
+    padding: 0;
+    margin: 0 0 1.25rem;
+    line-height: 1.4;
+  }
+
+  .card-footer-action {
+    border-top: 1px solid var(--border);
+    padding-top: 0.85rem;
+    margin-top: auto;
+  }
+
+  .card-linkedin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #0284c7;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .card-linkedin-link:hover {
+    color: #0369a1;
+    text-decoration: underline;
+  }
+
+  /* Dispatch Box */
+  .james-dispatch-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    background: linear-gradient(135deg, color-mix(in srgb, #0ea5e9 12%, var(--surface)) 0%, var(--surface) 100%);
+    border: 1px solid color-mix(in srgb, #0ea5e9 30%, var(--border));
+    padding: 2rem;
+    border-radius: 16px;
+  }
+
+  .dispatch-content {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    max-width: 36rem;
+  }
+
+  .dispatch-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .dispatch-content h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    margin: 0 0 0.25rem;
+  }
+
+  .dispatch-text {
+    font-size: 0.92rem;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .dispatch-action-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-ghost-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 0.92rem;
+    padding: 0.7rem 1.3rem;
+  }
+  .contact-ghost-btn:hover {
+    background: var(--surface-2);
+    border-color: #0ea5e9;
+    color: #0284c7;
+  }
+</style>
